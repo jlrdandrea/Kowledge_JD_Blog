@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter": "Posit.air-vscode",
+    "editor.formatOnSave": true,
+    "files.autoSave": "onFocusChange"
+}
