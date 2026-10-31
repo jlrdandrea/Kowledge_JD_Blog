@@ -1,0 +1,325 @@
+---
+title: "MoR - Management of Risk"
+description: "Identifying, assessing, responding to, monitoring, and communicating risk across an organisation"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Management
+  - Framework
+  - Risk
+---
+
+# Overview
+
+## What is MoR
+
+**Management of Risk (M_o_R / MoR)** is a structured framework for identifying, assessing, responding to, monitoring, and communicating risk across an organisation. Originally developed by the UK Cabinet Office and now stewarded through PeopleCert, it provides a consistent way to manage uncertainty at **strategic, portfolio, programme, project, and operational** levels.
+
+MoR is not limited to a single project risk register. It is designed to help organisations build a **risk-aware culture**, define clear governance for risk decisions, and integrate risk management into planning, investment, delivery, operations, and assurance.
+
+## Purpose
+
+The purpose of MoR is to help organisations:
+
+-   create and protect value by managing uncertainty in a structured way;
+-   improve decision-making through clearer visibility of threats and opportunities;
+-   define consistent risk governance, roles, tolerances, and escalation routes;
+-   embed risk thinking into strategy, change, service delivery, and operations;
+-   strengthen resilience, compliance, and assurance; and
+-   promote a culture where risk is discussed openly and managed proportionately.
+
+## When to Use It
+
+MoR is most useful when an organisation:
+
+-   wants an enterprise-wide risk management approach;
+-   needs a common language for risk across business and technology functions;
+-   runs multiple projects, programmes, and portfolios that require coordinated risk oversight;
+-   faces regulatory, operational, cyber, financial, or transformation risk exposure;
+-   wants to improve governance, escalation, and risk reporting; or
+-   needs stronger linkage between risk appetite, decision-making, and assurance.
+
+## Target Audience
+
+MoR is particularly relevant for:
+
+-   board members and executive committees;
+-   risk committees and enterprise risk functions;
+-   CIOs, CISOs, CFOs, and operations leaders;
+-   portfolio, programme, and project managers;
+-   PMOs, portfolio offices, and governance teams;
+-   audit, compliance, and assurance functions; and
+-   managers responsible for delivery, service continuity, security, or regulatory obligations.
+
+## MoR Governance Overview
+
+MoR provides a governance model for managing risk consistently across the organisation. It usually works through an integrated set of principles, process steps, documents, roles, and embedded practices.
+
+A practical MoR implementation helps leadership answer key questions such as:
+
+1.  What uncertainty could affect our objectives?
+2.  What level of risk are we willing to accept?
+3.  Who owns each major risk and response decision?
+4.  Are our controls and mitigations effective?
+5.  How are risks changing over time across the enterprise?
+6.  When should risks be escalated, accepted, transferred, reduced, exploited, or closed?
+
+# History and Evolution
+
+MoR emerged from UK government best-practice guidance and became widely used across public and private sectors as a practical framework for enterprise and delivery risk management. It was designed to complement adjacent methods such as PRINCE2, MSP, MoP, and P3O by providing a common approach to risk across organisational levels.
+
+In current market positioning, PeopleCert continues to offer **M_o_R Foundation (3rd edition)** and **M_o_R 4 Practitioner**, while also signalling a broader branding evolution toward **PRINCE2 Risk Management**. This means organisations may encounter both the traditional **M_o_R** name and the newer branded wording in current certification and training materials.
+
+MoR has remained relevant because it bridges enterprise risk management and delivery risk management. It can be used for strategic risk, investment risk, programme and project risk, operational risk, resilience risk, cyber and information risk, supplier risk, and change-related uncertainty.
+
+# Core Principles
+
+MoR is commonly explained through a set of core principles that make risk management effective and sustainable.
+
+## Align with Objectives
+
+Risk management must always relate to objectives. Risk only has meaning in relation to what the organisation is trying to achieve, protect, change, or deliver.
+
+## Fit the Context
+
+Risk management should be tailored to the organisation’s size, complexity, sector, culture, regulatory environment, and governance model. A proportional approach is more sustainable than a purely theoretical one.
+
+## Engage Stakeholders
+
+Risk information is stronger when it includes the perspectives of sponsors, delivery teams, operational teams, finance, security, audit, suppliers, and affected business users.
+
+## Provide Clear Governance
+
+Roles, responsibilities, risk appetite, escalation thresholds, and decision rights must be explicit. Without governance clarity, risk management becomes inconsistent and politically weakened.
+
+## Inform Decision-Making
+
+Risk management should support real decisions about strategy, investment, sequencing, controls, contingency, and response options. It should not be treated as a documentation exercise.
+
+## Create a Supportive Culture
+
+An effective framework depends on a culture where risks can be raised honestly, debated constructively, and managed without blame.
+
+## Enable Continual Improvement
+
+Risk processes, reporting, and controls should be reviewed and improved over time as the organisation learns from incidents, near misses, audits, delivery outcomes, and environmental change.
+
+# Governance Structure
+
+## What MoR Governs
+
+MoR governs the way risk is identified, assessed, escalated, owned, treated, and reviewed across the enterprise. It does not replace specialist risk disciplines, but it provides a common management structure that can be applied across them.
+
+## Organisational Perspectives
+
+MoR is frequently applied across four organisational perspectives:
+
+-   **Strategic** — risks affecting enterprise direction, policy, reputation, major investment, or long-term objectives;
+-   **Portfolio / Programme / Project** — risks affecting change investments, transformation, delivery, benefits, and dependencies;
+-   **Operational** — risks affecting business operations, service continuity, compliance, resilience, and control effectiveness; and
+-   **Functional / Specialist** — risks managed in specialist domains such as cyber security, finance, legal, procurement, data, or health and safety.
+
+## Typical Governance Roles
+
+Common roles in a MoR environment include:
+
+-   **Board / Executive Committee** — sets overall risk appetite and oversight expectations;
+-   **Risk Committee** — reviews major exposures, themes, trends, and control effectiveness;
+-   **Chief Risk Officer / Risk Lead** — defines policy, methods, and enterprise-level coordination;
+-   **Risk Owners** — are accountable for specific risks and response decisions;
+-   **Risk Action Owners** — are responsible for implementing agreed responses or controls;
+-   **Portfolio / Programme / Project Managers** — manage delivery-related risks and escalations;
+-   **PMO / Portfolio Office / Governance Office** — supports reporting, standards, data quality, and review cycles; and
+-   **Audit / Compliance / Assurance Functions** — provide challenge, review, and confidence assessment.
+
+## Decision Forums and Control Points
+
+Typical MoR governance involves recurring forums and control points such as:
+
+-   board and risk committee reviews;
+-   portfolio and investment reviews;
+-   programme and project board meetings;
+-   operational risk and resilience reviews;
+-   control self-assessment and compliance reviews;
+-   incident and issue review meetings; and
+-   audit and assurance checkpoints.
+
+# Processes
+
+## Identify
+
+Risks are identified by understanding objectives, context, assumptions, threats, opportunities, triggers, interdependencies, and stakeholder concerns.
+
+## Assess
+
+Assessment considers probability, impact, proximity, velocity, persistence, interconnectedness, and overall significance. It also includes evaluating existing controls and the confidence level around available information.
+
+## Plan
+
+Response planning defines what should be done about each significant risk. Common responses include avoiding, reducing, transferring, sharing, accepting, exploiting, enhancing, or preparing contingency actions.
+
+## Implement
+
+Agreed responses are assigned to owners, funded where necessary, integrated into plans, and monitored for completion and effectiveness.
+
+## Communicate
+
+Risk information is reported, escalated, discussed, and reviewed through governance forums, dashboards, registers, assurance packs, and decision papers.
+
+## Review and Learn
+
+Risks, assumptions, control effectiveness, indicators, and lessons learned are reviewed regularly so that the framework improves over time.
+
+## How to Read the MoR Process Model
+
+MoR is not a one-time sequence. It is a continuous management cycle that operates at all levels of the organisation. The same logic can be applied to enterprise strategy, change portfolios, programmes, projects, operations, and specialist risk domains.
+
+# Documentation and Artefacts
+
+## Typical MoR Artefact Families
+
+A mature MoR implementation normally produces artefacts across several categories:
+
+-   policy and governance documents;
+-   risk identification and assessment artefacts;
+-   response and control artefacts;
+-   reporting and escalation artefacts; and
+-   assurance and improvement artefacts.
+
+Typical examples include:
+
+-   risk management policy;
+-   risk management process guide;
+-   risk appetite statement;
+-   risk tolerance thresholds;
+-   enterprise risk taxonomy;
+-   strategic risk register;
+-   portfolio, programme, project, or operational risk registers;
+-   risk assessment matrix;
+-   control library or control catalogue;
+-   key risk indicator dashboard;
+-   escalation log;
+-   issue and incident linkage records;
+-   assurance review pack; and
+-   lessons learned and improvement log.
+
+## MoR Documentation RACI Matrix
+
+| Document / Artefact | Board / Executive | Risk Committee / CRO | Risk Manager / PMO | Delivery / Operational Manager | Assurance / Audit | Sponsor / Business Lead |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| Risk management policy | A | R | R | C | C | I |
+| Risk appetite statement | A | R | C | I | C | C |
+| Enterprise risk taxonomy | I | A | R | C | C | I |
+| Strategic risk register | I | A | R | C | C | C |
+| Programme / project risk register | I | C | C | A / R | C | R |
+| Operational risk register | I | C | C | A / R | C | C |
+| Risk dashboard / KRI report | I | A | R | C | C | I |
+| Escalation and exception log | I | A | R | R | C | C |
+| Assurance review pack | I | C | R | C | A / R | I |
+| Lessons learned / improvement log | I | C | A / R | R | C | C |
+
+# Integration with Other Frameworks
+
+## MoR and COBIT
+
+COBIT provides governance objectives, control orientation, and assurance structure for enterprise governance of information and technology. MoR complements COBIT by giving a practical risk management method that can be used to support governance decisions, control prioritisation, and risk reporting.
+
+## MoR and TOGAF
+
+TOGAF supports architecture governance, target-state design, and transition planning. MoR helps identify architecture, transformation, dependency, technology obsolescence, and migration risks that affect architecture roadmaps.
+
+## MoR and ITIL 4
+
+ITIL 4 includes risk considerations within service management, continuity, change enablement, supplier management, and continual improvement. MoR provides a broader enterprise risk structure that can strengthen service, operational, and resilience decision-making.
+
+## MoR and PRINCE2
+
+PRINCE2 includes project-level risk management as part of controlled delivery. MoR provides the wider organisational approach and can be used as the parent risk method for all PRINCE2 projects.
+
+## MoR and MSP / MoP / P3O
+
+MoR strengthens portfolio, programme, and office governance by standardising risk language, escalation routes, tolerances, and reporting across the full change landscape.
+
+## MoR and ISO / Regulatory Frameworks
+
+MoR can be aligned with ISO 31000, ISO 27001, ISO 22301, DORA, NIS2, internal control models, and sector regulations. It is particularly useful where organisations need a practical management method that sits between high-level policy and day-to-day risk decisions.
+
+# Implementation Approach
+
+A practical MoR implementation often follows these steps:
+
+1.  define the enterprise risk policy, scope, governance model, and target organisational perspectives;
+2.  agree risk appetite, tolerances, and escalation thresholds;
+3.  define the common process, taxonomy, scoring model, and reporting standards;
+4.  establish roles, committee structure, and ownership rules;
+5.  deploy standard registers, dashboards, and decision artefacts;
+6.  integrate risk management into portfolios, programmes, projects, services, and operations;
+7.  train stakeholders and build a constructive risk culture; and
+8.  review, assure, and improve the framework over time.
+
+## Critical Success Factors
+
+Successful MoR adoption usually depends on:
+
+-   visible executive sponsorship;
+-   simple and proportionate methods;
+-   alignment with strategy, finance, audit, and assurance;
+-   strong quality of risk data and reporting;
+-   active ownership rather than passive register maintenance; and
+-   consistent follow-through on risk responses and escalations.
+
+# KPIs and Metrics
+
+Organisations using MoR often monitor metrics such as:
+
+-   percentage of critical objectives with documented key risks;
+-   proportion of high risks with named owners and funded response actions;
+-   number of overdue mitigation actions;
+-   trend in top enterprise risks over time;
+-   percentage of major initiatives with current risk reviews;
+-   number of risks escalated within tolerance rules;
+-   control effectiveness scores for critical risk areas;
+-   incident or loss events linked to previously identified risks;
+-   percentage of audit findings related to weak risk controls; and
+-   stakeholder confidence in risk reporting and decision support.
+
+# Benefits
+
+Well-implemented MoR can provide significant benefits, including:
+
+-   better strategic and operational decision-making;
+-   clearer visibility of threats and opportunities;
+-   stronger resilience and preparedness;
+-   improved governance, escalation, and assurance;
+-   more consistent risk language across the enterprise;
+-   better integration between delivery and enterprise risk views; and
+-   greater confidence for boards, regulators, sponsors, and auditors.
+
+# Limitations
+
+MoR is powerful, but it also has limitations:
+
+-   it can become overly bureaucratic if over-engineered;
+-   poor culture can stop real risks being raised honestly;
+-   scoring models can create false precision if not used carefully;
+-   registers alone do not improve outcomes without action and ownership;
+-   it requires tailoring for different sectors and organisational maturity levels; and
+-   specialist risk domains may still need deeper methods, standards, and technical controls.
+
+# Example Use Case
+
+A large financial services organisation is running a transformation portfolio that includes cloud migration, cyber resilience improvements, customer-platform modernisation, and regulatory remediation. Different teams currently manage risk in different ways, making executive oversight inconsistent.
+
+The organisation adopts MoR as its common risk framework. It defines a group-wide risk policy, a shared taxonomy, portfolio and project escalation thresholds, and standard dashboards. Strategic risks are reviewed by the executive risk committee, delivery risks by the portfolio board, and operational risks by service and control forums. Cyber, resilience, supplier, and regulatory risks are linked into the same governance language.
+
+As a result, the board gains a clearer view of the organisation’s top exposures, project and programme teams escalate more consistently, mitigation ownership improves, and assurance reporting becomes more coherent across strategic, change, and operational domains.
+
+# References
+
+-   AXELOS. *M_o_R: Management of Risk – Guidance for Practitioners*. AXELOS / TSO.
+-   AXELOS. *M_o_R Certification \| Risk Management*. AXELOS.
+-   PeopleCert. *Certifications in PRINCE2 Risk Management*. PeopleCert.
+-   PeopleCert. *M_o_R Foundation (3rd edition)*. PeopleCert.
+-   PeopleCert. *M_o_R 4 Practitioner in Risk Management*. PeopleCert.
+-   PeopleCert. *M_o_R Corporate Framework*. PeopleCert.
+-   PeopleCert. *New PRINCE2 certification names*. PeopleCert.

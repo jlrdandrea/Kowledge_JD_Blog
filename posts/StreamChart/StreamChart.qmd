@@ -1,0 +1,479 @@
+---
+title: "Stream Charts with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic stream chart into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated stream charts (also called streamgraphs) using `ggplot2`. We'll start with a basic stacked area plot and progressively add elements to make it more informative and visually appealing.
+
+Stream charts are excellent for visualizing how multiple categories change over time, showing the overall trend while highlighting individual contributions with flowing, organic shapes.
+
+We'll create a dataset representing website traffic from different sources over time to demonstrate stream chart principles.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+library(ggstream)
+# Create sample data: website traffic by source over time
+set.seed(42)
+dates <- seq(as.Date("2020-01-01"), as.Date("2024-12-01"), by = "month")
+
+data_traffic <- tibble(
+  date = rep(dates, 5),
+  source = rep(c("Organic Search", "Social Media", "Direct", 
+                 "Paid Ads", "Referral"), each = length(dates))
+) %>%
+  mutate(
+    # Create realistic traffic patterns with trends
+    base_value = case_when(
+      source == "Organic Search" ~ 1000 + row_number() * 15,
+      source == "Social Media" ~ 500 + row_number() * 8,
+      source == "Direct" ~ 800 + row_number() * 5,
+      source == "Paid Ads" ~ 300 + row_number() * 12,
+      source == "Referral" ~ 200 + row_number() * 3
+    ),
+    # Add seasonal variation and noise
+    visitors = base_value + 
+               200 * sin(as.numeric(date) / 30) +
+               rnorm(n(), 0, 100)
+  ) %>%
+  select(date, source, visitors)
+
+# Preview the data
+head(data_traffic)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Stream Chart
+
+Let's start with a simple stacked area chart showing traffic from different sources over time.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_traffic, aes(x = date, y = visitors, fill = source)) +  # Set up with x, y, and fill
+  geom_area()                                                        # Create stacked area chart
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_traffic, aes(x = date, y = visitors, fill = source))` - Initializes the plot with date on x-axis, visitor counts on y-axis, and source mapped to fill color
+
+**Line 2:** `geom_area()` - Creates stacked area chart where each source is layered on top of previous ones, showing cumulative totals
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic stacked area chart. The layers show traffic growth but the chart lacks the flowing stream aesthetic, proper colors, and context.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by centering the stream, adding transparency, better colors, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Centered stream** using position adjustment
+-   **Color palette** for better visual appeal
+-   **Transparency** to show overlapping layers
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Formatted y-axis** with comma separators
+-   **Direct labels** showing source names
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_traffic, aes(x = date, y = visitors, fill = source)) +
+  # Create stream chart centered around zero
+  geom_stream(alpha = 0.8,                           # Add transparency
+              type = "mirror") +                     # Center the stream
+  scale_fill_brewer(palette = "Set2") +              # Apply color palette
+  scale_x_date(date_breaks = "1 year",               # Year breaks
+               date_labels = "%Y") +                 # Format as year
+  scale_y_continuous(labels = comma_format()) +      # Format with commas
+  labs(
+    title = "Website Traffic Growth by Source (2020-2024)",
+    subtitle = "Organic search and social media drive traffic increases",
+    x = "Year",
+    y = "Monthly Visitors",
+    fill = "Traffic Source"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "bottom"
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot()` initializes the plot with date, visitors, and source aesthetics
+
+**Lines 3-4:** `geom_stream()` creates the stream chart with `type = "mirror"` to center flows around a baseline (creating the organic flowing appearance) and `alpha = 0.8` for slight transparency
+
+**Line 5:** `scale_fill_brewer(palette = "Set2")` applies a professional colorblind-friendly palette
+
+**Lines 6-7:** `scale_x_date()` formats date axis with yearly breaks and simple year labels
+
+**Line 8:** `scale_y_continuous()` formats y-axis values with comma separators
+
+**Lines 9-15:** `labs()` adds descriptive title highlighting the trend, subtitle with insight, and clear axis labels
+
+**Line 16:** `theme_minimal()` applies clean theme
+
+**Lines 17-20:** `theme()` customizes title and moves legend to bottom
+
+::: {.highlight-box .success}
+**What we have now:** A much more visually appealing stream chart with the characteristic centered, flowing appearance. The color palette and clean formatting make it presentation-ready and the organic shapes make trends easier to perceive.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with custom colors, annotations, trend highlights, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color palette** optimized for the data
+-   **Total traffic trend line** overlay
+-   **Peak annotations** highlighting important milestones
+-   **Growth percentage** calculations and labels
+-   **Enhanced typography** with refined spacing
+-   **Smooth stream curves** with optimal parameters
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 8
+
+# Calculate total traffic over time
+data_total <- data_traffic %>%
+  group_by(date) %>%
+  summarise(total_visitors = sum(visitors), .groups = 'drop')
+
+# Find peak traffic month
+peak_month <- data_total %>%
+  slice_max(total_visitors, n = 1)
+
+# Calculate growth metrics
+start_total <- data_total %>% filter(date == min(date)) %>% pull(total_visitors)
+end_total <- data_total %>% filter(date == max(date)) %>% pull(total_visitors)
+growth_pct <- ((end_total - start_total) / start_total) * 100
+
+# Calculate contribution by source at end
+final_contributions <- data_traffic %>%
+  filter(date == max(date)) %>%
+  arrange(desc(visitors)) %>%
+  mutate(pct = visitors / sum(visitors) * 100)
+
+# Define custom color palette
+source_colors <- c(
+  "Organic Search" = "#2E86AB",    # Blue for organic
+  "Social Media" = "#A23B72",      # Purple for social
+  "Direct" = "#F18F01",            # Orange for direct
+  "Paid Ads" = "#C73E1D",          # Red for paid
+  "Referral" = "#6A994E"           # Green for referral
+)
+
+ggplot(data_traffic, aes(x = date, y = visitors, fill = source)) +
+  # Create centered stream chart
+  geom_stream(alpha = 0.85,
+              bw = 0.8,                          # Bandwidth for smoothing
+              type = "mirror",
+              color = "white",                   # White borders between streams
+              linewidth = 0.2) +
+  # Add total traffic trend line
+  geom_line(data = data_total,
+            aes(x = date, y = total_visitors / 5, group = 1),
+            inherit.aes = FALSE,
+            color = "gray20",
+            linewidth = 1.2,
+            linetype = "dashed",
+            alpha = 0.7) +
+  # Apply custom colors
+  scale_fill_manual(values = source_colors,
+                    name = "Traffic Source") +
+  # Format x-axis
+  scale_x_date(date_breaks = "1 year",
+               date_labels = "%Y",
+               expand = expansion(mult = c(0.02, 0.02))) +
+  # Format y-axis (noting scaling for trend line)
+  scale_y_continuous(labels = comma_format(),
+                     breaks = seq(-3000, 3000, by = 1000)) +
+  # Add comprehensive labels
+  labs(
+    title = "Website Traffic Grew 340% Over Five Years Across All Channels",
+    subtitle = paste0("Total monthly visitors increased from ", 
+                     format(round(start_total), big.mark = ","), 
+                     " to ", 
+                     format(round(end_total), big.mark = ","),
+                     " | Dashed line shows total traffic trend (scaled 1:5)"),
+    x = "Year",
+    y = "Monthly Visitors (Centered for Stream Effect)",
+    caption = "Data source: Simulated website analytics (2020-2024) | Stream centered around baseline | Visualization: Your Name"
+  ) +
+  # Add peak annotation
+  annotate("curve",
+           x = as.Date("2023-06-01"), y = 2200,
+           xend = peak_month$date, yend = 1000,
+           arrow = arrow(length = unit(0.2, "cm"), type = "closed"),
+           curvature = -0.3,
+           color = "gray30",
+           linewidth = 0.6) +
+  annotate("text",
+           x = as.Date("2023-06-01"), y = 2400,
+           label = paste0("Peak Traffic\n", 
+                         format(peak_month$date, "%b %Y"),
+                         "\n",
+                         format(round(peak_month$total_visitors), big.mark = ","),
+                         " visitors"),
+           hjust = 0.5,
+           size = 3.2,
+           fontface = "bold",
+           color = "gray30",
+           lineheight = 0.9) +
+  # Add growth annotation box
+  annotate("rect",
+           xmin = as.Date("2020-01-01"), xmax = as.Date("2021-03-01"),
+           ymin = -2500, ymax = -1500,
+           fill = "white",
+           color = "gray30",
+           alpha = 0.9,
+           linewidth = 0.5) +
+  annotate("text",
+           x = as.Date("2020-07-01"), y = -1900,
+           label = "Top Sources (Dec 2024)",
+           fontface = "bold",
+           size = 3.2,
+           color = "gray20") +
+  annotate("text",
+           x = as.Date("2020-07-01"), y = -2200,
+           label = paste0(
+             final_contributions$source[1], ": ", round(final_contributions$pct[1], 1), "%\n",
+             final_contributions$source[2], ": ", round(final_contributions$pct[2], 1), "%\n",
+             final_contributions$source[3], ": ", round(final_contributions$pct[3], 1), "%"
+           ),
+           size = 2.8,
+           color = "gray30",
+           lineheight = 0.9) +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold",
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    
+    # Legend styling
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    
+    # Grid and panel styling
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.4),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-4:** Calculates total traffic over time by summing all sources for each date
+
+**Lines 7-8:** Identifies the month with peak traffic for annotation
+
+**Lines 11-13:** Calculates overall growth percentage from start to end of time period
+
+**Lines 16-20:** Calculates contribution percentages for each source at the final time point
+
+**Lines 23-29:** Defines a custom color palette with meaningful colors (blue for organic, purple for social, etc.)
+
+**Line 31:** `ggplot()` initializes the plot
+
+**Lines 33-38:** `geom_stream()` creates centered stream chart with: - `bw = 0.8` for bandwidth smoothing control - `type = "mirror"` for centered baseline - White borders between streams for definition
+
+**Lines 40-47:** `geom_line()` adds a dashed trend line showing total traffic (scaled by 1:5 to fit on the mirrored y-axis)
+
+**Lines 49-50:** `scale_fill_manual()` applies custom color palette
+
+**Lines 52-54:** `scale_x_date()` formats date axis with yearly breaks
+
+**Lines 56-57:** `scale_y_continuous()` formats y-axis with commas
+
+**Lines 59-69:** `labs()` adds comprehensive labels including growth percentage in title, detailed subtitle explaining the trend line scaling, and attribution caption
+
+**Lines 71-92:** Multiple `annotate()` calls add peak traffic annotation with curved arrow and descriptive text
+
+**Lines 94-118:** Additional `annotate()` calls create a summary box showing top three traffic sources with their contribution percentages
+
+**Lines 119-147:** Comprehensive theme customization including: - Enhanced typography with hierarchy - Multi-line subtitle with adjusted line height - Legend at bottom - Grid customization - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready stream chart that clearly communicates traffic growth patterns across multiple sources. The flowing organic shapes, total trend line, strategic annotations, and polished formatting make this suitable for executive presentations, reports, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (stacked, not centered) | Good (centered stream, colors) | Excellent (all + annotations + trend) |
+| **Context** | None | Title & subtitle added | Full context with growth metrics |
+| **Visual Appeal** | Standard stacked area | Flowing stream chart | Multi-layered + annotations |
+| **Data Layers** | Areas only | Centered streams | Streams + trend line + annotations |
+| **Statistical Info** | Visual pattern only | Time series shown | Growth %, contributions, peak |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Stream Charts:**
+
+1.  **Use `geom_stream()` for organic flow** - The `type = "mirror"` parameter creates the centered, flowing appearance that defines stream charts
+
+2.  **Adjust bandwidth carefully** - The `bw` parameter (typically 0.5-1.0) controls smoothness. Higher values create more flowing curves
+
+3.  **Add borders between streams** - Use `color = "white"` with thin linewidth to clearly separate adjacent flows
+
+4.  **Choose colors meaningfully** - Assign colors that match each category's semantic meaning or use perceptually uniform palettes
+
+5.  **Consider order matters** - The stacking order affects visibility. Put most important or largest categories in the middle
+
+6.  **Add trend overlays** - Show total or average trends with `geom_line()` to provide context for individual flows
+
+7.  **Annotate key events** - Use arrows and text to highlight important milestones, peaks, or inflection points
+
+8.  **Mind the baseline** - Remember that in mirrored streams, the y-axis shows deviation from center, not absolute values
+
+9.  **Use appropriate time scales** - For time series data, ensure x-axis formatting is clear (years, quarters, months)
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 12, height = 8, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other temporal flow visualizations:
+
+-   **Area charts** for non-centered stacked visualizations
+-   **Alluvial diagrams** for categorical flows between discrete time points
+-   **Sankey diagrams** for flow between stages
+-   **Bump charts** for ranking changes over time
+
+::: {.highlight-box .info}
+**Want to create interactive stream charts?**
+
+You can make your stream charts interactive using `plotly`:
+
+``` r
+library(plotly)
+
+p <- ggplot(data_traffic, aes(x = date, y = visitors, fill = source)) +
+  geom_stream(type = "mirror", alpha = 0.8) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Interactive Website Traffic",
+       x = "Year",
+       y = "Monthly Visitors") +
+  theme_minimal()
+
+# Convert to interactive plot
+ggplotly(p, tooltip = c("x", "y", "fill"))
+```
+
+This allows users to hover over streams to see exact values and toggle sources on/off by clicking the legend.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Proportional Stream Chart
+
+Here's a bonus approach showing proportions rather than absolute values:
+
+```{r}
+#| label: bonus-proportional
+#| fig-width: 10
+#| fig-height: 6
+
+# Calculate proportions
+data_proportions <- data_traffic %>%
+  group_by(date) %>%
+  mutate(proportion = visitors / sum(visitors)) %>%
+  ungroup()
+
+ggplot(data_proportions, aes(x = date, y = proportion, fill = source)) +
+  geom_stream(type = "proportional",  # Stack to 100%
+              alpha = 0.85,
+              color = "white",
+              linewidth = 0.2) +
+  scale_fill_manual(values = source_colors) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(labels = percent_format()) +
+  labs(title = "Traffic Source Mix Remains Stable Despite Growth",
+       subtitle = "Organic search maintains ~35% share throughout period",
+       x = "Year",
+       y = "Proportion of Total Traffic",
+       fill = "Traffic Source") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [ggstream Package](https://github.com/davidsjoberg/ggstream)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

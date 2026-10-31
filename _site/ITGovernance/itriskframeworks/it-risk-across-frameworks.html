@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="A cross-framework knowledge base note">
+
+<title>How Risk Acts Throughout IT Frameworks</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">How Risk Acts Throughout IT Frameworks</h1>
+                  <div>
+        <div class="description">
+          A cross-framework knowledge base note
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Risk</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#the-common-risk-pattern-across-frameworks" id="toc-the-common-risk-pattern-across-frameworks" class="nav-link" data-scroll-target="#the-common-risk-pattern-across-frameworks">The Common Risk Pattern Across Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#the-end-to-end-view" id="toc-the-end-to-end-view" class="nav-link" data-scroll-target="#the-end-to-end-view">The end-to-end view</a></li>
+  <li><a href="#what-happens-in-each-stage" id="toc-what-happens-in-each-stage" class="nav-link" data-scroll-target="#what-happens-in-each-stage">What happens in each stage</a></li>
+  </ul></li>
+  <li><a href="#cross-framework-comparison" id="toc-cross-framework-comparison" class="nav-link" data-scroll-target="#cross-framework-comparison">Cross-Framework Comparison</a>
+  <ul class="collapse">
+  <li><a href="#side-by-side-view" id="toc-side-by-side-view" class="nav-link" data-scroll-target="#side-by-side-view">Side-by-side view</a></li>
+  </ul></li>
+  <li><a href="#how-each-framework-treats-risk" id="toc-how-each-framework-treats-risk" class="nav-link" data-scroll-target="#how-each-framework-treats-risk">How Each Framework Treats Risk</a>
+  <ul class="collapse">
+  <li><a href="#iso-31000" id="toc-iso-31000" class="nav-link" data-scroll-target="#iso-31000">ISO 31000</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-iso-31000" id="toc-risk-role-in-iso-31000" class="nav-link" data-scroll-target="#risk-role-in-iso-31000">Risk role in ISO 31000</a></li>
+  </ul></li>
+  <li><a href="#cobit" id="toc-cobit" class="nav-link" data-scroll-target="#cobit">COBIT</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-cobit" id="toc-risk-role-in-cobit" class="nav-link" data-scroll-target="#risk-role-in-cobit">Risk role in COBIT</a></li>
+  <li><a href="#practical-interpretation" id="toc-practical-interpretation" class="nav-link" data-scroll-target="#practical-interpretation">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#itil" id="toc-itil" class="nav-link" data-scroll-target="#itil">ITIL</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-itil" id="toc-risk-role-in-itil" class="nav-link" data-scroll-target="#risk-role-in-itil">Risk role in ITIL</a></li>
+  <li><a href="#practical-interpretation-1" id="toc-practical-interpretation-1" class="nav-link" data-scroll-target="#practical-interpretation-1">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#togaf" id="toc-togaf" class="nav-link" data-scroll-target="#togaf">TOGAF</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-togaf" id="toc-risk-role-in-togaf" class="nav-link" data-scroll-target="#risk-role-in-togaf">Risk role in TOGAF</a></li>
+  <li><a href="#practical-interpretation-2" id="toc-practical-interpretation-2" class="nav-link" data-scroll-target="#practical-interpretation-2">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#prince2" id="toc-prince2" class="nav-link" data-scroll-target="#prince2">PRINCE2</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-prince2" id="toc-risk-role-in-prince2" class="nav-link" data-scroll-target="#risk-role-in-prince2">Risk role in PRINCE2</a></li>
+  <li><a href="#practical-interpretation-3" id="toc-practical-interpretation-3" class="nav-link" data-scroll-target="#practical-interpretation-3">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#msp" id="toc-msp" class="nav-link" data-scroll-target="#msp">MSP</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-msp" id="toc-risk-role-in-msp" class="nav-link" data-scroll-target="#risk-role-in-msp">Risk role in MSP</a></li>
+  <li><a href="#practical-interpretation-4" id="toc-practical-interpretation-4" class="nav-link" data-scroll-target="#practical-interpretation-4">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#nist-rmf" id="toc-nist-rmf" class="nav-link" data-scroll-target="#nist-rmf">NIST RMF</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-nist-rmf" id="toc-risk-role-in-nist-rmf" class="nav-link" data-scroll-target="#risk-role-in-nist-rmf">Risk role in NIST RMF</a></li>
+  <li><a href="#practical-interpretation-5" id="toc-practical-interpretation-5" class="nav-link" data-scroll-target="#practical-interpretation-5">Practical interpretation</a></li>
+  </ul></li>
+  <li><a href="#nist-csf" id="toc-nist-csf" class="nav-link" data-scroll-target="#nist-csf">NIST CSF</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-nist-csf" id="toc-risk-role-in-nist-csf" class="nav-link" data-scroll-target="#risk-role-in-nist-csf">Risk role in NIST CSF</a></li>
+  </ul></li>
+  <li><a href="#dora" id="toc-dora" class="nav-link" data-scroll-target="#dora">DORA</a>
+  <ul class="collapse">
+  <li><a href="#risk-role-in-dora" id="toc-risk-role-in-dora" class="nav-link" data-scroll-target="#risk-role-in-dora">Risk role in DORA</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#how-risk-flows-across-the-layers-of-an-it-operating-model" id="toc-how-risk-flows-across-the-layers-of-an-it-operating-model" class="nav-link" data-scroll-target="#how-risk-flows-across-the-layers-of-an-it-operating-model">How Risk Flows Across the Layers of an IT Operating Model</a>
+  <ul class="collapse">
+  <li><a href="#layer-interpretation" id="toc-layer-interpretation" class="nav-link" data-scroll-target="#layer-interpretation">Layer interpretation</a></li>
+  </ul></li>
+  <li><a href="#one-enterprise-risk-language-multiple-framework-views" id="toc-one-enterprise-risk-language-multiple-framework-views" class="nav-link" data-scroll-target="#one-enterprise-risk-language-multiple-framework-views">One Enterprise Risk Language, Multiple Framework Views</a>
+  <ul class="collapse">
+  <li><a href="#unified-approach" id="toc-unified-approach" class="nav-link" data-scroll-target="#unified-approach">Unified approach</a></li>
+  </ul></li>
+  <li><a href="#risk-activities-matrix" id="toc-risk-activities-matrix" class="nav-link" data-scroll-target="#risk-activities-matrix">Risk Activities Matrix</a>
+  <ul class="collapse">
+  <li><a href="#how-the-major-frameworks-align-by-activity" id="toc-how-the-major-frameworks-align-by-activity" class="nav-link" data-scroll-target="#how-the-major-frameworks-align-by-activity">How the major frameworks align by activity</a></li>
+  </ul></li>
+  <li><a href="#example-one-risk-seen-through-multiple-frameworks" id="toc-example-one-risk-seen-through-multiple-frameworks" class="nav-link" data-scroll-target="#example-one-risk-seen-through-multiple-frameworks">Example: One Risk Seen Through Multiple Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#example-risk" id="toc-example-risk" class="nav-link" data-scroll-target="#example-risk">Example risk</a></li>
+  <li><a href="#how-each-framework-would-see-it" id="toc-how-each-framework-would-see-it" class="nav-link" data-scroll-target="#how-each-framework-would-see-it">How each framework would see it</a></li>
+  </ul></li>
+  <li><a href="#recommended-integrated-model" id="toc-recommended-integrated-model" class="nav-link" data-scroll-target="#recommended-integrated-model">Recommended Integrated Model</a>
+  <ul class="collapse">
+  <li><a href="#recommended-backbone" id="toc-recommended-backbone" class="nav-link" data-scroll-target="#recommended-backbone">Recommended backbone</a></li>
+  <li><a href="#end-to-end-operating-logic" id="toc-end-to-end-operating-logic" class="nav-link" data-scroll-target="#end-to-end-operating-logic">End-to-end operating logic</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#suggested-knowledge-base-tags" id="toc-suggested-knowledge-base-tags" class="nav-link" data-scroll-target="#suggested-knowledge-base-tags">Suggested Knowledge Base Tags</a></li>
+  <li><a href="#reusable-summary-statement" id="toc-reusable-summary-statement" class="nav-link" data-scroll-target="#reusable-summary-statement">Reusable Summary Statement</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="purpose" class="level1">
+<h1>Purpose</h1>
+<p>This note explains <strong>how risk acts throughout the main IT, governance, architecture, delivery, service, and cyber frameworks</strong>. It is designed as a reusable reference for a knowledge base and can support governance design, PMO/ITSM integration, architecture reviews, audit mapping, and executive communication.</p>
+<p>The core idea is simple:</p>
+<blockquote class="blockquote">
+<p><strong>Risk is the thread that connects strategy, architecture, delivery, operations, security, resilience, assurance, and improvement.</strong></p>
+</blockquote>
+<p>Different frameworks emphasise different parts of the same risk chain.</p>
+</section>
+<section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>Across the main frameworks, risk tends to move through a common cycle:</p>
+<p><strong>Govern -&gt; Design -&gt; Deliver -&gt; Operate -&gt; Assure -&gt; Improve</strong></p>
+<ul>
+<li><strong>Govern</strong> sets appetite, tolerance, direction, and accountability.</li>
+<li><strong>Design</strong> turns risk into architecture principles, standards, controls, and investment choices.</li>
+<li><strong>Deliver</strong> manages uncertainty through projects, programmes, change, and supplier coordination.</li>
+<li><strong>Operate</strong> keeps live services, resilience, continuity, and security within acceptable limits.</li>
+<li><strong>Assure</strong> monitors, tests, audits, and reports.</li>
+<li><strong>Improve</strong> feeds lessons back into governance, architecture, and operations.</li>
+</ul>
+<p>The frameworks differ mainly by <strong>where they place emphasis</strong>:</p>
+<ul>
+<li><strong>ISO 31000</strong> provides the enterprise-wide risk logic.</li>
+<li><strong>COBIT</strong> governs and manages enterprise information and technology risk.</li>
+<li><strong>TOGAF</strong> reduces risk through better architecture and transition design.</li>
+<li><strong>PRINCE2</strong> controls project-level uncertainty.</li>
+<li><strong>MSP</strong> controls programme and transformation risk.</li>
+<li><strong>ITIL</strong> manages service and operational risk.</li>
+<li><strong>NIST RMF / CSF</strong> formalise cyber and control-based risk management.</li>
+<li><strong>DORA</strong> turns ICT risk and resilience into regulatory obligations in financial services.</li>
+</ul>
+</section>
+<section id="the-common-risk-pattern-across-frameworks" class="level1">
+<h1>The Common Risk Pattern Across Frameworks</h1>
+<section id="the-end-to-end-view" class="level2">
+<h2 class="anchored" data-anchor-id="the-end-to-end-view">The end-to-end view</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Govern] --&gt; B[Design]
+    B --&gt; C[Deliver]
+    C --&gt; D[Operate]
+    D --&gt; E[Assure]
+    E --&gt; F[Improve]
+    F --&gt; A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-happens-in-each-stage" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-in-each-stage">What happens in each stage</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>What risk is doing</th>
+<th>Typical questions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Govern</td>
+<td>Defining direction and oversight</td>
+<td>What level of risk will we accept? Who owns what? What must be escalated?</td>
+</tr>
+<tr class="even">
+<td>Design</td>
+<td>Shaping architecture, policy, and controls</td>
+<td>How should we design this to reduce exposure? What standards or safeguards are needed?</td>
+</tr>
+<tr class="odd">
+<td>Deliver</td>
+<td>Managing uncertainty in change</td>
+<td>What could stop delivery, delay value, or undermine outcomes?</td>
+</tr>
+<tr class="even">
+<td>Operate</td>
+<td>Controlling live operational risk</td>
+<td>Are services stable, secure, resilient, and supportable?</td>
+</tr>
+<tr class="odd">
+<td>Assure</td>
+<td>Testing and verifying</td>
+<td>Are controls working? Are metrics and reports credible?</td>
+</tr>
+<tr class="even">
+<td>Improve</td>
+<td>Learning and adapting</td>
+<td>What should change in policy, design, controls, or delivery?</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cross-framework-comparison" class="level1">
+<h1>Cross-Framework Comparison</h1>
+<section id="side-by-side-view" class="level2">
+<h2 class="anchored" data-anchor-id="side-by-side-view">Side-by-side view</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Where risk sits</th>
+<th>Main risk focus</th>
+<th>How risk acts in practice</th>
+<th>Typical outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ISO 31000</strong></td>
+<td>Enterprise-wide management system</td>
+<td>All organizational risk</td>
+<td>Establishes principles, framework, and process for identifying, assessing, treating, monitoring, and communicating risk</td>
+<td>Risk policy, criteria, treatment plans, risk reports</td>
+</tr>
+<tr class="even">
+<td><strong>COBIT</strong></td>
+<td>Governance and management of enterprise IT</td>
+<td>Enterprise I&amp;T risk, control, assurance</td>
+<td>Connects board oversight with management practices, controls, and assurance</td>
+<td>Risk scenarios, governance reporting, control objectives, assurance evidence</td>
+</tr>
+<tr class="odd">
+<td><strong>ITIL</strong></td>
+<td>Service value system and service practices</td>
+<td>Service, continuity, supplier, security, change, and operational risk</td>
+<td>Embeds risk into live service management and continual improvement</td>
+<td>Service risk logs, change assessments, continuity plans, service metrics</td>
+</tr>
+<tr class="even">
+<td><strong>TOGAF</strong></td>
+<td>Enterprise architecture</td>
+<td>Architecture, transition, standards, and technology risk</td>
+<td>Influences principles, standards, target states, and transition roadmaps</td>
+<td>Architecture principles, standards, roadmaps, design decisions</td>
+</tr>
+<tr class="odd">
+<td><strong>PRINCE2</strong></td>
+<td>Project governance and control</td>
+<td>Scope, schedule, cost, quality, dependency, delivery risk</td>
+<td>Manages uncertainty through stages, controls, escalation, and decisions</td>
+<td>Risk register, exception reports, stage decisions</td>
+</tr>
+<tr class="even">
+<td><strong>MSP</strong></td>
+<td>Programme governance</td>
+<td>Transformation, benefits, stakeholder, dependency risk</td>
+<td>Manages risk across multiple projects, outcomes, and change tranches</td>
+<td>Programme risk register, dependency views, tranche decisions</td>
+</tr>
+<tr class="odd">
+<td><strong>NIST RMF</strong></td>
+<td>Security and privacy life cycle</td>
+<td>Security and privacy risk</td>
+<td>Formalises risk through categorisation, control selection, implementation, assessment, authorisation, and monitoring</td>
+<td>Security categorisation, control baselines, assessment results</td>
+</tr>
+<tr class="even">
+<td><strong>NIST CSF</strong></td>
+<td>Cybersecurity governance and operations</td>
+<td>Enterprise cyber risk</td>
+<td>Connects executive governance to protect, detect, respond, and recover capabilities</td>
+<td>Risk profiles, metrics, target state actions</td>
+</tr>
+<tr class="odd">
+<td><strong>DORA</strong></td>
+<td>Regulatory resilience and ICT risk</td>
+<td>ICT risk, resilience, third-party ICT risk</td>
+<td>Makes operational resilience, testing, incident reporting, and third-party oversight mandatory in regulated finance</td>
+<td>ICT risk framework, resilience evidence, incident reporting records</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="how-each-framework-treats-risk" class="level1">
+<h1>How Each Framework Treats Risk</h1>
+<section id="iso-31000" class="level2">
+<h2 class="anchored" data-anchor-id="iso-31000">ISO 31000</h2>
+<p>ISO 31000 is the <strong>umbrella discipline</strong>. It is not limited to IT. It provides a common language and structure for risk management across the enterprise. It is most useful when an organisation wants one coherent approach to risk across governance, projects, operations, architecture, security, and compliance.</p>
+<section id="risk-role-in-iso-31000" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-iso-31000">Risk role in ISO 31000</h3>
+<ul>
+<li>Integrates risk into governance and decision-making</li>
+<li>Provides principles and a management framework</li>
+<li>Encourages consistent identification, analysis, evaluation, treatment, monitoring, and communication</li>
+<li>Supports a shared taxonomy and scoring model across disciplines</li>
+</ul>
+</section>
+</section>
+<section id="cobit" class="level2">
+<h2 class="anchored" data-anchor-id="cobit">COBIT</h2>
+<p>COBIT treats risk as a matter of <strong>governance first, management second</strong>. It is strong where the organisation needs a structured connection between board oversight, executive accountability, control design, and assurance.</p>
+<section id="risk-role-in-cobit" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-cobit">Risk role in COBIT</h3>
+<ul>
+<li>Board and executive focus on <strong>risk optimisation</strong></li>
+<li>Management translates risk direction into practices and controls</li>
+<li>Risk is linked to security, continuity, suppliers, change, information, and assurance</li>
+<li>Useful for integrating CIO, CISO, PMO, audit, and architecture views</li>
+</ul>
+</section>
+<section id="practical-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation">Practical interpretation</h3>
+<p>COBIT is especially effective when you want to answer questions such as:</p>
+<ul>
+<li>Are we governing IT risk properly?</li>
+<li>Are accountabilities clear?</li>
+<li>Are we balancing value, risk, and resources?</li>
+<li>Is our assurance model coherent?</li>
+</ul>
+</section>
+</section>
+<section id="itil" class="level2">
+<h2 class="anchored" data-anchor-id="itil">ITIL</h2>
+<p>ITIL treats risk as part of <strong>value delivery through services</strong>. It does not approach risk mainly as board theory; it approaches it as a practical concern in operating and improving digital services.</p>
+<section id="risk-role-in-itil" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-itil">Risk role in ITIL</h3>
+<ul>
+<li>Embedded in service design, transition, support, and improvement</li>
+<li>Present in incident, problem, change enablement, supplier, security, monitoring, and continuity practices</li>
+<li>Focuses on service stability, quality, resilience, and operational visibility</li>
+</ul>
+</section>
+<section id="practical-interpretation-1" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation-1">Practical interpretation</h3>
+<p>ITIL is most useful when the question is:</p>
+<ul>
+<li>How do we keep risk under control while running live services?</li>
+<li>How do we reduce service disruption and change failure?</li>
+<li>How do we improve resilience, supportability, and customer value?</li>
+</ul>
+</section>
+</section>
+<section id="togaf" class="level2">
+<h2 class="anchored" data-anchor-id="togaf">TOGAF</h2>
+<p>TOGAF acts on risk <strong>before delivery starts in earnest</strong> by improving structure. It reduces risk through architecture principles, standards, target-state thinking, transition architecture, and roadmap choices.</p>
+<section id="risk-role-in-togaf" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-togaf">Risk role in TOGAF</h3>
+<ul>
+<li>Reduces structural risk through better design</li>
+<li>Addresses complexity, integration, obsolescence, standards, and technology alignment</li>
+<li>Strengthens security and resilience by embedding them into architecture decisions</li>
+</ul>
+</section>
+<section id="practical-interpretation-2" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation-2">Practical interpretation</h3>
+<p>TOGAF helps answer:</p>
+<ul>
+<li>Are we designing avoidable risk into the estate?</li>
+<li>Are our standards increasing or reducing exposure?</li>
+<li>Are transition plans realistic and controlled?</li>
+</ul>
+</section>
+</section>
+<section id="prince2" class="level2">
+<h2 class="anchored" data-anchor-id="prince2">PRINCE2</h2>
+<p>PRINCE2 handles risk in a <strong>controlled project environment</strong>. It is concerned with uncertainty that could affect scope, cost, schedule, quality, and continued business justification.</p>
+<section id="risk-role-in-prince2" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-prince2">Risk role in PRINCE2</h3>
+<ul>
+<li>Identifies and assesses project-level risks</li>
+<li>Defines owners, actions, responses, and escalation paths</li>
+<li>Uses stage control and exception-based management</li>
+<li>Links risk to decision points and business case viability</li>
+</ul>
+</section>
+<section id="practical-interpretation-3" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation-3">Practical interpretation</h3>
+<p>PRINCE2 is useful when the question is:</p>
+<ul>
+<li>Will this project still deliver what it promised?</li>
+<li>What threatens schedule, scope, cost, or quality?</li>
+<li>When should the issue be escalated or re-planned?</li>
+</ul>
+</section>
+</section>
+<section id="msp" class="level2">
+<h2 class="anchored" data-anchor-id="msp">MSP</h2>
+<p>MSP treats risk at <strong>transformation scale</strong> rather than single-project scale. It is concerned with whether a programme will land successfully, coordinate its dependencies, achieve desired outcomes, and realise benefits.</p>
+<section id="risk-role-in-msp" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-msp">Risk role in MSP</h3>
+<ul>
+<li>Manages uncertainty across multiple projects and workstreams</li>
+<li>Focuses on dependency risk, benefit risk, organisational change risk, stakeholder risk, and governance risk</li>
+<li>Supports tranche-based decisions and transformation control</li>
+</ul>
+</section>
+<section id="practical-interpretation-4" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation-4">Practical interpretation</h3>
+<p>MSP is valuable when the question becomes:</p>
+<ul>
+<li>Will the programme achieve strategic outcomes, not just outputs?</li>
+<li>Are the interdependencies being managed effectively?</li>
+<li>Is change adoption or benefits realisation at risk?</li>
+</ul>
+</section>
+</section>
+<section id="nist-rmf" class="level2">
+<h2 class="anchored" data-anchor-id="nist-rmf">NIST RMF</h2>
+<p>NIST RMF formalises risk in a structured <strong>security and privacy life cycle</strong>. It is control-oriented and evidence-driven.</p>
+<section id="risk-role-in-nist-rmf" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-nist-rmf">Risk role in NIST RMF</h3>
+<ul>
+<li>Categorises information systems and data sensitivity</li>
+<li>Selects and tailors controls</li>
+<li>Implements and assesses those controls</li>
+<li>Supports authorisation decisions and ongoing monitoring</li>
+</ul>
+</section>
+<section id="practical-interpretation-5" class="level3">
+<h3 class="anchored" data-anchor-id="practical-interpretation-5">Practical interpretation</h3>
+<p>NIST RMF is strong when the organisation asks:</p>
+<ul>
+<li>What controls are required for this system?</li>
+<li>Are those controls operating effectively?</li>
+<li>Can this system be authorised or remain in service?</li>
+</ul>
+</section>
+</section>
+<section id="nist-csf" class="level2">
+<h2 class="anchored" data-anchor-id="nist-csf">NIST CSF</h2>
+<p>NIST CSF provides an outcome-based cybersecurity structure. It is particularly helpful for executive communication because it links governance to operational cyber capabilities.</p>
+<section id="risk-role-in-nist-csf" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-nist-csf">Risk role in NIST CSF</h3>
+<ul>
+<li>Frames cyber risk through <strong>Govern, Identify, Protect, Detect, Respond, Recover</strong></li>
+<li>Supports target-state design and maturity improvement</li>
+<li>Connects cyber operations with leadership communication and prioritisation</li>
+</ul>
+</section>
+</section>
+<section id="dora" class="level2">
+<h2 class="anchored" data-anchor-id="dora">DORA</h2>
+<p>DORA makes ICT risk and operational resilience a matter of regulatory discipline in the financial sector.</p>
+<section id="risk-role-in-dora" class="level3">
+<h3 class="anchored" data-anchor-id="risk-role-in-dora">Risk role in DORA</h3>
+<ul>
+<li>Requires structured ICT risk management</li>
+<li>Emphasises digital operational resilience</li>
+<li>Requires incident reporting, resilience testing, and third-party oversight</li>
+<li>Pushes resilience from good practice into formal compliance obligations</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="how-risk-flows-across-the-layers-of-an-it-operating-model" class="level1">
+<h1>How Risk Flows Across the Layers of an IT Operating Model</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Board / Executive Governance] --&gt; B[Enterprise Risk Direction]
+    B --&gt; C[Architecture and Standards]
+    C --&gt; D[Portfolio / Programme / Project Delivery]
+    D --&gt; E[Service Operations and Support]
+    E --&gt; F[Monitoring / Security / Resilience]
+    F --&gt; G[Audit / Assurance / Reporting]
+    G --&gt; A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="layer-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="layer-interpretation">Layer interpretation</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operating layer</th>
+<th>Risk emphasis</th>
+<th>Best-fit frameworks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Board / Executive / CIO</td>
+<td>Appetite, tolerance, oversight, accountability</td>
+<td>ISO 31000, COBIT, NIST CSF, DORA</td>
+</tr>
+<tr class="even">
+<td>Enterprise architecture</td>
+<td>Structural, standards, integration, technology, resilience risk</td>
+<td>TOGAF, COBIT</td>
+</tr>
+<tr class="odd">
+<td>Portfolio / Programme / Project</td>
+<td>Investment, transformation, delivery, dependency, benefits risk</td>
+<td>MSP, PRINCE2, COBIT</td>
+</tr>
+<tr class="even">
+<td>Service operations</td>
+<td>Stability, support, continuity, supplier, change, operational risk</td>
+<td>ITIL, COBIT</td>
+</tr>
+<tr class="odd">
+<td>Cybersecurity / privacy</td>
+<td>Threat, vulnerability, control, resilience, recovery risk</td>
+<td>NIST RMF, NIST CSF, ISO 27001-style overlays</td>
+</tr>
+<tr class="even">
+<td>Audit / assurance</td>
+<td>Evidence, testing, reporting, challenge, monitoring</td>
+<td>COBIT, NIST, internal audit methods</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="one-enterprise-risk-language-multiple-framework-views" class="level1">
+<h1>One Enterprise Risk Language, Multiple Framework Views</h1>
+<p>A common organisational mistake is to let each framework create its own separate risk universe.</p>
+<p>That often leads to:</p>
+<ul>
+<li>separate risk registers</li>
+<li>conflicting scoring methods</li>
+<li>duplicated controls</li>
+<li>inconsistent escalation paths</li>
+<li>fragmented reporting to executives</li>
+<li>poor traceability from policy to operation</li>
+</ul>
+<p>A better model is:</p>
+<section id="unified-approach" class="level2">
+<h2 class="anchored" data-anchor-id="unified-approach">Unified approach</h2>
+<ul>
+<li><strong>One enterprise risk taxonomy</strong></li>
+<li><strong>One scoring model</strong></li>
+<li><strong>One escalation model</strong></li>
+<li><strong>One reporting logic</strong></li>
+<li><strong>Many framework-specific views</strong></li>
+</ul>
+<p>In that model:</p>
+<ul>
+<li><strong>COBIT</strong> provides the governance and assurance view</li>
+<li><strong>TOGAF</strong> provides the design and architecture view</li>
+<li><strong>PRINCE2 / MSP</strong> provide the delivery and transformation view</li>
+<li><strong>ITIL</strong> provides the live service view</li>
+<li><strong>NIST</strong> provides the cyber-control view</li>
+<li><strong>DORA</strong> provides the regulatory resilience overlay where relevant</li>
+</ul>
+</section>
+</section>
+<section id="risk-activities-matrix" class="level1">
+<h1>Risk Activities Matrix</h1>
+<section id="how-the-major-frameworks-align-by-activity" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-major-frameworks-align-by-activity">How the major frameworks align by activity</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk activity</th>
+<th>ISO 31000</th>
+<th>COBIT</th>
+<th>TOGAF</th>
+<th>PRINCE2</th>
+<th>MSP</th>
+<th>ITIL</th>
+<th>NIST RMF / CSF</th>
+<th>DORA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set appetite and direction</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>CSF Govern supports</td>
+<td>Strong in regulated context</td>
+</tr>
+<tr class="even">
+<td>Define governance and accountability</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>CSF Govern supports</td>
+<td>Strong</td>
+</tr>
+<tr class="odd">
+<td>Identify risks</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="even">
+<td>Assess and prioritise</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="odd">
+<td>Design responses and controls</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="even">
+<td>Manage delivery uncertainty</td>
+<td>General</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Limited</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>Manage live operational risk</td>
+<td>General</td>
+<td>Strong</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="even">
+<td>Manage resilience and continuity</td>
+<td>General</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Limited</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="odd">
+<td>Monitor and report</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+<tr class="even">
+<td>Audit, assure, and improve</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Strong</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="example-one-risk-seen-through-multiple-frameworks" class="level1">
+<h1>Example: One Risk Seen Through Multiple Frameworks</h1>
+<section id="example-risk" class="level2">
+<h2 class="anchored" data-anchor-id="example-risk">Example risk</h2>
+<p><strong>Critical cloud provider outage affecting a customer-facing platform</strong></p>
+</section>
+<section id="how-each-framework-would-see-it" class="level2">
+<h2 class="anchored" data-anchor-id="how-each-framework-would-see-it">How each framework would see it</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Interpretation of the same risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISO 31000</td>
+<td>Enterprise risk requiring assessment, treatment, monitoring, ownership, and communication</td>
+</tr>
+<tr class="even">
+<td>COBIT</td>
+<td>Governance issue involving supplier oversight, resilience, continuity, security, and executive accountability</td>
+</tr>
+<tr class="odd">
+<td>TOGAF</td>
+<td>Architecture concern requiring redundancy, failover, recovery design, and standards review</td>
+</tr>
+<tr class="even">
+<td>PRINCE2</td>
+<td>Project or transition dependency risk if implementation relies on the provider</td>
+</tr>
+<tr class="odd">
+<td>MSP</td>
+<td>Programme dependency and business outcome risk if multiple projects rely on the same platform</td>
+</tr>
+<tr class="even">
+<td>ITIL</td>
+<td>Operational continuity, incident, problem, supplier, and change concern for live services</td>
+</tr>
+<tr class="odd">
+<td>NIST RMF / CSF</td>
+<td>Security and resilience control issue requiring safeguards, monitoring, response, and recovery</td>
+</tr>
+<tr class="even">
+<td>DORA</td>
+<td>ICT third-party and operational resilience issue with compliance and reporting implications in finance</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="recommended-integrated-model" class="level1">
+<h1>Recommended Integrated Model</h1>
+<p>For an enterprise IT governance model, a practical combination is:</p>
+<section id="recommended-backbone" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-backbone">Recommended backbone</h2>
+<ul>
+<li><strong>ISO 31000</strong> as the common risk method and language</li>
+<li><strong>COBIT</strong> for governance, accountability, assurance, and control alignment</li>
+<li><strong>TOGAF</strong> for design-time risk reduction</li>
+<li><strong>MSP / PRINCE2</strong> for transformation and delivery control</li>
+<li><strong>ITIL</strong> for operational risk and service resilience</li>
+<li><strong>NIST CSF / RMF</strong> for cyber and control depth</li>
+<li><strong>DORA / NIS2 / ISO 27001</strong> as regulatory and control overlays where relevant</li>
+</ul>
+</section>
+<section id="end-to-end-operating-logic" class="level2">
+<h2 class="anchored" data-anchor-id="end-to-end-operating-logic">End-to-end operating logic</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Risk Appetite] --&gt; B[Policy and Standards]
+    B --&gt; C[Architecture Decisions]
+    C --&gt; D[Programme and Project Controls]
+    D --&gt; E[Operational Controls and Services]
+    E --&gt; F[Monitoring and Metrics]
+    F --&gt; G[Audit and Assurance]
+    G --&gt; H[Lessons Learned]
+    H --&gt; A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
+<ol type="1">
+<li><strong>Risk is not separate from IT frameworks; it is one of their main connecting threads.</strong></li>
+<li><strong>Each framework sees a different part of the same risk system.</strong></li>
+<li><strong>COBIT is strongest for governance, accountability, and assurance.</strong></li>
+<li><strong>TOGAF reduces risk through design.</strong></li>
+<li><strong>PRINCE2 and MSP reduce risk through controlled change.</strong></li>
+<li><strong>ITIL reduces risk in live services.</strong></li>
+<li><strong>NIST deepens cyber and control rigour.</strong></li>
+<li><strong>DORA makes resilience and ICT risk formal obligations in regulated finance.</strong></li>
+<li><strong>The best enterprise model uses one risk language with multiple framework views.</strong></li>
+</ol>
+</section>
+<section id="suggested-knowledge-base-tags" class="level1">
+<h1>Suggested Knowledge Base Tags</h1>
+<p><code>risk-management</code> <code>it-governance</code> <code>cobit</code> <code>itil</code> <code>togaf</code> <code>prince2</code> <code>msp</code> <code>nist</code> <code>dora</code> <code>enterprise-architecture</code> <code>service-management</code> <code>cybersecurity</code> <code>operational-resilience</code> <code>assurance</code></p>
+</section>
+<section id="reusable-summary-statement" class="level1">
+<h1>Reusable Summary Statement</h1>
+<blockquote class="blockquote">
+<p>Risk starts as governance, becomes architecture and delivery decisions, turns into operational controls, and returns as assurance, reporting, and improvement.</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

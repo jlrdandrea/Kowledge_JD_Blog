@@ -1,0 +1,183 @@
+---
+title: "Strategic Alignment of IT"
+description: ""
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Governance
+---
+
+### 1. Strategic Alignment to the Business
+
+**Purpose**: Ensure IT investments and capabilities support business goals, strategy, risk appetite, and value creation.\
+**Key activities**:\
+- Business strategy review and IT strategy formulation.\
+- Identification of business capabilities, value streams, and pain points.\
+- Prioritization of IT opportunities against business outcomes.\
+- Definition of high-level principles, policies, and constraints.\
+- Stakeholder engagement and governance setup (e.g., IT steering committee).
+
+**Typical documents**:\
+- Business Strategy / Corporate Strategy.\
+- IT Strategy / Digital Strategy / Technology Roadmap.\
+- Business Case (high-level or enterprise).\
+- Strategic Objectives & KPIs / OKRs.\
+- IT Principles, Policies, and Standards.\
+- Capability Map / Value Stream maps.\
+- Risk Appetite / Compliance statements.\
+- Governance Framework / RACI for strategic decisions.
+
+### 2. Portfolio Management
+
+**Purpose**: Select, balance, and govern the set of programmes, projects, and operational investments that deliver the strategy. Optimize value, risk, and capacity.\
+**Key activities**:\
+- Demand management and intake.\
+- Portfolio prioritization and ranking (value, cost, risk, strategic fit).\
+- Resource and capacity planning across the portfolio.\
+- Benefits management and tracking at portfolio level.\
+- Portfolio-level risk, dependency, and financial oversight.\
+- Continuous review and rebalancing (kill, pause, accelerate).
+
+**Typical documents**:\
+- Portfolio Strategy / Investment Thesis.\
+- Portfolio Roadmap / Pipeline view.\
+- Demand / Intake Register.\
+- Prioritization criteria and scoring model.\
+- Portfolio Business Case / Financial model.\
+- Resource / Capacity Plan.\
+- Benefits Realization Plan (portfolio-level).\
+- Portfolio Risk & Dependency Register.\
+- Portfolio Dashboard / Status reports.\
+- Portfolio Governance Charter.
+
+### 3. Delivery – Programmes and Projects
+
+**Purpose**: Translate selected portfolio items into coordinated change initiatives (programmes for multi-project transformational change; projects for discrete deliverables).\
+**Key activities**:\
+- Programme/project initiation and definition.\
+- Scope, schedule, cost, quality, risk, and stakeholder management.\
+- Dependency and benefits management.\
+- Stage/gate or iterative governance and reporting.\
+- Change control and issue resolution.\
+- Closure and lessons learned.
+
+**Typical documents**:\
+- Programme/Project Brief or Mandate.\
+- Business Case (detailed).\
+- Programme Definition Document / Project Initiation Document (PID) or equivalent (charter, scope statement).\
+- Benefits Realization Plan / Benefits Map.\
+- Programme/Project Plan (schedule, WBS, milestones).\
+- Risk, Issue, Assumption, Dependency (RAID) Log.\
+- Stakeholder Engagement / Communication Plan.\
+- Resource Plan / Budget.\
+- Quality Plan / Acceptance Criteria.\
+- Stage/Gate reviews, Progress/Status reports, Change Requests.\
+- Closure Report / Lessons Learned / Post-Implementation Review.
+
+### 4. Software Development
+
+**Purpose**: Design, build, test, and prepare the software (or product increments) that deliver the required functionality and non-functional requirements.\
+**Key activities** (can be waterfall, Agile/Scrum/Kanban, or hybrid):\
+- Requirements elicitation and analysis.\
+- Solution design (high-level and detailed).\
+- Architecture & technical design (application level).\
+- Coding / configuration / low-code development.\
+- Unit, integration, system, and acceptance testing.\
+- Continuous integration, security scanning, code quality.\
+- Documentation of the solution.
+
+**Typical documents / artefacts**:\
+- Requirements (Business Requirements Document – BRD, Functional Requirements Specification – FRS, User Stories / Product Backlog, Non-Functional Requirements).\
+- Use Cases / Process models / Wireframes / Prototypes.\
+- Solution Architecture Document / High-Level Design (HLD).\
+- Detailed Design / Technical Design Document (TDD) / API specifications.\
+- Data Model / Interface Control Documents.\
+- Test Strategy, Test Plans, Test Cases, Test Reports / Defect logs.\
+- Source code, build scripts, CI/CD pipeline definitions.\
+- User/Admin guides, Release notes.\
+- Definition of Done / Acceptance criteria evidence.
+
+### 5. Transition to Production
+
+**Purpose**: Safely move the developed solution into the live environment with minimal disruption, ensuring readiness of people, process, and technology.\
+**Key activities**:\
+- Release and deployment planning.\
+- Environment preparation and data migration.\
+- Operational readiness (support models, runbooks, monitoring).\
+- Training and knowledge transfer.\
+- Cutover / go-live execution and hypercare.\
+- Handover to service operations (ITIL-style).\
+- Post-implementation review and benefits confirmation.
+
+**Typical documents**:\
+- Release / Deployment Plan / Runbook.\
+- Transition Plan / Cutover Plan.\
+- Operational Readiness Checklist / Assessment.\
+- Support Model / Service Level Agreements (SLAs) / Operational Level Agreements.\
+- Training materials and knowledge transfer records.\
+- Data Migration Plan and validation reports.\
+- Go-Live Checklist / Rollback Plan.\
+- Change Request / Release notes for production.\
+- Hypercare Plan and Post-Go-Live Review / Lessons Learned.\
+- Service Acceptance / Handover Certificate.
+
+### 6. Infrastructure
+
+**Purpose**: Provide, configure, secure, and operate the underlying compute, storage, network, cloud, and platform services that host applications and data.\
+**Key activities**:\
+- Infrastructure design and capacity planning.\
+- Provisioning (on-prem, cloud, hybrid).\
+- Configuration management and automation (IaC).\
+- Security hardening, monitoring, backup/DR.\
+- Ongoing operations, patching, scaling, and cost optimization.\
+- Alignment with application non-functional requirements.
+
+**Typical documents**:\
+- Infrastructure Architecture / Design Document.\
+- Capacity Plan / Performance requirements.\
+- Network / Security / Cloud architecture diagrams.\
+- Infrastructure as Code (Terraform/CloudFormation/etc.) and configuration baselines.\
+- Standard Operating Procedures (SOPs).\
+- Monitoring, Alerting, and Logging design.\
+- Backup, Recovery, and Disaster Recovery Plans / DR test reports.\
+- Security & Compliance assessments / Hardening standards.\
+- Cost / FinOps reports.\
+- Change records for infrastructure.
+
+### 7. Architecture (Enterprise / Solution / Technical)
+
+**Purpose**: Provide coherent structure, standards, and guidance across business, data, application, and technology domains so that solutions are consistent, interoperable, secure, and future-proof. Architecture work spans all layers above.\
+**Key activities**:\
+- Enterprise Architecture (EA) development and governance.\
+- Solution Architecture for specific initiatives.\
+- Technical/Reference Architecture and patterns.\
+- Standards, principles, and roadmaps.\
+- Architecture reviews and compliance.\
+- Technology radar / innovation tracking.
+
+**Typical documents**:\
+- Enterprise Architecture Framework / Metamodel.\
+- Architecture Principles and Standards.\
+- Business / Data / Application / Technology Architecture views (e.g., TOGAF ADM artefacts).\
+- Current-State and Target-State Architecture.\
+- Architecture Roadmap / Transition Architectures.\
+- Solution Architecture Document (SAD).\
+- Reference Architectures / Patterns / Building Blocks.\
+- Technology Standards Catalogue / Approved products list.\
+- Architecture Decision Records (ADRs).\
+- Architecture Review Board decisions and compliance reports.\
+- Integration / API / Security architecture artefacts.
+
+### How the layers connect
+
+- Strategy sets the “why” and high-level “what.”\
+- Portfolio decides “which” initiatives and sequences them.\
+- Programmes/Projects manage the “how and when” of change delivery.\
+- Software Development produces the application artefacts.\
+- Transition moves them safely into production.\
+- Infrastructure provides the runtime platform.\
+- Architecture supplies the guardrails, standards, and coherence across everything.
+
+Documents cascade and are refined: a strategic objective becomes a portfolio item, which becomes a programme/project business case and PID, which drives requirements and designs, which feed release and operational artefacts. Governance (steering committees, architecture boards, change advisory boards, etc.) operates at each level with appropriate decision rights.
+
+This structure can be adapted to pure Agile product models (where portfolio becomes product portfolio, programmes/projects become value streams or product teams, and many documents become living backlogs and ADRs) or to highly regulated waterfall environments. The core flow and artefact types remain recognisable.

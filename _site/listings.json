@@ -1,0 +1,100 @@
+[
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/Density2DChart/Density2DChart.html",
+      "/posts/areachart/AreaChart.html",
+      "/posts/BarChart/BarChart.html",
+      "/posts/BoxPlotChart/BoxplotChart.html",
+      "/posts/ChordChart/ChordChart.html",
+      "/posts/DensityChart/DensityChart.html",
+      "/posts/post-with-code/index.html",
+      "/posts/EdgeBundlingChart/EdgeBundlingChart.html",
+      "/posts/HeathMapChart/HeatmapChart.html",
+      "/posts/HistogramChart/HistogramChart.html",
+      "/posts/LolliplotChart/LollipopChat.html",
+      "/posts/MapItaly/MapItaly.html",
+      "/posts/MapUK/MapUK.html",
+      "/posts/NetworkChart/NetworkChart.html",
+      "/posts/PieChart/PieChart.html",
+      "/posts/RadarChart/RadarChart.html",
+      "/posts/RidgeLinesChart/RidgelineChart.html",
+      "/posts/SankeyChart/SankeyChart.html",
+      "/posts/ScatterChart/ScatterChart.html",
+      "/posts/SpiderChart/SpiderChart.html",
+      "/posts/StreamChart/StreamChart.html",
+      "/posts/LineTimeseriesChart/LineTimeSeriesChart.html",
+      "/posts/TreeMapChart/TreeMap.html",
+      "/posts/ViolineChart/ViolineChart.html",
+      "/posts/welcome/news.html"
+    ]
+  },
+  {
+    "listing": "/articles/index.html",
+    "items": [
+      "/articles/aict/aict.html",
+      "/articles/cobit/cobit.html",
+      "/articles/dama/dama_dmbok_cobit_style_v2.html",
+      "/articles/dora/dora.html",
+      "/articles/crossframeworkview/crossframeworkintegration.html",
+      "/articles/gdpr/gdpr.html",
+      "/articles/iso2700/isoiec2700.html",
+      "/articles/itengeneering/it_engineering.html",
+      "/articles/itil/itil4.html",
+      "/articles/msp/msp.html",
+      "/articles/mop/mop.html",
+      "/articles/mor/mor.html",
+      "/articles/mentalmodelenterpriseit/MentalModelEnterpriseIT.html",
+      "/articles/nist/nist.html",
+      "/articles/p3o/p3o.html",
+      "/articles/prince2/prince2.html",
+      "/articles/specialistsystems/ImplementtionSpecialistSystems.html",
+      "/articles/metodologyspecialistsystems/MethodologySpecialistSystems.html",
+      "/articles/systemindustry/SystemsByIndustry.html",
+      "/articles/togaf/togaf.html",
+      "/articles/welcome/news.html"
+    ]
+  },
+  {
+    "listing": "/posts/areachart/AreaChart.html",
+    "items": []
+  },
+  {
+    "listing": "/ITGovernance/index.html",
+    "items": [
+      "/ITGovernance/aict/aict.html",
+      "/ITGovernance/cobit/cobit.html",
+      "/ITGovernance/dama/dama_dmbok_cobit_style_v2.html",
+      "/ITGovernance/dora/dora.html",
+      "/ITGovernance/crossframeworkview/crossframeworkintegration.html",
+      "/ITGovernance/gdpr/gdpr.html",
+      "/ITGovernance/itriskframeworks/it-risk-across-frameworks.html",
+      "/ITGovernance/iso2700/isoiec2700.html",
+      "/ITGovernance/SystemSoftwareLifeCycle/iso_12207_15288_engineering_lifecycle.html",
+      "/ITGovernance/itengeneering/it_engineering.html",
+      "/ITGovernance/itil/itil4.html",
+      "/ITGovernance/msp/msp.html",
+      "/ITGovernance/mop/mop.html",
+      "/ITGovernance/mor/mor.html",
+      "/ITGovernance/mentalmodelenterpriseit/MentalModelEnterpriseIT.html",
+      "/ITGovernance/nist/nist.html",
+      "/ITGovernance/p3o/p3o.html",
+      "/ITGovernance/prince2/prince2.html",
+      "/ITGovernance/specialistsystems/ImplementtionSpecialistSystems.html",
+      "/ITGovernance/metodologyspecialistsystems/MethodologySpecialistSystems.html",
+      "/ITGovernance/systemindustry/SystemsByIndustry.html",
+      "/ITGovernance/ITtopdown/ittopdown.html",
+      "/ITGovernance/togaf/togaf.html",
+      "/ITGovernance/welcome/news.html"
+    ]
+  },
+  {
+    "listing": "/HumanElement/index.html",
+    "items": [
+      "/HumanElement/FIRO/firo_human_element.html",
+      "/HumanElement/NLP/nlp_consolidated.html",
+      "/HumanElement/specialistsystems/ImplementtionSpecialistSystems.html",
+      "/HumanElement/systemindustry/SystemsByIndustry.html"
+    ]
+  }
+]

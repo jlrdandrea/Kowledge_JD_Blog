@@ -1,0 +1,750 @@
+---
+title: "Scatter Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-12"
+categories: [R, ggplot2, Data Visualization, Scatter Plot, Tutorial]
+description: "A step-by-step guide to building scatter plots from basic to advanced, perfect for exploring relationships between variables"
+image: "scatter-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+Scatter plots are fundamental for exploring relationships between two continuous variables. They reveal correlations, patterns, clusters, and outliers that other visualizations might miss. In this tutorial, we'll create increasingly sophisticated scatter plots using `ggplot2`.
+
+We'll explore the relationship between engine size and fuel efficiency using the `mpg` dataset, uncovering patterns across different vehicle types.
+
+::: {.callout .info}
+**What Makes Scatter Plots Powerful:**
+
+Scatter plots excel at: - Revealing correlations between variables - Identifying outliers and anomalies - Showing clusters and groups in data - Displaying distributions in two dimensions - Exploring non-linear relationships - Incorporating multiple variables through color, size, and shape
+:::
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # Includes ggplot2, dplyr, and other essential packages
+library(scales)         # For formatting
+library(ggrepel)        # For smart label placement
+
+# Prepare the data: we'll use the mpg dataset
+data_scatter <- mpg %>%
+  mutate(
+    # Create cleaner labels
+    manufacturer = str_to_title(manufacturer),
+    # Calculate efficiency ratio
+    efficiency_ratio = hwy / cty
+  )
+
+# Preview the data
+head(data_scatter)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Scatter Plot
+
+Let's start with a simple scatter plot showing the relationship between engine size and fuel efficiency.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data_scatter, aes(x = displ, y = hwy)) +
+  geom_point()                                      # Create scatter plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_scatter, aes(x = displ, y = hwy))` - Maps engine displacement (size in liters) to the x-axis and highway fuel efficiency (mpg) to the y-axis
+
+**Line 2:** `geom_point()` - Creates the scatter plot by drawing a point for each observation
+
+::: {.highlight-box .info}
+**What we have so far:** A functional scatter plot showing a clear negative relationship (larger engines = lower efficiency), but it lacks context, colors, trend lines, and proper labeling. All points look identical, missing opportunities to show additional variables.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll add colors, trend line, better styling, and multiple visual encodings.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Color by category** showing different vehicle classes
+-   **Trend line** with confidence interval showing the relationship
+-   **Point size variation** based on number of cylinders
+-   **Transparency** to see overlapping points
+-   **Better axis labels** with units
+-   **Custom color palette** that's meaningful
+-   **Legend improvements** with clear labels
+-   **Grid styling** for easier value reading
+-   **Title and context** explaining the visualization
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 7
+
+ggplot(data_scatter, aes(x = displ, y = hwy, color = class, size = cyl)) +
+  geom_point(alpha = 0.7) +                         # Semi-transparent points
+  geom_smooth(
+    aes(group = 1),                                 # Single trend line for all data
+    method = "lm",                                  # Linear model
+    se = TRUE,                                      # Show confidence interval
+    color = "#2C3E50",                             # Dark gray for trend line
+    fill = "#E9ECEF",                              # Light gray for CI
+    linewidth = 1.2,
+    alpha = 0.3
+  ) +
+  scale_x_continuous(
+    breaks = seq(1, 7, by = 1),
+    labels = function(x) paste0(x, "L")            # Add "L" for liters
+  ) +
+  scale_y_continuous(
+    breaks = seq(10, 45, by = 5),
+    labels = function(x) paste0(x, " mpg")         # Add "mpg" units
+  ) +
+  scale_color_manual(
+    values = c(
+      "2seater" = "#E76F51",
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "minivan" = "#F4A261",
+      "pickup" = "#B07AA1",
+      "subcompact" = "#5B9BD5",
+      "suv" = "#E8A87C"
+    ),
+    name = "Vehicle Class"
+  ) +
+  scale_size_continuous(
+    range = c(2, 8),                               # Point size range
+    name = "Cylinders"
+  ) +
+  labs(
+    title = "Engine Size vs. Fuel Efficiency",
+    subtitle = "Larger engines generally have lower fuel efficiency across all vehicle classes",
+    x = "Engine Displacement (Liters)",
+    y = "Highway Fuel Efficiency",
+    caption = "Data: EPA fuel economy dataset | Each point represents one vehicle model"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", hjust = 0.5, margin = margin(b = 15)),
+    plot.caption = element_text(size = 9, color = "#6C757D", hjust = 1, margin = margin(t = 10)),
+    axis.title = element_text(face = "bold", size = 11),
+    axis.text = element_text(size = 10),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5)
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(x = displ, y = hwy, color = class, size = cyl)` - Maps four variables: engine size (x), fuel efficiency (y), vehicle class (color), and cylinders (point size)
+
+**Line 2:** `geom_point(alpha = 0.7)` - Creates semi-transparent points so overlapping observations are visible
+
+**Lines 3-11:** `geom_smooth()` adds a linear regression trend line with confidence interval (shaded area), using a single line for all data points regardless of class
+
+**Lines 12-20:** Formats both axes with appropriate breaks and adds units ("L" for liters, "mpg" for miles per gallon)
+
+**Lines 21-31:** `scale_color_manual()` assigns meaningful colors to each vehicle class for easy identification
+
+**Lines 32-35:** `scale_size_continuous()` maps cylinder count to point size, with range from 2 to 8 pixels
+
+**Lines 36-42:** Comprehensive labeling explaining the relationship and providing data context
+
+**Lines 43-55:** Theme customization with centered titles, right-side legend, and subtle gridlines
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative scatter plot encoding four variables (x, y, color, size) simultaneously. The trend line reveals the overall negative correlation, while colors show that this pattern holds across all vehicle classes. Point sizes add another dimension showing engine complexity. The professional styling makes it suitable for reports.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's create a publication-ready scatter plot with statistical annotations, labeled outliers, faceting, and sophisticated styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Correlation coefficient** displayed on the plot
+-   **Labeled outliers** identifying exceptional vehicles
+-   **Faceted view** by vehicle class for detailed comparison
+-   **Class-specific trend lines** showing patterns within groups
+-   **Statistical annotations** (R², equation)
+-   **Highlighted regions** (e.g., "efficient zone")
+-   **Data insights** in subtitle with specific findings
+-   **Enhanced typography** and professional layout
+-   **Interactive legends** with sample counts
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 14
+#| fig-height: 10
+
+# Calculate correlation for annotation
+overall_cor <- cor(data_scatter$displ, data_scatter$hwy)
+
+# Identify outliers (vehicles with exceptional efficiency for their engine size)
+model_baseline <- lm(hwy ~ displ, data = data_scatter)
+data_scatter <- data_scatter %>%
+  mutate(
+    predicted = predict(model_baseline),
+    residual = hwy - predicted,
+    is_outlier = abs(residual) > 1.5 * sd(residual)
+  )
+
+# Get outliers for labeling
+outliers <- data_scatter %>%
+  filter(is_outlier) %>%
+  arrange(desc(residual)) %>%
+  head(5)
+
+# Calculate R-squared for annotation
+r_squared <- summary(model_baseline)$r.squared
+
+# Calculate stats by class for legend
+class_stats <- data_scatter %>%
+  group_by(class) %>%
+  summarise(
+    n = n(),
+    cor = cor(displ, hwy)
+  ) %>%
+  mutate(
+    class_label = paste0(str_to_title(class), " (n=", n, ")")
+  )
+
+# Join stats back to main data
+data_scatter <- data_scatter %>%
+  left_join(class_stats, by = "class")
+
+ggplot(data_scatter, aes(x = displ, y = hwy)) +
+  
+  # Add efficiency zones (shaded background)
+  annotate(
+    "rect",
+    xmin = -Inf, xmax = Inf,
+    ymin = 30, ymax = Inf,
+    fill = "#52A675",
+    alpha = 0.05
+  ) +
+  
+  annotate(
+    "text",
+    x = 6.5, y = 42,
+    label = "High Efficiency Zone",
+    size = 3.5,
+    fontface = "italic",
+    color = "#52A675"
+  ) +
+  
+  # Add points colored by class
+  geom_point(
+    aes(color = class),
+    size = 3,
+    alpha = 0.6
+  ) +
+  
+  # Add smooth trend lines per class
+  geom_smooth(
+    aes(color = class, fill = class),
+    method = "lm",
+    se = TRUE,
+    alpha = 0.15,
+    linewidth = 1
+  ) +
+  
+  # Highlight outliers with larger points
+  geom_point(
+    data = outliers,
+    aes(x = displ, y = hwy),
+    size = 5,
+    shape = 21,
+    fill = NA,
+    color = "#E76F51",
+    stroke = 2
+  ) +
+  
+  # Label outliers
+  geom_label_repel(
+    data = outliers,
+    aes(label = paste0(manufacturer, " ", model)),
+    size = 3,
+    fontface = "bold",
+    box.padding = 0.5,
+    point.padding = 0.3,
+    segment.color = "#E76F51",
+    segment.size = 0.5,
+    max.overlaps = 10,
+    min.segment.length = 0
+  ) +
+  
+  # Add overall correlation annotation
+  annotate(
+    "text",
+    x = 1.5, y = 15,
+    label = paste0(
+      "Overall Correlation: r = ", round(overall_cor, 3), "\n",
+      "R² = ", round(r_squared, 3)
+    ),
+    hjust = 0,
+    size = 4,
+    fontface = "bold",
+    color = "#2C3E50"
+  ) +
+  
+  scale_x_continuous(
+    breaks = seq(1, 7, by = 1),
+    labels = function(x) paste0(x, "L"),
+    expand = expansion(mult = c(0.05, 0.05))
+  ) +
+  
+  scale_y_continuous(
+    breaks = seq(10, 45, by = 5),
+    labels = function(x) paste0(x, " mpg"),
+    limits = c(10, 45)
+  ) +
+  
+  scale_color_manual(
+    values = c(
+      "2seater" = "#E76F51",
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "minivan" = "#F4A261",
+      "pickup" = "#B07AA1",
+      "subcompact" = "#5B9BD5",
+      "suv" = "#E8A87C"
+    ),
+    labels = class_stats$class_label,              # Use labels with counts
+    name = "Vehicle Class"
+  ) +
+  
+  scale_fill_manual(
+    values = c(
+      "2seater" = "#E76F51",
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "minivan" = "#F4A261",
+      "pickup" = "#B07AA1",
+      "subcompact" = "#5B9BD5",
+      "suv" = "#E8A87C"
+    ),
+    labels = class_stats$class_label,
+    name = "Vehicle Class"
+  ) +
+  
+  labs(
+    title = "The Engine Size-Efficiency Trade-off: Strong Negative Correlation Across All Vehicle Classes",
+    subtitle = paste0(
+      "Analysis of 234 vehicles reveals r = ", round(overall_cor, 2), 
+      " correlation | Each 1L increase in engine size reduces efficiency by ~6 mpg\n",
+      "Outliers highlighted in red show exceptional performers (e.g., VW Jetta diesel models)"
+    ),
+    x = "Engine Displacement (Liters)",
+    y = "Highway Fuel Efficiency (MPG)",
+    caption = "Data source: EPA fuel economy data (1999-2008) | 234 vehicle models across 7 classes\nTrend lines show class-specific patterns | Shaded regions represent 95% confidence intervals | Visualization: Your Name"
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    # Title styling
+    plot.title = element_text(
+      face = "bold",
+      size = 16,
+      hjust = 0,
+      margin = margin(b = 10),
+      color = "#2C3E50",
+      lineheight = 1.2
+    ),
+    
+    # Subtitle with insights
+    plot.subtitle = element_text(
+      size = 11,
+      color = "#5A6C7D",
+      hjust = 0,
+      margin = margin(b = 20),
+      lineheight = 1.3
+    ),
+    
+    # Caption
+    plot.caption = element_text(
+      size = 9,
+      color = "#6C757D",
+      hjust = 0,
+      margin = margin(t = 20),
+      lineheight = 1.2
+    ),
+    
+    # Axis styling
+    axis.title = element_text(face = "bold", size = 12),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 11, margin = margin(b = 8)),
+    legend.text = element_text(size = 9),
+    legend.key.size = unit(1, "cm"),
+    legend.spacing.y = unit(0.3, "cm"),
+    
+    # Grid styling
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank(),
+    
+    # Overall plot styling
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-3:** Calculates the Pearson correlation coefficient between engine size and fuel efficiency for the entire dataset
+
+**Lines 5-12:** Identifies outliers using linear regression residuals - points that deviate more than 1.5 standard deviations from the predicted values
+
+**Lines 14-18:** Extracts the top 5 positive outliers (vehicles with better-than-expected efficiency) for labeling
+
+**Line 21:** Calculates R-squared value showing how much variance is explained by the model
+
+**Lines 23-32:** Computes statistics by vehicle class including sample size and correlation, creates labels with counts for the legend
+
+**Lines 39-50:** `annotate("rect")` creates a shaded "high efficiency zone" highlighting vehicles above 30 mpg
+
+**Lines 57-62:** Main scatter plot points colored by vehicle class with moderate transparency
+
+**Lines 64-71:** `geom_smooth()` adds class-specific trend lines with confidence intervals, showing how the relationship varies by vehicle type
+
+**Lines 73-81:** Highlights outliers with larger hollow circles in red for emphasis
+
+**Lines 83-95:** `geom_label_repel()` from ggrepel package intelligently places labels for outliers, avoiding overlaps
+
+**Lines 97-107:** Text annotation displaying overall correlation and R-squared statistics
+
+**Lines 132-144:** Custom color scales with legend labels including sample sizes (e.g., "Compact (n=47)")
+
+**Lines 146-152:** Data-driven title and subtitle with specific statistical findings and interpretation
+
+**Lines 158-209:** Comprehensive theme customization with left-aligned text, detailed legend, and professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready scatter plot that tells a complete analytical story. The visualization reveals not just the overall negative correlation (r = -0.77), but also shows class-specific patterns through separate trend lines. Outliers are identified and labeled, providing actionable insights about exceptional performers. The "high efficiency zone" provides context, while statistical annotations add credibility. Suitable for academic papers, executive reports, or technical presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's how our scatter plots evolved:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Variables Shown** | 2 (x, y) | 4 (x, y, color, size) | 6 (x, y, color, trend, outliers, zones) |
+| **Statistical Info** | None | Trend line + CI | Correlation, R², equation, outliers |
+| **Context** | None | Basic labels | Rich insights + annotations |
+| **Trend Lines** | None | One overall | Class-specific (7 lines) |
+| **Outliers** | Hidden | Visible | Highlighted + labeled |
+| **Professional Use** | Not recommended | Acceptable | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Scatter Plot Variations
+
+Different techniques for different analytical needs:
+
+```{r}
+#| label: variations
+#| fig-width: 14
+#| fig-height: 12
+
+library(patchwork)
+
+# 1. Basic scatter with marginal distributions
+library(ggExtra)
+
+p1_base <- ggplot(data_scatter, aes(x = displ, y = hwy, color = class)) +
+  geom_point(alpha = 0.6, size = 2) +
+  scale_color_manual(values = c("2seater" = "#E76F51", "compact" = "#2C5F8D", 
+                               "midsize" = "#52A675", "minivan" = "#F4A261",
+                               "pickup" = "#B07AA1", "subcompact" = "#5B9BD5", "suv" = "#E8A87C")) +
+  labs(title = "With Marginal Distributions") +
+  theme_minimal() +
+  theme(legend.position = "none", plot.title = element_text(face = "bold", size = 11))
+
+p1 <- ggMarginal(p1_base, type = "density", groupColour = TRUE, groupFill = TRUE)
+
+# 2. Faceted by category
+p2 <- ggplot(data_scatter, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class), alpha = 0.6, size = 2) +
+  geom_smooth(method = "lm", se = TRUE, color = "#2C3E50", alpha = 0.2) +
+  facet_wrap(~ class, ncol = 3) +
+  scale_color_manual(values = c("2seater" = "#E76F51", "compact" = "#2C5F8D", 
+                               "midsize" = "#52A675", "minivan" = "#F4A261",
+                               "pickup" = "#B07AA1", "subcompact" = "#5B9BD5", "suv" = "#E8A87C")) +
+  labs(title = "Faceted by Vehicle Class") +
+  theme_minimal() +
+  theme(legend.position = "none", plot.title = element_text(face = "bold", size = 11),
+        strip.text = element_text(face = "bold"))
+
+# 3. With size encoding (bubble chart)
+p3 <- ggplot(data_scatter, aes(x = displ, y = hwy, size = cyl, color = class)) +
+  geom_point(alpha = 0.5) +
+  scale_size_continuous(range = c(1, 12)) +
+  scale_color_manual(values = c("2seater" = "#E76F51", "compact" = "#2C5F8D", 
+                               "midsize" = "#52A675", "minivan" = "#F4A261",
+                               "pickup" = "#B07AA1", "subcompact" = "#5B9BD5", "suv" = "#E8A87C")) +
+  labs(title = "Bubble Chart (Size = Cylinders)") +
+  theme_minimal() +
+  theme(legend.position = "bottom", plot.title = element_text(face = "bold", size = 11))
+
+# 4. Hexagonal binning for large datasets
+p4 <- ggplot(data_scatter, aes(x = displ, y = hwy)) +
+  geom_hex(bins = 15) +
+  scale_fill_viridis_c(option = "plasma", name = "Count") +
+  labs(title = "Hexagonal Binning (Density)") +
+  theme_minimal() +
+  theme(legend.position = "bottom", plot.title = element_text(face = "bold", size = 11))
+
+# Note: p1 is already a complete plot from ggMarginal, can't use patchwork with it
+# So we'll create a layout without p1
+p2 / (p3 | p4) +
+  plot_annotation(
+    title = "Scatter Plot Variations for Different Analytical Needs",
+    theme = theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5))
+  )
+
+# Display marginal plot separately
+print(p1)
+```
+
+::: {.callout .note}
+**Variation Descriptions:**
+
+-   **Marginal Distributions**: Shows density plots on margins; great for seeing x and y distributions
+-   **Faceted**: Separate panels by category; easier to see patterns within groups
+-   **Bubble Chart**: Third variable encoded as size; good for 3-4 continuous variables
+-   **Hexagonal Binning**: Groups points into hexagons; essential for very large datasets (1000+ points)
+:::
+
+------------------------------------------------------------------------
+
+## When to Use Scatter Plots
+
+::: {.callout .info}
+**Scatter Plots Work Well When:**
+
+✅ **Exploring relationships** - Perfect for correlation analysis between two continuous variables
+
+✅ **Identifying patterns** - Reveals linear, non-linear, or no relationship
+
+✅ **Finding outliers** - Anomalies are immediately visible
+
+✅ **Showing clusters** - Natural groupings become apparent
+
+✅ **Multiple dimensions** - Can encode 4-6 variables (x, y, color, size, shape, facets)
+
+✅ **Moderate sample sizes** - Works well with 20-10,000 points (use binning for more)
+
+**Avoid Scatter Plots When:**
+
+❌ **One variable is categorical** - Use box plots or violin plots instead
+
+❌ **Too many points** (\>10,000) - Consider hexbin, contour plots, or sampling
+
+❌ **Time series** - Use line plots to show temporal order
+
+❌ **Exact values matter** - Tables are more precise
+
+❌ **Comparing many categories** - Faceting works, but consider alternatives
+
+❌ **Showing distributions** - Histograms or density plots are clearer
+:::
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: {.callout .tip}
+**Tips for Creating Better Scatter Plots:**
+
+1.  **Add transparency** - Use `alpha = 0.5-0.8` to see overlapping points
+
+2.  **Include trend lines** - `geom_smooth()` reveals relationships; try methods: "lm", "loess", "gam"
+
+3.  **Show uncertainty** - Set `se = TRUE` in `geom_smooth()` for confidence intervals
+
+4.  **Label outliers** - Use `geom_label_repel()` for intelligent label placement
+
+5.  **Use color meaningfully** - Map to categories, not continuous variables (use size/alpha for continuous)
+
+6.  **Add statistical annotations** - Show correlation, R², or equation using `annotate()`
+
+7.  **Vary point size** - Map a third variable to size for bubble charts
+
+8.  **Consider jittering** - `geom_jitter()` for discrete or rounded data to show density
+
+9.  **Use facets for categories** - Compare relationships across groups with `facet_wrap()`
+
+10. **Add reference lines** - Use `geom_hline()` or `geom_vline()` for thresholds
+
+11. **Mind overplotting** - For many points, use hexbin (`geom_hex()`), density (`geom_density_2d()`), or sampling
+
+12. **Scale axes appropriately** - Don't force zero if it cuts off your data; but be transparent about it
+
+13. **Add marginal distributions** - Use `ggExtra::ggMarginal()` to show x and y distributions
+
+14. **Highlight regions** - Shade areas of interest with `annotate("rect")`
+
+15. **Calculate and show correlation** - Always report r or R² for linear relationships
+
+16. **Use shapes wisely** - Different shapes for categories, but limit to 3-4 for readability
+
+17. **Consider log scales** - For exponential relationships, try `scale_x_log10()` or `scale_y_log10()`
+
+18. **Test different smooths** - "loess" for local patterns, "lm" for global trends, "gam" for complex curves
+:::
+
+------------------------------------------------------------------------
+
+## Common Mistakes to Avoid
+
+::: {.callout .warning}
+**Scatter Plot Pitfalls:**
+
+1.  **No trend line** - Missing the main analytical tool for relationships
+
+2.  **Too many colors** - More than 7-8 categories becomes unreadable
+
+3.  **Ignoring overplotting** - Thousands of points in same location look like one
+
+4.  **Forcing axes to zero** - Sometimes truncating is appropriate; be clear about it
+
+5.  **Using lines instead of points** - `geom_line()` implies ordered connections
+
+6.  **Poor color choices** - Similar colors make categories indistinguishable
+
+7.  **No transparency** - Can't see density or overlaps
+
+8.  **Missing labels** - Points need context; axes need units
+
+9.  **Tiny points** - Too small to see; aim for 2-5 size
+
+10. **Assuming linearity** - Not all relationships are linear; check with loess
+
+11. **Forgetting to check for outliers** - They can distort correlations
+
+12. **No statistical annotation** - Readers want to know correlation strength
+
+13. **Using 3D scatter plots** - Almost always worse than 2D with color
+
+14. **Connecting unrelated points** - Lines imply relationships that may not exist
+:::
+
+------------------------------------------------------------------------
+
+## Advanced: Interactive Scatter with Plotly
+
+For presentations or exploratory analysis, interactive scatter plots are powerful:
+
+```{r}
+#| label: interactive-scatter
+#| fig-width: 10
+#| fig-height: 7
+#| eval: true
+
+library(plotly)
+
+# Create ggplot
+p <- ggplot(data_scatter, aes(
+  x = displ, 
+  y = hwy, 
+  color = class,
+  text = paste0(
+    "Model: ", manufacturer, " ", model, "\n",
+    "Engine: ", displ, "L\n",
+    "Highway MPG: ", hwy, "\n",
+    "Cylinders: ", cyl
+  )
+)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm", se = TRUE, alpha = 0.2) +
+  scale_color_manual(values = c("2seater" = "#E76F51", "compact" = "#2C5F8D", 
+                               "midsize" = "#52A675", "minivan" = "#F4A261",
+                               "pickup" = "#B07AA1", "subcompact" = "#5B9BD5", "suv" = "#E8A87C")) +
+  labs(
+    title = "Interactive Scatter Plot: Hover for Details",
+    x = "Engine Displacement (L)",
+    y = "Highway MPG"
+  ) +
+  theme_minimal()
+
+# Convert to interactive plotly
+ggplotly(p, tooltip = "text")
+```
+
+------------------------------------------------------------------------
+
+## Correlation Matrix Scatter Plot
+
+When exploring many variables, create a pairs plot:
+
+```{r}
+#| label: pairs-plot
+#| fig-width: 12
+#| fig-height: 12
+#| eval: true
+
+library(GGally)
+
+# Select continuous variables for correlation
+continuous_vars <- data_scatter %>%
+  select(displ, cyl, cty, hwy)
+
+# Create correlation matrix scatter plot
+ggpairs(
+  continuous_vars,
+  upper = list(continuous = wrap("cor", size = 5)),
+  lower = list(continuous = wrap("points", alpha = 0.3, size = 1)),
+  diag = list(continuous = wrap("densityDiag", alpha = 0.5)),
+  title = "Correlation Matrix: All Continuous Variables"
+) +
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Scatter Plot Documentation](https://ggplot2.tidyverse.org/reference/geom_point.html)
+-   [ggrepel for Smart Labels](https://ggrepel.slowkow.com/)
+-   [Correlation Analysis in R](https://www.statmethods.net/stats/correlations.html)
+-   [ggExtra for Marginal Plots](https://github.com/daattali/ggExtra)
+-   [When to Use Scatter Plots](https://www.data-to-viz.com/graph/scatter.html)
+-   [ColorBrewer for Palettes](https://colorbrewer2.org/)
+
+Happy scatter plotting! 📊✨

@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+
+<title>PRINCE2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">PRINCE2</h1>
+            <p class="subtitle lead">Project Governance and Controlled Delivery Framework</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a>
+  <ul class="collapse">
+  <li><a href="#what-is-prince2" id="toc-what-is-prince2" class="nav-link" data-scroll-target="#what-is-prince2"><span class="header-section-number">1.1</span> What is PRINCE2</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">1.2</span> Purpose</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it"><span class="header-section-number">1.3</span> When to Use It</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience"><span class="header-section-number">1.4</span> Target Audience</a></li>
+  <li><a href="#prince2-project-lifecycle-and-governance-flow" id="toc-prince2-project-lifecycle-and-governance-flow" class="nav-link" data-scroll-target="#prince2-project-lifecycle-and-governance-flow"><span class="header-section-number">1.5</span> PRINCE2 Project Lifecycle and Governance Flow</a></li>
+  </ul></li>
+  <li><a href="#history-and-evolution" id="toc-history-and-evolution" class="nav-link" data-scroll-target="#history-and-evolution"><span class="header-section-number">2</span> History and Evolution</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles"><span class="header-section-number">3</span> Core Principles</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure"><span class="header-section-number">4</span> Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#governance-vs-management-in-prince2" id="toc-governance-vs-management-in-prince2" class="nav-link" data-scroll-target="#governance-vs-management-in-prince2"><span class="header-section-number">4.1</span> Governance vs Management in PRINCE2</a></li>
+  <li><a href="#key-roles" id="toc-key-roles" class="nav-link" data-scroll-target="#key-roles"><span class="header-section-number">4.2</span> Key Roles</a></li>
+  <li><a href="#prince2-7-practices" id="toc-prince2-7-practices" class="nav-link" data-scroll-target="#prince2-7-practices"><span class="header-section-number">4.3</span> PRINCE2 7 Practices</a></li>
+  <li><a href="#prince2-7-focus-areas" id="toc-prince2-7-focus-areas" class="nav-link" data-scroll-target="#prince2-7-focus-areas"><span class="header-section-number">4.4</span> PRINCE2 7 Focus Areas</a></li>
+  </ul></li>
+  <li><a href="#processes" id="toc-processes" class="nav-link" data-scroll-target="#processes"><span class="header-section-number">5</span> Processes</a>
+  <ul class="collapse">
+  <li><a href="#product-based-planning" id="toc-product-based-planning" class="nav-link" data-scroll-target="#product-based-planning"><span class="header-section-number">5.1</span> Product-Based Planning</a></li>
+  </ul></li>
+  <li><a href="#management-products-and-documentation" id="toc-management-products-and-documentation" class="nav-link" data-scroll-target="#management-products-and-documentation"><span class="header-section-number">6</span> Management Products and Documentation</a>
+  <ul class="collapse">
+  <li><a href="#core-management-products" id="toc-core-management-products" class="nav-link" data-scroll-target="#core-management-products"><span class="header-section-number">6.1</span> Core Management Products</a></li>
+  <li><a href="#documentation-approach" id="toc-documentation-approach" class="nav-link" data-scroll-target="#documentation-approach"><span class="header-section-number">6.2</span> Documentation Approach</a></li>
+  </ul></li>
+  <li><a href="#raci-matrix-for-typical-prince2-management-products" id="toc-raci-matrix-for-typical-prince2-management-products" class="nav-link" data-scroll-target="#raci-matrix-for-typical-prince2-management-products"><span class="header-section-number">7</span> RACI Matrix for Typical PRINCE2 Management Products</a></li>
+  <li><a href="#tailoring-prince2" id="toc-tailoring-prince2" class="nav-link" data-scroll-target="#tailoring-prince2"><span class="header-section-number">8</span> Tailoring PRINCE2</a></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks" class="nav-link" data-scroll-target="#integration-with-other-frameworks"><span class="header-section-number">9</span> Integration with Other Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#prince2-and-cobit" id="toc-prince2-and-cobit" class="nav-link" data-scroll-target="#prince2-and-cobit"><span class="header-section-number">9.1</span> PRINCE2 and COBIT</a></li>
+  <li><a href="#prince2-and-togaf" id="toc-prince2-and-togaf" class="nav-link" data-scroll-target="#prince2-and-togaf"><span class="header-section-number">9.2</span> PRINCE2 and TOGAF</a></li>
+  <li><a href="#prince2-and-itil-4" id="toc-prince2-and-itil-4" class="nav-link" data-scroll-target="#prince2-and-itil-4"><span class="header-section-number">9.3</span> PRINCE2 and ITIL 4</a></li>
+  <li><a href="#prince2-and-msp" id="toc-prince2-and-msp" class="nav-link" data-scroll-target="#prince2-and-msp"><span class="header-section-number">9.4</span> PRINCE2 and MSP</a></li>
+  <li><a href="#prince2-and-agile-devops" id="toc-prince2-and-agile-devops" class="nav-link" data-scroll-target="#prince2-and-agile-devops"><span class="header-section-number">9.5</span> PRINCE2 and Agile / DevOps</a></li>
+  </ul></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach"><span class="header-section-number">10</span> Implementation Approach</a>
+  <ul class="collapse">
+  <li><a href="#establish-governance-policy" id="toc-establish-governance-policy" class="nav-link" data-scroll-target="#establish-governance-policy"><span class="header-section-number">10.1</span> 1. Establish Governance Policy</a></li>
+  <li><a href="#define-tailored-method-packs" id="toc-define-tailored-method-packs" class="nav-link" data-scroll-target="#define-tailored-method-packs"><span class="header-section-number">10.2</span> 2. Define Tailored Method Packs</a></li>
+  <li><a href="#train-key-roles" id="toc-train-key-roles" class="nav-link" data-scroll-target="#train-key-roles"><span class="header-section-number">10.3</span> 3. Train Key Roles</a></li>
+  <li><a href="#embed-in-tools-and-reporting" id="toc-embed-in-tools-and-reporting" class="nav-link" data-scroll-target="#embed-in-tools-and-reporting"><span class="header-section-number">10.4</span> 4. Embed in Tools and Reporting</a></li>
+  <li><a href="#integrate-with-portfolio-and-architecture-governance" id="toc-integrate-with-portfolio-and-architecture-governance" class="nav-link" data-scroll-target="#integrate-with-portfolio-and-architecture-governance"><span class="header-section-number">10.5</span> 5. Integrate with Portfolio and Architecture Governance</a></li>
+  <li><a href="#review-and-improve" id="toc-review-and-improve" class="nav-link" data-scroll-target="#review-and-improve"><span class="header-section-number">10.6</span> 6. Review and Improve</a></li>
+  </ul></li>
+  <li><a href="#kpis-and-management-metrics" id="toc-kpis-and-management-metrics" class="nav-link" data-scroll-target="#kpis-and-management-metrics"><span class="header-section-number">11</span> KPIs and Management Metrics</a></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits"><span class="header-section-number">12</span> Benefits</a></li>
+  <li><a href="#limitations-and-common-misuse" id="toc-limitations-and-common-misuse" class="nav-link" data-scroll-target="#limitations-and-common-misuse"><span class="header-section-number">13</span> Limitations and Common Misuse</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example"><span class="header-section-number">14</span> Practical Example</a>
+  <ul class="collapse">
+  <li><a href="#scenario-erp-implementation-project" id="toc-scenario-erp-implementation-project" class="nav-link" data-scroll-target="#scenario-erp-implementation-project"><span class="header-section-number">14.1</span> Scenario: ERP Implementation Project</a>
+  <ul class="collapse">
+  <li><a href="#how-prince2-helps" id="toc-how-prince2-helps" class="nav-link" data-scroll-target="#how-prince2-helps"><span class="header-section-number">14.1.1</span> How PRINCE2 Helps</a></li>
+  <li><a href="#combined-framework-view" id="toc-combined-framework-view" class="nav-link" data-scroll-target="#combined-framework-view"><span class="header-section-number">14.1.2</span> Combined Framework View</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15</span> Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">16</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="prince2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
+<section id="what-is-prince2" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-prince2"><span class="header-section-number">1.1</span> What is PRINCE2</h2>
+<p>PRINCE2 is a structured project management method used to direct, manage, and control projects in a consistent and scalable way. The name stands for <strong>Projects IN Controlled Environments</strong>. It provides a governance framework, management products, roles, decisions, and stage controls that help an organisation move from an initial mandate to controlled delivery and closure.</p>
+<p>PRINCE2 is not tied to one industry or delivery style. It can be used for business change, technology transformation, infrastructure, product, regulatory, and operational improvement projects. It can also be tailored to predictive, Agile, or hybrid delivery contexts.</p>
+<p>In current practice, the relevant modern version is <strong>PRINCE2 7</strong>, released in 2023, which retains the method’s core logic while strengthening guidance on people, digital and data, sustainability, commercial context, and tailoring.</p>
+</section>
+<section id="purpose" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1.2</span> Purpose</h2>
+<p>The purpose of PRINCE2 is to help organisations:</p>
+<ul>
+<li>justify projects through an ongoing business case;</li>
+<li>define roles, authority, and accountability clearly;</li>
+<li>control delivery through stages and decision points;</li>
+<li>manage scope, risk, quality, issues, and change in an integrated way;</li>
+<li>create a repeatable governance model across projects; and</li>
+<li>tailor project control to the scale, complexity, risk, and context of the initiative.</li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="when-to-use-it"><span class="header-section-number">1.3</span> When to Use It</h2>
+<p>PRINCE2 is especially useful when an organisation needs consistent project control and governance across multiple projects or delivery teams. Typical situations include:</p>
+<ul>
+<li>formal project delivery in public or regulated environments;</li>
+<li>technology and digital transformation projects;</li>
+<li>projects requiring strong business sponsorship and stage approval;</li>
+<li>multi-vendor or outsourced delivery environments;</li>
+<li>organisations seeking a standard method for PMO oversight;</li>
+<li>projects where documentation, assurance, and decision traceability matter; and</li>
+<li>complex initiatives that need separation between governance and day-to-day management.</li>
+</ul>
+</section>
+<section id="target-audience" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="target-audience"><span class="header-section-number">1.4</span> Target Audience</h2>
+<ul>
+<li>Project Board / Steering Committee</li>
+<li>Executive Sponsor / Senior Responsible Owner</li>
+<li>Project Manager</li>
+<li>Team Managers / Delivery Leads</li>
+<li>PMO / Project Office</li>
+<li>Programme and Portfolio Leaders</li>
+<li>Business Change Managers</li>
+<li>Assurance, audit, risk, and compliance teams</li>
+<li>Procurement and commercial managers</li>
+<li>Senior users, suppliers, and operational stakeholders</li>
+</ul>
+</section>
+<section id="prince2-project-lifecycle-and-governance-flow" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="prince2-project-lifecycle-and-governance-flow"><span class="header-section-number">1.5</span> PRINCE2 Project Lifecycle and Governance Flow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+MANDATE["Project Mandate"] --&gt; SU["Starting Up a Project"]
+SU --&gt; DP1["Directing a Project\nAuthorise Initiation"]
+DP1 --&gt; IP["Initiating a Project"]
+IP --&gt; DP2["Directing a Project\nAuthorise Project"]
+DP2 --&gt; CS["Controlling a Stage"]
+CS --&gt; MP["Managing Product Delivery"]
+MP --&gt; CS
+CS --&gt; SB["Managing a Stage Boundary"]
+SB --&gt; DP3["Directing a Project\nAuthorise Next Stage"]
+DP3 --&gt; CS2["Next Delivery Stage"]
+CS2 --&gt; MP2["Managing Product Delivery"]
+MP2 --&gt; CS2
+CS2 --&gt; CP["Closing a Project"]
+CP --&gt; DP4["Directing a Project\nConfirm Closure"]
+
+BC["Business Case"] --&gt; IP
+BC --&gt; SB
+BC --&gt; DP3
+
+RISK["Risk Register"] --&gt; CS
+ISSUE["Issue Register"] --&gt; CS
+PLAN["Plans"] --&gt; CS
+QUALITY["Quality Management"] --&gt; MP
+LESSONS["Lessons Log"] --&gt; SU
+LESSONS --&gt; SB
+LESSONS --&gt; CP
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>PRINCE2 organises a project into clear governance and management decision points. The <strong>Project Board</strong> directs the project, the <strong>Project Manager</strong> manages within agreed tolerances, and delivery teams create products under controlled work packages.</p>
+<hr>
+</section>
+</section>
+<section id="history-and-evolution" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> History and Evolution</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th>Year</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRINCE</td>
+<td>1989</td>
+<td>Original method focused mainly on IT project control</td>
+</tr>
+<tr class="even">
+<td>PRINCE2</td>
+<td>1996</td>
+<td>Reworked into a generic project management method usable beyond IT</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2 Refresh</td>
+<td>2005</td>
+<td>Improved guidance and usability</td>
+</tr>
+<tr class="even">
+<td>PRINCE2:2009</td>
+<td>2009</td>
+<td>Structured around 7 principles, 7 themes, and 7 processes</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2 6th Edition / 2017 update</td>
+<td>2017</td>
+<td>Greater emphasis on tailoring, scalability, and practical guidance</td>
+</tr>
+<tr class="even">
+<td>PRINCE2 Agile</td>
+<td>2015 onward</td>
+<td>Integration guidance for combining PRINCE2 governance with Agile delivery</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2 7</td>
+<td>2023</td>
+<td>Modernised method with emphasis on people, sustainability, digital and data, commercial context, and stronger tailoring guidance</td>
+</tr>
+</tbody>
+</table>
+<p>PRINCE2 evolved from a heavily controlled project method into a broader and more adaptable governance framework. The major structural model of principles, practices/themes, and processes became well known in the 2009 edition. The current <strong>PRINCE2 7</strong> keeps the core logic but reframes the method for modern projects and more diverse delivery environments. Official training and certification for PRINCE2 7 became available from September 2023.</p>
+<hr>
+</section>
+<section id="core-principles" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Core Principles</h1>
+<p>PRINCE2 is based on <strong>seven principles</strong>. A project that ignores these is not really being managed as PRINCE2 in substance, even if it uses some of the templates.</p>
+<ol type="1">
+<li><p><strong>Ensure continued business justification</strong><br>
+The project must remain desirable, viable, and achievable. The business case is not a one-off approval document; it must be reviewed throughout the project.</p></li>
+<li><p><strong>Learn from experience</strong><br>
+Teams should capture lessons from previous and current work and apply them actively during planning and control.</p></li>
+<li><p><strong>Define roles, responsibilities, and relationships</strong><br>
+Governance, decision rights, delivery responsibility, and stakeholder roles must be explicit.</p></li>
+<li><p><strong>Manage by stages</strong><br>
+Projects are controlled in sections, with review and approval at stage boundaries.</p></li>
+<li><p><strong>Manage by exception</strong><br>
+Tolerances for time, cost, quality, scope, benefits, and risk are delegated. Escalation happens only when tolerances are forecast to be exceeded.</p></li>
+<li><p><strong>Focus on products</strong><br>
+PRINCE2 starts from what must be delivered and what quality criteria define success.</p></li>
+<li><p><strong>Tailor to suit the project</strong><br>
+The method must be adapted to the size, complexity, risk, delivery approach, and organisational context of the project.</p></li>
+</ol>
+<p>These principles remain central in PRINCE2 7. Current official training still frames the method around the seven principles, practices, and processes.</p>
+<hr>
+</section>
+<section id="governance-structure" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Governance Structure</h1>
+<section id="governance-vs-management-in-prince2" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="governance-vs-management-in-prince2"><span class="header-section-number">4.1</span> Governance vs Management in PRINCE2</h2>
+<p>PRINCE2 clearly separates <strong>direction</strong>, <strong>management</strong>, and <strong>delivery</strong>:</p>
+<ul>
+<li>the <strong>Project Board</strong> provides overall direction and key decisions;</li>
+<li>the <strong>Project Manager</strong> manages the project day to day within tolerances; and</li>
+<li><strong>Team Managers / delivery leads</strong> produce agreed products through authorised work packages.</li>
+</ul>
+<p>This is one of PRINCE2’s strongest features. It reduces confusion between sponsorship and management and gives the PMO and senior stakeholders defined points for intervention.</p>
+</section>
+<section id="key-roles" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="key-roles"><span class="header-section-number">4.2</span> Key Roles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Main Accountability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Executive</td>
+<td>Owns the business case and is ultimately accountable for project success</td>
+</tr>
+<tr class="even">
+<td>Senior User</td>
+<td>Represents user interests and ensures outcomes meet operational needs</td>
+</tr>
+<tr class="odd">
+<td>Senior Supplier</td>
+<td>Represents supplier interests and delivery feasibility</td>
+</tr>
+<tr class="even">
+<td>Project Board</td>
+<td>Directs the project and makes major decisions</td>
+</tr>
+<tr class="odd">
+<td>Project Manager</td>
+<td>Manages planning, control, reporting, risks, issues, and stage delivery</td>
+</tr>
+<tr class="even">
+<td>Team Manager</td>
+<td>Delivers work packages and reports progress</td>
+</tr>
+<tr class="odd">
+<td>Project Assurance</td>
+<td>Provides independent confidence on business, user, and supplier interests</td>
+</tr>
+<tr class="even">
+<td>Project Support / PMO</td>
+<td>Provides administration, standards, reporting, controls, and configuration support</td>
+</tr>
+<tr class="odd">
+<td>Change Authority</td>
+<td>Approves defined categories of change within delegated limits</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="prince2-7-practices" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="prince2-7-practices"><span class="header-section-number">4.3</span> PRINCE2 7 Practices</h2>
+<p>PRINCE2 7 uses <strong>practices</strong> as the enduring management disciplines that must be applied across the project lifecycle.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Business Case</td>
+<td>Ensure the project remains justified and aligned to value</td>
+</tr>
+<tr class="even">
+<td>Organising</td>
+<td>Define governance, roles, accountability, and stakeholder relationships</td>
+</tr>
+<tr class="odd">
+<td>Plans</td>
+<td>Establish product-based planning, stage plans, team plans, and control baselines</td>
+</tr>
+<tr class="even">
+<td>Quality</td>
+<td>Define product quality requirements, criteria, methods, and responsibilities</td>
+</tr>
+<tr class="odd">
+<td>Risk</td>
+<td>Identify, assess, own, respond to, and monitor uncertainty</td>
+</tr>
+<tr class="even">
+<td>Issues</td>
+<td>Control requests for change, off-specifications, and general problems requiring action</td>
+</tr>
+<tr class="odd">
+<td>Progress</td>
+<td>Monitor actuals against plans, forecast performance, and escalate by exception</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="prince2-7-focus-areas" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="prince2-7-focus-areas"><span class="header-section-number">4.4</span> PRINCE2 7 Focus Areas</h2>
+<p>PRINCE2 7 places additional emphasis on themes that modern projects must handle more explicitly:</p>
+<ul>
+<li><strong>people</strong>;</li>
+<li><strong>digital and data management</strong>;</li>
+<li><strong>commercial management</strong>;</li>
+<li><strong>sustainability</strong>; and</li>
+<li>stronger <strong>tailoring</strong> to project context.</li>
+</ul>
+<p>PeopleCert describes PRINCE2 7 as a major update that introduces stronger focus on people management, digital and data, sustainability, and compatibility with modern delivery environments.</p>
+<hr>
+</section>
+</section>
+<section id="processes" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Processes</h1>
+<p>PRINCE2 uses <strong>seven processes</strong> covering the project from pre-project through closure.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Purpose</th>
+<th>Typical Outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Starting Up a Project (SU)</td>
+<td>Confirm that the project is worthwhile and viable enough to initiate</td>
+<td>Project brief, outline business case, initiation stage plan</td>
+</tr>
+<tr class="even">
+<td>Directing a Project (DP)</td>
+<td>Enable the Project Board to exercise overall control and decision-making</td>
+<td>Authorisations, key decisions, exception decisions</td>
+</tr>
+<tr class="odd">
+<td>Initiating a Project (IP)</td>
+<td>Establish the project foundations, controls, and baselines</td>
+<td>PID, detailed business case, strategies, project plan</td>
+</tr>
+<tr class="even">
+<td>Controlling a Stage (CS)</td>
+<td>Day-to-day management of a stage by the Project Manager</td>
+<td>Work packages, checkpoint control, issue and risk actions, highlight reports</td>
+</tr>
+<tr class="odd">
+<td>Managing Product Delivery (MP)</td>
+<td>Control specialist work and product creation</td>
+<td>Work package acceptance, product status, delivery reporting</td>
+</tr>
+<tr class="even">
+<td>Managing a Stage Boundary (SB)</td>
+<td>Review performance and prepare for the next stage</td>
+<td>End stage report, updated business case, next stage plan, lessons</td>
+</tr>
+<tr class="odd">
+<td>Closing a Project (CP)</td>
+<td>Confirm formal closure and transition</td>
+<td>End project report, lessons report, benefits review follow-up</td>
+</tr>
+</tbody>
+</table>
+<p>These seven processes remain the backbone of PRINCE2. Official PRINCE2 sources continue to describe the method through these processes, alongside principles and practices.</p>
+<section id="product-based-planning" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="product-based-planning"><span class="header-section-number">5.1</span> Product-Based Planning</h2>
+<p>One of PRINCE2’s distinguishing strengths is its <strong>product-based planning</strong> approach. Instead of starting only with activities, it begins by asking:</p>
+<ul>
+<li>what products or outputs must exist;</li>
+<li>what quality criteria they must meet;</li>
+<li>how they depend on one another; and</li>
+<li>what work is needed to create them.</li>
+</ul>
+<p>This makes PRINCE2 especially useful in governance-heavy environments where the quality and acceptance of deliverables matter as much as the schedule.</p>
+<hr>
+</section>
+</section>
+<section id="management-products-and-documentation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Management Products and Documentation</h1>
+<p>PRINCE2 uses structured management products rather than uncontrolled paperwork. The exact level of detail should be tailored, but the following artefacts are commonly expected.</p>
+<section id="core-management-products" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="core-management-products"><span class="header-section-number">6.1</span> Core Management Products</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management Product</th>
+<th>Purpose</th>
+<th>Typical Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project Mandate</td>
+<td>Trigger for considering the project</td>
+<td>Corporate / programme / sponsor</td>
+</tr>
+<tr class="even">
+<td>Project Brief</td>
+<td>High-level view of what the project is and why it exists</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>Business Case</td>
+<td>Ongoing justification for investment</td>
+<td>Executive</td>
+</tr>
+<tr class="even">
+<td>Project Initiation Documentation (PID)</td>
+<td>Baseline set of controls, strategies, and plans for the project</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>Project Plan</td>
+<td>High-level plan for the whole project</td>
+<td>Project Manager</td>
+</tr>
+<tr class="even">
+<td>Stage Plan</td>
+<td>Detailed control plan for a stage</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>Team Plan</td>
+<td>Optional lower-level delivery plan</td>
+<td>Team Manager</td>
+</tr>
+<tr class="even">
+<td>Work Package</td>
+<td>Agreed assignment of work, constraints, reporting, and quality expectations</td>
+<td>Project Manager / Team Manager</td>
+</tr>
+<tr class="odd">
+<td>Risk Register</td>
+<td>Record of identified risks and responses</td>
+<td>Project Manager</td>
+</tr>
+<tr class="even">
+<td>Issue Register</td>
+<td>Record of issues, change requests, and off-specifications</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>Lessons Log / Lessons Report</td>
+<td>Record and report of lessons learned</td>
+<td>Project Manager</td>
+</tr>
+<tr class="even">
+<td>Highlight Report</td>
+<td>Periodic status report to the Project Board</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>End Stage Report</td>
+<td>Summary of stage performance and outlook</td>
+<td>Project Manager</td>
+</tr>
+<tr class="even">
+<td>Exception Report</td>
+<td>Escalation report when tolerances will be exceeded</td>
+<td>Project Manager</td>
+</tr>
+<tr class="odd">
+<td>End Project Report</td>
+<td>Final performance and closure summary</td>
+<td>Project Manager</td>
+</tr>
+<tr class="even">
+<td>Benefits Review Plan</td>
+<td>Defines when and how benefits will be measured post-project</td>
+<td>Executive / Senior User</td>
+</tr>
+<tr class="odd">
+<td>Product Descriptions</td>
+<td>Define purpose, composition, quality criteria, and quality methods for products</td>
+<td>Project Manager / Team Leads</td>
+</tr>
+<tr class="even">
+<td>Quality Register</td>
+<td>Tracks planned and completed quality activities</td>
+<td>Project Support / Project Manager</td>
+</tr>
+<tr class="odd">
+<td>Configuration Item Records / Product Status Account</td>
+<td>Optional control products for configuration and status tracking</td>
+<td>Project Support</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="documentation-approach" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="documentation-approach"><span class="header-section-number">6.2</span> Documentation Approach</h2>
+<p>PRINCE2 does <strong>not</strong> require heavy documentation for its own sake. The method requires that essential controls and decisions are explicit and auditable, but PRINCE2 7 also emphasises practical tailoring. In a small project, many of these products can be lightweight, combined, or maintained digitally in shared systems instead of large standalone documents.</p>
+<hr>
+</section>
+</section>
+<section id="raci-matrix-for-typical-prince2-management-products" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> RACI Matrix for Typical PRINCE2 Management Products</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management Product</th>
+<th style="text-align: center;">Executive</th>
+<th style="text-align: center;">Senior User</th>
+<th style="text-align: center;">Senior Supplier</th>
+<th style="text-align: center;">Project Board</th>
+<th style="text-align: center;">Project Manager</th>
+<th style="text-align: center;">Team Manager</th>
+<th style="text-align: center;">PMO / Project Support</th>
+<th style="text-align: center;">Assurance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project Mandate</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+</tr>
+<tr class="even">
+<td>Project Brief</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Business Case</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>PID</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Project Plan</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>Stage Plan</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Team Plan</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+</tr>
+<tr class="even">
+<td>Work Package</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+</tr>
+<tr class="odd">
+<td>Risk Register</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>Issue Register</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Highlight Report</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>End Stage Report</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Exception Report</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>End Project Report</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td>Benefits Review Plan</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td>Lessons Log / Report</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">A/R</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+</tr>
+</tbody>
+</table>
+<p>RACI Legend</p>
+<ul>
+<li><strong>R</strong> = Responsible</li>
+<li><strong>A</strong> = Accountable</li>
+<li><strong>C</strong> = Consulted</li>
+<li><strong>I</strong> = Informed</li>
+</ul>
+<p>This RACI is a practical interpretation. In some organisations the PMO may own more control products, and in others the sponsor or programme office may hold formal accountability for selected documents.</p>
+<hr>
+</section>
+<section id="tailoring-prince2" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Tailoring PRINCE2</h1>
+<p>Tailoring is one of the most important PRINCE2 disciplines. The method should be adapted across several dimensions:</p>
+<ul>
+<li><strong>project size</strong>;</li>
+<li><strong>risk and complexity</strong>;</li>
+<li><strong>delivery approach</strong> (predictive, Agile, hybrid);</li>
+<li><strong>commercial model</strong>;</li>
+<li><strong>regulatory and audit requirements</strong>;</li>
+<li><strong>organisational maturity</strong>; and</li>
+<li><strong>programme, portfolio, or enterprise governance context</strong>.</li>
+</ul>
+<p>Examples of tailoring include:</p>
+<ul>
+<li>combining the PID and project plan for a small project;</li>
+<li>using digital backlogs and sprint plans while keeping PRINCE2 stage control;</li>
+<li>reducing the number of formal reports in low-risk work;</li>
+<li>increasing assurance and configuration control in regulated projects; and</li>
+<li>embedding PRINCE2 reporting within a PMO dashboard tool rather than static documents.</li>
+</ul>
+<p>The official PRINCE2 7 messaging strongly emphasises flexibility and the use of PRINCE2 with predictive, Agile, or hybrid delivery methods rather than as a single rigid style.</p>
+<hr>
+</section>
+<section id="integration-with-other-frameworks" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Integration with Other Frameworks</h1>
+<section id="prince2-and-cobit" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="prince2-and-cobit"><span class="header-section-number">9.1</span> PRINCE2 and COBIT</h2>
+<ul>
+<li><strong>COBIT</strong> provides enterprise governance, control objectives, risk, and assurance structures.</li>
+<li><strong>PRINCE2</strong> provides project-level governance and controlled delivery.</li>
+</ul>
+<p>A useful pattern is for COBIT to define policy, decision rights, assurance, and portfolio control while PRINCE2 governs the actual delivery mechanism for individual projects.</p>
+</section>
+<section id="prince2-and-togaf" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="prince2-and-togaf"><span class="header-section-number">9.2</span> PRINCE2 and TOGAF</h2>
+<ul>
+<li><strong>TOGAF</strong> defines target-state architecture and implementation governance.</li>
+<li><strong>PRINCE2</strong> manages the project that delivers architecture-led change.</li>
+</ul>
+<p>Architecture deliverables, design authority decisions, and compliance reviews can be built into PRINCE2 stage plans and product descriptions.</p>
+</section>
+<section id="prince2-and-itil-4" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="prince2-and-itil-4"><span class="header-section-number">9.3</span> PRINCE2 and ITIL 4</h2>
+<ul>
+<li><strong>ITIL 4</strong> governs service design, transition, operation, and continual improvement.</li>
+<li><strong>PRINCE2</strong> governs the project creating or changing the service.</li>
+</ul>
+<p>A technology implementation project may use PRINCE2 for delivery and ITIL 4 for operational readiness, service acceptance, change enablement, and handover.</p>
+</section>
+<section id="prince2-and-msp" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="prince2-and-msp"><span class="header-section-number">9.4</span> PRINCE2 and MSP</h2>
+<ul>
+<li><strong>MSP</strong> governs transformational change at programme level.</li>
+<li><strong>PRINCE2</strong> governs the projects within that programme.</li>
+</ul>
+<p>This is one of the most natural combinations, especially in large public-sector and enterprise transformation environments.</p>
+</section>
+<section id="prince2-and-agile-devops" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="prince2-and-agile-devops"><span class="header-section-number">9.5</span> PRINCE2 and Agile / DevOps</h2>
+<p>PRINCE2 can coexist with iterative delivery by using stages and governance at management level while allowing Agile teams to plan and deliver within work packages or stage boundaries.</p>
+<hr>
+</section>
+</section>
+<section id="implementation-approach" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Implementation Approach</h1>
+<p>A practical PRINCE2 implementation usually works best in phases.</p>
+<section id="establish-governance-policy" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="establish-governance-policy"><span class="header-section-number">10.1</span> 1. Establish Governance Policy</h2>
+<p>Define when PRINCE2 is mandatory, which project categories it applies to, which artefacts are required, and how it aligns with PMO, risk, procurement, and assurance standards.</p>
+</section>
+<section id="define-tailored-method-packs" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="define-tailored-method-packs"><span class="header-section-number">10.2</span> 2. Define Tailored Method Packs</h2>
+<p>Create lightweight, medium, and high-control variants of the method with corresponding templates, workflows, and approval gates.</p>
+</section>
+<section id="train-key-roles" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="train-key-roles"><span class="header-section-number">10.3</span> 3. Train Key Roles</h2>
+<p>Train sponsors, project managers, PMO staff, and assurance roles so the method is understood beyond just the project manager population.</p>
+</section>
+<section id="embed-in-tools-and-reporting" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="embed-in-tools-and-reporting"><span class="header-section-number">10.4</span> 4. Embed in Tools and Reporting</h2>
+<p>Translate management products into templates, dashboards, registers, and stage approval workflows in the organisation’s chosen toolset.</p>
+</section>
+<section id="integrate-with-portfolio-and-architecture-governance" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="integrate-with-portfolio-and-architecture-governance"><span class="header-section-number">10.5</span> 5. Integrate with Portfolio and Architecture Governance</h2>
+<p>Align PRINCE2 stage approvals with investment governance, architecture review, security assurance, and service transition checkpoints.</p>
+</section>
+<section id="review-and-improve" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="review-and-improve"><span class="header-section-number">10.6</span> 6. Review and Improve</h2>
+<p>Use lessons, audit findings, and delivery metrics to refine the tailored method and reduce unnecessary bureaucracy.</p>
+<hr>
+</section>
+</section>
+<section id="kpis-and-management-metrics" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> KPIs and Management Metrics</h1>
+<p>A PRINCE2-based PMO or governance office may track metrics such as:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>What It Indicates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>% of projects with approved business case</td>
+<td>Governance and initiation discipline</td>
+</tr>
+<tr class="even">
+<td>% of projects with current PID and stage plan</td>
+<td>Baseline control maturity</td>
+</tr>
+<tr class="odd">
+<td>Stage approval lead time</td>
+<td>Decision efficiency</td>
+</tr>
+<tr class="even">
+<td>% of projects forecast to exceed tolerances</td>
+<td>Early warning and control effectiveness</td>
+</tr>
+<tr class="odd">
+<td>Change request volume by stage</td>
+<td>Stability of requirements and solution design</td>
+</tr>
+<tr class="even">
+<td>Risk response completion rate</td>
+<td>Risk management discipline</td>
+</tr>
+<tr class="odd">
+<td>Quality acceptance first-pass rate</td>
+<td>Product quality and clarity of requirements</td>
+</tr>
+<tr class="even">
+<td>Benefits realisation after closure</td>
+<td>Outcome achievement</td>
+</tr>
+<tr class="odd">
+<td>Lessons implemented across projects</td>
+<td>Organisational learning maturity</td>
+</tr>
+<tr class="even">
+<td>% of projects formally closed</td>
+<td>Closure and benefits governance discipline</td>
+</tr>
+</tbody>
+</table>
+<p>These metrics are most useful when combined with portfolio and PMO reporting, rather than treated as isolated project manager measures.</p>
+<hr>
+</section>
+<section id="benefits" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Benefits</h1>
+<p>PRINCE2 provides several strong benefits:</p>
+<ul>
+<li>clear accountability and decision rights;</li>
+<li>stronger business-case discipline;</li>
+<li>predictable control through stages and tolerances;</li>
+<li>consistent documentation and reporting across projects;</li>
+<li>good fit with PMO, audit, and assurance functions;</li>
+<li>compatibility with many delivery methods; and</li>
+<li>strong traceability from mandate to closure.</li>
+</ul>
+<hr>
+</section>
+<section id="limitations-and-common-misuse" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Limitations and Common Misuse</h1>
+<p>PRINCE2 can be misapplied if organisations:</p>
+<ul>
+<li>treat templates as more important than delivery outcomes;</li>
+<li>fail to tailor the method to context;</li>
+<li>use it only as a project manager method without sponsor engagement;</li>
+<li>overload small projects with large-project governance artefacts; or</li>
+<li>ignore product-based planning and focus only on activity schedules.</li>
+</ul>
+<p>The method works best when used as a governance framework for good decisions, not as an excuse for bureaucracy.</p>
+<hr>
+</section>
+<section id="practical-example" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Practical Example</h1>
+<section id="scenario-erp-implementation-project" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="scenario-erp-implementation-project"><span class="header-section-number">14.1</span> Scenario: ERP Implementation Project</h2>
+<p>An organisation is implementing a new ERP platform across finance, procurement, and supply chain.</p>
+<section id="how-prince2-helps" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="how-prince2-helps"><span class="header-section-number">14.1.1</span> How PRINCE2 Helps</h3>
+<ul>
+<li><strong>Starting Up a Project</strong> confirms the project is viable and identifies the Executive, Senior User, and Senior Supplier.</li>
+<li><strong>Initiating a Project</strong> creates the PID, defines governance, delivery approach, risk strategy, change control, and the overall project plan.</li>
+<li>The work is split into stages such as design, build, test, deployment, and transition.</li>
+<li>The <strong>Project Board</strong> reviews each stage boundary and revalidates the business case before authorising further investment.</li>
+<li>Product descriptions define what “completed” means for key outputs such as solution design, training materials, migration plans, and go-live readiness.</li>
+<li>Issues, risks, and change requests are controlled centrally.</li>
+<li>Closure confirms acceptance, captures lessons, and hands benefits tracking to business owners.</li>
+</ul>
+</section>
+<section id="combined-framework-view" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="combined-framework-view"><span class="header-section-number">14.1.2</span> Combined Framework View</h3>
+<ul>
+<li><strong>COBIT</strong> governs investment, risk, and control expectations.</li>
+<li><strong>TOGAF</strong> provides architecture standards and target-state design.</li>
+<li><strong>PRINCE2</strong> governs project execution.</li>
+<li><strong>ITIL 4</strong> supports service transition, change enablement, and operational handover.</li>
+</ul>
+<p>This is a strong example of how PRINCE2 fits inside a wider enterprise IT-governance ecosystem.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="summary" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Summary</h1>
+<p>PRINCE2 is one of the clearest frameworks for controlled project delivery. Its enduring strength lies in the combination of:</p>
+<ul>
+<li>continued business justification;</li>
+<li>explicit governance roles;</li>
+<li>management by stages and exception;</li>
+<li>product-based planning;</li>
+<li>structured management products; and</li>
+<li>disciplined but flexible tailoring.</li>
+</ul>
+<p>In a governance atlas, PRINCE2 is the framework that translates enterprise policy and architecture direction into <strong>controlled project execution</strong>. It is especially powerful when connected to COBIT, TOGAF, ITIL 4, MSP, and PMO practices.</p>
+</section>
+<section id="references" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> References</h1>
+<ul>
+<li>AXELOS. <em>PRINCE2 Project Management Certification</em>. AXELOS.</li>
+<li>AXELOS. <em>PRINCE2 Project Management Practitioner (Version 7)</em>. AXELOS.</li>
+<li>PeopleCert. <em>PRINCE2 Project Management Framework</em>. PeopleCert.</li>
+<li>PeopleCert. <em>PeopleCert unveils PRINCE2® 7: A major upgrade to the world’s leading project management method</em>. 2023. PeopleCert.</li>
+<li>PeopleCert. <em>PRINCE2 7: a new chapter in a well-told story</em>. 2023. PeopleCert.</li>
+<li>PeopleCert. <em>PRINCE2 7 - A Process of Evolution</em>. 2023. PeopleCert.</li>
+<li>PeopleCert. <em>People – at the core of PRINCE2® 7</em>. 2023. PeopleCert.</li>
+<li>PeopleCert. <em>PRINCE2 7: the quality practice – “Ready, fire, aim”</em>. 2023. PeopleCert.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

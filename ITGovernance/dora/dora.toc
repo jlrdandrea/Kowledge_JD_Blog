@@ -1,0 +1,80 @@
+\contentsline {section}{\numberline {1}Executive Summary}{3}{section.1}%
+\contentsline {section}{\numberline {2}Overview}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Purpose}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Objectives}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Scope}{4}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}In scope}{4}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Out of scope}{4}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}Intended Audience}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Regulatory Foundation}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Background}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Regulatory Objectives}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Core DORA Pillars}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Applicability and Entity Context}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Governance Model}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Governance Objectives}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Governance Structure}{6}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Example governance bodies}{6}{subsubsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.3}Three Lines Model}{7}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}First line}{7}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Second line}{7}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Third line}{7}{subsubsection.4.3.3}%
+\contentsline {section}{\numberline {5}Roles and Responsibilities}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Key Roles}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}RACI Matrix}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Policy Framework}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Core Policies}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Standards and Procedures}{10}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Core Processes}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}ICT Risk Management}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}ICT-Related Incident Management}{10}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Incident Classification and Reporting}{11}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Digital Operational Resilience Testing}{11}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}ICT Third-Party Risk Management}{11}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Register of Information}{12}{subsection.7.6}%
+\contentsline {subsubsection}{\numberline {7.6.1}Minimum content}{12}{subsubsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.7}Information Sharing Arrangements}{12}{subsection.7.7}%
+\contentsline {section}{\numberline {8}Control Framework}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Control Domains}{13}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Example control domains}{13}{subsubsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.2}Sample Control Catalogue}{13}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Artefacts and Evidence}{14}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Required Artefacts}{14}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Evidence Model}{15}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Architecture and Technology Implications}{15}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Resilience by Design}{15}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Technology Landscape View}{15}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Dependency Mapping}{16}{subsection.10.3}%
+\contentsline {section}{\numberline {11}Risk Management}{16}{section.11}%
+\contentsline {subsection}{\numberline {11.1}DORA Risk Model}{16}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Example Risk Categories}{16}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Risk Register Template}{16}{subsection.11.3}%
+\contentsline {section}{\numberline {12}Metrics and Reporting}{17}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Key Metrics}{17}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Dashboard Structure}{17}{subsection.12.2}%
+\contentsline {section}{\numberline {13}Audit and Assurance}{18}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Assurance Model}{18}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Testing Themes}{18}{subsection.13.2}%
+\contentsline {section}{\numberline {14}Implementation Roadmap}{18}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Maturity Phases}{18}{subsection.14.1}%
+\contentsline {subsubsection}{\numberline {14.1.1}Phase 1: Foundation}{18}{subsubsection.14.1.1}%
+\contentsline {subsubsection}{\numberline {14.1.2}Phase 2: Control Design}{19}{subsubsection.14.1.2}%
+\contentsline {subsubsection}{\numberline {14.1.3}Phase 3: Integration}{19}{subsubsection.14.1.3}%
+\contentsline {subsubsection}{\numberline {14.1.4}Phase 4: Optimisation}{19}{subsubsection.14.1.4}%
+\contentsline {subsection}{\numberline {14.2}Roadmap Table}{19}{subsection.14.2}%
+\contentsline {section}{\numberline {15}Cross-Framework Integration}{19}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Relationship to Other Frameworks}{19}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Example Mapping Themes}{20}{subsection.15.2}%
+\contentsline {section}{\numberline {16}Maturity Model}{20}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Suggested Maturity Levels}{20}{subsection.16.1}%
+\contentsline {subsubsection}{\numberline {16.1.1}Level 1: Initial}{20}{subsubsection.16.1.1}%
+\contentsline {subsubsection}{\numberline {16.1.2}Level 2: Repeatable}{20}{subsubsection.16.1.2}%
+\contentsline {subsubsection}{\numberline {16.1.3}Level 3: Defined}{20}{subsubsection.16.1.3}%
+\contentsline {subsubsection}{\numberline {16.1.4}Level 4: Managed}{21}{subsubsection.16.1.4}%
+\contentsline {subsubsection}{\numberline {16.1.5}Level 5: Optimised}{21}{subsubsection.16.1.5}%
+\contentsline {subsection}{\numberline {16.2}Assessment Dimensions}{21}{subsection.16.2}%
+\contentsline {section}{\numberline {17}Practical Templates}{21}{section.17}%
+\contentsline {subsection}{\numberline {17.1}Suggested Appendices}{21}{subsection.17.1}%
+\contentsline {section}{\numberline {18}Customisation Notes}{22}{section.18}%
+\contentsline {section}{\numberline {19}References}{22}{section.19}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -1,0 +1,366 @@
+---
+title: "Violin Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic violin plot into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated violin plots using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Violin plots are excellent for visualizing distributions, combining the benefits of box plots and density plots to show the full shape of your data.
+
+We'll use the built-in `diamonds` dataset from ggplot2, which contains prices and attributes of nearly 54,000 diamonds.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+
+# Prepare the data: filter for select diamond cuts
+data_diamonds <- diamonds %>%
+  filter(cut %in% c("Fair", "Good", "Very Good", "Premium", "Ideal")) %>%  # Use all cut levels
+  mutate(cut = factor(cut, levels = c("Fair", "Good", "Very Good", 
+                                      "Premium", "Ideal")))                 # Set factor order
+
+# Preview the data
+head(data_diamonds)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Violin Plot
+
+Let's start with a simple violin plot showing the distribution of diamond prices by cut quality.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_diamonds, aes(x = cut, y = price)) +  # Set up the plot with x and y variables
+  geom_violin()                                    # Create violin plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_diamonds, aes(x = cut, y = price))` - Initializes the plot with our diamond data, mapping cut quality to the x-axis and price to the y-axis
+
+**Line 2:** `geom_violin()` - Adds violin shapes to the plot where the width represents the density of data points at each price level
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic violin plot. The distribution shapes are visible but the chart lacks context, color differentiation, and visual appeal.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding color, internal box plots for reference points, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Color fill** to distinguish each cut quality
+-   **Overlaid box plots** showing median and quartiles
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Transparency** for better layering visibility
+-   **Professional color palette** from ColorBrewer
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_diamonds, aes(x = cut, y = price, fill = cut)) +      # Add fill aesthetic
+  geom_violin(alpha = 0.7, trim = FALSE) +                         # Violin with transparency
+  geom_boxplot(width = 0.1, fill = "white", 
+               outlier.shape = NA) +                               # Narrow box plot overlay
+  scale_fill_brewer(palette = "Set2") +                            # Apply color palette
+  scale_y_continuous(labels = label_dollar()) +                    # Format y-axis as currency
+  labs(
+    title = "Diamond Price Distribution by Cut Quality",           # Main title
+    subtitle = "Violin plots showing full distribution with quartile overlay",  # Subtitle
+    x = "Cut Quality",                                             # X-axis label
+    y = "Price (USD)"                                              # Y-axis label
+  ) +
+  theme_minimal() +                                                # Clean, minimal theme
+  theme(
+    plot.title = element_text(face = "bold", size = 14),          # Bold title
+    legend.position = "none"                                       # Remove redundant legend
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(x = cut, y = price, fill = cut)` - Maps cut quality to both x-axis position and fill color for visual distinction
+
+**Line 2:** `geom_violin(alpha = 0.7, trim = FALSE)` - Creates violin shapes with 70% opacity and extends tails to minimum/maximum values
+
+**Lines 3-4:** `geom_boxplot()` - Adds narrow white box plots inside violins to show median, quartiles, and range, with outliers hidden since they're already visible in the violin
+
+**Line 5:** `scale_fill_brewer(palette = "Set2")` - Applies a professional, colorblind-friendly palette from ColorBrewer
+
+**Line 6:** `scale_y_continuous(labels = label_dollar())` - Formats y-axis values as currency with dollar signs
+
+**Lines 7-12:** `labs()` - Adds descriptive title, subtitle, and axis labels to provide context
+
+**Line 13:** `theme_minimal()` - Applies a clean theme with minimal visual elements
+
+**Lines 14-17:** `theme()` - Customizes title formatting and removes the legend since cut quality is already shown on x-axis
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with color differentiation, clear reference points through box plots, and professional formatting. The currency formatting and clean theme make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with jittered data points, sample size annotations, enhanced typography, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Individual data points** (jittered and sampled for clarity)
+-   **Sample size annotations** showing number of diamonds in each category
+-   **Custom color palette** optimized for accessibility
+-   **Enhanced typography** with refined spacing
+-   **Statistical reference line** showing overall median
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+-   **Better axis formatting** with comma separators
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 6
+
+# Calculate sample sizes and median for annotations
+cut_summary <- data_diamonds %>%
+  group_by(cut) %>%
+  summarise(
+    n = n(),                                       # Count per category
+    median_price = median(price),                  # Median price
+    .groups = 'drop'
+  )
+
+# Calculate overall median for reference line
+overall_median <- median(data_diamonds$price)
+
+# Sample data points for visualization (to avoid overplotting)
+set.seed(123)
+data_sample <- data_diamonds %>%
+  group_by(cut) %>%
+  slice_sample(prop = 0.05) %>%                    # Sample 5% of points per category
+  ungroup()
+
+# Define custom color palette (colorblind-friendly)
+cut_colors <- c(
+  "Fair" = "#E76F51",                              # Coral for lowest quality
+  "Good" = "#F4A261",                              # Orange
+  "Very Good" = "#E9C46A",                         # Yellow
+  "Premium" = "#2A9D8F",                           # Teal
+  "Ideal" = "#264653"                              # Dark blue for highest quality
+)
+
+ggplot(data_diamonds, aes(x = cut, y = price, fill = cut)) +
+  # Add reference line for overall median
+  geom_hline(yintercept = overall_median, 
+             linetype = "dashed", color = "gray40", 
+             linewidth = 0.6, alpha = 0.7) +
+  # Violin plot layer
+  geom_violin(alpha = 0.6, trim = FALSE, 
+              color = "gray30", linewidth = 0.7) +
+  # Box plot overlay
+  geom_boxplot(width = 0.12, fill = "white", 
+               outlier.shape = NA, alpha = 0.9,
+               color = "gray30", linewidth = 0.5) +
+  # Add jittered sample points
+  geom_jitter(data = data_sample,
+              width = 0.15, alpha = 0.2, size = 0.8,
+              color = "gray20") +
+  # Apply custom colors
+  scale_fill_manual(values = cut_colors) +
+  # Format y-axis with dollar signs and commas
+  scale_y_continuous(labels = label_dollar(scale = 1, prefix = "$"),
+                     breaks = seq(0, 20000, by = 5000),
+                     limits = c(0, 20000)) +
+  # Add comprehensive labels
+  labs(
+    title = "Diamond Prices Vary Significantly Across Cut Quality Grades",
+    subtitle = "Distribution analysis of 53,940 diamonds showing price ranges and density patterns",
+    x = NULL,                                      # Remove x-axis label (obvious from plot)
+    y = "Price (USD)",
+    caption = "Data source: ggplot2 diamonds dataset | Dashed line indicates overall median price | Visualization: Your Name"
+  ) +
+  # Add sample size annotations
+  geom_text(data = cut_summary,
+            aes(x = cut, y = 19000, 
+                label = paste0("n = ", format(n, big.mark = ","))),
+            inherit.aes = FALSE,
+            size = 3.2, fontface = "italic", 
+            color = "gray30") +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", 
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title.y = element_text(size = 11, face = "bold", 
+                                margin = margin(r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    axis.text.x = element_text(face = "bold", size = 10.5),
+    
+    # Legend removal
+    legend.position = "none",
+    
+    # Grid and panel styling
+    panel.grid.major.x = element_blank(),          # Remove vertical grid
+    panel.grid.major.y = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank(),            # Remove minor gridlines
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)          # Add space around plot
+  )
+```
+
+### Code Explanation
+
+**Lines 2-9:** Creates a summary dataframe with sample sizes and median prices for each cut category, used for annotations
+
+**Line 12:** Calculates the overall median price across all diamonds to add as a reference line
+
+**Lines 15-19:** Samples up to 200 diamonds per category to show individual data points without severe overplotting
+
+**Lines 22-28:** Defines a custom color palette that progresses from warm (low quality) to cool (high quality) colors, optimized for colorblind accessibility
+
+**Line 30:** `ggplot()` initializes the plot with cut mapped to both x-position and fill color
+
+**Lines 32-34:** `geom_hline()` adds a dashed horizontal reference line at the overall median price for comparison
+
+**Lines 36-37:** `geom_violin()` creates the violin shapes with transparency, custom border color, and full tail extension
+
+**Lines 39-41:** `geom_boxplot()` overlays narrow white box plots showing quartiles and median with styled borders
+
+**Lines 43-45:** `geom_jitter()` adds sampled individual data points with controlled horizontal spread and transparency
+
+**Line 47:** `scale_fill_manual()` applies our custom color palette
+
+**Lines 49-51:** `scale_y_continuous()` formats the y-axis with dollar signs, comma separators, and defined breaks
+
+**Lines 53-59:** `labs()` adds comprehensive labels including an informative title that tells a story, descriptive subtitle with data context, and detailed caption with attribution and methodology notes
+
+**Lines 61-67:** `geom_text()` adds sample size annotations at the top of each violin, formatted with comma separators for readability
+
+**Lines 68-93:** Comprehensive theme customization including: - Enhanced typography with specific sizes, weights, and colors for hierarchy - Legend removal (since cut is mapped to x-axis) - Grid customization keeping only horizontal major gridlines - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready visualization that combines distribution density (violin), statistical summaries (box plot), individual observations (jittered points), and contextual information (sample sizes and reference line). The progressive color scheme and polished formatting make this suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|----------------|----------------|------------------------|-----------------|
+| **Readability** | Poor (no color, no context) | Good (color-coded, box plots) | Excellent (all + points + annotations) |
+| **Context** | None | Title & labels added | Full context with subtitle, caption & sample sizes |
+| **Visual Appeal** | Plain gray violins | Colored + professional theme | Multi-layered + custom palette |
+| **Data Layers** | Violin only | Violin + box plot | Violin + box + points + reference line |
+| **Statistical Info** | Distribution shape only | Added quartiles/median | Added sample sizes + overall median |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Violin Plots:**
+
+1.  **Combine layers strategically** - Violin + box plot is a powerful combination showing both distribution shape and statistical summaries
+
+2.  **Mind the sample size** - For large datasets (\>10,000 points), sample your data points when using `geom_jitter()` to avoid overplotting and file size issues
+
+3.  **Use `trim = FALSE` thoughtfully** - This shows the full estimated distribution but can sometimes extend beyond your actual data range
+
+4.  **Add reference lines** - Horizontal lines showing medians, means, or thresholds help viewers make comparisons
+
+5.  **Color with purpose** - Use color gradients that match the ordering of your categories (e.g., cool to warm colors for low to high quality)
+
+6.  **Annotate sample sizes** - Always show the number of observations per category so readers can assess reliability
+
+7.  **Consider log scales** - For right-skewed data like prices, try `scale_y_log10()` to better show the full distribution
+
+8.  **Width matters** - Adjust violin width with the `scale` parameter in `geom_violin()`: use `"area"` (default), `"count"`, or `"width"`
+
+9.  **Box plot positioning** - Keep box plots narrow (width = 0.1-0.15) so they don't obscure the violin shape
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 6, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other distribution visualizations:
+
+-   **Ridgeline plots** for comparing many distributions
+-   **Beeswarm plots** for smaller datasets where every point matters
+-   **Density plots** for smoother distribution visualization
+-   **Grouped violin plots** using `facet_wrap()` for additional categorical variables
+
+::: {.highlight-box .info}
+**Want to create grouped violin plots?**
+
+You can add a second grouping variable using position adjustments:
+
+``` r
+ggplot(diamonds, aes(x = cut, y = price, fill = clarity)) +
+  geom_violin(position = position_dodge(width = 0.9)) +
+  scale_fill_viridis_d() +
+  theme_minimal()
+```
+
+This creates side-by-side violins for each combination of cut and clarity.
+:::
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [ColorBrewer for Color Palettes](https://colorbrewer2.org/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

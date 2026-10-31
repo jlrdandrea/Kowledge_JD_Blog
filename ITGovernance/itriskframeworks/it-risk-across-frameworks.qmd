@@ -1,0 +1,369 @@
+---
+title: "How Risk Acts Throughout IT Frameworks"
+description: "A cross-framework knowledge base note"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Risk
+---
+
+# Purpose
+
+This note explains **how risk acts throughout the main IT, governance, architecture, delivery, service, and cyber frameworks**. It is designed as a reusable reference for a knowledge base and can support governance design, PMO/ITSM integration, architecture reviews, audit mapping, and executive communication.
+
+The core idea is simple:
+
+> **Risk is the thread that connects strategy, architecture, delivery, operations, security, resilience, assurance, and improvement.**
+
+Different frameworks emphasise different parts of the same risk chain.
+
+# Executive Summary
+
+Across the main frameworks, risk tends to move through a common cycle:
+
+**Govern -\> Design -\> Deliver -\> Operate -\> Assure -\> Improve**
+
+- **Govern** sets appetite, tolerance, direction, and accountability.
+- **Design** turns risk into architecture principles, standards, controls, and investment choices.
+- **Deliver** manages uncertainty through projects, programmes, change, and supplier coordination.
+- **Operate** keeps live services, resilience, continuity, and security within acceptable limits.
+- **Assure** monitors, tests, audits, and reports.
+- **Improve** feeds lessons back into governance, architecture, and operations.
+
+The frameworks differ mainly by **where they place emphasis**:
+
+- **ISO 31000** provides the enterprise-wide risk logic.
+- **COBIT** governs and manages enterprise information and technology risk.
+- **TOGAF** reduces risk through better architecture and transition design.
+- **PRINCE2** controls project-level uncertainty.
+- **MSP** controls programme and transformation risk.
+- **ITIL** manages service and operational risk.
+- **NIST RMF / CSF** formalise cyber and control-based risk management.
+- **DORA** turns ICT risk and resilience into regulatory obligations in financial services.
+
+# The Common Risk Pattern Across Frameworks
+
+## The end-to-end view
+
+```{mermaid}
+flowchart LR
+    A[Govern] --> B[Design]
+    B --> C[Deliver]
+    C --> D[Operate]
+    D --> E[Assure]
+    E --> F[Improve]
+    F --> A
+```
+
+## What happens in each stage
+
+| Stage | What risk is doing | Typical questions |
+|----|----|----|
+| Govern | Defining direction and oversight | What level of risk will we accept? Who owns what? What must be escalated? |
+| Design | Shaping architecture, policy, and controls | How should we design this to reduce exposure? What standards or safeguards are needed? |
+| Deliver | Managing uncertainty in change | What could stop delivery, delay value, or undermine outcomes? |
+| Operate | Controlling live operational risk | Are services stable, secure, resilient, and supportable? |
+| Assure | Testing and verifying | Are controls working? Are metrics and reports credible? |
+| Improve | Learning and adapting | What should change in policy, design, controls, or delivery? |
+
+# Cross-Framework Comparison
+
+## Side-by-side view
+
+| Framework | Where risk sits | Main risk focus | How risk acts in practice | Typical outputs |
+|----|----|----|----|----|
+| **ISO 31000** | Enterprise-wide management system | All organizational risk | Establishes principles, framework, and process for identifying, assessing, treating, monitoring, and communicating risk | Risk policy, criteria, treatment plans, risk reports |
+| **COBIT** | Governance and management of enterprise IT | Enterprise I&T risk, control, assurance | Connects board oversight with management practices, controls, and assurance | Risk scenarios, governance reporting, control objectives, assurance evidence |
+| **ITIL** | Service value system and service practices | Service, continuity, supplier, security, change, and operational risk | Embeds risk into live service management and continual improvement | Service risk logs, change assessments, continuity plans, service metrics |
+| **TOGAF** | Enterprise architecture | Architecture, transition, standards, and technology risk | Influences principles, standards, target states, and transition roadmaps | Architecture principles, standards, roadmaps, design decisions |
+| **PRINCE2** | Project governance and control | Scope, schedule, cost, quality, dependency, delivery risk | Manages uncertainty through stages, controls, escalation, and decisions | Risk register, exception reports, stage decisions |
+| **MSP** | Programme governance | Transformation, benefits, stakeholder, dependency risk | Manages risk across multiple projects, outcomes, and change tranches | Programme risk register, dependency views, tranche decisions |
+| **NIST RMF** | Security and privacy life cycle | Security and privacy risk | Formalises risk through categorisation, control selection, implementation, assessment, authorisation, and monitoring | Security categorisation, control baselines, assessment results |
+| **NIST CSF** | Cybersecurity governance and operations | Enterprise cyber risk | Connects executive governance to protect, detect, respond, and recover capabilities | Risk profiles, metrics, target state actions |
+| **DORA** | Regulatory resilience and ICT risk | ICT risk, resilience, third-party ICT risk | Makes operational resilience, testing, incident reporting, and third-party oversight mandatory in regulated finance | ICT risk framework, resilience evidence, incident reporting records |
+
+# How Each Framework Treats Risk
+
+## ISO 31000
+
+ISO 31000 is the **umbrella discipline**. It is not limited to IT. It provides a common language and structure for risk management across the enterprise. It is most useful when an organisation wants one coherent approach to risk across governance, projects, operations, architecture, security, and compliance.
+
+### Risk role in ISO 31000
+
+- Integrates risk into governance and decision-making
+- Provides principles and a management framework
+- Encourages consistent identification, analysis, evaluation, treatment, monitoring, and communication
+- Supports a shared taxonomy and scoring model across disciplines
+
+## COBIT
+
+COBIT treats risk as a matter of **governance first, management second**. It is strong where the organisation needs a structured connection between board oversight, executive accountability, control design, and assurance.
+
+### Risk role in COBIT
+
+- Board and executive focus on **risk optimisation**
+- Management translates risk direction into practices and controls
+- Risk is linked to security, continuity, suppliers, change, information, and assurance
+- Useful for integrating CIO, CISO, PMO, audit, and architecture views
+
+### Practical interpretation
+
+COBIT is especially effective when you want to answer questions such as:
+
+- Are we governing IT risk properly?
+- Are accountabilities clear?
+- Are we balancing value, risk, and resources?
+- Is our assurance model coherent?
+
+## ITIL
+
+ITIL treats risk as part of **value delivery through services**. It does not approach risk mainly as board theory; it approaches it as a practical concern in operating and improving digital services.
+
+### Risk role in ITIL
+
+- Embedded in service design, transition, support, and improvement
+- Present in incident, problem, change enablement, supplier, security, monitoring, and continuity practices
+- Focuses on service stability, quality, resilience, and operational visibility
+
+### Practical interpretation
+
+ITIL is most useful when the question is:
+
+- How do we keep risk under control while running live services?
+- How do we reduce service disruption and change failure?
+- How do we improve resilience, supportability, and customer value?
+
+## TOGAF
+
+TOGAF acts on risk **before delivery starts in earnest** by improving structure. It reduces risk through architecture principles, standards, target-state thinking, transition architecture, and roadmap choices.
+
+### Risk role in TOGAF
+
+- Reduces structural risk through better design
+- Addresses complexity, integration, obsolescence, standards, and technology alignment
+- Strengthens security and resilience by embedding them into architecture decisions
+
+### Practical interpretation
+
+TOGAF helps answer:
+
+- Are we designing avoidable risk into the estate?
+- Are our standards increasing or reducing exposure?
+- Are transition plans realistic and controlled?
+
+## PRINCE2
+
+PRINCE2 handles risk in a **controlled project environment**. It is concerned with uncertainty that could affect scope, cost, schedule, quality, and continued business justification.
+
+### Risk role in PRINCE2
+
+- Identifies and assesses project-level risks
+- Defines owners, actions, responses, and escalation paths
+- Uses stage control and exception-based management
+- Links risk to decision points and business case viability
+
+### Practical interpretation
+
+PRINCE2 is useful when the question is:
+
+- Will this project still deliver what it promised?
+- What threatens schedule, scope, cost, or quality?
+- When should the issue be escalated or re-planned?
+
+## MSP
+
+MSP treats risk at **transformation scale** rather than single-project scale. It is concerned with whether a programme will land successfully, coordinate its dependencies, achieve desired outcomes, and realise benefits.
+
+### Risk role in MSP
+
+- Manages uncertainty across multiple projects and workstreams
+- Focuses on dependency risk, benefit risk, organisational change risk, stakeholder risk, and governance risk
+- Supports tranche-based decisions and transformation control
+
+### Practical interpretation
+
+MSP is valuable when the question becomes:
+
+- Will the programme achieve strategic outcomes, not just outputs?
+- Are the interdependencies being managed effectively?
+- Is change adoption or benefits realisation at risk?
+
+## NIST RMF
+
+NIST RMF formalises risk in a structured **security and privacy life cycle**. It is control-oriented and evidence-driven.
+
+### Risk role in NIST RMF
+
+- Categorises information systems and data sensitivity
+- Selects and tailors controls
+- Implements and assesses those controls
+- Supports authorisation decisions and ongoing monitoring
+
+### Practical interpretation
+
+NIST RMF is strong when the organisation asks:
+
+- What controls are required for this system?
+- Are those controls operating effectively?
+- Can this system be authorised or remain in service?
+
+## NIST CSF
+
+NIST CSF provides an outcome-based cybersecurity structure. It is particularly helpful for executive communication because it links governance to operational cyber capabilities.
+
+### Risk role in NIST CSF
+
+- Frames cyber risk through **Govern, Identify, Protect, Detect, Respond, Recover**
+- Supports target-state design and maturity improvement
+- Connects cyber operations with leadership communication and prioritisation
+
+## DORA
+
+DORA makes ICT risk and operational resilience a matter of regulatory discipline in the financial sector.
+
+### Risk role in DORA
+
+- Requires structured ICT risk management
+- Emphasises digital operational resilience
+- Requires incident reporting, resilience testing, and third-party oversight
+- Pushes resilience from good practice into formal compliance obligations
+
+# How Risk Flows Across the Layers of an IT Operating Model
+
+```{mermaid}
+flowchart TD
+    A[Board / Executive Governance] --> B[Enterprise Risk Direction]
+    B --> C[Architecture and Standards]
+    C --> D[Portfolio / Programme / Project Delivery]
+    D --> E[Service Operations and Support]
+    E --> F[Monitoring / Security / Resilience]
+    F --> G[Audit / Assurance / Reporting]
+    G --> A
+```
+
+## Layer interpretation
+
+| Operating layer | Risk emphasis | Best-fit frameworks |
+|----|----|----|
+| Board / Executive / CIO | Appetite, tolerance, oversight, accountability | ISO 31000, COBIT, NIST CSF, DORA |
+| Enterprise architecture | Structural, standards, integration, technology, resilience risk | TOGAF, COBIT |
+| Portfolio / Programme / Project | Investment, transformation, delivery, dependency, benefits risk | MSP, PRINCE2, COBIT |
+| Service operations | Stability, support, continuity, supplier, change, operational risk | ITIL, COBIT |
+| Cybersecurity / privacy | Threat, vulnerability, control, resilience, recovery risk | NIST RMF, NIST CSF, ISO 27001-style overlays |
+| Audit / assurance | Evidence, testing, reporting, challenge, monitoring | COBIT, NIST, internal audit methods |
+
+# One Enterprise Risk Language, Multiple Framework Views
+
+A common organisational mistake is to let each framework create its own separate risk universe.
+
+That often leads to:
+
+- separate risk registers
+- conflicting scoring methods
+- duplicated controls
+- inconsistent escalation paths
+- fragmented reporting to executives
+- poor traceability from policy to operation
+
+A better model is:
+
+## Unified approach
+
+- **One enterprise risk taxonomy**
+- **One scoring model**
+- **One escalation model**
+- **One reporting logic**
+- **Many framework-specific views**
+
+In that model:
+
+- **COBIT** provides the governance and assurance view
+- **TOGAF** provides the design and architecture view
+- **PRINCE2 / MSP** provide the delivery and transformation view
+- **ITIL** provides the live service view
+- **NIST** provides the cyber-control view
+- **DORA** provides the regulatory resilience overlay where relevant
+
+# Risk Activities Matrix
+
+## How the major frameworks align by activity
+
+| Risk activity | ISO 31000 | COBIT | TOGAF | PRINCE2 | MSP | ITIL | NIST RMF / CSF | DORA |
+|----|----|----|----|----|----|----|----|----|
+| Set appetite and direction | Strong | Strong | Limited | Limited | Limited | Limited | CSF Govern supports | Strong in regulated context |
+| Define governance and accountability | Strong | Strong | Moderate | Moderate | Strong | Moderate | CSF Govern supports | Strong |
+| Identify risks | Strong | Strong | Strong | Strong | Strong | Strong | Strong | Strong |
+| Assess and prioritise | Strong | Strong | Moderate | Strong | Strong | Moderate | Strong | Strong |
+| Design responses and controls | Strong | Strong | Strong | Moderate | Moderate | Strong | Strong | Strong |
+| Manage delivery uncertainty | General | Moderate | Moderate | Strong | Strong | Moderate | Limited | Moderate |
+| Manage live operational risk | General | Strong | Limited | Limited | Limited | Strong | Strong | Strong |
+| Manage resilience and continuity | General | Strong | Moderate | Limited | Moderate | Strong | Strong | Strong |
+| Monitor and report | Strong | Strong | Moderate | Strong | Strong | Strong | Strong | Strong |
+| Audit, assure, and improve | Strong | Strong | Moderate | Moderate | Moderate | Strong | Strong | Strong |
+
+# Example: One Risk Seen Through Multiple Frameworks
+
+## Example risk
+
+**Critical cloud provider outage affecting a customer-facing platform**
+
+## How each framework would see it
+
+| Framework | Interpretation of the same risk |
+|----|----|
+| ISO 31000 | Enterprise risk requiring assessment, treatment, monitoring, ownership, and communication |
+| COBIT | Governance issue involving supplier oversight, resilience, continuity, security, and executive accountability |
+| TOGAF | Architecture concern requiring redundancy, failover, recovery design, and standards review |
+| PRINCE2 | Project or transition dependency risk if implementation relies on the provider |
+| MSP | Programme dependency and business outcome risk if multiple projects rely on the same platform |
+| ITIL | Operational continuity, incident, problem, supplier, and change concern for live services |
+| NIST RMF / CSF | Security and resilience control issue requiring safeguards, monitoring, response, and recovery |
+| DORA | ICT third-party and operational resilience issue with compliance and reporting implications in finance |
+
+# Recommended Integrated Model
+
+For an enterprise IT governance model, a practical combination is:
+
+## Recommended backbone
+
+- **ISO 31000** as the common risk method and language
+- **COBIT** for governance, accountability, assurance, and control alignment
+- **TOGAF** for design-time risk reduction
+- **MSP / PRINCE2** for transformation and delivery control
+- **ITIL** for operational risk and service resilience
+- **NIST CSF / RMF** for cyber and control depth
+- **DORA / NIS2 / ISO 27001** as regulatory and control overlays where relevant
+
+## End-to-end operating logic
+
+```{mermaid}
+flowchart LR
+    A[Risk Appetite] --> B[Policy and Standards]
+    B --> C[Architecture Decisions]
+    C --> D[Programme and Project Controls]
+    D --> E[Operational Controls and Services]
+    E --> F[Monitoring and Metrics]
+    F --> G[Audit and Assurance]
+    G --> H[Lessons Learned]
+    H --> A
+```
+
+# Key Takeaways
+
+1.  **Risk is not separate from IT frameworks; it is one of their main connecting threads.**
+2.  **Each framework sees a different part of the same risk system.**
+3.  **COBIT is strongest for governance, accountability, and assurance.**
+4.  **TOGAF reduces risk through design.**
+5.  **PRINCE2 and MSP reduce risk through controlled change.**
+6.  **ITIL reduces risk in live services.**
+7.  **NIST deepens cyber and control rigour.**
+8.  **DORA makes resilience and ICT risk formal obligations in regulated finance.**
+9.  **The best enterprise model uses one risk language with multiple framework views.**
+
+# Suggested Knowledge Base Tags
+
+`risk-management` `it-governance` `cobit` `itil` `togaf` `prince2` `msp` `nist` `dora` `enterprise-architecture` `service-management` `cybersecurity` `operational-resilience` `assurance`
+
+# Reusable Summary Statement
+
+> Risk starts as governance, becomes architecture and delivery decisions, turns into operational controls, and returns as assurance, reporting, and improvement.

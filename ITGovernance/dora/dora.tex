@@ -1,0 +1,1469 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={DORA},
+  pdfauthor={Joao Luiz D'Andrea},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{DORA}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Digital Operational Resilience Act --- Governance, Risk,
+Controls, and Implementation Template}
+\author{Joao Luiz D'Andrea}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Executive Summary}\label{executive-summary}
+
+The Digital Operational Resilience Act (DORA) establishes a harmonised
+European Union framework for managing digital operational resilience
+across the financial sector. It strengthens the ability of financial
+entities to withstand, respond to, and recover from ICT-related
+disruptions, cyber incidents, and third-party service failures.
+
+This document provides a practical template for defining the
+organisation's DORA governance model, ICT risk management approach,
+control structure, implementation roadmap, and assurance model. It can
+be used to document how the organisation aligns resilience,
+cybersecurity, third-party risk, and regulatory compliance into a
+coherent operating model.
+
+\section{Overview}\label{overview}
+
+\subsection{Purpose}\label{purpose}
+
+This document provides a practical template for defining, implementing,
+operating, and assuring compliance with DORA across the enterprise.
+
+\subsection{Objectives}\label{objectives}
+
+The main objectives of applying DORA are to:
+
+\begin{itemize}
+\tightlist
+\item
+  strengthen digital operational resilience across regulated financial
+  services
+\item
+  establish clear accountability for ICT risk and resilience
+\item
+  improve prevention, detection, response, and recovery capabilities
+\item
+  ensure consistent handling and reporting of ICT-related incidents
+\item
+  strengthen oversight of ICT third-party dependencies and concentration
+  risk
+\item
+  support resilience testing and continuous improvement
+\item
+  integrate operational resilience with enterprise governance, risk,
+  compliance, and assurance
+\end{itemize}
+
+\subsection{Scope}\label{scope}
+
+Describe the scope of DORA applicability in the organisation.
+
+\subsubsection{In scope}\label{in-scope}
+
+\begin{itemize}
+\tightlist
+\item
+  regulated financial entities and relevant business functions
+\item
+  ICT services supporting critical or important functions
+\item
+  applications, infrastructure, cloud services, and networks
+\item
+  cyber resilience, ICT operations, and service continuity arrangements
+\item
+  ICT third-party service providers and contractual arrangements
+\item
+  digital operational resilience testing activities
+\item
+  incident management and regulatory reporting processes
+\end{itemize}
+
+\subsubsection{Out of scope}\label{out-of-scope}
+
+Document justified exclusions, if any.
+
+\subsection{Intended Audience}\label{intended-audience}
+
+\begin{itemize}
+\tightlist
+\item
+  Board and executive leadership
+\item
+  Chief Information Officer
+\item
+  Chief Information Security Officer
+\item
+  Chief Risk Officer
+\item
+  Operational resilience teams
+\item
+  Technology and operations teams
+\item
+  Procurement and vendor management teams
+\item
+  Legal and compliance teams
+\item
+  Internal audit and assurance teams
+\item
+  PMO / transformation teams
+\end{itemize}
+
+\section{Regulatory Foundation}\label{regulatory-foundation}
+
+\subsection{Background}\label{background}
+
+DORA provides a unified regulatory framework for digital operational
+resilience in the financial sector. It addresses the management of ICT
+risk, resilience testing, ICT incident handling and reporting, ICT
+third-party risk, and supervisory oversight of critical ICT third-party
+providers.
+
+\subsection{Regulatory Objectives}\label{regulatory-objectives}
+
+Document how the organisation interprets the regulatory objectives of
+DORA:
+
+\begin{itemize}
+\tightlist
+\item
+  maintain resilience of ICT systems supporting business processes
+\item
+  reduce the impact of ICT-related disruptions and cyber threats
+\item
+  strengthen governance and accountability for ICT risk
+\item
+  improve visibility and management of third-party dependencies
+\item
+  increase consistency in resilience testing and incident reporting
+\item
+  enhance financial sector-wide resilience
+\end{itemize}
+
+\subsection{Core DORA Pillars}\label{core-dora-pillars}
+
+Describe how the organisation addresses the main DORA domains:
+
+\begin{itemize}
+\tightlist
+\item
+  ICT risk management
+\item
+  ICT-related incident management, classification, and reporting
+\item
+  digital operational resilience testing
+\item
+  ICT third-party risk management
+\item
+  information-sharing arrangements
+\end{itemize}
+
+\subsection{Applicability and Entity
+Context}\label{applicability-and-entity-context}
+
+Document the specific applicability of DORA to the organisation,
+including:
+
+\begin{itemize}
+\tightlist
+\item
+  legal entity structure
+\item
+  regulatory status
+\item
+  business model
+\item
+  group / subsidiary context
+\item
+  jurisdictional footprint
+\item
+  critical and important functions
+\item
+  supervisory relationships
+\end{itemize}
+
+\section{Governance Model}\label{governance-model}
+
+\subsection{Governance Objectives}\label{governance-objectives}
+
+Define the governance objectives for DORA compliance:
+
+\begin{itemize}
+\tightlist
+\item
+  establish board-level oversight of digital operational resilience
+\item
+  define accountability for ICT risk and resilience decisions
+\item
+  align resilience priorities with enterprise risk appetite and business
+  continuity objectives
+\item
+  embed DORA requirements into operations, architecture, procurement,
+  and change
+\item
+  maintain evidence of compliance and control effectiveness
+\item
+  support continuous improvement through testing, monitoring, assurance,
+  and remediation
+\end{itemize}
+
+\subsection{Governance Structure}\label{governance-structure}
+
+Describe the governance bodies and their responsibilities.
+
+\subsubsection{Example governance
+bodies}\label{example-governance-bodies}
+
+\begin{itemize}
+\tightlist
+\item
+  Board / Risk Committee
+\item
+  Executive Operational Resilience Committee
+\item
+  Technology and Security Steering Committee
+\item
+  ICT Risk Committee
+\item
+  Third-Party Risk Committee
+\item
+  Architecture Review Board
+\item
+  Incident Review Board
+\item
+  Internal Audit
+\end{itemize}
+
+\subsection{Three Lines Model}\label{three-lines-model}
+
+Describe responsibilities across the three lines.
+
+\subsubsection{First line}\label{first-line}
+
+\begin{itemize}
+\tightlist
+\item
+  ownership of business services, ICT operations, and controls
+\item
+  implementation of resilience, security, and continuity controls
+\item
+  incident handling and service restoration
+\item
+  evidence production and remediation execution
+\end{itemize}
+
+\subsubsection{Second line}\label{second-line}
+
+\begin{itemize}
+\tightlist
+\item
+  ICT risk oversight
+\item
+  resilience policy and standards
+\item
+  compliance monitoring
+\item
+  independent challenge
+\item
+  regulatory coordination
+\end{itemize}
+
+\subsubsection{Third line}\label{third-line}
+
+\begin{itemize}
+\tightlist
+\item
+  internal audit
+\item
+  independent assurance
+\item
+  control effectiveness review
+\end{itemize}
+
+\section{Roles and Responsibilities}\label{roles-and-responsibilities}
+
+\subsection{Key Roles}\label{key-roles}
+
+Document the main DORA-related roles.
+
+\begin{itemize}
+\tightlist
+\item
+  Board
+\item
+  CEO / Executive Management
+\item
+  Chief Information Officer
+\item
+  Chief Information Security Officer
+\item
+  Chief Risk Officer
+\item
+  Chief Operating Officer
+\item
+  Operational Resilience Lead
+\item
+  ICT Risk Manager
+\item
+  Incident Response Lead
+\item
+  Service Owner
+\item
+  Infrastructure / Platform Owner
+\item
+  Third-Party Risk Manager
+\item
+  Procurement Lead
+\item
+  Legal and Compliance Lead
+\item
+  Internal Audit
+\end{itemize}
+
+\subsection{RACI Matrix}\label{raci-matrix}
+
+Use the following model and adapt it.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Activity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Board
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exec
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CIO
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CISO
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CRO
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ops Resilience
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Service Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Third-Party Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Audit
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Approve digital operational resilience strategy & A & R & C & C & C & C
+& I & I & I \\
+Maintain ICT risk framework & I & A & R & R & C & C & C & I & I \\
+Classify and report major ICT incidents & I & A & R & R & C & C & C & I
+& I \\
+Maintain testing programme & I & A & C & C & C & R & C & I & I \\
+Manage ICT third-party risk & I & A & C & C & C & C & C & R & I \\
+Maintain register of information & I & A & C & C & C & C & I & R & I \\
+Oversee remediation actions & I & A & R & R & C & C & R & C & I \\
+Perform independent assurance & I & I & I & I & I & I & I & I & R/A \\
+\end{longtable}
+
+\section{Policy Framework}\label{policy-framework}
+
+\subsection{Core Policies}\label{core-policies}
+
+List and describe the main DORA-related policies.
+
+\begin{itemize}
+\tightlist
+\item
+  Digital Operational Resilience Policy
+\item
+  ICT Risk Management Policy
+\item
+  Information Security Policy
+\item
+  ICT Incident Management Policy
+\item
+  Business Continuity and Disaster Recovery Policy
+\item
+  Operational Resilience Testing Policy
+\item
+  Third-Party Risk Management Policy
+\item
+  Outsourcing / ICT Provider Management Policy
+\item
+  Change and Release Management Policy
+\item
+  Asset and Configuration Management Policy
+\item
+  Logging and Monitoring Standard
+\item
+  Crisis Management and Communications Policy
+\end{itemize}
+
+\subsection{Standards and Procedures}\label{standards-and-procedures}
+
+Document the standards, procedures, playbooks, and operational guidance
+supporting compliance.
+
+\section{Core Processes}\label{core-processes}
+
+\subsection{ICT Risk Management}\label{ict-risk-management}
+
+Describe the process for managing ICT risk across the lifecycle:
+
+\begin{itemize}
+\tightlist
+\item
+  governance and accountability
+\item
+  ICT asset identification
+\item
+  risk assessment
+\item
+  protection and prevention
+\item
+  detection
+\item
+  response
+\item
+  recovery
+\item
+  lessons learned
+\item
+  continuous improvement
+\end{itemize}
+
+\subsection{ICT-Related Incident
+Management}\label{ict-related-incident-management}
+
+Describe the incident lifecycle:
+
+\begin{itemize}
+\tightlist
+\item
+  event detection
+\item
+  triage
+\item
+  classification
+\item
+  escalation
+\item
+  containment
+\item
+  eradication
+\item
+  recovery
+\item
+  root cause analysis
+\item
+  lessons learned
+\end{itemize}
+
+\subsection{Incident Classification and
+Reporting}\label{incident-classification-and-reporting}
+
+Document how the organisation handles:
+
+\begin{itemize}
+\tightlist
+\item
+  incident classification criteria
+\item
+  major incident thresholds
+\item
+  internal escalation
+\item
+  competent authority notifications
+\item
+  intermediate reporting
+\item
+  final reporting
+\item
+  post-incident review
+\item
+  evidence retention
+\end{itemize}
+
+\subsection{Digital Operational Resilience
+Testing}\label{digital-operational-resilience-testing}
+
+Describe the testing model for:
+
+\begin{itemize}
+\tightlist
+\item
+  annual testing planning
+\item
+  scenario-based testing
+\item
+  vulnerability assessments
+\item
+  penetration testing
+\item
+  business continuity testing
+\item
+  disaster recovery exercises
+\item
+  crisis management exercises
+\item
+  threat-led penetration testing where applicable
+\item
+  remediation tracking
+\end{itemize}
+
+\subsection{ICT Third-Party Risk
+Management}\label{ict-third-party-risk-management}
+
+Describe controls for:
+
+\begin{itemize}
+\tightlist
+\item
+  due diligence
+\item
+  onboarding assessments
+\item
+  contractual requirements
+\item
+  criticality assessment
+\item
+  concentration risk assessment
+\item
+  ongoing monitoring
+\item
+  exit planning
+\item
+  substitution strategy
+\item
+  assurance reviews
+\end{itemize}
+
+\subsection{Register of Information}\label{register-of-information}
+
+Document how the organisation maintains a complete and accurate register
+of information for contractual arrangements with ICT third-party service
+providers.
+
+\subsubsection{Minimum content}\label{minimum-content}
+
+\begin{itemize}
+\tightlist
+\item
+  supplier identity
+\item
+  service description
+\item
+  supported business entity
+\item
+  supported function
+\item
+  critical or important function flag
+\item
+  location and jurisdiction
+\item
+  subcontracting arrangements
+\item
+  contract dates
+\item
+  renewal terms
+\item
+  exit clauses
+\item
+  resilience and security obligations
+\end{itemize}
+
+\subsection{Information Sharing
+Arrangements}\label{information-sharing-arrangements}
+
+Describe how the organisation governs participation in cyber threat
+intelligence or sectoral information-sharing arrangements, including:
+
+\begin{itemize}
+\tightlist
+\item
+  legal and compliance approval
+\item
+  confidentiality controls
+\item
+  participation criteria
+\item
+  information handling requirements
+\item
+  oversight and review
+\end{itemize}
+
+\section{Control Framework}\label{control-framework}
+
+\subsection{Control Domains}\label{control-domains}
+
+Organise the DORA control environment into domains.
+
+\subsubsection{Example control domains}\label{example-control-domains}
+
+\begin{itemize}
+\tightlist
+\item
+  governance and oversight
+\item
+  ICT risk management
+\item
+  asset and dependency management
+\item
+  protection and prevention
+\item
+  monitoring and detection
+\item
+  ICT incident response
+\item
+  resilience and recovery
+\item
+  testing and validation
+\item
+  ICT third-party risk
+\item
+  concentration risk management
+\item
+  regulatory reporting
+\item
+  evidence and assurance
+\end{itemize}
+
+\subsection{Sample Control Catalogue}\label{sample-control-catalogue}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Control ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Objective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Frequency
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DORA-01 & ICT risk framework approved & Ensure governance and
+accountability & CIO / CRO & Annual & Approved framework \\
+DORA-02 & Major incident process maintained & Ensure timely incident
+handling and escalation & CISO & Annual review & Incident procedure \\
+DORA-03 & Testing programme executed & Validate resilience capabilities
+& Resilience Lead & Annual / quarterly & Test reports \\
+DORA-04 & ICT third-party due diligence performed & Reduce supplier risk
+exposure & Third-Party Risk Manager & Onboarding / annual & Due
+diligence records \\
+DORA-05 & Register of information maintained & Ensure complete supplier
+transparency & Vendor Management Lead & Ongoing & Register of
+information \\
+DORA-06 & Recovery exercises completed & Validate restoration capability
+& Operations / Resilience Lead & Annual & Exercise evidence \\
+\end{longtable}
+
+\section{Artefacts and Evidence}\label{artefacts-and-evidence}
+
+\subsection{Required Artefacts}\label{required-artefacts}
+
+Document the key DORA artefacts.
+
+\begin{itemize}
+\tightlist
+\item
+  digital operational resilience strategy
+\item
+  ICT risk management framework
+\item
+  ICT asset inventory
+\item
+  service dependency maps
+\item
+  critical and important functions register
+\item
+  ICT risk register
+\item
+  incident management procedure
+\item
+  major incident reporting procedure
+\item
+  incident register
+\item
+  testing policy and testing plan
+\item
+  test scripts and exercise reports
+\item
+  remediation tracker
+\item
+  ICT third-party register
+\item
+  register of information
+\item
+  due diligence assessments
+\item
+  contractual clause library
+\item
+  exit plans
+\item
+  business continuity plans
+\item
+  disaster recovery plans
+\item
+  crisis communication plans
+\item
+  management information and dashboard packs
+\item
+  audit reports
+\end{itemize}
+
+\subsection{Evidence Model}\label{evidence-model}
+
+For each artefact define:
+
+\begin{itemize}
+\tightlist
+\item
+  owner
+\item
+  purpose
+\item
+  location
+\item
+  frequency of update
+\item
+  retention period
+\item
+  assurance mechanism
+\end{itemize}
+
+\section{Architecture and Technology
+Implications}\label{architecture-and-technology-implications}
+
+\subsection{Resilience by Design}\label{resilience-by-design}
+
+Describe how DORA requirements are embedded into:
+
+\begin{itemize}
+\tightlist
+\item
+  enterprise architecture
+\item
+  solution design
+\item
+  cloud adoption
+\item
+  infrastructure engineering
+\item
+  network design
+\item
+  identity and access management
+\item
+  observability and monitoring
+\item
+  backup and recovery architecture
+\item
+  high availability and failover design
+\item
+  supplier integration patterns
+\end{itemize}
+
+\subsection{Technology Landscape View}\label{technology-landscape-view}
+
+Document the resilience-relevant technology landscape:
+
+\begin{itemize}
+\tightlist
+\item
+  critical business services
+\item
+  applications and platforms
+\item
+  infrastructure and cloud services
+\item
+  networks and communications
+\item
+  data stores and backup services
+\item
+  cyber tooling
+\item
+  service desk and operations tooling
+\item
+  third-party technology dependencies
+\end{itemize}
+
+\subsection{Dependency Mapping}\label{dependency-mapping}
+
+Include or reference:
+
+\begin{itemize}
+\tightlist
+\item
+  business service maps
+\item
+  application dependency diagrams
+\item
+  infrastructure dependency diagrams
+\item
+  data flow diagrams
+\item
+  third-party dependency maps
+\item
+  concentration risk views
+\item
+  recovery dependency maps
+\end{itemize}
+
+\section{Risk Management}\label{risk-management}
+
+\subsection{DORA Risk Model}\label{dora-risk-model}
+
+Describe how ICT and resilience risks are identified, assessed, treated,
+monitored, and escalated.
+
+\subsection{Example Risk Categories}\label{example-risk-categories}
+
+\begin{itemize}
+\tightlist
+\item
+  weak board oversight of ICT risk
+\item
+  incomplete ICT asset visibility
+\item
+  inadequate resilience controls
+\item
+  insufficient monitoring and detection
+\item
+  delayed incident escalation
+\item
+  poor recovery capability
+\item
+  excessive third-party concentration
+\item
+  weak contractual control over suppliers
+\item
+  inaccurate register of information
+\item
+  lack of evidence of testing and remediation
+\end{itemize}
+
+\subsection{Risk Register Template}\label{risk-register-template}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Risk ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Risk Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cause
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Impact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Likelihood
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Inherent Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Strength
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Residual Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Owner
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DR-01 & Example & Example & Example & Medium & High & Medium & Medium &
+Example \\
+\end{longtable}
+
+\section{Metrics and Reporting}\label{metrics-and-reporting}
+
+\subsection{Key Metrics}\label{key-metrics}
+
+Examples of DORA metrics:
+
+\begin{itemize}
+\tightlist
+\item
+  percentage of critical services with documented dependencies
+\item
+  percentage of ICT assets covered by resilience controls
+\item
+  number of major ICT incidents
+\item
+  mean time to detect
+\item
+  mean time to contain
+\item
+  mean time to recover
+\item
+  percentage of planned resilience tests completed
+\item
+  percentage of severe findings remediated on time
+\item
+  percentage of critical suppliers assessed
+\item
+  concentration risk exposure by provider
+\item
+  percentage completeness of register of information
+\item
+  number of open audit or regulatory findings
+\end{itemize}
+
+\subsection{Dashboard Structure}\label{dashboard-structure}
+
+Suggested dashboard views:
+
+\begin{itemize}
+\tightlist
+\item
+  executive resilience dashboard
+\item
+  ICT risk dashboard
+\item
+  incident and recovery dashboard
+\item
+  testing and remediation dashboard
+\item
+  third-party and concentration risk dashboard
+\item
+  audit and compliance dashboard
+\end{itemize}
+
+\section{Audit and Assurance}\label{audit-and-assurance}
+
+\subsection{Assurance Model}\label{assurance-model}
+
+Document the assurance approach across:
+
+\begin{itemize}
+\tightlist
+\item
+  management self-assessment
+\item
+  second-line compliance reviews
+\item
+  control testing
+\item
+  scenario and exercise validation
+\item
+  internal audit
+\item
+  supervisory review support
+\end{itemize}
+
+\subsection{Testing Themes}\label{testing-themes}
+
+\begin{itemize}
+\tightlist
+\item
+  governance and accountability
+\item
+  ICT risk framework effectiveness
+\item
+  incident classification and escalation
+\item
+  reporting timeliness and quality
+\item
+  resilience testing coverage
+\item
+  remediation effectiveness
+\item
+  third-party governance
+\item
+  register of information quality
+\item
+  recovery readiness
+\item
+  evidence completeness
+\end{itemize}
+
+\section{Implementation Roadmap}\label{implementation-roadmap}
+
+\subsection{Maturity Phases}\label{maturity-phases}
+
+\subsubsection{Phase 1: Foundation}\label{phase-1-foundation}
+
+\begin{itemize}
+\tightlist
+\item
+  establish governance and accountability
+\item
+  define DORA policy framework
+\item
+  identify critical and important functions
+\item
+  establish asset and dependency baseline
+\item
+  define incident classification and reporting model
+\end{itemize}
+
+\subsubsection{Phase 2: Control Design}\label{phase-2-control-design}
+
+\begin{itemize}
+\tightlist
+\item
+  strengthen ICT risk management controls
+\item
+  implement resilience testing framework
+\item
+  formalise third-party governance and register of information
+\item
+  improve monitoring, response, and recovery controls
+\end{itemize}
+
+\subsubsection{Phase 3: Integration}\label{phase-3-integration}
+
+\begin{itemize}
+\tightlist
+\item
+  integrate DORA with enterprise risk, architecture, and procurement
+\item
+  improve dependency mapping and concentration risk management
+\item
+  align service continuity, cyber resilience, and crisis management
+\item
+  automate evidence collection and reporting workflows
+\end{itemize}
+
+\subsubsection{Phase 4: Optimisation}\label{phase-4-optimisation}
+
+\begin{itemize}
+\tightlist
+\item
+  mature dashboards and management information
+\item
+  strengthen scenario-based and threat-led exercises
+\item
+  improve remediation governance
+\item
+  enhance continuous monitoring and assurance
+\end{itemize}
+
+\subsection{Roadmap Table}\label{roadmap-table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initiative
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Priority
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Timeline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dependency
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Example & Example & Example & High & Q1-Q2 & Example & Planned \\
+\end{longtable}
+
+\section{Cross-Framework Integration}\label{cross-framework-integration}
+
+\subsection{Relationship to Other
+Frameworks}\label{relationship-to-other-frameworks}
+
+Describe how DORA integrates with:
+
+\begin{itemize}
+\tightlist
+\item
+  NIS2
+\item
+  ISO/IEC 27001
+\item
+  GDPR
+\item
+  AI Act
+\item
+  NIST Cybersecurity Framework
+\item
+  COBIT
+\item
+  ITIL
+\item
+  TOGAF
+\item
+  enterprise risk management
+\item
+  business continuity and operational resilience frameworks
+\end{itemize}
+
+\subsection{Example Mapping Themes}\label{example-mapping-themes}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+DORA Theme
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Related Framework
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Integration Point
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ICT risk management & ISO 27001 / NIST CSF & Cybersecurity and control
+framework \\
+Incident reporting & NIS2 / GDPR & Regulatory notification and incident
+governance \\
+Third-party risk & COBIT / ISO 27001 & Supplier and outsourcing
+governance \\
+Resilience testing & NIST CSF / BCM & Validation of resilience
+capabilities \\
+Architecture resilience & TOGAF & Design authority and resilience by
+design \\
+\end{longtable}
+
+\section{Maturity Model}\label{maturity-model}
+
+\subsection{Suggested Maturity Levels}\label{suggested-maturity-levels}
+
+\subsubsection{Level 1: Initial}\label{level-1-initial}
+
+Resilience practices are reactive, fragmented, and poorly evidenced.
+
+\subsubsection{Level 2: Repeatable}\label{level-2-repeatable}
+
+Basic ICT risk, continuity, and incident processes exist but are
+inconsistently applied.
+
+\subsubsection{Level 3: Defined}\label{level-3-defined}
+
+Policies, roles, testing, and third-party controls are documented and
+implemented across key areas.
+
+\subsubsection{Level 4: Managed}\label{level-4-managed}
+
+Resilience capabilities are measured, risk-based, tested, and governed
+through regular reporting.
+
+\subsubsection{Level 5: Optimised}\label{level-5-optimised}
+
+Digital operational resilience is embedded across governance,
+architecture, operations, and supply chain management with strong
+assurance and continuous improvement.
+
+\subsection{Assessment Dimensions}\label{assessment-dimensions}
+
+\begin{itemize}
+\tightlist
+\item
+  governance
+\item
+  ICT risk management
+\item
+  incident handling and reporting
+\item
+  resilience testing
+\item
+  recovery capability
+\item
+  third-party risk management
+\item
+  concentration risk management
+\item
+  evidence and reporting
+\item
+  assurance
+\item
+  improvement discipline
+\end{itemize}
+
+\section{Practical Templates}\label{practical-templates}
+
+\subsection{Suggested Appendices}\label{suggested-appendices}
+
+\begin{itemize}
+\tightlist
+\item
+  Appendix A: ICT risk assessment template
+\item
+  Appendix B: Major ICT incident classification template
+\item
+  Appendix C: Incident reporting workflow
+\item
+  Appendix D: Digital operational resilience testing plan
+\item
+  Appendix E: Register of information template
+\item
+  Appendix F: ICT third-party due diligence checklist
+\item
+  Appendix G: DORA control catalogue
+\item
+  Appendix H: DORA RACI matrix
+\end{itemize}
+
+\section{Customisation Notes}\label{customisation-notes}
+
+This template should be tailored to reflect:
+
+\begin{itemize}
+\tightlist
+\item
+  legal entity structure
+\item
+  supervisory context
+\item
+  financial sector segment
+\item
+  business service model
+\item
+  technology estate
+\item
+  cloud and outsourcing profile
+\item
+  critical and important functions
+\item
+  operational resilience maturity
+\item
+  assurance expectations
+\end{itemize}
+
+\section{References}\label{references}
+
+Add authoritative references here, for example:
+
+\begin{itemize}
+\tightlist
+\item
+  Regulation (EU) 2022/2554
+\item
+  DORA implementing and delegated acts
+\item
+  ESA technical standards and guidance
+\item
+  competent authority guidance
+\item
+  internal ICT risk and resilience policies
+\item
+  outsourcing and third-party risk standards
+\item
+  enterprise risk framework
+\end{itemize}
+
+
+
+
+\end{document}

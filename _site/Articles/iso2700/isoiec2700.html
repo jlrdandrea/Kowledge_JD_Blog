@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Information Security Management System — Governance">
+
+<title>ISO/IEC 27001</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">ISO/IEC 27001</h1>
+                  <div>
+        <div class="description">
+          Information Security Management System — Governance
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Governance</div>
+                <div class="quarto-category">ISO</div>
+                <div class="quarto-category">Framework</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a>
+  <ul class="collapse">
+  <li><a href="#in-scope" id="toc-in-scope" class="nav-link" data-scroll-target="#in-scope">In scope</a></li>
+  <li><a href="#out-of-scope" id="toc-out-of-scope" class="nav-link" data-scroll-target="#out-of-scope">Out of scope</a></li>
+  </ul></li>
+  <li><a href="#intended-audience" id="toc-intended-audience" class="nav-link" data-scroll-target="#intended-audience">Intended Audience</a></li>
+  </ul></li>
+  <li><a href="#standard-foundation" id="toc-standard-foundation" class="nav-link" data-scroll-target="#standard-foundation">Standard Foundation</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#isms-principles" id="toc-isms-principles" class="nav-link" data-scroll-target="#isms-principles">ISMS Principles</a></li>
+  <li><a href="#core-components" id="toc-core-components" class="nav-link" data-scroll-target="#core-components">Core Components</a></li>
+  <li><a href="#relationship-to-isoiec-27002-and-annex-a" id="toc-relationship-to-isoiec-27002-and-annex-a" class="nav-link" data-scroll-target="#relationship-to-isoiec-27002-and-annex-a">Relationship to ISO/IEC 27002 and Annex A</a>
+  <ul class="collapse">
+  <li><a href="#example-standards-table" id="toc-example-standards-table" class="nav-link" data-scroll-target="#example-standards-table">Example standards table</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#governance-model" id="toc-governance-model" class="nav-link" data-scroll-target="#governance-model">Governance Model</a>
+  <ul class="collapse">
+  <li><a href="#governance-objectives" id="toc-governance-objectives" class="nav-link" data-scroll-target="#governance-objectives">Governance Objectives</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#example-governance-bodies" id="toc-example-governance-bodies" class="nav-link" data-scroll-target="#example-governance-bodies">Example governance bodies</a></li>
+  </ul></li>
+  <li><a href="#three-lines-model" id="toc-three-lines-model" class="nav-link" data-scroll-target="#three-lines-model">Three Lines Model</a>
+  <ul class="collapse">
+  <li><a href="#first-line" id="toc-first-line" class="nav-link" data-scroll-target="#first-line">First line</a></li>
+  <li><a href="#second-line" id="toc-second-line" class="nav-link" data-scroll-target="#second-line">Second line</a></li>
+  <li><a href="#third-line" id="toc-third-line" class="nav-link" data-scroll-target="#third-line">Third line</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities">Roles and Responsibilities</a>
+  <ul class="collapse">
+  <li><a href="#key-roles" id="toc-key-roles" class="nav-link" data-scroll-target="#key-roles">Key Roles</a></li>
+  <li><a href="#raci-matrix" id="toc-raci-matrix" class="nav-link" data-scroll-target="#raci-matrix">RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#policy-framework" id="toc-policy-framework" class="nav-link" data-scroll-target="#policy-framework">Policy Framework</a>
+  <ul class="collapse">
+  <li><a href="#core-policies" id="toc-core-policies" class="nav-link" data-scroll-target="#core-policies">Core Policies</a></li>
+  <li><a href="#standards-and-procedures" id="toc-standards-and-procedures" class="nav-link" data-scroll-target="#standards-and-procedures">Standards and Procedures</a></li>
+  </ul></li>
+  <li><a href="#core-processes" id="toc-core-processes" class="nav-link" data-scroll-target="#core-processes">Core Processes</a>
+  <ul class="collapse">
+  <li><a href="#context-and-scope-management" id="toc-context-and-scope-management" class="nav-link" data-scroll-target="#context-and-scope-management">Context and Scope Management</a></li>
+  <li><a href="#risk-assessment" id="toc-risk-assessment" class="nav-link" data-scroll-target="#risk-assessment">Risk Assessment</a></li>
+  <li><a href="#risk-treatment" id="toc-risk-treatment" class="nav-link" data-scroll-target="#risk-treatment">Risk Treatment</a></li>
+  <li><a href="#statement-of-applicability" id="toc-statement-of-applicability" class="nav-link" data-scroll-target="#statement-of-applicability">Statement of Applicability</a></li>
+  <li><a href="#operational-control-management" id="toc-operational-control-management" class="nav-link" data-scroll-target="#operational-control-management">Operational Control Management</a></li>
+  <li><a href="#incident-management" id="toc-incident-management" class="nav-link" data-scroll-target="#incident-management">Incident Management</a></li>
+  <li><a href="#performance-evaluation-and-improvement" id="toc-performance-evaluation-and-improvement" class="nav-link" data-scroll-target="#performance-evaluation-and-improvement">Performance Evaluation and Improvement</a></li>
+  </ul></li>
+  <li><a href="#control-framework" id="toc-control-framework" class="nav-link" data-scroll-target="#control-framework">Control Framework</a>
+  <ul class="collapse">
+  <li><a href="#control-domains" id="toc-control-domains" class="nav-link" data-scroll-target="#control-domains">Control Domains</a>
+  <ul class="collapse">
+  <li><a href="#example-control-domains" id="toc-example-control-domains" class="nav-link" data-scroll-target="#example-control-domains">Example control domains</a></li>
+  </ul></li>
+  <li><a href="#sample-control-catalogue" id="toc-sample-control-catalogue" class="nav-link" data-scroll-target="#sample-control-catalogue">Sample Control Catalogue</a></li>
+  </ul></li>
+  <li><a href="#artefacts-and-evidence" id="toc-artefacts-and-evidence" class="nav-link" data-scroll-target="#artefacts-and-evidence">Artefacts and Evidence</a>
+  <ul class="collapse">
+  <li><a href="#required-artefacts" id="toc-required-artefacts" class="nav-link" data-scroll-target="#required-artefacts">Required Artefacts</a></li>
+  <li><a href="#evidence-model" id="toc-evidence-model" class="nav-link" data-scroll-target="#evidence-model">Evidence Model</a></li>
+  </ul></li>
+  <li><a href="#architecture-and-technology-implications" id="toc-architecture-and-technology-implications" class="nav-link" data-scroll-target="#architecture-and-technology-implications">Architecture and Technology Implications</a>
+  <ul class="collapse">
+  <li><a href="#security-by-design" id="toc-security-by-design" class="nav-link" data-scroll-target="#security-by-design">Security by Design</a></li>
+  <li><a href="#technology-landscape-view" id="toc-technology-landscape-view" class="nav-link" data-scroll-target="#technology-landscape-view">Technology Landscape View</a></li>
+  <li><a href="#asset-and-dependency-mapping" id="toc-asset-and-dependency-mapping" class="nav-link" data-scroll-target="#asset-and-dependency-mapping">Asset and Dependency Mapping</a></li>
+  </ul></li>
+  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">Risk Management</a>
+  <ul class="collapse">
+  <li><a href="#information-security-risk-model" id="toc-information-security-risk-model" class="nav-link" data-scroll-target="#information-security-risk-model">Information Security Risk Model</a></li>
+  <li><a href="#example-risk-categories" id="toc-example-risk-categories" class="nav-link" data-scroll-target="#example-risk-categories">Example Risk Categories</a></li>
+  <li><a href="#risk-register-template" id="toc-risk-register-template" class="nav-link" data-scroll-target="#risk-register-template">Risk Register Template</a></li>
+  </ul></li>
+  <li><a href="#metrics-and-reporting" id="toc-metrics-and-reporting" class="nav-link" data-scroll-target="#metrics-and-reporting">Metrics and Reporting</a>
+  <ul class="collapse">
+  <li><a href="#key-metrics" id="toc-key-metrics" class="nav-link" data-scroll-target="#key-metrics">Key Metrics</a></li>
+  <li><a href="#dashboard-structure" id="toc-dashboard-structure" class="nav-link" data-scroll-target="#dashboard-structure">Dashboard Structure</a></li>
+  </ul></li>
+  <li><a href="#audit-and-assurance" id="toc-audit-and-assurance" class="nav-link" data-scroll-target="#audit-and-assurance">Audit and Assurance</a>
+  <ul class="collapse">
+  <li><a href="#assurance-model" id="toc-assurance-model" class="nav-link" data-scroll-target="#assurance-model">Assurance Model</a></li>
+  <li><a href="#testing-themes" id="toc-testing-themes" class="nav-link" data-scroll-target="#testing-themes">Testing Themes</a></li>
+  </ul></li>
+  <li><a href="#implementation-roadmap" id="toc-implementation-roadmap" class="nav-link" data-scroll-target="#implementation-roadmap">Implementation Roadmap</a>
+  <ul class="collapse">
+  <li><a href="#maturity-phases" id="toc-maturity-phases" class="nav-link" data-scroll-target="#maturity-phases">Maturity Phases</a>
+  <ul class="collapse">
+  <li><a href="#phase-1-foundation" id="toc-phase-1-foundation" class="nav-link" data-scroll-target="#phase-1-foundation">Phase 1: Foundation</a></li>
+  <li><a href="#phase-2-control-design" id="toc-phase-2-control-design" class="nav-link" data-scroll-target="#phase-2-control-design">Phase 2: Control Design</a></li>
+  <li><a href="#phase-3-integration" id="toc-phase-3-integration" class="nav-link" data-scroll-target="#phase-3-integration">Phase 3: Integration</a></li>
+  <li><a href="#phase-4-optimisation" id="toc-phase-4-optimisation" class="nav-link" data-scroll-target="#phase-4-optimisation">Phase 4: Optimisation</a></li>
+  </ul></li>
+  <li><a href="#roadmap-table" id="toc-roadmap-table" class="nav-link" data-scroll-target="#roadmap-table">Roadmap Table</a></li>
+  </ul></li>
+  <li><a href="#cross-framework-integration" id="toc-cross-framework-integration" class="nav-link" data-scroll-target="#cross-framework-integration">Cross-Framework Integration</a>
+  <ul class="collapse">
+  <li><a href="#relationship-to-other-frameworks" id="toc-relationship-to-other-frameworks" class="nav-link" data-scroll-target="#relationship-to-other-frameworks">Relationship to Other Frameworks</a></li>
+  <li><a href="#example-mapping-themes" id="toc-example-mapping-themes" class="nav-link" data-scroll-target="#example-mapping-themes">Example Mapping Themes</a></li>
+  </ul></li>
+  <li><a href="#maturity-model" id="toc-maturity-model" class="nav-link" data-scroll-target="#maturity-model">Maturity Model</a>
+  <ul class="collapse">
+  <li><a href="#suggested-maturity-levels" id="toc-suggested-maturity-levels" class="nav-link" data-scroll-target="#suggested-maturity-levels">Suggested Maturity Levels</a>
+  <ul class="collapse">
+  <li><a href="#level-1-initial" id="toc-level-1-initial" class="nav-link" data-scroll-target="#level-1-initial">Level 1: Initial</a></li>
+  <li><a href="#level-2-repeatable" id="toc-level-2-repeatable" class="nav-link" data-scroll-target="#level-2-repeatable">Level 2: Repeatable</a></li>
+  <li><a href="#level-3-defined" id="toc-level-3-defined" class="nav-link" data-scroll-target="#level-3-defined">Level 3: Defined</a></li>
+  <li><a href="#level-4-managed" id="toc-level-4-managed" class="nav-link" data-scroll-target="#level-4-managed">Level 4: Managed</a></li>
+  <li><a href="#level-5-optimised" id="toc-level-5-optimised" class="nav-link" data-scroll-target="#level-5-optimised">Level 5: Optimised</a></li>
+  </ul></li>
+  <li><a href="#assessment-dimensions" id="toc-assessment-dimensions" class="nav-link" data-scroll-target="#assessment-dimensions">Assessment Dimensions</a></li>
+  </ul></li>
+  <li><a href="#practical-templates" id="toc-practical-templates" class="nav-link" data-scroll-target="#practical-templates">Practical Templates</a>
+  <ul class="collapse">
+  <li><a href="#suggested-appendices" id="toc-suggested-appendices" class="nav-link" data-scroll-target="#suggested-appendices">Suggested Appendices</a></li>
+  </ul></li>
+  <li><a href="#customisation-notes" id="toc-customisation-notes" class="nav-link" data-scroll-target="#customisation-notes">Customisation Notes</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>ISO/IEC 27001 provides the requirements for establishing, implementing, maintaining, and continually improving an information security management system (ISMS). It enables organisations to manage information security risks systematically and to demonstrate that information security is governed through a structured management system.</p>
+<p>This document provides a practical template for defining the organisation’s ISO/IEC 27001 governance model, ISMS scope, risk management approach, control structure, implementation roadmap, and assurance model. It can be used to document how the organisation aligns information security governance, risk treatment, controls, and continual improvement into a coherent operating model.</p>
+</section>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>This document provides a practical template for defining, implementing, operating, and assuring an information security management system aligned to ISO/IEC 27001.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>The main objectives of applying ISO/IEC 27001 are to:</p>
+<ul>
+<li>establish a formal and auditable information security management system</li>
+<li>protect confidentiality, integrity, and availability of information</li>
+<li>align information security with business objectives and enterprise risk</li>
+<li>apply systematic risk assessment and risk treatment</li>
+<li>define and maintain appropriate information security controls</li>
+<li>provide evidence of governance, monitoring, and continual improvement</li>
+<li>support internal assurance and external certification where required</li>
+</ul>
+</section>
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
+<p>Describe the scope of ISO/IEC 27001 applicability in the organisation.</p>
+<section id="in-scope" class="level3">
+<h3 class="anchored" data-anchor-id="in-scope">In scope</h3>
+<ul>
+<li>the defined ISMS boundary</li>
+<li>business units, processes, and services within scope</li>
+<li>information assets and supporting technology</li>
+<li>applications, infrastructure, platforms, and cloud services</li>
+<li>people, facilities, and third parties relevant to the ISMS</li>
+<li>security governance, risk treatment, and control monitoring activities</li>
+<li>incident management, resilience, and continual improvement activities within the ISMS scope</li>
+</ul>
+</section>
+<section id="out-of-scope" class="level3">
+<h3 class="anchored" data-anchor-id="out-of-scope">Out of scope</h3>
+<p>Document justified exclusions, if any.</p>
+</section>
+</section>
+<section id="intended-audience" class="level2">
+<h2 class="anchored" data-anchor-id="intended-audience">Intended Audience</h2>
+<ul>
+<li>Board and executive leadership</li>
+<li>Chief Information Security Officer</li>
+<li>Chief Information Officer</li>
+<li>Enterprise Risk Management teams</li>
+<li>Security governance, architecture, and operations teams</li>
+<li>IT operations and service management teams</li>
+<li>Business owners and control owners</li>
+<li>Compliance and legal teams</li>
+<li>Internal audit and assurance teams</li>
+<li>PMO / transformation teams</li>
+</ul>
+</section>
+</section>
+<section id="standard-foundation" class="level1">
+<h1>Standard Foundation</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>ISO/IEC 27001 is the world’s best-known standard for information security management systems and specifies the requirements for establishing, implementing, maintaining, and continually improving an ISMS. It is designed to support a risk-based approach that can be scaled to organisations of different sizes and sectors. :contentReference<span data-index="1">oaicite:1</span></p>
+</section>
+<section id="isms-principles" class="level2">
+<h2 class="anchored" data-anchor-id="isms-principles">ISMS Principles</h2>
+<p>Document how the organisation applies the core principles of the ISMS:</p>
+<ul>
+<li>risk-based thinking</li>
+<li>leadership and accountability</li>
+<li>information protection based on business needs</li>
+<li>systematic control selection</li>
+<li>evidence-based management</li>
+<li>continual improvement</li>
+<li>integration with organisational processes and governance</li>
+</ul>
+</section>
+<section id="core-components" class="level2">
+<h2 class="anchored" data-anchor-id="core-components">Core Components</h2>
+<p>Describe the core components of the ISO/IEC 27001 model:</p>
+<ul>
+<li>organisational context</li>
+<li>leadership and policy</li>
+<li>planning</li>
+<li>support</li>
+<li>operation</li>
+<li>performance evaluation</li>
+<li>improvement</li>
+<li>information security risk assessment</li>
+<li>information security risk treatment</li>
+<li>Statement of Applicability</li>
+</ul>
+</section>
+<section id="relationship-to-isoiec-27002-and-annex-a" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-isoiec-27002-and-annex-a">Relationship to ISO/IEC 27002 and Annex A</h2>
+<p>Describe how the organisation uses:</p>
+<ul>
+<li>ISO/IEC 27001 for management system requirements</li>
+<li>Annex A as the information security controls reference</li>
+<li>ISO/IEC 27002:2022 for guidance on information security controls</li>
+</ul>
+<p>ISO states that ISO/IEC 27001 contains the ISMS requirements, while ISO/IEC 27002 provides detailed control guidance. ISO material and SC 27 guidance also explain that Annex A is a normative reference set of controls that must be considered as part of risk treatment and comparison for completeness. :contentReference<span data-index="2">oaicite:2</span></p>
+<section id="example-standards-table" class="level3">
+<h3 class="anchored" data-anchor-id="example-standards-table">Example standards table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Standard / Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISO/IEC 27001</td>
+<td>Defines ISMS requirements</td>
+</tr>
+<tr class="even">
+<td>Annex A</td>
+<td>Reference set of information security controls</td>
+</tr>
+<tr class="odd">
+<td>ISO/IEC 27002</td>
+<td>Guidance on the implementation and management of controls</td>
+</tr>
+<tr class="even">
+<td>Statement of Applicability</td>
+<td>Documents selected, excluded, and justified controls</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="governance-model" class="level1">
+<h1>Governance Model</h1>
+<section id="governance-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="governance-objectives">Governance Objectives</h2>
+<p>Define the governance objectives for ISO/IEC 27001 adoption:</p>
+<ul>
+<li>establish executive accountability for information security</li>
+<li>define the ISMS scope and governance boundary</li>
+<li>align security priorities with enterprise strategy and risk appetite</li>
+<li>assign ownership for risk treatment and control performance</li>
+<li>embed information security into operations, change, architecture, and supplier management</li>
+<li>maintain evidence of implementation and operating effectiveness</li>
+<li>support continual improvement through monitoring, review, corrective action, and audit</li>
+</ul>
+</section>
+<section id="governance-structure" class="level2">
+<h2 class="anchored" data-anchor-id="governance-structure">Governance Structure</h2>
+<p>Describe the governance bodies and their responsibilities.</p>
+<section id="example-governance-bodies" class="level3">
+<h3 class="anchored" data-anchor-id="example-governance-bodies">Example governance bodies</h3>
+<ul>
+<li>Board / Risk Committee</li>
+<li>Executive Information Security Steering Committee</li>
+<li>Information Security Forum</li>
+<li>Enterprise Risk Committee</li>
+<li>Architecture Review Board</li>
+<li>Change Advisory Board</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+</section>
+<section id="three-lines-model" class="level2">
+<h2 class="anchored" data-anchor-id="three-lines-model">Three Lines Model</h2>
+<p>Describe responsibilities across the three lines.</p>
+<section id="first-line" class="level3">
+<h3 class="anchored" data-anchor-id="first-line">First line</h3>
+<ul>
+<li>ownership of business processes, assets, and operational controls</li>
+<li>execution of security controls</li>
+<li>risk treatment implementation</li>
+<li>evidence production and remediation execution</li>
+</ul>
+</section>
+<section id="second-line" class="level3">
+<h3 class="anchored" data-anchor-id="second-line">Second line</h3>
+<ul>
+<li>information security governance</li>
+<li>policy and standard setting</li>
+<li>risk oversight</li>
+<li>compliance monitoring</li>
+<li>challenge and advisory support</li>
+</ul>
+</section>
+<section id="third-line" class="level3">
+<h3 class="anchored" data-anchor-id="third-line">Third line</h3>
+<ul>
+<li>internal audit</li>
+<li>independent assurance</li>
+<li>control effectiveness review</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="roles-and-responsibilities" class="level1">
+<h1>Roles and Responsibilities</h1>
+<section id="key-roles" class="level2">
+<h2 class="anchored" data-anchor-id="key-roles">Key Roles</h2>
+<p>Document the main ISO/IEC 27001-related roles.</p>
+<ul>
+<li>Board</li>
+<li>CEO / Executive Management</li>
+<li>Chief Information Security Officer</li>
+<li>Chief Information Officer</li>
+<li>Chief Risk Officer</li>
+<li>Business Service Owner</li>
+<li>Information Asset Owner</li>
+<li>Security Governance Lead</li>
+<li>Security Architect</li>
+<li>Security Operations Lead</li>
+<li>IT Operations Lead</li>
+<li>Risk Manager</li>
+<li>Supplier / Third-Party Risk Manager</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+<section id="raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="raci-matrix">RACI Matrix</h2>
+<p>Use the following model and adapt it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Board</th>
+<th>Exec</th>
+<th>CISO</th>
+<th>CIO</th>
+<th>Risk</th>
+<th>Business Owner</th>
+<th>Security Ops</th>
+<th>Architecture</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approve ISMS policy and scope</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Maintain risk assessment methodology</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Approve Statement of Applicability</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Implement security controls</td>
+<td>I</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Conduct internal ISMS review</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Manage security incidents</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Track corrective actions</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Perform independent assurance</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>R/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="policy-framework" class="level1">
+<h1>Policy Framework</h1>
+<section id="core-policies" class="level2">
+<h2 class="anchored" data-anchor-id="core-policies">Core Policies</h2>
+<p>List and describe the main ISMS-related policies.</p>
+<ul>
+<li>Information Security Policy</li>
+<li>Risk Assessment and Risk Treatment Methodology</li>
+<li>Access Control Policy</li>
+<li>Information Classification and Handling Policy</li>
+<li>Asset Management Standard</li>
+<li>Cryptography Policy</li>
+<li>Logging and Monitoring Standard</li>
+<li>Vulnerability Management Standard</li>
+<li>Incident Management Policy</li>
+<li>Business Continuity / Disaster Recovery Policy</li>
+<li>Supplier Security Policy</li>
+<li>Secure Development Policy</li>
+<li>Human Resources Security Policy</li>
+</ul>
+</section>
+<section id="standards-and-procedures" class="level2">
+<h2 class="anchored" data-anchor-id="standards-and-procedures">Standards and Procedures</h2>
+<p>Document the standards, procedures, control baselines, and operational guidance supporting the ISMS.</p>
+</section>
+</section>
+<section id="core-processes" class="level1">
+<h1>Core Processes</h1>
+<section id="context-and-scope-management" class="level2">
+<h2 class="anchored" data-anchor-id="context-and-scope-management">Context and Scope Management</h2>
+<p>Describe how the organisation determines and maintains:</p>
+<ul>
+<li>internal and external issues</li>
+<li>interested parties and their requirements</li>
+<li>the ISMS scope statement</li>
+<li>interfaces and dependencies</li>
+<li>applicability boundaries</li>
+</ul>
+</section>
+<section id="risk-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="risk-assessment">Risk Assessment</h2>
+<p>Describe the process for:</p>
+<ul>
+<li>defining risk criteria</li>
+<li>identifying information security risks</li>
+<li>assessing likelihood and impact</li>
+<li>evaluating risks against criteria</li>
+<li>prioritising treatment actions</li>
+<li>documenting results</li>
+</ul>
+</section>
+<section id="risk-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="risk-treatment">Risk Treatment</h2>
+<p>Describe the process for:</p>
+<ul>
+<li>selecting treatment options</li>
+<li>determining necessary controls</li>
+<li>comparing selected controls with Annex A</li>
+<li>documenting inclusions and exclusions</li>
+<li>assigning owners and due dates</li>
+<li>approving residual risk</li>
+<li>tracking treatment implementation</li>
+</ul>
+</section>
+<section id="statement-of-applicability" class="level2">
+<h2 class="anchored" data-anchor-id="statement-of-applicability">Statement of Applicability</h2>
+<p>Document how the organisation maintains the Statement of Applicability, including:</p>
+<ul>
+<li>selected controls</li>
+<li>excluded controls</li>
+<li>reasons for inclusion or exclusion</li>
+<li>implementation status</li>
+<li>associated policies or procedures</li>
+<li>accountable owners</li>
+</ul>
+</section>
+<section id="operational-control-management" class="level2">
+<h2 class="anchored" data-anchor-id="operational-control-management">Operational Control Management</h2>
+<p>Describe the processes for:</p>
+<ul>
+<li>access management</li>
+<li>change control</li>
+<li>vulnerability management</li>
+<li>logging and monitoring</li>
+<li>supplier oversight</li>
+<li>backup and recovery</li>
+<li>incident handling</li>
+<li>exception management</li>
+</ul>
+</section>
+<section id="incident-management" class="level2">
+<h2 class="anchored" data-anchor-id="incident-management">Incident Management</h2>
+<p>Describe the lifecycle for:</p>
+<ul>
+<li>event detection</li>
+<li>triage</li>
+<li>escalation</li>
+<li>containment</li>
+<li>eradication</li>
+<li>recovery</li>
+<li>evidence handling</li>
+<li>lessons learned</li>
+<li>corrective action tracking</li>
+</ul>
+</section>
+<section id="performance-evaluation-and-improvement" class="level2">
+<h2 class="anchored" data-anchor-id="performance-evaluation-and-improvement">Performance Evaluation and Improvement</h2>
+<p>Describe the process for:</p>
+<ul>
+<li>monitoring and measurement</li>
+<li>internal audit</li>
+<li>management review</li>
+<li>nonconformity handling</li>
+<li>corrective action</li>
+<li>continual improvement</li>
+</ul>
+</section>
+</section>
+<section id="control-framework" class="level1">
+<h1>Control Framework</h1>
+<section id="control-domains" class="level2">
+<h2 class="anchored" data-anchor-id="control-domains">Control Domains</h2>
+<p>Organise the control environment using the Annex A themes.</p>
+<section id="example-control-domains" class="level3">
+<h3 class="anchored" data-anchor-id="example-control-domains">Example control domains</h3>
+<ul>
+<li>organisational controls</li>
+<li>people controls</li>
+<li>physical controls</li>
+<li>technological controls</li>
+<li>governance and oversight</li>
+<li>risk management</li>
+<li>operational security</li>
+<li>supplier security</li>
+<li>incident management</li>
+<li>resilience and recovery</li>
+<li>monitoring and assurance</li>
+<li>continual improvement</li>
+</ul>
+</section>
+</section>
+<section id="sample-control-catalogue" class="level2">
+<h2 class="anchored" data-anchor-id="sample-control-catalogue">Sample Control Catalogue</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Control ID</th>
+<th>Control Name</th>
+<th>Objective</th>
+<th>Control Owner</th>
+<th>Frequency</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISO-01</td>
+<td>ISMS policy approved</td>
+<td>Ensure formal leadership direction</td>
+<td>CISO</td>
+<td>Annual</td>
+<td>Approved policy</td>
+</tr>
+<tr class="even">
+<td>ISO-02</td>
+<td>Risk assessment performed</td>
+<td>Identify and evaluate security risks</td>
+<td>Risk Manager</td>
+<td>Annual / change-driven</td>
+<td>Risk assessment records</td>
+</tr>
+<tr class="odd">
+<td>ISO-03</td>
+<td>Statement of Applicability maintained</td>
+<td>Document selected and excluded controls</td>
+<td>Security Governance Lead</td>
+<td>Annual / change-driven</td>
+<td>SoA</td>
+</tr>
+<tr class="even">
+<td>ISO-04</td>
+<td>Internal audit completed</td>
+<td>Validate ISMS conformance and effectiveness</td>
+<td>Audit Lead</td>
+<td>Annual</td>
+<td>Audit reports</td>
+</tr>
+<tr class="odd">
+<td>ISO-05</td>
+<td>Management review performed</td>
+<td>Ensure leadership oversight and decisions</td>
+<td>Executive Sponsor</td>
+<td>Annual</td>
+<td>Management review minutes</td>
+</tr>
+<tr class="even">
+<td>ISO-06</td>
+<td>Corrective actions tracked</td>
+<td>Improve nonconformity resolution</td>
+<td>ISMS Manager</td>
+<td>Ongoing</td>
+<td>Action tracker</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="artefacts-and-evidence" class="level1">
+<h1>Artefacts and Evidence</h1>
+<section id="required-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="required-artefacts">Required Artefacts</h2>
+<p>Document the key ISO/IEC 27001 artefacts.</p>
+<ul>
+<li>ISMS scope statement</li>
+<li>information security policy</li>
+<li>risk assessment methodology</li>
+<li>risk treatment methodology</li>
+<li>risk register</li>
+<li>risk treatment plan</li>
+<li>Statement of Applicability</li>
+<li>asset inventory</li>
+<li>control standards and procedures</li>
+<li>supplier security assessments</li>
+<li>vulnerability and patch records</li>
+<li>access review records</li>
+<li>incident register</li>
+<li>internal audit plan</li>
+<li>internal audit reports</li>
+<li>management review outputs</li>
+<li>corrective action register</li>
+<li>competency and awareness records</li>
+<li>metrics and dashboard packs</li>
+<li>certification audit materials where applicable</li>
+</ul>
+</section>
+<section id="evidence-model" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-model">Evidence Model</h2>
+<p>For each artefact define:</p>
+<ul>
+<li>owner</li>
+<li>purpose</li>
+<li>location</li>
+<li>frequency of update</li>
+<li>retention period</li>
+<li>assurance mechanism</li>
+</ul>
+</section>
+</section>
+<section id="architecture-and-technology-implications" class="level1">
+<h1>Architecture and Technology Implications</h1>
+<section id="security-by-design" class="level2">
+<h2 class="anchored" data-anchor-id="security-by-design">Security by Design</h2>
+<p>Describe how ISMS requirements are embedded into:</p>
+<ul>
+<li>enterprise architecture</li>
+<li>solution design</li>
+<li>cloud architecture</li>
+<li>network and infrastructure design</li>
+<li>identity and access management</li>
+<li>data protection architecture</li>
+<li>software delivery pipelines</li>
+<li>supplier integration patterns</li>
+<li>operational monitoring design</li>
+</ul>
+</section>
+<section id="technology-landscape-view" class="level2">
+<h2 class="anchored" data-anchor-id="technology-landscape-view">Technology Landscape View</h2>
+<p>Document the security-relevant technology landscape:</p>
+<ul>
+<li>business services and critical processes</li>
+<li>application and data estate</li>
+<li>infrastructure and cloud services</li>
+<li>identity and access ecosystem</li>
+<li>security tooling landscape</li>
+<li>logging and monitoring architecture</li>
+<li>backup and recovery architecture</li>
+<li>third-party technology dependencies</li>
+</ul>
+</section>
+<section id="asset-and-dependency-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="asset-and-dependency-mapping">Asset and Dependency Mapping</h2>
+<p>Include or reference:</p>
+<ul>
+<li>asset inventories</li>
+<li>application dependency diagrams</li>
+<li>network and trust zone diagrams</li>
+<li>data flow diagrams</li>
+<li>supplier dependency maps</li>
+<li>resilience and recovery dependency maps</li>
+</ul>
+</section>
+</section>
+<section id="risk-management" class="level1">
+<h1>Risk Management</h1>
+<section id="information-security-risk-model" class="level2">
+<h2 class="anchored" data-anchor-id="information-security-risk-model">Information Security Risk Model</h2>
+<p>Describe how information security risks are identified, assessed, treated, accepted, escalated, and monitored within the ISMS.</p>
+</section>
+<section id="example-risk-categories" class="level2">
+<h2 class="anchored" data-anchor-id="example-risk-categories">Example Risk Categories</h2>
+<ul>
+<li>unclear ISMS scope or governance</li>
+<li>incomplete asset visibility</li>
+<li>weak identity and access management</li>
+<li>poor control implementation</li>
+<li>insecure change and development practices</li>
+<li>inadequate monitoring and logging</li>
+<li>supplier security exposure</li>
+<li>insufficient incident response capability</li>
+<li>weak recovery arrangements</li>
+<li>poor evidence and assurance discipline</li>
+</ul>
+</section>
+<section id="risk-register-template" class="level2">
+<h2 class="anchored" data-anchor-id="risk-register-template">Risk Register Template</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk ID</th>
+<th>Risk Description</th>
+<th>Cause</th>
+<th>Impact</th>
+<th>Likelihood</th>
+<th>Inherent Risk</th>
+<th>Control Strength</th>
+<th>Residual Risk</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IS-01</td>
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>Medium</td>
+<td>High</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Example</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metrics-and-reporting" class="level1">
+<h1>Metrics and Reporting</h1>
+<section id="key-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="key-metrics">Key Metrics</h2>
+<p>Examples of ISMS metrics:</p>
+<ul>
+<li>percentage of assets classified</li>
+<li>percentage of risks assessed on schedule</li>
+<li>percentage of treatment actions completed on time</li>
+<li>percentage of controls implemented as planned</li>
+<li>number of significant incidents</li>
+<li>vulnerability remediation performance</li>
+<li>access review completion rate</li>
+<li>supplier assessment coverage</li>
+<li>number of audit findings open vs closed</li>
+<li>percentage of corrective actions closed on time</li>
+<li>percentage of management review actions completed</li>
+<li>percentage of ISMS objectives achieved</li>
+</ul>
+</section>
+<section id="dashboard-structure" class="level2">
+<h2 class="anchored" data-anchor-id="dashboard-structure">Dashboard Structure</h2>
+<p>Suggested dashboard views:</p>
+<ul>
+<li>executive information security dashboard</li>
+<li>ISMS performance dashboard</li>
+<li>risk and treatment dashboard</li>
+<li>incident and vulnerability dashboard</li>
+<li>supplier security dashboard</li>
+<li>audit and corrective action dashboard</li>
+</ul>
+</section>
+</section>
+<section id="audit-and-assurance" class="level1">
+<h1>Audit and Assurance</h1>
+<section id="assurance-model" class="level2">
+<h2 class="anchored" data-anchor-id="assurance-model">Assurance Model</h2>
+<p>Document the assurance approach across:</p>
+<ul>
+<li>management self-assessment</li>
+<li>control owner attestations</li>
+<li>second-line compliance reviews</li>
+<li>internal audit</li>
+<li>certification audit support where applicable</li>
+<li>corrective action verification</li>
+</ul>
+</section>
+<section id="testing-themes" class="level2">
+<h2 class="anchored" data-anchor-id="testing-themes">Testing Themes</h2>
+<ul>
+<li>scope and governance effectiveness</li>
+<li>risk assessment and treatment quality</li>
+<li>Statement of Applicability quality</li>
+<li>control implementation and operating effectiveness</li>
+<li>incident handling</li>
+<li>supplier control coverage</li>
+<li>management review effectiveness</li>
+<li>corrective action discipline</li>
+<li>evidence completeness and traceability</li>
+</ul>
+</section>
+</section>
+<section id="implementation-roadmap" class="level1">
+<h1>Implementation Roadmap</h1>
+<section id="maturity-phases" class="level2">
+<h2 class="anchored" data-anchor-id="maturity-phases">Maturity Phases</h2>
+<section id="phase-1-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-1-foundation">Phase 1: Foundation</h3>
+<ul>
+<li>define organisational context and ISMS scope</li>
+<li>establish governance and executive sponsorship</li>
+<li>approve core policy framework</li>
+<li>define risk assessment and treatment methods</li>
+<li>build initial asset inventory and baseline controls</li>
+</ul>
+</section>
+<section id="phase-2-control-design" class="level3">
+<h3 class="anchored" data-anchor-id="phase-2-control-design">Phase 2: Control Design</h3>
+<ul>
+<li>perform risk assessment</li>
+<li>create risk treatment plan</li>
+<li>develop Statement of Applicability</li>
+<li>implement priority control improvements</li>
+<li>establish incident, supplier, and monitoring processes</li>
+</ul>
+</section>
+<section id="phase-3-integration" class="level3">
+<h3 class="anchored" data-anchor-id="phase-3-integration">Phase 3: Integration</h3>
+<ul>
+<li>embed ISMS into change, architecture, procurement, and operations</li>
+<li>improve evidence collection and monitoring</li>
+<li>establish internal audit and management review cycle</li>
+<li>align corrective action tracking with enterprise governance</li>
+</ul>
+</section>
+<section id="phase-4-optimisation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-4-optimisation">Phase 4: Optimisation</h3>
+<ul>
+<li>refine metrics and dashboards</li>
+<li>strengthen automation and control monitoring</li>
+<li>improve management review quality</li>
+<li>enhance assurance readiness and continual improvement</li>
+<li>support certification maintenance where applicable</li>
+</ul>
+</section>
+</section>
+<section id="roadmap-table" class="level2">
+<h2 class="anchored" data-anchor-id="roadmap-table">Roadmap Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Initiative</th>
+<th>Description</th>
+<th>Owner</th>
+<th>Priority</th>
+<th>Timeline</th>
+<th>Dependency</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>High</td>
+<td>Q1-Q2</td>
+<td>Example</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cross-framework-integration" class="level1">
+<h1>Cross-Framework Integration</h1>
+<section id="relationship-to-other-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-other-frameworks">Relationship to Other Frameworks</h2>
+<p>Describe how ISO/IEC 27001 integrates with:</p>
+<ul>
+<li>NIST Cybersecurity Framework</li>
+<li>NIS2</li>
+<li>DORA</li>
+<li>GDPR</li>
+<li>AI Act</li>
+<li>COBIT</li>
+<li>ITIL</li>
+<li>TOGAF</li>
+<li>enterprise risk management</li>
+<li>business continuity and operational resilience frameworks</li>
+</ul>
+</section>
+<section id="example-mapping-themes" class="level2">
+<h2 class="anchored" data-anchor-id="example-mapping-themes">Example Mapping Themes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ISO/IEC 27001 Theme</th>
+<th>Related Framework</th>
+<th>Integration Point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISMS governance</td>
+<td>COBIT</td>
+<td>Governance objectives and accountability</td>
+</tr>
+<tr class="even">
+<td>Risk treatment</td>
+<td>NIST CSF</td>
+<td>Cyber risk management and capability improvement</td>
+</tr>
+<tr class="odd">
+<td>Incident management</td>
+<td>NIS2 / DORA</td>
+<td>Cyber incident governance and reporting</td>
+</tr>
+<tr class="even">
+<td>Security architecture</td>
+<td>TOGAF</td>
+<td>Architecture governance and security viewpoints</td>
+</tr>
+<tr class="odd">
+<td>Privacy-related controls</td>
+<td>GDPR</td>
+<td>Data protection and processing safeguards</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="maturity-model" class="level1">
+<h1>Maturity Model</h1>
+<section id="suggested-maturity-levels" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-maturity-levels">Suggested Maturity Levels</h2>
+<section id="level-1-initial" class="level3">
+<h3 class="anchored" data-anchor-id="level-1-initial">Level 1: Initial</h3>
+<p>Security activities are reactive, fragmented, and poorly governed.</p>
+</section>
+<section id="level-2-repeatable" class="level3">
+<h3 class="anchored" data-anchor-id="level-2-repeatable">Level 2: Repeatable</h3>
+<p>Basic ISMS components exist but are inconsistently applied and weakly evidenced.</p>
+</section>
+<section id="level-3-defined" class="level3">
+<h3 class="anchored" data-anchor-id="level-3-defined">Level 3: Defined</h3>
+<p>The ISMS scope, policies, risk treatment, and controls are documented and broadly implemented.</p>
+</section>
+<section id="level-4-managed" class="level3">
+<h3 class="anchored" data-anchor-id="level-4-managed">Level 4: Managed</h3>
+<p>The ISMS is measured, reviewed, audited, and actively improved through leadership oversight.</p>
+</section>
+<section id="level-5-optimised" class="level3">
+<h3 class="anchored" data-anchor-id="level-5-optimised">Level 5: Optimised</h3>
+<p>Information security is fully integrated into enterprise governance, architecture, operations, and supplier management with strong evidence and continual improvement.</p>
+</section>
+</section>
+<section id="assessment-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="assessment-dimensions">Assessment Dimensions</h2>
+<ul>
+<li>governance</li>
+<li>scope and context management</li>
+<li>risk assessment</li>
+<li>risk treatment</li>
+<li>control implementation</li>
+<li>incident management</li>
+<li>supplier security</li>
+<li>metrics and reporting</li>
+<li>audit and management review</li>
+<li>continual improvement</li>
+</ul>
+</section>
+</section>
+<section id="practical-templates" class="level1">
+<h1>Practical Templates</h1>
+<section id="suggested-appendices" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-appendices">Suggested Appendices</h2>
+<ul>
+<li>Appendix A: ISMS scope statement template</li>
+<li>Appendix B: Risk assessment template</li>
+<li>Appendix C: Risk treatment plan template</li>
+<li>Appendix D: Statement of Applicability template</li>
+<li>Appendix E: Information security control catalogue</li>
+<li>Appendix F: Internal audit checklist</li>
+<li>Appendix G: Management review agenda template</li>
+<li>Appendix H: ISO/IEC 27001 RACI matrix</li>
+</ul>
+</section>
+</section>
+<section id="customisation-notes" class="level1">
+<h1>Customisation Notes</h1>
+<p>This template should be tailored to reflect:</p>
+<ul>
+<li>organisational structure</li>
+<li>business and regulatory context</li>
+<li>ISMS scope boundary</li>
+<li>critical services and information assets</li>
+<li>sourcing and third-party model</li>
+<li>cloud and technology estate</li>
+<li>maturity level</li>
+<li>assurance and certification expectations</li>
+<li>operating model and budget constraints</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Add authoritative references here, for example:</p>
+<ul>
+<li>ISO/IEC 27001:2022</li>
+<li>ISO/IEC 27001:2022/Amd 1:2024</li>
+<li>ISO/IEC 27002:2022</li>
+<li>ISO/IEC 27000 family guidance</li>
+<li>internal information security policies and standards</li>
+<li>enterprise risk framework</li>
+<li>architecture and resilience standards</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

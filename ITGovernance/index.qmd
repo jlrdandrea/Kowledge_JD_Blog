@@ -1,0 +1,10 @@
+---
+title: IT Governance and management
+listing:
+  type: table
+  sort-ui: true
+  filter-ui: true
+  page-size: 10
+  categories: true
+  fields: [title, description,date]
+---

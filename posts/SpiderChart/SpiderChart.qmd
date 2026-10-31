@@ -1,0 +1,458 @@
+---
+title: "Spider Charts with fmsb"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, fmsb, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic spider chart into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated spider charts (also called radar charts) using the `fmsb` package in R. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Spider charts are excellent for visualizing multivariate data, comparing multiple entities across several dimensions, and showing strengths and weaknesses in a circular format.
+
+We'll create a dataset representing performance metrics for different smartphone models across various categories.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)   # For data manipulation
+library(fmsb)        # For spider/radar charts
+library(scales)      # For formatting
+
+# Create sample data: smartphone performance metrics (0-100 scale)
+smartphones <- data.frame(
+  Battery = c(85, 70, 90, 75, 80),
+  Camera = c(90, 85, 75, 95, 80),
+  Performance = c(95, 90, 80, 85, 92),
+  Display = c(88, 92, 85, 80, 86),
+  Price = c(70, 80, 95, 65, 75),
+  Design = c(92, 88, 82, 90, 85)
+)
+
+rownames(smartphones) <- c("Model A", "Model B", "Model C", "Model D", "Model E")
+
+# Add max and min rows (required by fmsb)
+smartphones <- rbind(
+  rep(100, 6),  # Max values
+  rep(0, 6),    # Min values
+  smartphones
+)
+
+# Preview the data
+head(smartphones)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Spider Chart
+
+Let's start with a simple spider chart showing performance metrics for one smartphone model.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 7
+#| fig-height: 7
+
+# Select first phone (Model A) - rows 1-2 are max/min
+radarchart(smartphones[c(1, 2, 3), ])  # Max, Min, Model A
+```
+
+### Code Explanation
+
+**Line 2:** `radarchart(smartphones[c(1, 2, 3), ])` - Creates a radar chart using rows 1 (max values), 2 (min values), and 3 (Model A data). The first two rows define the scale range.
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic spider chart. The shape shows Model A's profile but the chart lacks color, proper labels, and visual refinement. The default settings make it difficult to read.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by comparing multiple models, adding custom colors, adjusting grid lines, and improving labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Multiple models** for comparison
+-   **Custom colors** with transparency
+-   **Grid customization** for better readability
+-   **Axis labels** for each dimension
+-   **Legend** identifying each model
+-   **Line styling** for differentiation
+-   **Title** for context
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 8
+
+# Define colors for each model
+colors_border <- c("#2C5F8D", "#52A675", "#E76F51")
+colors_fill <- c(
+  rgb(44, 95, 141, alpha = 50, maxColorValue = 255),
+  rgb(82, 166, 117, alpha = 50, maxColorValue = 255),
+  rgb(231, 111, 81, alpha = 50, maxColorValue = 255)
+)
+
+# Create radar chart with three models
+radarchart(
+  smartphones[c(1, 2, 3, 4, 5), ],  # Max, Min, Models A, B, C
+  axistype = 1,                      # Axis type (0-4)
+  pcol = colors_border,              # Line colors
+  pfcol = colors_fill,               # Fill colors
+  plwd = 2,                          # Line width
+  plty = 1,                          # Line type (solid)
+  cglcol = "grey",                   # Grid line color
+  cglty = 1,                         # Grid line type
+  cglwd = 0.8,                       # Grid line width
+  axislabcol = "grey30",             # Axis label color
+  vlcex = 1.0,                       # Variable label size
+  title = "Smartphone Performance Comparison\n(Models A, B, C)"
+)
+
+# Add legend
+legend(
+  x = "topright",
+  legend = c("Model A", "Model B", "Model C"),
+  bty = "n",
+  pch = 20,
+  col = colors_border,
+  text.col = "gray20",
+  cex = 1,
+  pt.cex = 2
+)
+```
+
+### Code Explanation
+
+**Lines 2-8:** Defines custom colors for borders and fills with transparency using `rgb()` function
+
+**Lines 11-24:** `radarchart()` with multiple parameters: - Includes three models (rows 3, 4, 5) plus max/min (rows 1, 2) - `pcol` and `pfcol` for line and fill colors - `plwd = 2` for thicker lines - `cglcol`, `cglty`, `cglwd` for grid styling - `axislabcol` and `vlcex` for label styling
+
+**Lines 27-36:** `legend()` adds a legend identifying each model with colored points
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart comparing three smartphone models. The custom colors, transparency, and legend make it easy to distinguish models and compare performance across dimensions.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with all models, enhanced styling, annotations, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **All five models** displayed simultaneously
+-   **Enhanced color palette** optimized for accessibility
+-   **Custom grid levels** showing score ranges
+-   **Thicker grid lines** at key thresholds
+-   **Larger variable labels** for readability
+-   **Descriptive title and subtitle**
+-   **Score annotations** showing exact values
+-   **Enhanced legend** with detailed information
+-   **Professional layout** with proper spacing
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 10
+
+# Define enhanced color palette (5 models)
+colors_border_adv <- c("#0072B2", "#009E73", "#D55E00", "#CC79A7", "#F0E442")
+colors_fill_adv <- c(
+  rgb(0, 114, 178, alpha = 40, maxColorValue = 255),
+  rgb(0, 158, 115, alpha = 40, maxColorValue = 255),
+  rgb(213, 94, 0, alpha = 40, maxColorValue = 255),
+  rgb(204, 121, 167, alpha = 40, maxColorValue = 255),
+  rgb(240, 228, 66, alpha = 40, maxColorValue = 255)
+)
+
+# Calculate average scores for each model
+avg_scores <- colMeans(smartphones[3:7, ])
+overall_avg <- round(mean(avg_scores), 1)
+
+# Set up plot area with margins
+par(mar = c(2, 2, 4, 2))
+
+# Create enhanced radar chart
+radarchart(
+  smartphones,  # All models with max/min
+  axistype = 2,                      # Show axis values
+  seg = 5,                           # Number of segments (grid circles)
+  pcol = colors_border_adv,          # Line colors
+  pfcol = colors_fill_adv,           # Fill colors
+  plwd = 3,                          # Thicker lines
+  plty = 1,                          # Solid lines
+  cglcol = "grey70",                 # Grid line color
+  cglty = 1,                         # Grid line type
+  cglwd = 1,                         # Grid line width
+  axislabcol = "grey30",             # Axis label color
+  vlcex = 1.2,                       # Larger variable labels
+  vlabels = colnames(smartphones),   # Variable names
+  caxislabels = seq(0, 100, 20),     # Axis labels (0, 20, 40, 60, 80, 100)
+  calcex = 0.9,                      # Axis label size
+  title = ""                         # No title here (add separately)
+)
+
+# Add custom title and subtitle
+mtext(
+  "Comprehensive Smartphone Performance Analysis Across Six Dimensions",
+  side = 3,
+  line = 2,
+  cex = 1.4,
+  font = 2,
+  col = "gray20"
+)
+
+mtext(
+  paste0("Comparing 5 flagship models | Overall average score: ", overall_avg, "/100"),
+  side = 3,
+  line = 0.8,
+  cex = 1,
+  col = "gray40"
+)
+
+# Add enhanced legend with statistics
+legend_labels <- c(
+  paste0("Model A (Avg: ", round(mean(as.numeric(smartphones[3, ])), 1), ")"),
+  paste0("Model B (Avg: ", round(mean(as.numeric(smartphones[4, ])), 1), ")"),
+  paste0("Model C (Avg: ", round(mean(as.numeric(smartphones[5, ])), 1), ")"),
+  paste0("Model D (Avg: ", round(mean(as.numeric(smartphones[6, ])), 1), ")"),
+  paste0("Model E (Avg: ", round(mean(as.numeric(smartphones[7, ])), 1), ")")
+)
+
+legend(
+  x = 0.9,
+  y = 1.3,
+  legend = legend_labels,
+  bty = "n",
+  pch = 15,
+  col = colors_border_adv,
+  text.col = "gray20",
+  cex = 0.9,
+  pt.cex = 1.5,
+  title = "Models (with avg scores)",
+  title.col = "gray20"
+)
+
+# Add caption
+mtext(
+  "Data source: Simulated smartphone performance metrics (0-100 scale) | Visualization: Your Name",
+  side = 1,
+  line = 0.5,
+  cex = 0.75,
+  col = "gray50"
+)
+
+# Add interpretation box
+legend(
+  x = -1.4,
+  y = -0.9,
+  legend = c(
+    "Best Battery: Model C (90)",
+    "Best Camera: Model D (95)",
+    "Best Performance: Model A (95)",
+    "Best Display: Model B (92)",
+    "Best Price: Model C (95)",
+    "Best Design: Model A (92)"
+  ),
+  bty = "o",
+  box.col = "gray70",
+  bg = "white",
+  cex = 0.75,
+  text.col = "gray30",
+  title = "Category Leaders",
+  title.col = "gray20"
+)
+```
+
+### Code Explanation
+
+**Lines 2-10:** Defines enhanced color palette for five models using colorblind-friendly colors with reduced alpha for transparency
+
+**Lines 13-14:** Calculates average scores across all dimensions for each model and overall average
+
+**Line 17:** Sets plot margins with `par(mar = c(2, 2, 4, 2))`
+
+**Lines 20-38:** `radarchart()` with comprehensive styling: - `axistype = 2` shows actual numeric values on axes - `seg = 5` creates 5 concentric circles - `plwd = 3` for prominent lines - `caxislabels` sets custom axis labels (0, 20, 40, 60, 80, 100) - `vlcex = 1.2` for larger dimension labels
+
+**Lines 41-53:** Adds two-line title using `mtext()` - main title and subtitle with overall statistics
+
+**Lines 56-73:** Creates enhanced legend with average scores for each model included in parentheses
+
+**Lines 76-82:** Adds caption with data source attribution at the bottom
+
+**Lines 85-101:** Adds interpretation box showing which model leads in each category with exact scores
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready spider chart that clearly communicates performance comparisons across five smartphone models and six dimensions. The combination of colors, annotations, category leaders box, and comprehensive legend creates an accessible visualization suitable for reports, presentations, or marketing materials.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (single model, default) | Good (3 models, custom colors) | Excellent (5 models + annotations) |
+| **Context** | None | Title added | Full context with subtitle & statistics |
+| **Visual Appeal** | Default styling | Custom colors + transparency | Enhanced palette + interpretations |
+| **Data Layers** | One model only | Three models | Five models + category leaders |
+| **Statistical Info** | Visual shape only | Visual comparison | Average scores + best performers |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better fmsb Spider Charts:**
+
+1.  **Always include max/min rows first** - The fmsb package requires the first two rows to be maximum and minimum values for proper scaling
+
+2.  **Limit the number of overlays** - Showing more than 5 entities becomes cluttered. Consider small multiples or filtering for clarity
+
+3.  **Use transparency wisely** - Set alpha between 30-50 in `rgb()` to show overlapping areas without losing definition
+
+4.  **Choose appropriate dimensions** - Use 4-8 variables; too few lacks insight, too many becomes unreadable
+
+5.  **Ensure equal scales** - All dimensions should use the same scale (e.g., 0-100) for fair comparison
+
+6.  **Color with purpose** - Use colorblind-friendly palettes and sufficient contrast between overlapping shapes
+
+7.  **Label clearly** - Increase `vlcex` parameter (1.0-1.3) to make dimension labels readable
+
+8.  **Show the scale** - Use `axistype = 1` or `2` to display numeric values on axes
+
+9.  **Consider alternatives** - For time-series or many entities, parallel coordinates plots may be more appropriate
+
+10. **Export carefully** - Spider charts work best as square plots: `png("spider.png", width = 800, height = 800)`
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other multivariate visualizations:
+
+-   **Parallel coordinates plots** for comparing many entities
+-   **Heatmaps** for matrix-style comparisons
+-   **Star plots** (similar to spider charts but with lines from center)
+-   **Profile plots** for showing patterns over categories
+
+::: {.highlight-box .info}
+**Want to create interactive spider charts?**
+
+You can make your spider charts interactive using `plotly`:
+
+``` r
+library(plotly)
+
+# Reshape data for plotly
+plot_data <- smartphones[3:7, ] %>%
+  as.data.frame() %>%
+  rownames_to_column("Model") %>%
+  pivot_longer(-Model, names_to = "Dimension", values_to = "Score")
+
+# Create interactive radar chart
+plot_ly(
+  data = plot_data,
+  type = 'scatterpolar',
+  r = ~Score,
+  theta = ~Dimension,
+  fill = 'toself',
+  color = ~Model,
+  colors = colors_border_adv
+) %>%
+  layout(
+    polar = list(
+      radialaxis = list(
+        visible = TRUE,
+        range = c(0, 100)
+      )
+    ),
+    title = "Interactive Smartphone Comparison"
+  )
+```
+
+This creates an interactive chart where users can hover for exact values and toggle models on/off.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Small Multiples Approach
+
+Here's a bonus approach showing each model separately:
+
+```{r}
+#| label: bonus-multiples
+#| fig-width: 12
+#| fig-height: 8
+
+# Set up layout for 5 plots
+par(mfrow = c(2, 3), mar = c(2, 2, 3, 2))
+
+# Colors for individual charts
+model_colors <- colors_border_adv
+model_names <- rownames(smartphones)[3:7]
+
+# Create individual radar charts
+for (i in 1:5) {
+  radarchart(
+    smartphones[c(1, 2, i + 2), ],  # Max, Min, Model i
+    axistype = 1,
+    seg = 5,
+    pcol = model_colors[i],
+    pfcol = rgb(col2rgb(model_colors[i])[1], 
+                col2rgb(model_colors[i])[2], 
+                col2rgb(model_colors[i])[3], 
+                alpha = 50, maxColorValue = 255),
+    plwd = 3,
+    cglcol = "grey70",
+    cglty = 1,
+    cglwd = 1,
+    axislabcol = "grey30",
+    vlcex = 0.9,
+    title = paste0(model_names[i], "\n(Avg: ", 
+                   round(mean(as.numeric(smartphones[i + 2, ])), 1), ")")
+  )
+}
+
+# Reset layout
+par(mfrow = c(1, 1))
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [fmsb Package Documentation](https://cran.r-project.org/web/packages/fmsb/fmsb.pdf)
+-   [Radar Chart Examples](https://r-graph-gallery.com/spider-or-radar-chart.html)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [When to Use Radar Charts](https://www.data-to-viz.com/caveat/spider.html)
+
+Happy plotting! 📊

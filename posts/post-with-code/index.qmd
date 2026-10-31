@@ -1,0 +1,411 @@
+---
+title: "Donut Chart"
+description: "How to create a Donut Chart in R, using ggplot"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-27"
+categories: [R, Visualization, ggplot]
+image: "image.png"
+---
+
+## How to create a donut chart in R
+
+You can create a **donut chart** in R using `ggplot2`. A donut chart is essentially a **pie chart with a hole in the middle**, which is achieved by adjusting the width of a **geom_bar()**-based pie chart using `coord_polar()`.
+
+Here’s a simple example:
+
+### **Code to Create a Donut Chart in R using ggplot2**
+
+```{r}
+
+# Load required libraries
+library(ggplot2)
+
+# Create a sample dataset
+data <- data.frame(
+  category = c("AI", "Machine Learning", "Big Data", "Analytics"),
+  value = c(30, 35, 10, 25)  # Percentages or counts
+)
+
+# Compute positions for labels
+data$fraction = data$value / sum(data$value)
+data$ymax = cumsum(data$fraction)
+data$ymin = c(0, head(data$ymax, n=-1))
+
+# Create the plot
+ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=2, xmin=1, fill=category)) +
+  geom_rect() +
+  coord_polar(theta="y") +  # Convert to polar coordinates
+  xlim(c(0, 2)) +  # Adjust width to create a hole
+  theme_void() +  # Remove unnecessary elements
+  theme(legend.position = "right") +  # Adjust legend position
+  labs(title="AI & Data Science Fields - Donut Chart")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.background = element_rect(fill = "#72aebc"))
+
+```
+
+### **Explanation**
+
+-   **`geom_rect()`**: Creates a stacked bar chart (which we later transform into a donut).
+
+-   **`coord_polar(theta="y")`**: Converts the stacked bar into a circular format (a pie chart).
+
+-   **`xlim(c(0,2))`**: Controls the width of the donut hole.
+
+-   **`theme_void()`**: Removes unnecessary chart elements to focus on the data.
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Create a sample dataset
+data <- data.frame(
+  category = c("AI", "Machine Learning", "Big Data", "Analytics"),
+  value = c(30, 25, 20, 25)  # Percentages or counts
+)
+
+# Compute positions for labels
+data <- data %>%
+  mutate(
+    fraction = value / sum(value), 
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n=-1)),
+    label = paste0(round(fraction * 100, 1), "%")  # Format labels as percentages
+  )
+
+# Define custom colours
+custom_colours <- c("AI" = "#1f77b4", "Machine Learning" = "#ff7f0e", 
+                    "Big Data" = "#2ca02c", "Analytics" = "#d62728")
+
+# Create the donut chart
+ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=2, xmin=1, fill=category)) +
+  geom_rect(colour="white") +  # Add segment borders
+  geom_text(aes(x=1.5, y=(ymin+ymax)/2, label=label), size=5, colour="white") +  # Add labels
+  scale_fill_manual(values=custom_colours) +  # Apply custom colours
+  coord_polar(theta="y") +  # Convert to polar coordinates
+  xlim(c(0, 2)) +  # Adjust width to create a hole
+  theme_void() +  # Remove unnecessary elements
+  theme(legend.position = "bottom", legend.title = element_blank()) +  # Adjust legend
+  labs(title="AI & Data Science Fields - Donut Chart")  # Add title
+
+```
+
+### **Improvements in this version:**
+
+✅ **Labels:** Displays percentages inside each segment for clarity\
+✅ **Colours:** Uses a custom colour palette for better visual distinction\
+✅ **Borders:** Adds white segment borders to improve readability\
+✅ **Legend Placement:** Keeps the legend on the right for a clean layout
+
+### 
+
+Great! Let's enhance the **donut chart** further by:\
+✅ **Adding a central text label in the donut hole**\
+✅ **Customising the colour palette further**\
+✅ **Ensuring better readability with improved label placement**
+
+### **Final Enhanced Donut Chart in R using ggplot2**
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(ggtext)  # For rich text formatting (if needed)
+
+# Create a sample dataset
+data <- data.frame(
+  category = c("AI", "Machine Learning", "Big Data", "Analytics"),
+  value = c(30, 25, 20, 25)  # Percentages or counts
+)
+
+# Compute positions for labels
+data <- data %>%
+  mutate(
+    fraction = value / sum(value), 
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n=-1)),
+    label = paste0(round(fraction * 100, 1), "%")  # Format labels as percentages
+  )
+
+# Define custom colours (soft modern palette)
+custom_colours <- c("AI" = "#4363d8", "Machine Learning" = "#f58231", 
+                    "Big Data" = "#3cb44b", "Analytics" = "#e6194B")
+
+# Create the donut chart
+ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=2, xmin=1, fill=category)) +
+  geom_rect(colour="white") +  # Add segment borders
+  geom_text(aes(x=1.5, y=(ymin+ymax)/2, label=label), size=5, colour="white") +  # Add labels
+  scale_fill_manual(values=custom_colours) +  # Apply custom colours
+  coord_polar(theta="y") +  # Convert to polar coordinates
+  xlim(c(0, 2)) +  # Adjust width to create a hole
+  theme_void() +  # Remove unnecessary elements
+  theme(legend.position = "right", legend.title = element_blank()) +  # Adjust legend
+  labs(title="AI & Data Science Fields - Donut Chart") +  # Add title
+  annotate("text", x=0, y=0, label="AI & Data", size=6, fontface="bold")  # Add central text
+
+```
+
+### **New Features in This Version:**
+
+✅ **Text in the Donut Hole:** Displays `"AI & Data"` in the centre\
+✅ **Improved Colour Palette:** Uses a modern, soft colour scheme\
+✅ **Better Readability:** Adjusts label placement for clear visibility
+
+```{r}
+library(ggplot2)
+
+# Sample data
+set.seed(123)
+data <- data.frame(value = rnorm(200, mean = 50, sd = 10))
+
+# Summary stats
+mean_val <- mean(data$value)
+sd_val <- sd(data$value)
+median_val <- median(data$value)
+q25 <- quantile(data$value, 0.25)
+q75 <- quantile(data$value, 0.75)
+
+# Plot
+ggplot(data, aes(x = value)) +
+  geom_density(fill = "skyblue", alpha = 0.5) +
+  geom_vline(aes(xintercept = mean_val), colour = "blue", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = mean_val + sd_val), colour = "red", linetype = "dotted", size = 1) +
+  geom_vline(aes(xintercept = mean_val - sd_val), colour = "red", linetype = "dotted", size = 1) +
+  geom_vline(aes(xintercept = median_val), colour = "darkgreen", linetype = "solid", size = 1) +
+  geom_vline(aes(xintercept = q25), colour = "darkgreen", linetype = "dotted", size = 1) +
+  geom_vline(aes(xintercept = q75), colour = "darkgreen", linetype = "dotted", size = 1) +
+  labs(
+    title = "Distribution with Summary Statistics",
+    x = "Value",
+    y = "Density",
+    caption = paste(
+      "Mean =", round(mean_val, 2),
+      "SD =", round(sd_val, 2),
+      "Median =", round(median_val, 2),
+      "Q1 =", round(q25, 2),
+      "Q3 =", round(q75, 2)
+    )
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Sample data
+set.seed(123)
+data <- data.frame(value = rnorm(2000, mean = 50, sd = 10))
+
+# Summary stats
+mean_val <- mean(data$value)
+sd_val <- sd(data$value)
+median_val <- median(data$value)
+q25 <- quantile(data$value, 0.25)
+q75 <- quantile(data$value, 0.75)
+
+# Compute density manually
+dens <- density(data$value)
+dens_df <- data.frame(x = dens$x, y = dens$y)
+
+# Function to get y from x in density
+get_y <- function(val) {
+  approx(dens_df$x, dens_df$y, xout = val)$y
+}
+
+# Get y values at each stat
+stat_lines <- data.frame(
+  x = c(mean_val, mean_val - sd_val, mean_val + sd_val,
+        median_val, q25, q75),
+  colour = c("blue", "red", "red", "darkgreen", "darkgreen", "darkgreen"),
+  linetype = c("dashed", "dotted", "dotted", "solid", "dotted", "dotted"),
+  yend = sapply(c(mean_val, mean_val - sd_val, mean_val + sd_val,
+                  median_val, q25, q75), get_y)
+)
+
+# Plot
+ggplot() +
+  geom_density(data = data, aes(x = value), fill = "skyblue", alpha = 0.5) +
+  geom_segment(data = stat_lines,
+               aes(x = x, xend = x, y = 0, yend = yend, 
+                   colour = colour, linetype = linetype), size = 1) +
+  scale_colour_identity() +
+  scale_linetype_identity() +
+  labs(
+    title = "Distribution with Summary Statistics (Trimmed Lines)",
+    x = "Value",
+    y = "Density",
+    caption = paste(
+      "Mean =", round(mean_val, 2),
+      "SD =", round(sd_val, 2),
+      "Median =", round(median_val, 2),
+      "Q1 =", round(q25, 2),
+      "Q3 =", round(q75, 2)
+    )
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+library(ggplot2)
+
+# Define mean and standard deviation
+mu <- 0
+sigma <- 1
+
+# Create data frame for x values
+x_vals <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
+df <- data.frame(x = x_vals, y = dnorm(x_vals, mean = mu, sd = sigma))
+
+# Define shaded regions
+shade_data <- data.frame(
+  xmin = c(mu - sigma, mu - 2*sigma, mu - 3*sigma, mu, mu + sigma, mu + 2*sigma),
+  xmax = c(mu + sigma, mu - sigma, mu - 2*sigma, mu + sigma, mu + 2*sigma, mu + 3*sigma),
+  fill = c("68.26%", "13.59%", "2.14%", "34.13%", "13.59%", "2.14%")
+)
+
+# Plot
+ggplot(df, aes(x, y)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), colour = "darkred", size = 1.2) +
+  geom_area(data = subset(df, x >= mu - sigma & x <= mu + sigma), aes(x = x, y = y), fill = "skyblue", alpha = 0.6) +
+  geom_area(data = subset(df, x >= mu - 2*sigma & x < mu - sigma), aes(x = x, y = y), fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu + sigma & x <= mu + 2*sigma), aes(x = x, y = y), fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu - 3*sigma & x < mu - 2*sigma), aes(x = x, y = y), fill = "skyblue", alpha = 0.2) +
+  geom_area(data = subset(df, x > mu + 2*sigma & x <= mu + 3*sigma), aes(x = x, y = y), fill = "skyblue", alpha = 0.2) +
+  geom_vline(xintercept = c(mu - 3*sigma, mu - 2*sigma, mu - sigma, mu, mu + sigma, mu + 2*sigma, mu + 3*sigma),
+             linetype = "dashed", colour = "grey40") +
+  scale_x_continuous(breaks = c(mu - 3*sigma, mu - 2*sigma, mu - sigma, mu, mu + sigma, mu + 2*sigma, mu + 3*sigma),
+                     labels = c("μ-3σ", "μ-2σ", "μ-σ", "μ", "μ+σ", "μ+2σ", "μ+3σ")) +
+  labs(title = "Normal Distribution with Standard Deviations",
+       x = "", y = "") +
+  theme_minimal(base_size = 14)
+
+
+```
+
+```{r}
+library(ggplot2)
+library(grid)
+
+mu <- 0
+sigma <- 1
+
+x_vals <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
+df <- data.frame(x = x_vals, y = dnorm(x_vals, mean = mu, sd = sigma))
+
+# Base plot
+p <- ggplot(df, aes(x, y)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma),
+                colour = "darkred", size = 1.2) +
+
+  # Shaded regions
+  geom_area(data = subset(df, x >= mu - sigma & x <= mu + sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.6) +
+  geom_area(data = subset(df, x >= mu - 2*sigma & x < mu - sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu + sigma & x <= mu + 2*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu - 3*sigma & x < mu - 2*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.2) +
+  geom_area(data = subset(df, x > mu + 2*sigma & x <= mu + 3*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.2) +
+
+  # Vertical dashed lines
+  geom_vline(xintercept = c(mu - 3*sigma, mu - 2*sigma, mu - sigma, mu,
+                            mu + sigma, mu + 2*sigma, mu + 3*sigma),
+             linetype = "dashed", colour = "grey40") +
+
+  # X-axis labels
+  scale_x_continuous(breaks = c(mu - 3*sigma, mu - 2*sigma, mu - sigma,
+                                mu, mu + sigma, mu + 2*sigma, mu + 3*sigma),
+                     labels = c("μ-3σ", "μ-2σ", "μ-σ", "μ", "μ+σ", "μ+2σ", "μ+3σ")) +
+
+  # Arrows and percentage labels
+  annotate("segment", x = mu - sigma, xend = mu + sigma, y = 0.25, yend = 0.25,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.26, label = "68.26%", size = 4) +
+
+  annotate("segment", x = mu - 2*sigma, xend = mu + 2*sigma, y = 0.05, yend = 0.05,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.06, label = "95.44%", size = 4) +
+
+  annotate("segment", x = mu - 3*sigma, xend = mu + 3*sigma, y = 0.0, yend = 0.0,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.01, label = "99.72%", size = 4) +
+
+  labs(title = "Normal Distribution with Standard Deviations",
+       x = NULL, y = NULL) +
+  theme_minimal(base_size = 14)
+
+print(p)
+
+```
+
+```{r}
+library(ggplot2)
+library(grid)
+
+mu <- 0
+sigma <- 1
+
+x_vals <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
+df <- data.frame(x = x_vals, y = dnorm(x_vals, mean = mu, sd = sigma))
+
+# Base plot
+p <- ggplot(df, aes(x, y)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma),
+                colour = "darkred", size = 1.2) +
+
+  # Shaded regions
+  geom_area(data = subset(df, x >= mu - sigma & x <= mu + sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.6) +
+  geom_area(data = subset(df, x >= mu - 2*sigma & x < mu - sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu + sigma & x <= mu + 2*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.4) +
+  geom_area(data = subset(df, x >= mu - 3*sigma & x < mu - 2*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.2) +
+  geom_area(data = subset(df, x > mu + 2*sigma & x <= mu + 3*sigma), aes(x = x, y = y),
+            fill = "skyblue", alpha = 0.2) +
+
+  # Vertical dashed lines
+  geom_vline(xintercept = c(mu - 3*sigma, mu - 2*sigma, mu - sigma, mu,
+                            mu + sigma, mu + 2*sigma, mu + 3*sigma),
+             linetype = "dashed", colour = "grey40") +
+
+  # X-axis labels
+  scale_x_continuous(breaks = c(mu - 3*sigma, mu - 2*sigma, mu - sigma,
+                                mu, mu + sigma, mu + 2*sigma, mu + 3*sigma),
+                     labels = c("μ-3σ", "μ-2σ", "μ-σ", "μ", "μ+σ", "μ+2σ", "μ+3σ")) +
+
+  # Arrows and percentage labels
+  annotate("segment", x = mu - sigma, xend = mu + sigma, y = 0.25, yend = 0.25,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.26, label = "68.26%", size = 4) +
+
+  annotate("segment", x = mu - 2*sigma, xend = mu + 2*sigma, y = 0.05, yend = 0.05,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.06, label = "95.44%", size = 4) +
+
+  annotate("segment", x = mu - 3*sigma, xend = mu + 3*sigma, y = 0.0, yend = 0.0,
+           arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = mu, y = 0.01, label = "99.72%", size = 4) +
+
+  # Text labels inside shaded areas
+  annotate("text", x = mu + 0.5, y = - 0.01, label = "34.13%", size = 4) +
+  annotate("text", x = mu - 0.5, y = - 0.01, label = "34.13%", size = 4) +
+  annotate("text", x = mu - 1.5*sigma, y = - 0.01, label = "13.59%", size = 4) +
+  annotate("text", x = mu + 1.5*sigma, y = - 0.01, label = "13.59%", size = 4) +
+  annotate("text", x = mu - 2.5*sigma, y = - 0.01, label = "2.14%", size = 4) +
+  annotate("text", x = mu + 2.5*sigma, y = - 0.01, label = "2.14%", size = 4) +
+
+  labs(title = "Normal Distribution with Shaded Areas and Percentages",
+       x = NULL, y = NULL) +
+  theme_minimal(base_size = 14)
+
+print(p)
+
+```

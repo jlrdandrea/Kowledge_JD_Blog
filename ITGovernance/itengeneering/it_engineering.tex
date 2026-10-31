@@ -1,0 +1,1387 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  british,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage[english]{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={IT Engineering},
+  pdflang={en-GB},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{IT Engineering}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Introduction}\label{introduction}
+
+IT engineering is the discipline of designing, building, integrating,
+operating, securing, and improving the technology systems that
+organisations rely on. It is where business intent is translated into
+working digital capability.
+
+In practice, IT engineering is not limited to software development or
+infrastructure support. It spans the full lifecycle of digital systems,
+from understanding business needs and defining requirements to
+architecture, implementation, deployment, operations, resilience, and
+continual improvement.
+
+A helpful way to view IT engineering is as \textbf{applied engineering
+for digital systems}. It combines technical depth with systems thinking,
+governance, operational discipline, and business alignment.
+
+\section{What IT Engineering Is}\label{what-it-engineering-is}
+
+IT engineering sits at the intersection of several domains:
+
+\begin{itemize}
+\tightlist
+\item
+  business needs and operating models
+\item
+  software and application development
+\item
+  infrastructure and cloud platforms
+\item
+  networks and connectivity
+\item
+  cybersecurity and identity
+\item
+  data platforms and integration
+\item
+  service operations and reliability
+\item
+  architecture and standards
+\item
+  automation and delivery practices
+\end{itemize}
+
+Its purpose is to turn business demand into secure, reliable, scalable,
+supportable, and cost-effective technology services.
+
+For example, if an organisation wants to launch a digital service for
+customers, IT engineering must make that service real. This typically
+includes the application itself, the cloud or on-premise platform, the
+network design, user identity and access controls, data storage,
+integration with back-office systems, monitoring, backup, disaster
+recovery, testing, and deployment pipelines. That end-to-end
+responsibility is what makes IT engineering a true engineering
+discipline.
+
+\section{The Main Branches of IT
+Engineering}\label{the-main-branches-of-it-engineering}
+
+\subsection{Software Engineering}\label{software-engineering}
+
+Software engineering focuses on designing and building applications,
+APIs, automation, and user-facing or internal digital services.
+
+Typical concerns include:
+
+\begin{itemize}
+\tightlist
+\item
+  requirements and acceptance criteria
+\item
+  software design and modularity
+\item
+  maintainability and technical debt
+\item
+  testing and quality assurance
+\item
+  version control and release management
+\item
+  security in code
+\item
+  performance and scalability
+\end{itemize}
+
+Common tools and practices include Git, CI/CD pipelines, automated
+testing, containerisation, code review, and structured development
+methods.
+
+\subsection{Infrastructure
+Engineering}\label{infrastructure-engineering}
+
+Infrastructure engineering is concerned with the compute, storage,
+virtualisation, hosting, and operating environments that support digital
+services.
+
+This includes:
+
+\begin{itemize}
+\tightlist
+\item
+  physical and virtual servers
+\item
+  operating systems
+\item
+  storage platforms
+\item
+  backup and restore capability
+\item
+  high availability design
+\item
+  cloud services
+\item
+  infrastructure as code
+\item
+  patching and lifecycle management
+\end{itemize}
+
+A mature infrastructure engineering capability ensures that platforms
+are stable, efficient, recoverable, and aligned to architecture
+standards.
+
+\subsection{Network Engineering}\label{network-engineering}
+
+Network engineering enables secure and reliable communication between
+systems, users, sites, and external services.
+
+Typical areas include:
+
+\begin{itemize}
+\tightlist
+\item
+  routing and switching
+\item
+  LAN, WAN, and Wi-Fi
+\item
+  DNS and DHCP
+\item
+  firewalls and segmentation
+\item
+  VPN and remote access
+\item
+  load balancing
+\item
+  bandwidth, throughput, and latency management
+\end{itemize}
+
+Without sound network engineering, even well-built applications can fail
+due to poor connectivity, instability, or weak security boundaries.
+
+\subsection{Security Engineering}\label{security-engineering}
+
+Security engineering ensures that protection is built into systems from
+the start rather than added as an afterthought.
+
+This includes:
+
+\begin{itemize}
+\tightlist
+\item
+  identity and access management
+\item
+  privileged access controls
+\item
+  encryption
+\item
+  secure configuration baselines
+\item
+  vulnerability management
+\item
+  endpoint and server hardening
+\item
+  logging and detection
+\item
+  incident response integration
+\item
+  zero trust principles
+\item
+  secure design and threat modelling
+\end{itemize}
+
+In modern organisations, security engineering is a core discipline of IT
+engineering rather than a separate final gate.
+
+\subsection{Platform Engineering}\label{platform-engineering}
+
+Platform engineering focuses on creating internal platforms that make
+delivery easier, faster, and more consistent for engineering teams.
+
+Examples include:
+
+\begin{itemize}
+\tightlist
+\item
+  standard cloud landing zones
+\item
+  reusable deployment patterns
+\item
+  internal developer platforms
+\item
+  shared Kubernetes environments
+\item
+  common observability tooling
+\item
+  self-service infrastructure templates
+\end{itemize}
+
+Its goal is to reduce friction and improve consistency across teams.
+
+\subsection{Data Engineering}\label{data-engineering}
+
+Data engineering designs and builds the data pipelines and platforms
+that support reporting, analytics, operational decision-making, and AI
+use cases.
+
+Typical responsibilities include:
+
+\begin{itemize}
+\tightlist
+\item
+  data ingestion
+\item
+  ETL and ELT pipelines
+\item
+  warehousing and lakehouse platforms
+\item
+  data quality controls
+\item
+  metadata and lineage
+\item
+  schema design
+\item
+  streaming pipelines
+\item
+  governance and retention
+\end{itemize}
+
+Data engineering is increasingly central to enterprise IT engineering
+because many business capabilities now depend on trustworthy and timely
+data.
+
+\subsection{DevOps and Site Reliability
+Engineering}\label{devops-and-site-reliability-engineering}
+
+DevOps and SRE practices connect development and operations to improve
+delivery speed, service reliability, and recovery capability.
+
+Important ideas include:
+
+\begin{itemize}
+\tightlist
+\item
+  automation of builds and deployments
+\item
+  continuous integration and continuous delivery
+\item
+  monitoring and alerting
+\item
+  incident response
+\item
+  post-incident review
+\item
+  service level objectives
+\item
+  reliability engineering
+\item
+  error budgets and resilience thinking
+\end{itemize}
+
+These practices help engineering teams move from fragmented handovers to
+integrated service ownership.
+
+\subsection{Architecture and Solution
+Engineering}\label{architecture-and-solution-engineering}
+
+Architecture and solution engineering ensure that technology choices are
+coherent, scalable, secure, and aligned with enterprise direction.
+
+This includes:
+
+\begin{itemize}
+\tightlist
+\item
+  solution design
+\item
+  integration patterns
+\item
+  target-state thinking
+\item
+  standards and guardrails
+\item
+  technology rationalisation
+\item
+  cost and risk trade-offs
+\item
+  alignment with business capabilities
+\end{itemize}
+
+Architecture provides the structural logic that prevents engineering
+from becoming a collection of disconnected technical decisions.
+
+\section{The IT Engineering
+Lifecycle}\label{the-it-engineering-lifecycle}
+
+IT engineering is best understood as a lifecycle rather than a one-off
+build activity.
+
+\subsection{Discover}\label{discover}
+
+This stage clarifies the problem, the users, the business goals, and the
+constraints. It may include process analysis, stakeholder engagement,
+current-state assessment, and identification of risks or dependencies.
+
+\subsection{Design}\label{design}
+
+This stage defines the solution. It includes architecture, data flows,
+security controls, operational model, resilience patterns, integration
+mechanisms, and design documentation.
+
+\subsection{Build}\label{build}
+
+This stage turns the design into working reality through code,
+configuration, scripting, cloud resources, network changes,
+integrations, and automation.
+
+\subsection{Test}\label{test}
+
+This stage validates that the service works as intended and is fit for
+purpose. Testing may include:
+
+\begin{itemize}
+\tightlist
+\item
+  functional testing
+\item
+  integration testing
+\item
+  performance testing
+\item
+  security testing
+\item
+  failover and recovery testing
+\item
+  user acceptance testing
+\end{itemize}
+
+\subsection{Deploy}\label{deploy}
+
+This stage puts the solution into a live or production environment
+through managed release processes, deployment pipelines, environment
+promotion, and change controls.
+
+\subsection{Operate}\label{operate}
+
+This stage ensures the service is run properly. It includes monitoring,
+support, patching, backup, incident response, problem management,
+capacity management, and operational reporting.
+
+\subsection{Improve}\label{improve}
+
+This stage learns from performance, incidents, user feedback, audit
+findings, and technical debt, then uses those lessons to strengthen the
+service or engineering approach.
+
+\section{Core Building Blocks}\label{core-building-blocks}
+
+\subsection{Requirements}\label{requirements}
+
+Strong engineering starts with clarity about what problem is being
+solved and what success looks like.
+
+Requirements often include:
+
+\begin{itemize}
+\tightlist
+\item
+  functional requirements
+\item
+  non-functional requirements
+\item
+  constraints
+\item
+  assumptions
+\item
+  dependencies
+\item
+  acceptance criteria
+\end{itemize}
+
+Non-functional requirements are especially important because they shape
+how well a system performs in the real world. These typically cover:
+
+\begin{itemize}
+\tightlist
+\item
+  availability
+\item
+  performance
+\item
+  security
+\item
+  scalability
+\item
+  maintainability
+\item
+  resilience
+\item
+  recoverability
+\end{itemize}
+
+\subsection{Architecture}\label{architecture}
+
+Architecture determines the structure of the solution and the logic that
+connects its parts. It is often considered across multiple layers:
+
+\begin{itemize}
+\tightlist
+\item
+  business architecture
+\item
+  application architecture
+\item
+  data architecture
+\item
+  technology architecture
+\item
+  security architecture
+\end{itemize}
+
+Architecture is not abstract decoration; it is what gives engineering
+coherence and sustainability.
+
+\subsection{Integration}\label{integration}
+
+Most enterprise systems do not stand alone. They connect to other
+systems, users, and data sources.
+
+Common integration patterns include:
+
+\begin{itemize}
+\tightlist
+\item
+  APIs
+\item
+  events and message queues
+\item
+  batch interfaces
+\item
+  file exchanges
+\item
+  service buses
+\item
+  data pipelines
+\end{itemize}
+
+Integration is often where complexity and failure risk accumulate, so it
+deserves deliberate engineering attention.
+
+\subsection{Data}\label{data}
+
+Data is a core asset in nearly all modern services. Engineering must
+address:
+
+\begin{itemize}
+\tightlist
+\item
+  data quality
+\item
+  ownership
+\item
+  lifecycle
+\item
+  privacy
+\item
+  security
+\item
+  retention
+\item
+  access control
+\item
+  traceability
+\end{itemize}
+
+Poor data engineering can undermine reporting, decision-making,
+compliance, automation, and AI usage.
+
+\subsection{Security}\label{security}
+
+Security applies at every layer, including:
+
+\begin{itemize}
+\tightlist
+\item
+  user identity
+\item
+  device and endpoint
+\item
+  network
+\item
+  application
+\item
+  platform
+\item
+  data
+\item
+  monitoring and detection
+\item
+  backup and recovery
+\end{itemize}
+
+Secure-by-design thinking is now a hallmark of modern IT engineering.
+
+\subsection{Operations}\label{operations}
+
+Engineering is incomplete if the solution cannot be run, supported,
+monitored, restored, or improved.
+
+Operational readiness usually includes:
+
+\begin{itemize}
+\tightlist
+\item
+  monitoring and alerting
+\item
+  runbooks and support procedures
+\item
+  ownership and escalation paths
+\item
+  service metrics
+\item
+  patching schedules
+\item
+  backup validation
+\item
+  recovery testing
+\end{itemize}
+
+\section{The Most Important Technical
+Concepts}\label{the-most-important-technical-concepts}
+
+\subsection{Reliability}\label{reliability}
+
+A reliable system performs consistently and recovers effectively when
+faults occur.
+
+Key considerations include:
+
+\begin{itemize}
+\tightlist
+\item
+  redundancy
+\item
+  failover
+\item
+  dependency mapping
+\item
+  recovery procedures
+\item
+  recovery time objectives
+\item
+  recovery point objectives
+\item
+  graceful degradation
+\end{itemize}
+
+\subsection{Scalability}\label{scalability}
+
+Scalability is the ability of a service to handle increased load without
+unacceptable degradation.
+
+Approaches include:
+
+\begin{itemize}
+\tightlist
+\item
+  vertical scaling
+\item
+  horizontal scaling
+\item
+  caching
+\item
+  queue-based workloads
+\item
+  distributed architectures
+\item
+  database tuning
+\end{itemize}
+
+\subsection{Performance}\label{performance}
+
+Performance concerns how quickly and efficiently a service responds. It
+is affected by code, database design, infrastructure, networks,
+integration patterns, and concurrency.
+
+\subsection{Maintainability}\label{maintainability}
+
+Maintainability is the ease with which a system can be understood,
+supported, fixed, and enhanced. It is improved by modular design, coding
+standards, documentation, testing, and clear ownership.
+
+\subsection{Observability}\label{observability}
+
+Observability is the ability to understand what is happening inside a
+system by using logs, metrics, traces, dashboards, and alerts. It is
+essential for troubleshooting and operational improvement.
+
+\subsection{Resilience}\label{resilience}
+
+Resilience is the capacity to continue operating or recover quickly when
+disruptions occur, whether caused by component failure, cyber incidents,
+demand spikes, or external outages.
+
+\subsection{Automation}\label{automation}
+
+Automation reduces manual effort, variation, and operational risk.
+Typical candidates for automation include:
+
+\begin{itemize}
+\tightlist
+\item
+  builds
+\item
+  testing
+\item
+  deployments
+\item
+  infrastructure provisioning
+\item
+  compliance checks
+\item
+  account provisioning
+\item
+  patching
+\item
+  reporting
+\end{itemize}
+
+\section{The People Side of IT
+Engineering}\label{the-people-side-of-it-engineering}
+
+IT engineering is highly technical, but it is also organisational.
+
+Common roles include:
+
+\begin{itemize}
+\tightlist
+\item
+  software engineer
+\item
+  infrastructure engineer
+\item
+  systems engineer
+\item
+  cloud engineer
+\item
+  network engineer
+\item
+  security engineer
+\item
+  platform engineer
+\item
+  site reliability engineer
+\item
+  data engineer
+\item
+  enterprise architect
+\item
+  solution architect
+\item
+  test engineer
+\item
+  release engineer
+\item
+  support engineer
+\end{itemize}
+
+Leadership and coordination roles may include:
+
+\begin{itemize}
+\tightlist
+\item
+  engineering manager
+\item
+  head of engineering
+\item
+  chief architect
+\item
+  CIO
+\item
+  CTO
+\item
+  CISO
+\item
+  service owner
+\item
+  product owner
+\item
+  delivery manager
+\end{itemize}
+
+Many technology problems that appear technical are actually rooted in
+unclear ownership, fragmented responsibilities, weak standards, or poor
+communication. Good engineering therefore depends on both technical
+capability and organisational clarity.
+
+\section{Governance in IT
+Engineering}\label{governance-in-it-engineering}
+
+Engineering requires governance so that technology is built and operated
+consistently, safely, and accountably.
+
+Governance typically answers questions such as:
+
+\begin{itemize}
+\tightlist
+\item
+  who defines standards
+\item
+  who approves deviations
+\item
+  what must be documented
+\item
+  what risks are acceptable
+\item
+  how changes are controlled
+\item
+  how compliance is evidenced
+\item
+  how accountability is assigned
+\end{itemize}
+
+Typical governance mechanisms include:
+
+\begin{itemize}
+\tightlist
+\item
+  architecture review boards
+\item
+  engineering standards
+\item
+  secure development policies
+\item
+  cloud guardrails
+\item
+  change control
+\item
+  service ownership models
+\item
+  control testing
+\item
+  audit trails
+\item
+  risk registers
+\end{itemize}
+
+The objective is not bureaucracy for its own sake. The objective is to
+create enough control to reduce chaos, inconsistency, and unmanaged risk
+without making delivery unnecessarily slow.
+
+\section{How IT Engineering Connects to the
+Business}\label{how-it-engineering-connects-to-the-business}
+
+Business stakeholders rarely seek technology for its own sake. They
+usually seek outcomes such as:
+
+\begin{itemize}
+\tightlist
+\item
+  speed
+\item
+  efficiency
+\item
+  growth
+\item
+  better customer experience
+\item
+  better decisions
+\item
+  lower risk
+\item
+  compliance
+\item
+  resilience
+\item
+  innovation
+\end{itemize}
+
+IT engineering exists to convert those aims into real operating
+capability.
+
+For example:
+
+\begin{itemize}
+\tightlist
+\item
+  automation can reduce manual effort and error
+\item
+  strong architecture can reduce outages and rework
+\item
+  effective security engineering can reduce exposure and strengthen
+  trust
+\item
+  good data engineering can improve reporting and forecasting
+\item
+  platform engineering can accelerate delivery across many teams
+\end{itemize}
+
+This is why strong engineers benefit from understanding not only
+technology but also business capability, operating models, value
+streams, and risk.
+
+\section{Common Artefacts and
+Documents}\label{common-artefacts-and-documents}
+
+Professional IT engineering environments usually produce a range of
+artefacts.
+
+\subsection{Strategy and Planning}\label{strategy-and-planning}
+
+\begin{itemize}
+\tightlist
+\item
+  IT strategy
+\item
+  engineering principles
+\item
+  target architecture
+\item
+  roadmaps
+\item
+  investment cases
+\item
+  standards catalogue
+\end{itemize}
+
+\subsection{Design}\label{design-1}
+
+\begin{itemize}
+\tightlist
+\item
+  solution architecture documents
+\item
+  high-level design
+\item
+  low-level design
+\item
+  network diagrams
+\item
+  integration specifications
+\item
+  data models
+\item
+  threat models
+\end{itemize}
+
+\subsection{Delivery}\label{delivery}
+
+\begin{itemize}
+\tightlist
+\item
+  product backlog
+\item
+  user stories
+\item
+  acceptance criteria
+\item
+  test plans
+\item
+  deployment plans
+\item
+  release notes
+\item
+  build and configuration scripts
+\end{itemize}
+
+\subsection{Operations}\label{operations-1}
+
+\begin{itemize}
+\tightlist
+\item
+  service catalogue entries
+\item
+  runbooks
+\item
+  monitoring dashboards
+\item
+  support procedures
+\item
+  backup and recovery procedures
+\item
+  asset inventories
+\item
+  CMDB records
+\end{itemize}
+
+\subsection{Governance and Assurance}\label{governance-and-assurance}
+
+\begin{itemize}
+\tightlist
+\item
+  risk assessments
+\item
+  control matrices
+\item
+  design authority decisions
+\item
+  change records
+\item
+  exceptions and waivers
+\item
+  audit evidence
+\item
+  compliance mappings
+\end{itemize}
+
+\section{Frameworks Commonly Used Around IT
+Engineering}\label{frameworks-commonly-used-around-it-engineering}
+
+Frameworks do not replace engineering, but they can provide useful
+structure.
+
+\subsection{ITIL}\label{itil}
+
+ITIL supports service management, operational processes, support models,
+incident and problem management, and service value thinking.
+
+\subsection{COBIT}\label{cobit}
+
+COBIT supports governance, control, accountability, assurance, and
+management objectives.
+
+\subsection{TOGAF}\label{togaf}
+
+TOGAF supports enterprise architecture, target-state design, and
+architecture development methods.
+
+\subsection{ISO/IEC 27001}\label{isoiec-27001}
+
+This supports information security management, policy frameworks,
+controls, and assurance.
+
+\subsection{NIST Cybersecurity
+Framework}\label{nist-cybersecurity-framework}
+
+This supports practical cybersecurity structuring across identify,
+protect, detect, respond, and recover perspectives.
+
+\subsection{DevOps and SRE Practices}\label{devops-and-sre-practices}
+
+These support engineering flow, automation, reliability, observability,
+and integrated service ownership.
+
+\subsection{Delivery Frameworks}\label{delivery-frameworks}
+
+Frameworks such as Agile, Scrum, PRINCE2, MSP, and similar methods can
+help structure change delivery around engineering work.
+
+\section{The Skills That Matter Most}\label{the-skills-that-matter-most}
+
+The most effective IT engineers usually combine several forms of
+capability.
+
+\subsection{Technical Depth}\label{technical-depth}
+
+A strong grounding in at least one or two technical domains is
+essential.
+
+\subsection{Systems Thinking}\label{systems-thinking}
+
+Good engineers understand dependencies, trade-offs, interfaces,
+bottlenecks, and second-order effects.
+
+\subsection{Problem Solving}\label{problem-solving}
+
+Engineering often involves diagnosing issues, structuring ambiguity, and
+making sound design choices under constraints.
+
+\subsection{Communication}\label{communication}
+
+Engineers must explain technical matters clearly to colleagues,
+managers, business leaders, auditors, suppliers, and support teams.
+
+\subsection{Documentation}\label{documentation}
+
+Good documentation enables support, transfer of knowledge, auditability,
+and maintainability.
+
+\subsection{Risk Awareness}\label{risk-awareness}
+
+Every technical decision has implications for cost, complexity,
+security, resilience, and supportability.
+
+\subsection{Business Literacy}\label{business-literacy}
+
+Understanding processes, value, cost, and organisational objectives
+helps engineers make better decisions.
+
+\section{Common Misconceptions}\label{common-misconceptions}
+
+Several misconceptions often weaken IT engineering.
+
+\subsection{``It is just coding''}\label{it-is-just-coding}
+
+Coding is important, but IT engineering is much broader and includes
+architecture, infrastructure, security, operations, integration, and
+governance.
+
+\subsection{``Infrastructure alone is
+enough''}\label{infrastructure-alone-is-enough}
+
+Infrastructure provides a platform, but without applications,
+integrations, data, and operational controls it does not deliver
+business value on its own.
+
+\subsection{``Security can be added
+later''}\label{security-can-be-added-later}
+
+Late-stage security usually creates rework, cost, and residual risk. It
+is far better to design it in from the outset.
+
+\subsection{``If it works, it is well
+engineered''}\label{if-it-works-it-is-well-engineered}
+
+A service may function today but still be fragile, undocumented,
+insecure, or difficult to support. Good engineering is about more than
+short-term functionality.
+
+\subsection{``Operations is separate from
+engineering''}\label{operations-is-separate-from-engineering}
+
+A service that cannot be monitored, restored, patched, or supported has
+not been fully engineered.
+
+\section{What Good Looks Like}\label{what-good-looks-like}
+
+A mature IT engineering capability usually demonstrates:
+
+\begin{itemize}
+\tightlist
+\item
+  clear architecture principles
+\item
+  sensible standards
+\item
+  secure-by-design thinking
+\item
+  good documentation
+\item
+  automated testing and deployment
+\item
+  strong observability
+\item
+  clear ownership
+\item
+  managed change
+\item
+  resilience and recovery capability
+\item
+  continual improvement
+\end{itemize}
+
+The outcomes tend to include:
+
+\begin{itemize}
+\tightlist
+\item
+  more stable services
+\item
+  fewer avoidable incidents
+\item
+  faster delivery
+\item
+  better security
+\item
+  lower support overhead
+\item
+  stronger auditability
+\item
+  improved trust from the business
+\end{itemize}
+
+\section{A Simple Layered Mental
+Model}\label{a-simple-layered-mental-model}
+
+A helpful way to explain IT engineering is through six connected layers:
+
+\subsection{1. Business Layer}\label{business-layer}
+
+Why the service exists and what business capability it enables.
+
+\subsection{2. Process Layer}\label{process-layer}
+
+How work flows through the organisation and where technology supports or
+automates it.
+
+\subsection{3. Application Layer}\label{application-layer}
+
+What software, services, and interfaces provide the required
+functionality.
+
+\subsection{4. Data Layer}\label{data-layer}
+
+What information is created, stored, transformed, exchanged, and
+protected.
+
+\subsection{5. Technology Layer}\label{technology-layer}
+
+What infrastructure, platforms, cloud services, and networks run the
+solution.
+
+\subsection{6. Control Layer}\label{control-layer}
+
+How governance, security, operations, compliance, and risk management
+keep the service safe and reliable.
+
+This model is especially useful because it helps connect executive
+concerns with engineering realities.
+
+\section{How to Learn IT Engineering}\label{how-to-learn-it-engineering}
+
+A practical learning path usually begins with the foundations:
+
+\begin{itemize}
+\tightlist
+\item
+  operating systems
+\item
+  networking
+\item
+  databases
+\item
+  programming
+\item
+  cloud fundamentals
+\item
+  security fundamentals
+\end{itemize}
+
+Then it expands into engineering practice:
+
+\begin{itemize}
+\tightlist
+\item
+  system design
+\item
+  testing
+\item
+  version control
+\item
+  infrastructure as code
+\item
+  CI/CD
+\item
+  observability
+\item
+  service operations
+\item
+  documentation
+\end{itemize}
+
+Then it extends into enterprise understanding:
+
+\begin{itemize}
+\tightlist
+\item
+  architecture
+\item
+  governance
+\item
+  service management
+\item
+  risk and control
+\item
+  compliance
+\item
+  financial and operational trade-offs
+\end{itemize}
+
+Finally, many professionals choose to deepen in one or more specialisms
+such as cloud, cybersecurity, data, software, networking, architecture,
+or site reliability engineering.
+
+\section{Conclusion}\label{conclusion}
+
+IT engineering is the structured discipline of turning business needs
+into secure, reliable, scalable, supportable digital systems.
+
+It is both technical and organisational. It requires design discipline,
+operational thinking, risk awareness, and a clear connection to business
+value. In modern enterprises, strong IT engineering is not optional; it
+is one of the core capabilities that allows strategy to become working
+technology.
+
+In executive terms, IT engineering is where strategy becomes operational
+digital capability.
+
+
+
+
+\end{document}

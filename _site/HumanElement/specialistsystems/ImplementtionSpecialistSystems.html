@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Artificial Intelligence Act — Governance, Risk, Controls, and Implementation Template">
+
+<title>Specialist Systems - Implementation time</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Specialist Systems - Implementation time</h1>
+                  <div>
+        <div class="description">
+          Artificial Intelligence Act — Governance, Risk, Controls, and Implementation Template
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Specialist Systems</div>
+                <div class="quarto-category">Implementation</div>
+                <div class="quarto-category">Estimation</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2025-02-24</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#estimated-implementation-time-for-specialist-systems" id="toc-estimated-implementation-time-for-specialist-systems" class="nav-link active" data-scroll-target="#estimated-implementation-time-for-specialist-systems">Estimated Implementation Time for Specialist Systems</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#estimation-principles" id="toc-estimation-principles" class="nav-link" data-scroll-target="#estimation-principles">Estimation Principles</a>
+  <ul class="collapse">
+  <li><a href="#typical-delivery-patterns" id="toc-typical-delivery-patterns" class="nav-link" data-scroll-target="#typical-delivery-patterns">Typical delivery patterns</a></li>
+  <li><a href="#common-factors-that-extend-timelines" id="toc-common-factors-that-extend-timelines" class="nav-link" data-scroll-target="#common-factors-that-extend-timelines">Common factors that extend timelines</a></li>
+  </ul></li>
+  <li><a href="#estimated-duration-by-system-category" id="toc-estimated-duration-by-system-category" class="nav-link" data-scroll-target="#estimated-duration-by-system-category">Estimated Duration by System Category</a></li>
+  <li><a href="#estimated-duration-by-industry-and-specialist-system" id="toc-estimated-duration-by-industry-and-specialist-system" class="nav-link" data-scroll-target="#estimated-duration-by-industry-and-specialist-system">Estimated Duration by Industry and Specialist System</a></li>
+  <li><a href="#typical-duration-by-methodology-style" id="toc-typical-duration-by-methodology-style" class="nav-link" data-scroll-target="#typical-duration-by-methodology-style">Typical Duration by Methodology Style</a></li>
+  <li><a href="#why-some-projects-finish-faster-than-others" id="toc-why-some-projects-finish-faster-than-others" class="nav-link" data-scroll-target="#why-some-projects-finish-faster-than-others">Why Some Projects Finish Faster Than Others</a></li>
+  <li><a href="#practical-estimation-heuristic" id="toc-practical-estimation-heuristic" class="nav-link" data-scroll-target="#practical-estimation-heuristic">Practical Estimation Heuristic</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#fastest-and-slowest-categories" id="toc-fastest-and-slowest-categories" class="nav-link" data-scroll-target="#fastest-and-slowest-categories">Fastest and Slowest Categories</a>
+  <ul class="collapse">
+  <li><a href="#usually-faster" id="toc-usually-faster" class="nav-link" data-scroll-target="#usually-faster">Usually faster</a></li>
+  <li><a href="#usually-medium" id="toc-usually-medium" class="nav-link" data-scroll-target="#usually-medium">Usually medium</a></li>
+  <li><a href="#usually-longest" id="toc-usually-longest" class="nav-link" data-scroll-target="#usually-longest">Usually longest</a></li>
+  </ul></li>
+  <li><a href="#planning-guidance" id="toc-planning-guidance" class="nav-link" data-scroll-target="#planning-guidance">Planning Guidance</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="estimated-implementation-time-for-specialist-systems" class="level1">
+<h1>Estimated Implementation Time for Specialist Systems</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Implementation time for specialist systems varies significantly depending on:</p>
+<ul>
+<li>scope and number of modules</li>
+<li>number of sites, countries, or business units</li>
+<li>data migration complexity</li>
+<li>integration footprint</li>
+<li>customisation level</li>
+<li>regulatory and validation requirements</li>
+<li>training and business change effort</li>
+<li>infrastructure readiness</li>
+<li>cutover and transition constraints</li>
+</ul>
+<p>The estimates in this section are <strong>practical planning ranges</strong>, not contractual commitments. They are intended to support early portfolio planning, architecture roadmaps, programme sequencing, and rough-order-of-magnitude estimation.</p>
+</section>
+<section id="estimation-principles" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-principles">Estimation Principles</h2>
+<p>A useful way to think about duration is to start with a <strong>base delivery pattern</strong> and then adjust for complexity.</p>
+<section id="typical-delivery-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="typical-delivery-patterns">Typical delivery patterns</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Delivery Pattern</th>
+<th style="text-align: right;">Typical Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Small focused package implementation</td>
+<td style="text-align: right;">2–6 months</td>
+</tr>
+<tr class="even">
+<td>Medium business-unit rollout</td>
+<td style="text-align: right;">6–12 months</td>
+</tr>
+<tr class="odd">
+<td>Large enterprise implementation</td>
+<td style="text-align: right;">12–24 months</td>
+</tr>
+<tr class="even">
+<td>Multi-entity transformation programme</td>
+<td style="text-align: right;">18–36+ months</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-factors-that-extend-timelines" class="level3">
+<h3 class="anchored" data-anchor-id="common-factors-that-extend-timelines">Common factors that extend timelines</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Complexity Factor</th>
+<th>Typical Effect on Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Multiple business units or countries</td>
+<td>+25% to +100%</td>
+</tr>
+<tr class="even">
+<td>Complex data migration</td>
+<td>+20% to +60%</td>
+</tr>
+<tr class="odd">
+<td>Many system integrations</td>
+<td>+20% to +50%</td>
+</tr>
+<tr class="even">
+<td>High customisation</td>
+<td>+25% to +75%</td>
+</tr>
+<tr class="odd">
+<td>Regulatory validation</td>
+<td>+15% to +40%</td>
+</tr>
+<tr class="even">
+<td>Extensive training and change</td>
+<td>+15% to +35%</td>
+</tr>
+<tr class="odd">
+<td>Site-by-site rollout</td>
+<td>+20% to +80%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="estimated-duration-by-system-category" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-duration-by-system-category">Estimated Duration by System Category</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System Category</th>
+<th style="text-align: right;">Small / Focused</th>
+<th style="text-align: right;">Medium</th>
+<th style="text-align: right;">Large / Enterprise Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ERP (SAP, Oracle, etc.)</td>
+<td style="text-align: right;">3–6 months</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–24+ months</td>
+</tr>
+<tr class="even">
+<td>Core banking</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–24 months</td>
+<td style="text-align: right;">24–48+ months</td>
+</tr>
+<tr class="odd">
+<td>Insurance policy / claims platforms</td>
+<td style="text-align: right;">4–8 months</td>
+<td style="text-align: right;">9–18 months</td>
+<td style="text-align: right;">18–36 months</td>
+</tr>
+<tr class="even">
+<td>SCADA / DCS / industrial control</td>
+<td style="text-align: right;">3–6 months</td>
+<td style="text-align: right;">6–15 months</td>
+<td style="text-align: right;">12–30 months</td>
+</tr>
+<tr class="odd">
+<td>MES / manufacturing execution</td>
+<td style="text-align: right;">4–8 months</td>
+<td style="text-align: right;">8–18 months</td>
+<td style="text-align: right;">12–24+ months</td>
+</tr>
+<tr class="even">
+<td>EHR / EMR</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–24 months</td>
+<td style="text-align: right;">18–36+ months</td>
+</tr>
+<tr class="odd">
+<td>PACS / RIS / LIS</td>
+<td style="text-align: right;">4–8 months</td>
+<td style="text-align: right;">8–15 months</td>
+<td style="text-align: right;">12–24 months</td>
+</tr>
+<tr class="even">
+<td>WMS / TMS</td>
+<td style="text-align: right;">3–6 months</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–18 months</td>
+</tr>
+<tr class="odd">
+<td>POS / retail store systems</td>
+<td style="text-align: right;">2–4 months</td>
+<td style="text-align: right;">4–9 months</td>
+<td style="text-align: right;">9–18 months</td>
+</tr>
+<tr class="even">
+<td>PMS / hotel systems</td>
+<td style="text-align: right;">2–4 months</td>
+<td style="text-align: right;">4–8 months</td>
+<td style="text-align: right;">9–15 months</td>
+</tr>
+<tr class="odd">
+<td>BSS / OSS</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–24 months</td>
+<td style="text-align: right;">18–36+ months</td>
+</tr>
+<tr class="even">
+<td>Airline PSS / airport operations</td>
+<td style="text-align: right;">6–12 months</td>
+<td style="text-align: right;">12–24 months</td>
+<td style="text-align: right;">18–36+ months</td>
+</tr>
+<tr class="odd">
+<td>CTMS / regulated life sciences systems</td>
+<td style="text-align: right;">4–8 months</td>
+<td style="text-align: right;">8–15 months</td>
+<td style="text-align: right;">12–24 months</td>
+</tr>
+<tr class="even">
+<td>BIM / CDE / construction platforms</td>
+<td style="text-align: right;">2–5 months</td>
+<td style="text-align: right;">5–10 months</td>
+<td style="text-align: right;">9–18 months</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estimated-duration-by-industry-and-specialist-system" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-duration-by-industry-and-specialist-system">Estimated Duration by Industry and Specialist System</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Industry</th>
+<th>Specialist System</th>
+<th>Typical Implementation Style</th>
+<th>Estimated Duration</th>
+<th>Main Drivers of Delay</th>
+<th>Key Risks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Industrial / Manufacturing</td>
+<td>SCADA</td>
+<td>Engineering-led, site commissioning</td>
+<td>3–15 months</td>
+<td>OT integration, network design, FAT/SAT, commissioning</td>
+<td>Operational disruption, cyber security, safety</td>
+</tr>
+<tr class="even">
+<td>Industrial / Manufacturing</td>
+<td>DCS</td>
+<td>Engineering lifecycle, tightly controlled cutover</td>
+<td>6–18 months</td>
+<td>Process design, shutdown windows, control validation</td>
+<td>Plant downtime, safety, testing defects</td>
+</tr>
+<tr class="odd">
+<td>Industrial / Manufacturing</td>
+<td>MES</td>
+<td>Hybrid package + shop-floor integration</td>
+<td>4–18 months</td>
+<td>ERP integration, equipment interfaces, master data</td>
+<td>Production disruption, poor adoption</td>
+</tr>
+<tr class="even">
+<td>Industrial / Manufacturing</td>
+<td>PLM</td>
+<td>Package-led process redesign</td>
+<td>4–12 months</td>
+<td>Product structures, engineering workflows, CAD integration</td>
+<td>Change resistance, data quality</td>
+</tr>
+<tr class="odd">
+<td>Utilities / Energy</td>
+<td>ADMS / EMS / OMS</td>
+<td>Programme-led operational deployment</td>
+<td>9–24 months</td>
+<td>Real-time integration, resilience requirements, field data</td>
+<td>Service disruption, resilience failures</td>
+</tr>
+<tr class="even">
+<td>Utilities / Water</td>
+<td>CIS / Utility Billing</td>
+<td>Package-led transformation</td>
+<td>6–18 months</td>
+<td>Billing migration, customer data, regulatory rules</td>
+<td>Billing errors, reputational harm</td>
+</tr>
+<tr class="odd">
+<td>Oil and Gas</td>
+<td>Reservoir / Production Systems</td>
+<td>Technical platform deployment</td>
+<td>6–18 months</td>
+<td>Specialist data models, legacy data conversion, field interfaces</td>
+<td>Poor data quality, operational dependency</td>
+</tr>
+<tr class="even">
+<td>Mining</td>
+<td>Mine Planning Systems</td>
+<td>Technical package rollout</td>
+<td>4–12 months</td>
+<td>Geological data, planning integration, user capability</td>
+<td>Planning errors, underutilisation</td>
+</tr>
+<tr class="odd">
+<td>Mining</td>
+<td>Fleet Management Systems</td>
+<td>Site-based operational rollout</td>
+<td>4–10 months</td>
+<td>Vehicle telemetry, dispatch integration, radio/network readiness</td>
+<td>Operational disruption, unstable telemetry</td>
+</tr>
+<tr class="even">
+<td>Healthcare</td>
+<td>EHR / EMR</td>
+<td>Transformation-led phased deployment</td>
+<td>12–36 months</td>
+<td>Workflow redesign, migration, interoperability, training</td>
+<td>Clinical disruption, patient safety, adoption failure</td>
+</tr>
+<tr class="odd">
+<td>Healthcare</td>
+<td>PACS / RIS</td>
+<td>Departmental or enterprise imaging rollout</td>
+<td>4–15 months</td>
+<td>Data migration, imaging integration, bandwidth/storage</td>
+<td>Lost studies, downtime, clinician dissatisfaction</td>
+</tr>
+<tr class="even">
+<td>Healthcare</td>
+<td>LIS / LIMS</td>
+<td>Validation-heavy deployment</td>
+<td>4–15 months</td>
+<td>Instrument interfaces, validation, data conversion</td>
+<td>Result delays, compliance gaps</td>
+</tr>
+<tr class="odd">
+<td>Healthcare</td>
+<td>PAS / HIS</td>
+<td>Phased administrative transformation</td>
+<td>6–18 months</td>
+<td>Scheduling, admissions workflows, integration</td>
+<td>Operational backlog, data quality</td>
+</tr>
+<tr class="even">
+<td>Pharmaceuticals / Life Sciences</td>
+<td>QMS</td>
+<td>Configuration-led with compliance controls</td>
+<td>4–10 months</td>
+<td>SOP alignment, validation, training</td>
+<td>Audit findings, low adoption</td>
+</tr>
+<tr class="odd">
+<td>Pharmaceuticals / Life Sciences</td>
+<td>LIMS</td>
+<td>Validation-heavy rollout</td>
+<td>6–15 months</td>
+<td>Method setup, instrument links, validation evidence</td>
+<td>Compliance failure, inaccurate records</td>
+</tr>
+<tr class="even">
+<td>Pharmaceuticals / Life Sciences</td>
+<td>CTMS / eClinical</td>
+<td>Regulated phased rollout</td>
+<td>4–12 months</td>
+<td>Study design, integrations, validation, training</td>
+<td>Trial delays, compliance issues</td>
+</tr>
+<tr class="odd">
+<td>Pharmaceuticals / Life Sciences</td>
+<td>Regulated MES</td>
+<td>Engineering + validation</td>
+<td>8–24 months</td>
+<td>Batch design, equipment integration, validation</td>
+<td>Batch release delays, compliance risk</td>
+</tr>
+<tr class="even">
+<td>Banking</td>
+<td>Core banking</td>
+<td>Major package transformation</td>
+<td>12–48 months</td>
+<td>Product migration, data conversion, payments, coexistence</td>
+<td>Business continuity risk, migration failure</td>
+</tr>
+<tr class="odd">
+<td>Banking</td>
+<td>Payments Hub</td>
+<td>Integration-heavy transformation</td>
+<td>6–18 months</td>
+<td>Legacy interfaces, scheme connectivity, testing</td>
+<td>Settlement disruption, operational risk</td>
+</tr>
+<tr class="even">
+<td>Banking</td>
+<td>Treasury / Trading</td>
+<td>High-control technical rollout</td>
+<td>6–15 months</td>
+<td>Market interfaces, valuation models, controls</td>
+<td>Financial loss, reporting errors</td>
+</tr>
+<tr class="odd">
+<td>Banking</td>
+<td>Lending Platforms</td>
+<td>Process and workflow transformation</td>
+<td>4–12 months</td>
+<td>Product rules, workflow design, integration</td>
+<td>Credit processing delays, poor controls</td>
+</tr>
+<tr class="even">
+<td>Insurance</td>
+<td>Policy Administration</td>
+<td>Package-led product rollout</td>
+<td>9–24 months</td>
+<td>Product configuration, migration, integration</td>
+<td>Quotation errors, policy defects</td>
+</tr>
+<tr class="odd">
+<td>Insurance</td>
+<td>Claims Management</td>
+<td>Agile configuration-led rollout</td>
+<td>6–18 months</td>
+<td>Workflow redesign, interfaces, training</td>
+<td>Claims delays, poor customer experience</td>
+</tr>
+<tr class="even">
+<td>Insurance</td>
+<td>Billing Systems</td>
+<td>Package-led rollout</td>
+<td>4–12 months</td>
+<td>Billing rules, collections logic, migration</td>
+<td>Premium errors, collections failure</td>
+</tr>
+<tr class="odd">
+<td>Telecoms</td>
+<td>BSS</td>
+<td>Large-scale transformation</td>
+<td>12–36 months</td>
+<td>Product catalogue, billing, CRM, integrations</td>
+<td>Revenue leakage, service disruption</td>
+</tr>
+<tr class="even">
+<td>Telecoms</td>
+<td>OSS</td>
+<td>Engineering + service management transformation</td>
+<td>12–30 months</td>
+<td>Inventory, provisioning, assurance, network integration</td>
+<td>Provisioning failure, service instability</td>
+</tr>
+<tr class="odd">
+<td>Airlines</td>
+<td>PSS</td>
+<td>High-risk operational transformation</td>
+<td>12–36 months</td>
+<td>Reservations, departure control, cutover complexity</td>
+<td>Check-in disruption, revenue loss</td>
+</tr>
+<tr class="even">
+<td>Airlines</td>
+<td>OCC Systems</td>
+<td>Operational control rollout</td>
+<td>6–18 months</td>
+<td>Operations integration, disruption workflows, training</td>
+<td>Flight operations issues, low resilience</td>
+</tr>
+<tr class="odd">
+<td>Aviation Maintenance</td>
+<td>MRO Systems</td>
+<td>Compliance-heavy phased rollout</td>
+<td>6–18 months</td>
+<td>Maintenance records, parts data, regulatory traceability</td>
+<td>Compliance breaches, aircraft downtime</td>
+</tr>
+<tr class="even">
+<td>Airports</td>
+<td>AODB / Airport Operations</td>
+<td>Operationally constrained rollout</td>
+<td>9–24 months</td>
+<td>Resource integration, operational readiness, rehearsal</td>
+<td>Airport disruption, poor turnaround control</td>
+</tr>
+<tr class="odd">
+<td>Rail</td>
+<td>Traffic Management</td>
+<td>Operational engineering deployment</td>
+<td>9–24 months</td>
+<td>Signalling interfaces, safety, testing</td>
+<td>Operational incidents, timetable instability</td>
+</tr>
+<tr class="even">
+<td>Rail</td>
+<td>Timetabling / Rostering</td>
+<td>Planning system rollout</td>
+<td>4–12 months</td>
+<td>Business rules, optimisation, staff training</td>
+<td>Scheduling errors, resistance to change</td>
+</tr>
+<tr class="odd">
+<td>Maritime / Shipping</td>
+<td>TOS</td>
+<td>Site-led operational deployment</td>
+<td>6–15 months</td>
+<td>Yard logic, equipment integration, operational rehearsal</td>
+<td>Port delays, planning instability</td>
+</tr>
+<tr class="even">
+<td>Maritime / Shipping</td>
+<td>Fleet / Voyage Systems</td>
+<td>Technical deployment</td>
+<td>4–10 months</td>
+<td>Data interfaces, voyage workflows, user adoption</td>
+<td>Poor usage, data inconsistency</td>
+</tr>
+<tr class="odd">
+<td>Logistics / Warehousing</td>
+<td>WMS</td>
+<td>Site template + rollout</td>
+<td>4–12 months</td>
+<td>Warehouse processes, scanners, ERP integration</td>
+<td>Fulfilment disruption, inventory errors</td>
+</tr>
+<tr class="even">
+<td>Logistics / Transport</td>
+<td>TMS</td>
+<td>Package-led transport rollout</td>
+<td>4–10 months</td>
+<td>Route logic, carrier integration, master data</td>
+<td>Delivery performance issues</td>
+</tr>
+<tr class="odd">
+<td>Logistics / Parcel</td>
+<td>Parcel Management</td>
+<td>Multi-node operational rollout</td>
+<td>4–12 months</td>
+<td>Sortation integration, tracking, operational cutover</td>
+<td>Delivery disruption, tracking failures</td>
+</tr>
+<tr class="even">
+<td>Retail</td>
+<td>POS</td>
+<td>Pilot + wave rollout</td>
+<td>2–9 months</td>
+<td>Hardware rollout, payment integration, store readiness</td>
+<td>Store disruption, payment issues</td>
+</tr>
+<tr class="odd">
+<td>Retail</td>
+<td>Merchandising Systems</td>
+<td>Package-led retail transformation</td>
+<td>6–15 months</td>
+<td>Pricing, replenishment, product hierarchy, integration</td>
+<td>Stock distortion, margin leakage</td>
+</tr>
+<tr class="even">
+<td>Retail</td>
+<td>Ecommerce Platform</td>
+<td>Agile digital rollout</td>
+<td>3–9 months</td>
+<td>Catalogue, payments, fulfilment, integration</td>
+<td>Checkout defects, customer abandonment</td>
+</tr>
+<tr class="odd">
+<td>Hospitality</td>
+<td>PMS</td>
+<td>Site rollout or group rollout</td>
+<td>2–8 months</td>
+<td>Reservation migration, channel integration, training</td>
+<td>Booking disruption, guest impact</td>
+</tr>
+<tr class="even">
+<td>Hospitality</td>
+<td>CRS</td>
+<td>Group-level integration rollout</td>
+<td>4–12 months</td>
+<td>Distribution channels, rates, inventory rules</td>
+<td>Overbooking, revenue loss</td>
+</tr>
+<tr class="odd">
+<td>Restaurants / Food Service</td>
+<td>Restaurant POS</td>
+<td>Pilot + outlet rollout</td>
+<td>2–6 months</td>
+<td>Till hardware, menu setup, staff training</td>
+<td>Service disruption, order errors</td>
+</tr>
+<tr class="even">
+<td>Construction / Engineering</td>
+<td>BIM / CDE</td>
+<td>Platform configuration and adoption rollout</td>
+<td>2–10 months</td>
+<td>Project templates, standards, user onboarding</td>
+<td>Low adoption, fragmented data</td>
+</tr>
+<tr class="odd">
+<td>Construction / Capital Projects</td>
+<td>Project Controls</td>
+<td>Process-led deployment</td>
+<td>3–9 months</td>
+<td>Coding structures, reporting, governance adoption</td>
+<td>Weak reporting, poor schedule control</td>
+</tr>
+<tr class="even">
+<td>Construction / Engineering</td>
+<td>Construction Management Systems</td>
+<td>Site and project rollout</td>
+<td>3–12 months</td>
+<td>Forms, workflows, mobile adoption, integration</td>
+<td>Low field usage, incomplete records</td>
+</tr>
+<tr class="odd">
+<td>Real Estate</td>
+<td>Property Management System</td>
+<td>Package-led operational rollout</td>
+<td>3–9 months</td>
+<td>Lease migration, finance interfaces, workflow change</td>
+<td>Billing issues, incomplete tenancy data</td>
+</tr>
+<tr class="even">
+<td>Education</td>
+<td>SIS</td>
+<td>Academic-cycle-driven rollout</td>
+<td>4–12 months</td>
+<td>Student data, timetabling, enrolment cycles</td>
+<td>Enrolment disruption, data errors</td>
+</tr>
+<tr class="odd">
+<td>Education</td>
+<td>LMS / VLE</td>
+<td>Agile or phased rollout</td>
+<td>2–6 months</td>
+<td>Course migration, SSO, faculty adoption</td>
+<td>Poor adoption, learner disruption</td>
+</tr>
+<tr class="even">
+<td>Government / Public Safety</td>
+<td>CAD</td>
+<td>Mission-critical phased deployment</td>
+<td>6–18 months</td>
+<td>Integration, operational readiness, resilience testing</td>
+<td>Dispatch disruption, public safety risk</td>
+</tr>
+<tr class="odd">
+<td>Government / Public Safety</td>
+<td>RMS</td>
+<td>Records transformation</td>
+<td>6–15 months</td>
+<td>Data conversion, evidential integrity, workflow alignment</td>
+<td>Compliance issues, case handling delays</td>
+</tr>
+<tr class="even">
+<td>Government / Tax</td>
+<td>Tax and Revenue Systems</td>
+<td>Large business-rule transformation</td>
+<td>9–24 months</td>
+<td>Rules complexity, migration, integration</td>
+<td>Collection failures, public dissatisfaction</td>
+</tr>
+<tr class="odd">
+<td>Justice / Courts</td>
+<td>Case Management</td>
+<td>Process-led controlled rollout</td>
+<td>6–18 months</td>
+<td>Legal workflows, data migration, user readiness</td>
+<td>Case delays, record integrity issues</td>
+</tr>
+<tr class="even">
+<td>Media / Broadcast</td>
+<td>MAM</td>
+<td>Technical workflow rollout</td>
+<td>4–12 months</td>
+<td>Storage, metadata, production integration</td>
+<td>Asset loss, workflow disruption</td>
+</tr>
+<tr class="odd">
+<td>Media / Broadcast</td>
+<td>Newsroom Systems</td>
+<td>Operationally timed rollout</td>
+<td>3–9 months</td>
+<td>Rundown workflows, newsroom adoption, integrations</td>
+<td>On-air disruption, adoption failure</td>
+</tr>
+<tr class="even">
+<td>Agriculture</td>
+<td>Farm Management Systems</td>
+<td>Seasonal operational rollout</td>
+<td>2–6 months</td>
+<td>Machine telemetry, planning data, farmer adoption</td>
+<td>Low utilisation, data inconsistency</td>
+</tr>
+<tr class="odd">
+<td>Agriculture</td>
+<td>Precision Ag Platforms</td>
+<td>Technical deployment with field integration</td>
+<td>3–8 months</td>
+<td>Sensor connectivity, machine compatibility, data quality</td>
+<td>Weak insights, unreliable telemetry</td>
+</tr>
+<tr class="even">
+<td>Legal</td>
+<td>Practice / Matter Management</td>
+<td>Workflow-led package rollout</td>
+<td>3–9 months</td>
+<td>Matter migration, billing rules, user habits</td>
+<td>Poor adoption, billing disruption</td>
+</tr>
+<tr class="odd">
+<td>Professional Services</td>
+<td>PSA</td>
+<td>Package-led services transformation</td>
+<td>3–9 months</td>
+<td>Resource structures, timesheets, billing integration</td>
+<td>Low utilisation visibility, invoicing issues</td>
+</tr>
+<tr class="even">
+<td>Energy Trading</td>
+<td>ETRM / CTRM</td>
+<td>High-control trading platform rollout</td>
+<td>6–18 months</td>
+<td>Market interfaces, controls, reporting, migration</td>
+<td>Financial exposure, reporting defects</td>
+</tr>
+<tr class="odd">
+<td>Automotive</td>
+<td>Dealer Management System</td>
+<td>Multi-site rollout</td>
+<td>3–9 months</td>
+<td>Dealer templates, finance and parts integration</td>
+<td>Sales/service disruption</td>
+</tr>
+<tr class="even">
+<td>Automotive</td>
+<td>Automotive PLM / ALM</td>
+<td>Engineering-led deployment</td>
+<td>6–18 months</td>
+<td>Product structures, supplier collaboration, tool integration</td>
+<td>Poor engineering data integrity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="typical-duration-by-methodology-style" class="level2">
+<h2 class="anchored" data-anchor-id="typical-duration-by-methodology-style">Typical Duration by Methodology Style</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 38%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methodology Style</th>
+<th style="text-align: right;">Typical Duration</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SaaS package configuration</td>
+<td style="text-align: right;">2–6 months</td>
+<td>Usually faster where standard processes are adopted</td>
+</tr>
+<tr class="even">
+<td>Package-led transformation</td>
+<td style="text-align: right;">6–18 months</td>
+<td>Common for ERP, insurance, lending, merchandising</td>
+</tr>
+<tr class="odd">
+<td>Engineering and commissioning lifecycle</td>
+<td style="text-align: right;">6–24 months</td>
+<td>Common for SCADA, DCS, utility and OT systems</td>
+</tr>
+<tr class="even">
+<td>Validation-heavy regulated rollout</td>
+<td style="text-align: right;">6–18 months</td>
+<td>Common for LIMS, CTMS, regulated manufacturing</td>
+</tr>
+<tr class="odd">
+<td>Multi-site template and wave rollout</td>
+<td style="text-align: right;">6–24 months</td>
+<td>Common for POS, PMS, WMS, branch or site deployments</td>
+</tr>
+<tr class="even">
+<td>Major enterprise transformation</td>
+<td style="text-align: right;">18–48+ months</td>
+<td>Common for core banking, EHR, BSS/OSS, PSS</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-some-projects-finish-faster-than-others" class="level2">
+<h2 class="anchored" data-anchor-id="why-some-projects-finish-faster-than-others">Why Some Projects Finish Faster Than Others</h2>
+<p>Vendor case studies sometimes refer to implementations in three to six months. These are usually associated with one or more of the following conditions:</p>
+<ul>
+<li>narrow scope</li>
+<li>minimal customisation</li>
+<li>strong template reuse</li>
+<li>lower migration complexity</li>
+<li>limited site count</li>
+<li>low regulatory burden</li>
+<li>experienced implementation partner</li>
+<li>strong executive sponsorship and business availability</li>
+</ul>
+<p>By contrast, the longest programmes usually involve:</p>
+<ul>
+<li>large legacy estates</li>
+<li>many interfaces</li>
+<li>poor master data quality</li>
+<li>high customisation</li>
+<li>multiple geographies</li>
+<li>difficult cutover windows</li>
+<li>major operating model change</li>
+<li>extensive validation or assurance obligations</li>
+</ul>
+</section>
+<section id="practical-estimation-heuristic" class="level2">
+<h2 class="anchored" data-anchor-id="practical-estimation-heuristic">Practical Estimation Heuristic</h2>
+<p>A practical early-stage formula is:</p>
+<blockquote class="blockquote">
+<p><strong>Estimated Duration = Base Duration x Complexity Factors</strong></p>
+</blockquote>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Assume a WMS starts with a base of <strong>6 months</strong>.</p>
+<p>Add complexity:</p>
+<ul>
+<li>three warehouses: <strong>+30%</strong></li>
+<li>ERP and carrier integrations: <strong>+25%</strong></li>
+<li>handheld device rollout: <strong>+10%</strong></li>
+<li>large inventory migration: <strong>+20%</strong></li>
+</ul>
+<p>Result:</p>
+<ul>
+<li>6 months x 1.85 = <strong>approximately 11 months</strong></li>
+</ul>
+<p>This is not mathematically exact, but it is a useful planning approach for portfolio discussions.</p>
+</section>
+</section>
+<section id="fastest-and-slowest-categories" class="level2">
+<h2 class="anchored" data-anchor-id="fastest-and-slowest-categories">Fastest and Slowest Categories</h2>
+<section id="usually-faster" class="level3">
+<h3 class="anchored" data-anchor-id="usually-faster">Usually faster</h3>
+<ul>
+<li>LMS / VLE</li>
+<li>restaurant POS</li>
+<li>hotel PMS</li>
+<li>BIM / CDE</li>
+<li>smaller ecommerce platforms</li>
+<li>focused departmental systems</li>
+</ul>
+</section>
+<section id="usually-medium" class="level3">
+<h3 class="anchored" data-anchor-id="usually-medium">Usually medium</h3>
+<ul>
+<li>WMS</li>
+<li>TMS</li>
+<li>PACS</li>
+<li>LIS</li>
+<li>merchandising platforms</li>
+<li>legal and PSA platforms</li>
+<li>MES at a single site</li>
+</ul>
+</section>
+<section id="usually-longest" class="level3">
+<h3 class="anchored" data-anchor-id="usually-longest">Usually longest</h3>
+<ul>
+<li>core banking replacement</li>
+<li>enterprise EHR</li>
+<li>telecom BSS / OSS</li>
+<li>airline PSS</li>
+<li>large utility operational platforms</li>
+<li>multi-site SCADA / DCS programmes</li>
+</ul>
+</section>
+</section>
+<section id="planning-guidance" class="level2">
+<h2 class="anchored" data-anchor-id="planning-guidance">Planning Guidance</h2>
+<p>When estimating implementation time, it is useful to create at least three scenarios:</p>
+<ul>
+<li><strong>optimistic</strong></li>
+<li><strong>most likely</strong></li>
+<li><strong>high complexity</strong></li>
+</ul>
+<p>A robust planning model should also separate:</p>
+<ul>
+<li>design and mobilisation</li>
+<li>build and configuration</li>
+<li>migration and integration</li>
+<li>testing</li>
+<li>training and readiness</li>
+<li>cutover</li>
+<li>hypercare and stabilisation</li>
+</ul>
+<p>This makes it easier to communicate which part of the timeline is technical effort and which part is operational readiness.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Implementation time for specialist systems should always be estimated as a <strong>range</strong>, not a single number.</p>
+<p>The best predictor is not only the product itself, but also:</p>
+<ul>
+<li>system class</li>
+<li>delivery method</li>
+<li>number of sites</li>
+<li>migration complexity</li>
+<li>integration footprint</li>
+<li>operational criticality</li>
+<li>regulatory burden</li>
+<li>business readiness</li>
+</ul>
+<p>As a result, a relatively small package implementation may take only a few months, while a large operational transformation programme may run for several years.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Oracle describes ERP implementation as a substantial, multi-step process including configuration, migration, testing, training, and go-live planning.<span class="citation" data-cites="oracle_erp_impl">[@oracle_erp_impl]</span> SAP positions SAP Activate as a structured implementation framework for SAP transformations.<span class="citation" data-cites="sap_activate">[@sap_activate]</span> Guidewire describes accelerated implementations and cloud transformation approaches that can shorten delivery where scope is controlled.<span class="citation" data-cites="guidewire_bolt">[@guidewire_bolt]</span> Engineering-led industrial implementations commonly include testing and commissioning patterns such as factory acceptance testing and site acceptance testing.<span class="citation" data-cites="siemens_commissioning">[@siemens_commissioning]</span></p>
+<div id="refs" role="list">
+
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

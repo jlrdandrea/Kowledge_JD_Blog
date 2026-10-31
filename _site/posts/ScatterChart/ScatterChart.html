@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-10-12">
+<meta name="description" content="A step-by-step guide to building scatter plots from basic to advanced, perfect for exploring relationships between variables">
+
+<title>Scatter Plots with ggplot2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.11.0/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#chart-1-basic-scatter-plot" id="toc-chart-1-basic-scatter-plot" class="nav-link" data-scroll-target="#chart-1-basic-scatter-plot">Chart 1: Basic Scatter Plot</a>
+  <ul class="collapse">
+  <li><a href="#code-explanation" id="toc-code-explanation" class="nav-link" data-scroll-target="#code-explanation">Code Explanation</a></li>
+  </ul></li>
+  <li><a href="#chart-2-intermediate-enhancement" id="toc-chart-2-intermediate-enhancement" class="nav-link" data-scroll-target="#chart-2-intermediate-enhancement">Chart 2: Intermediate Enhancement</a>
+  <ul class="collapse">
+  <li><a href="#code-explanation-1" id="toc-code-explanation-1" class="nav-link" data-scroll-target="#code-explanation-1">Code Explanation</a></li>
+  </ul></li>
+  <li><a href="#chart-3-advanced-visualization" id="toc-chart-3-advanced-visualization" class="nav-link" data-scroll-target="#chart-3-advanced-visualization">Chart 3: Advanced Visualization</a>
+  <ul class="collapse">
+  <li><a href="#code-explanation-2" id="toc-code-explanation-2" class="nav-link" data-scroll-target="#code-explanation-2">Code Explanation</a></li>
+  </ul></li>
+  <li><a href="#comparison-all-three-charts" id="toc-comparison-all-three-charts" class="nav-link" data-scroll-target="#comparison-all-three-charts">Comparison: All Three Charts</a></li>
+  <li><a href="#scatter-plot-variations" id="toc-scatter-plot-variations" class="nav-link" data-scroll-target="#scatter-plot-variations">Scatter Plot Variations</a></li>
+  <li><a href="#when-to-use-scatter-plots" id="toc-when-to-use-scatter-plots" class="nav-link" data-scroll-target="#when-to-use-scatter-plots">When to Use Scatter Plots</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#common-mistakes-to-avoid" id="toc-common-mistakes-to-avoid" class="nav-link" data-scroll-target="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+  <li><a href="#advanced-interactive-scatter-with-plotly" id="toc-advanced-interactive-scatter-with-plotly" class="nav-link" data-scroll-target="#advanced-interactive-scatter-with-plotly">Advanced: Interactive Scatter with Plotly</a></li>
+  <li><a href="#correlation-matrix-scatter-plot" id="toc-correlation-matrix-scatter-plot" class="nav-link" data-scroll-target="#correlation-matrix-scatter-plot">Correlation Matrix Scatter Plot</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Scatter Plots with ggplot2</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">Data Visualization</div>
+    <div class="quarto-category">Scatter Plot</div>
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A step-by-step guide to building scatter plots from basic to advanced, perfect for exploring relationships between variables
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joao Luiz D’Andrea </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Scatter plots are fundamental for exploring relationships between two continuous variables. They reveal correlations, patterns, clusters, and outliers that other visualizations might miss. In this tutorial, we’ll create increasingly sophisticated scatter plots using <code>ggplot2</code>.</p>
+<p>We’ll explore the relationship between engine size and fuel efficiency using the <code>mpg</code> dataset, uncovering patterns across different vehicle types.</p>
+<div class="info callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>What Makes Scatter Plots Powerful:</strong></p>
+<p>Scatter plots excel at: - Revealing correlations between variables - Identifying outliers and anomalies - Showing clusters and groups in data - Displaying distributions in two dimensions - Exploring non-linear relationships - Incorporating multiple variables through color, size, and shape</p>
+</div>
+</div>
+</div>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>First, let’s load the required packages and prepare our data:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      <span class="co"># Includes ggplot2, dplyr, and other essential packages</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)         <span class="co"># For formatting</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)        <span class="co"># For smart label placement</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the data: we'll use the mpg dataset</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_scatter <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create cleaner labels</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">manufacturer =</span> <span class="fu">str_to_title</span>(manufacturer),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate efficiency ratio</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">efficiency_ratio =</span> hwy <span class="sc">/</span> cty</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the data</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_scatter)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
+  &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
+2 Audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
+3 Audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
+4 Audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
+5 Audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
+6 Audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…
+# ℹ 1 more variable: efficiency_ratio &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="chart-1-basic-scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="chart-1-basic-scatter-plot">Chart 1: Basic Scatter Plot</h2>
+<p>Let’s start with a simple scatter plot showing the relationship between engine size and fuel efficiency.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()                                      <span class="co"># Create scatter plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ScatterChart_files/figure-html/chart-basic-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="code-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="code-explanation">Code Explanation</h3>
+<p><strong>Line 1:</strong> <code>ggplot(data_scatter, aes(x = displ, y = hwy))</code> - Maps engine displacement (size in liters) to the x-axis and highway fuel efficiency (mpg) to the y-axis</p>
+<p><strong>Line 2:</strong> <code>geom_point()</code> - Creates the scatter plot by drawing a point for each observation</p>
+<div class="highlight-box info">
+<p><strong>What we have so far:</strong> A functional scatter plot showing a clear negative relationship (larger engines = lower efficiency), but it lacks context, colors, trend lines, and proper labeling. All points look identical, missing opportunities to show additional variables.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="chart-2-intermediate-enhancement" class="level2">
+<h2 class="anchored" data-anchor-id="chart-2-intermediate-enhancement">Chart 2: Intermediate Enhancement</h2>
+<p>Now we’ll add colors, trend line, better styling, and multiple visual encodings.</p>
+<div class="highlight-box warning">
+<p><strong>What we’re adding in this evolution:</strong></p>
+<ul>
+<li><strong>Color by category</strong> showing different vehicle classes</li>
+<li><strong>Trend line</strong> with confidence interval showing the relationship</li>
+<li><strong>Point size variation</strong> based on number of cylinders</li>
+<li><strong>Transparency</strong> to see overlapping points</li>
+<li><strong>Better axis labels</strong> with units</li>
+<li><strong>Custom color palette</strong> that’s meaningful</li>
+<li><strong>Legend improvements</strong> with clear labels</li>
+<li><strong>Grid styling</strong> for easier value reading</li>
+<li><strong>Title and context</strong> explaining the visualization</li>
+</ul>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class, <span class="at">size =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>                         <span class="co"># Semi-transparent points</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>),                                 <span class="co"># Single trend line for all data</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,                                  <span class="co"># Linear model</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">TRUE</span>,                                      <span class="co"># Show confidence interval</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#2C3E50"</span>,                             <span class="co"># Dark gray for trend line</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#E9ECEF"</span>,                              <span class="co"># Light gray for CI</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">"L"</span>)            <span class="co"># Add "L" for liters</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">45</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">" mpg"</span>)         <span class="co"># Add "mpg" units</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Vehicle Class"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">8</span>),                               <span class="co"># Point size range</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Cylinders"</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Engine Size vs. Fuel Efficiency"</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Larger engines generally have lower fuel efficiency across all vehicle classes"</span>,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Engine Displacement (Liters)"</span>,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Highway Fuel Efficiency"</span>,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data: EPA fuel economy dataset | Each point represents one vehicle model"</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">8</span>)),</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">color =</span> <span class="st">"#5A6C7D"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">15</span>)),</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">color =</span> <span class="st">"#6C757D"</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#E9ECEF"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ScatterChart_files/figure-html/chart-intermediate-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="code-explanation-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-explanation-1">Code Explanation</h3>
+<p><strong>Line 1:</strong> <code>aes(x = displ, y = hwy, color = class, size = cyl)</code> - Maps four variables: engine size (x), fuel efficiency (y), vehicle class (color), and cylinders (point size)</p>
+<p><strong>Line 2:</strong> <code>geom_point(alpha = 0.7)</code> - Creates semi-transparent points so overlapping observations are visible</p>
+<p><strong>Lines 3-11:</strong> <code>geom_smooth()</code> adds a linear regression trend line with confidence interval (shaded area), using a single line for all data points regardless of class</p>
+<p><strong>Lines 12-20:</strong> Formats both axes with appropriate breaks and adds units (“L” for liters, “mpg” for miles per gallon)</p>
+<p><strong>Lines 21-31:</strong> <code>scale_color_manual()</code> assigns meaningful colors to each vehicle class for easy identification</p>
+<p><strong>Lines 32-35:</strong> <code>scale_size_continuous()</code> maps cylinder count to point size, with range from 2 to 8 pixels</p>
+<p><strong>Lines 36-42:</strong> Comprehensive labeling explaining the relationship and providing data context</p>
+<p><strong>Lines 43-55:</strong> Theme customization with centered titles, right-side legend, and subtle gridlines</p>
+<div class="highlight-box success">
+<p><strong>What we have now:</strong> A much more informative scatter plot encoding four variables (x, y, color, size) simultaneously. The trend line reveals the overall negative correlation, while colors show that this pattern holds across all vehicle classes. Point sizes add another dimension showing engine complexity. The professional styling makes it suitable for reports.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="chart-3-advanced-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="chart-3-advanced-visualization">Chart 3: Advanced Visualization</h2>
+<p>Let’s create a publication-ready scatter plot with statistical annotations, labeled outliers, faceting, and sophisticated styling.</p>
+<div class="highlight-box warning">
+<p><strong>What we’re adding in this final evolution:</strong></p>
+<ul>
+<li><strong>Correlation coefficient</strong> displayed on the plot</li>
+<li><strong>Labeled outliers</strong> identifying exceptional vehicles</li>
+<li><strong>Faceted view</strong> by vehicle class for detailed comparison</li>
+<li><strong>Class-specific trend lines</strong> showing patterns within groups</li>
+<li><strong>Statistical annotations</strong> (R², equation)</li>
+<li><strong>Highlighted regions</strong> (e.g., “efficient zone”)</li>
+<li><strong>Data insights</strong> in subtitle with specific findings</li>
+<li><strong>Enhanced typography</strong> and professional layout</li>
+<li><strong>Interactive legends</strong> with sample counts</li>
+</ul>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation for annotation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>overall_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(data_scatter<span class="sc">$</span>displ, data_scatter<span class="sc">$</span>hwy)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify outliers (vehicles with exceptional efficiency for their engine size)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>model_baseline <span class="ot">&lt;-</span> <span class="fu">lm</span>(hwy <span class="sc">~</span> displ, <span class="at">data =</span> data_scatter)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data_scatter <span class="ot">&lt;-</span> data_scatter <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">predict</span>(model_baseline),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">residual =</span> hwy <span class="sc">-</span> predicted,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_outlier =</span> <span class="fu">abs</span>(residual) <span class="sc">&gt;</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">sd</span>(residual)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Get outliers for labeling</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data_scatter <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_outlier) <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(residual)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate R-squared for annotation</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>r_squared <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_baseline)<span class="sc">$</span>r.squared</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stats by class for legend</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>class_stats <span class="ot">&lt;-</span> data_scatter <span class="sc">%&gt;%</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">cor =</span> <span class="fu">cor</span>(displ, hwy)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">class_label =</span> <span class="fu">paste0</span>(<span class="fu">str_to_title</span>(class), <span class="st">" (n="</span>, n, <span class="st">")"</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Join stats back to main data</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>data_scatter <span class="ot">&lt;-</span> data_scatter <span class="sc">%&gt;%</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(class_stats, <span class="at">by =</span> <span class="st">"class"</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add efficiency zones (shaded background)</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>,</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="dv">30</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#52A675"</span>,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">6.5</span>, <span class="at">y =</span> <span class="dv">42</span>,</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"High Efficiency Zone"</span>,</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">3.5</span>,</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#52A675"</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add points colored by class</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> class),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add smooth trend lines per class</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> class, <span class="at">fill =</span> class),</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.15</span>,</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Highlight outliers with larger points</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy),</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">stroke =</span> <span class="dv">2</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Label outliers</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(manufacturer, <span class="st">" "</span>, model)),</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">box.padding =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">point.padding =</span> <span class="fl">0.3</span>,</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">segment.color =</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">segment.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">max.overlaps =</span> <span class="dv">10</span>,</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">min.segment.length =</span> <span class="dv">0</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add overall correlation annotation</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="dv">15</span>,</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Overall Correlation: r = "</span>, <span class="fu">round</span>(overall_cor, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>      <span class="st">"R² = "</span>, <span class="fu">round</span>(r_squared, <span class="dv">3</span>)</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">4</span>,</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#2C3E50"</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">"L"</span>),</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.05</span>))</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">45</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">" mpg"</span>),</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">45</span>)</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>      <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>,</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>      <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>,</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>      <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>,</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>      <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>,</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>      <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> class_stats<span class="sc">$</span>class_label,              <span class="co"># Use labels with counts</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Vehicle Class"</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>      <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>,</span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>      <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>,</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>      <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>,</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>      <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>,</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>      <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> class_stats<span class="sc">$</span>class_label,</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Vehicle Class"</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"The Engine Size-Efficiency Trade-off: Strong Negative Correlation Across All Vehicle Classes"</span>,</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Analysis of 234 vehicles reveals r = "</span>, <span class="fu">round</span>(overall_cor, <span class="dv">2</span>), </span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>      <span class="st">" correlation | Each 1L increase in engine size reduces efficiency by ~6 mpg</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Outliers highlighted in red show exceptional performers (e.g., VW Jetta diesel models)"</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Engine Displacement (Liters)"</span>,</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Highway Fuel Efficiency (MPG)"</span>,</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data source: EPA fuel economy data (1999-2008) | 234 vehicle models across 7 classes</span><span class="sc">\n</span><span class="st">Trend lines show class-specific patterns | Shaded regions represent 95% confidence intervals | Visualization: Your Name"</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Title styling</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>,</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>),</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#2C3E50"</span>,</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>      <span class="at">lineheight =</span> <span class="fl">1.2</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subtitle with insights</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">11</span>,</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#5A6C7D"</span>,</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>),</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>      <span class="at">lineheight =</span> <span class="fl">1.3</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Caption</span></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(</span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">9</span>,</span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#6C757D"</span>,</span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">20</span>),</span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>      <span class="at">lineheight =</span> <span class="fl">1.2</span></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Axis styling</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>)),</span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"#2C3E50"</span>),</span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Legend styling</span></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">8</span>)),</span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>),</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>),</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Grid styling</span></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#E9ECEF"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>),</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Overall plot styling</span></span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>)</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ScatterChart_files/figure-html/chart-advanced-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="code-explanation-2" class="level3">
+<h3 class="anchored" data-anchor-id="code-explanation-2">Code Explanation</h3>
+<p><strong>Lines 2-3:</strong> Calculates the Pearson correlation coefficient between engine size and fuel efficiency for the entire dataset</p>
+<p><strong>Lines 5-12:</strong> Identifies outliers using linear regression residuals - points that deviate more than 1.5 standard deviations from the predicted values</p>
+<p><strong>Lines 14-18:</strong> Extracts the top 5 positive outliers (vehicles with better-than-expected efficiency) for labeling</p>
+<p><strong>Line 21:</strong> Calculates R-squared value showing how much variance is explained by the model</p>
+<p><strong>Lines 23-32:</strong> Computes statistics by vehicle class including sample size and correlation, creates labels with counts for the legend</p>
+<p><strong>Lines 39-50:</strong> <code>annotate("rect")</code> creates a shaded “high efficiency zone” highlighting vehicles above 30 mpg</p>
+<p><strong>Lines 57-62:</strong> Main scatter plot points colored by vehicle class with moderate transparency</p>
+<p><strong>Lines 64-71:</strong> <code>geom_smooth()</code> adds class-specific trend lines with confidence intervals, showing how the relationship varies by vehicle type</p>
+<p><strong>Lines 73-81:</strong> Highlights outliers with larger hollow circles in red for emphasis</p>
+<p><strong>Lines 83-95:</strong> <code>geom_label_repel()</code> from ggrepel package intelligently places labels for outliers, avoiding overlaps</p>
+<p><strong>Lines 97-107:</strong> Text annotation displaying overall correlation and R-squared statistics</p>
+<p><strong>Lines 132-144:</strong> Custom color scales with legend labels including sample sizes (e.g., “Compact (n=47)”)</p>
+<p><strong>Lines 146-152:</strong> Data-driven title and subtitle with specific statistical findings and interpretation</p>
+<p><strong>Lines 158-209:</strong> Comprehensive theme customization with left-aligned text, detailed legend, and professional spacing</p>
+<div class="highlight-box success">
+<p><strong>Final result:</strong> A publication-ready scatter plot that tells a complete analytical story. The visualization reveals not just the overall negative correlation (r = -0.77), but also shows class-specific patterns through separate trend lines. Outliers are identified and labeled, providing actionable insights about exceptional performers. The “high efficiency zone” provides context, while statistical annotations add credibility. Suitable for academic papers, executive reports, or technical presentations.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="comparison-all-three-charts" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-all-three-charts">Comparison: All Three Charts</h2>
+<p>Here’s how our scatter plots evolved:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Basic</th>
+<th>Intermediate</th>
+<th>Advanced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Variables Shown</strong></td>
+<td>2 (x, y)</td>
+<td>4 (x, y, color, size)</td>
+<td>6 (x, y, color, trend, outliers, zones)</td>
+</tr>
+<tr class="even">
+<td><strong>Statistical Info</strong></td>
+<td>None</td>
+<td>Trend line + CI</td>
+<td>Correlation, R², equation, outliers</td>
+</tr>
+<tr class="odd">
+<td><strong>Context</strong></td>
+<td>None</td>
+<td>Basic labels</td>
+<td>Rich insights + annotations</td>
+</tr>
+<tr class="even">
+<td><strong>Trend Lines</strong></td>
+<td>None</td>
+<td>One overall</td>
+<td>Class-specific (7 lines)</td>
+</tr>
+<tr class="odd">
+<td><strong>Outliers</strong></td>
+<td>Hidden</td>
+<td>Visible</td>
+<td>Highlighted + labeled</td>
+</tr>
+<tr class="even">
+<td><strong>Professional Use</strong></td>
+<td>Not recommended</td>
+<td>Acceptable</td>
+<td>Publication-ready</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="scatter-plot-variations" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot-variations">Scatter Plot Variations</h2>
+<p>Different techniques for different analytical needs:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Basic scatter with marginal distributions</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>p1_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>, <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>, <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>, <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>, <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span>)) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"With Marginal Distributions"</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggMarginal</span>(p1_base, <span class="at">type =</span> <span class="st">"density"</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Faceted by category</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#2C3E50"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>, <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>, </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>, <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>, <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>, <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span>)) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Faceted by Vehicle Class"</span>) <span class="sc">+</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. With size encoding (bubble chart)</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">size =</span> cyl, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>, <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>, </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>, <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>, <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>, <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span>)) <span class="sc">+</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bubble Chart (Size = Cylinders)"</span>) <span class="sc">+</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>))</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Hexagonal binning for large datasets</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">name =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Hexagonal Binning (Density)"</span>) <span class="sc">+</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: p1 is already a complete plot from ggMarginal, can't use patchwork with it</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co"># So we'll create a layout without p1</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">/</span> (p3 <span class="sc">|</span> p4) <span class="sc">+</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Scatter Plot Variations for Different Analytical Needs"</span>,</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Display marginal plot separately</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ScatterChart_files/figure-html/variations-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="note callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Variation Descriptions:</strong></p>
+<ul>
+<li><strong>Marginal Distributions</strong>: Shows density plots on margins; great for seeing x and y distributions</li>
+<li><strong>Faceted</strong>: Separate panels by category; easier to see patterns within groups</li>
+<li><strong>Bubble Chart</strong>: Third variable encoded as size; good for 3-4 continuous variables</li>
+<li><strong>Hexagonal Binning</strong>: Groups points into hexagons; essential for very large datasets (1000+ points)</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="when-to-use-scatter-plots" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-scatter-plots">When to Use Scatter Plots</h2>
+<div class="info callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Scatter Plots Work Well When:</strong></p>
+<p>✅ <strong>Exploring relationships</strong> - Perfect for correlation analysis between two continuous variables</p>
+<p>✅ <strong>Identifying patterns</strong> - Reveals linear, non-linear, or no relationship</p>
+<p>✅ <strong>Finding outliers</strong> - Anomalies are immediately visible</p>
+<p>✅ <strong>Showing clusters</strong> - Natural groupings become apparent</p>
+<p>✅ <strong>Multiple dimensions</strong> - Can encode 4-6 variables (x, y, color, size, shape, facets)</p>
+<p>✅ <strong>Moderate sample sizes</strong> - Works well with 20-10,000 points (use binning for more)</p>
+<p><strong>Avoid Scatter Plots When:</strong></p>
+<p>❌ <strong>One variable is categorical</strong> - Use box plots or violin plots instead</p>
+<p>❌ <strong>Too many points</strong> (&gt;10,000) - Consider hexbin, contour plots, or sampling</p>
+<p>❌ <strong>Time series</strong> - Use line plots to show temporal order</p>
+<p>❌ <strong>Exact values matter</strong> - Tables are more precise</p>
+<p>❌ <strong>Comparing many categories</strong> - Faceting works, but consider alternatives</p>
+<p>❌ <strong>Showing distributions</strong> - Histograms or density plots are clearer</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<div class="tip callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Tips for Creating Better Scatter Plots:</strong></p>
+<ol type="1">
+<li><p><strong>Add transparency</strong> - Use <code>alpha = 0.5-0.8</code> to see overlapping points</p></li>
+<li><p><strong>Include trend lines</strong> - <code>geom_smooth()</code> reveals relationships; try methods: “lm”, “loess”, “gam”</p></li>
+<li><p><strong>Show uncertainty</strong> - Set <code>se = TRUE</code> in <code>geom_smooth()</code> for confidence intervals</p></li>
+<li><p><strong>Label outliers</strong> - Use <code>geom_label_repel()</code> for intelligent label placement</p></li>
+<li><p><strong>Use color meaningfully</strong> - Map to categories, not continuous variables (use size/alpha for continuous)</p></li>
+<li><p><strong>Add statistical annotations</strong> - Show correlation, R², or equation using <code>annotate()</code></p></li>
+<li><p><strong>Vary point size</strong> - Map a third variable to size for bubble charts</p></li>
+<li><p><strong>Consider jittering</strong> - <code>geom_jitter()</code> for discrete or rounded data to show density</p></li>
+<li><p><strong>Use facets for categories</strong> - Compare relationships across groups with <code>facet_wrap()</code></p></li>
+<li><p><strong>Add reference lines</strong> - Use <code>geom_hline()</code> or <code>geom_vline()</code> for thresholds</p></li>
+<li><p><strong>Mind overplotting</strong> - For many points, use hexbin (<code>geom_hex()</code>), density (<code>geom_density_2d()</code>), or sampling</p></li>
+<li><p><strong>Scale axes appropriately</strong> - Don’t force zero if it cuts off your data; but be transparent about it</p></li>
+<li><p><strong>Add marginal distributions</strong> - Use <code>ggExtra::ggMarginal()</code> to show x and y distributions</p></li>
+<li><p><strong>Highlight regions</strong> - Shade areas of interest with <code>annotate("rect")</code></p></li>
+<li><p><strong>Calculate and show correlation</strong> - Always report r or R² for linear relationships</p></li>
+<li><p><strong>Use shapes wisely</strong> - Different shapes for categories, but limit to 3-4 for readability</p></li>
+<li><p><strong>Consider log scales</strong> - For exponential relationships, try <code>scale_x_log10()</code> or <code>scale_y_log10()</code></p></li>
+<li><p><strong>Test different smooths</strong> - “loess” for local patterns, “lm” for global trends, “gam” for complex curves</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="common-mistakes-to-avoid" class="level2">
+<h2 class="anchored" data-anchor-id="common-mistakes-to-avoid">Common Mistakes to Avoid</h2>
+<div class="warning callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Scatter Plot Pitfalls:</strong></p>
+<ol type="1">
+<li><p><strong>No trend line</strong> - Missing the main analytical tool for relationships</p></li>
+<li><p><strong>Too many colors</strong> - More than 7-8 categories becomes unreadable</p></li>
+<li><p><strong>Ignoring overplotting</strong> - Thousands of points in same location look like one</p></li>
+<li><p><strong>Forcing axes to zero</strong> - Sometimes truncating is appropriate; be clear about it</p></li>
+<li><p><strong>Using lines instead of points</strong> - <code>geom_line()</code> implies ordered connections</p></li>
+<li><p><strong>Poor color choices</strong> - Similar colors make categories indistinguishable</p></li>
+<li><p><strong>No transparency</strong> - Can’t see density or overlaps</p></li>
+<li><p><strong>Missing labels</strong> - Points need context; axes need units</p></li>
+<li><p><strong>Tiny points</strong> - Too small to see; aim for 2-5 size</p></li>
+<li><p><strong>Assuming linearity</strong> - Not all relationships are linear; check with loess</p></li>
+<li><p><strong>Forgetting to check for outliers</strong> - They can distort correlations</p></li>
+<li><p><strong>No statistical annotation</strong> - Readers want to know correlation strength</p></li>
+<li><p><strong>Using 3D scatter plots</strong> - Almost always worse than 2D with color</p></li>
+<li><p><strong>Connecting unrelated points</strong> - Lines imply relationships that may not exist</p></li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="advanced-interactive-scatter-with-plotly" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-interactive-scatter-with-plotly">Advanced: Interactive Scatter with Plotly</h2>
+<p>For presentations or exploratory analysis, interactive scatter plots are powerful:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create ggplot</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_scatter, <span class="fu">aes</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> displ, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> hwy, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> class,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">paste0</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Model: "</span>, manufacturer, <span class="st">" "</span>, model, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Engine: "</span>, displ, <span class="st">"L</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Highway MPG: "</span>, hwy, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cylinders: "</span>, cyl</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"2seater"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>, <span class="st">"compact"</span> <span class="ot">=</span> <span class="st">"#2C5F8D"</span>, </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"midsize"</span> <span class="ot">=</span> <span class="st">"#52A675"</span>, <span class="st">"minivan"</span> <span class="ot">=</span> <span class="st">"#F4A261"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"pickup"</span> <span class="ot">=</span> <span class="st">"#B07AA1"</span>, <span class="st">"subcompact"</span> <span class="ot">=</span> <span class="st">"#5B9BD5"</span>, <span class="st">"suv"</span> <span class="ot">=</span> <span class="st">"#E8A87C"</span>)) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Interactive Scatter Plot: Hover for Details"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Engine Displacement (L)"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Highway MPG"</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to interactive plotly</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5a412b75a51ad39cb8a5" style="width:100%;height:454px;"></div>
+<script type="application/json" data-for="htmlwidget-5a412b75a51ad39cb8a5">{"x":{"data":[{"x":[5.7000000000000002,5.7000000000000002,6.2000000000000002,6.2000000000000002,7],"y":[26,23,26,25,24],"text":["Model: Chevrolet corvette<br />Engine: 5.7L<br />Highway MPG: 26<br />Cylinders: 8","Model: Chevrolet corvette<br />Engine: 5.7L<br />Highway MPG: 23<br />Cylinders: 8","Model: Chevrolet corvette<br />Engine: 6.2L<br />Highway MPG: 26<br />Cylinders: 8","Model: Chevrolet corvette<br />Engine: 6.2L<br />Highway MPG: 25<br />Cylinders: 8","Model: Chevrolet corvette<br />Engine: 7L<br />Highway MPG: 24<br />Cylinders: 8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,111,81,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(231,111,81,1)"}},"hoveron":"points","name":"2seater","legendgroup":"2seater","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.1000000000000001,1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.1000000000000001,3.1000000000000001,2.3999999999999999,2.3999999999999999,2.5,2.5,2.5,2.5,2.2000000000000002,2.2000000000000002,2.3999999999999999,2.3999999999999999,3,3,3.2999999999999998,1.8,1.8,1.8,1.8,1.8,2,2,2,2,2.7999999999999998,1.8999999999999999,2,2,2,2,2.5,2.5,2.7999999999999998,2.7999999999999998],"y":[29,29,31,30,26,26,27,26,25,28,27,25,25,25,25,29,27,25,27,25,27,27,29,31,31,26,26,27,30,33,35,37,35,29,26,29,29,24,44,29,26,29,29,29,29,23,24],"text":["Model: Audi a4<br />Engine: 1.8L<br />Highway MPG: 29<br />Cylinders: 4","Model: Audi a4<br />Engine: 1.8L<br />Highway MPG: 29<br />Cylinders: 4","Model: Audi a4<br />Engine: 2L<br />Highway MPG: 31<br />Cylinders: 4","Model: Audi a4<br />Engine: 2L<br />Highway MPG: 30<br />Cylinders: 4","Model: Audi a4<br />Engine: 2.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Audi a4<br />Engine: 2.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Audi a4<br />Engine: 3.1L<br />Highway MPG: 27<br />Cylinders: 6","Model: Audi a4 quattro<br />Engine: 1.8L<br />Highway MPG: 26<br />Cylinders: 4","Model: Audi a4 quattro<br />Engine: 1.8L<br />Highway MPG: 25<br />Cylinders: 4","Model: Audi a4 quattro<br />Engine: 2L<br />Highway MPG: 28<br />Cylinders: 4","Model: Audi a4 quattro<br />Engine: 2L<br />Highway MPG: 27<br />Cylinders: 4","Model: Audi a4 quattro<br />Engine: 2.8L<br />Highway MPG: 25<br />Cylinders: 6","Model: Audi a4 quattro<br />Engine: 2.8L<br />Highway MPG: 25<br />Cylinders: 6","Model: Audi a4 quattro<br />Engine: 3.1L<br />Highway MPG: 25<br />Cylinders: 6","Model: Audi a4 quattro<br />Engine: 3.1L<br />Highway MPG: 25<br />Cylinders: 6","Model: Nissan altima<br />Engine: 2.4L<br />Highway MPG: 29<br />Cylinders: 4","Model: Nissan altima<br />Engine: 2.4L<br />Highway MPG: 27<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 25<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 27<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 25<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 27<br />Cylinders: 4","Model: Toyota camry solara<br />Engine: 2.2L<br />Highway MPG: 27<br />Cylinders: 4","Model: Toyota camry solara<br />Engine: 2.2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Toyota camry solara<br />Engine: 2.4L<br />Highway MPG: 31<br />Cylinders: 4","Model: Toyota camry solara<br />Engine: 2.4L<br />Highway MPG: 31<br />Cylinders: 4","Model: Toyota camry solara<br />Engine: 3L<br />Highway MPG: 26<br />Cylinders: 6","Model: Toyota camry solara<br />Engine: 3L<br />Highway MPG: 26<br />Cylinders: 6","Model: Toyota camry solara<br />Engine: 3.3L<br />Highway MPG: 27<br />Cylinders: 6","Model: Toyota corolla<br />Engine: 1.8L<br />Highway MPG: 30<br />Cylinders: 4","Model: Toyota corolla<br />Engine: 1.8L<br />Highway MPG: 33<br />Cylinders: 4","Model: Toyota corolla<br />Engine: 1.8L<br />Highway MPG: 35<br />Cylinders: 4","Model: Toyota corolla<br />Engine: 1.8L<br />Highway MPG: 37<br />Cylinders: 4","Model: Toyota corolla<br />Engine: 1.8L<br />Highway MPG: 35<br />Cylinders: 4","Model: Volkswagen gti<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen gti<br />Engine: 2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Volkswagen gti<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen gti<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen gti<br />Engine: 2.8L<br />Highway MPG: 24<br />Cylinders: 6","Model: Volkswagen jetta<br />Engine: 1.9L<br />Highway MPG: 44<br />Cylinders: 4","Model: Volkswagen jetta<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen jetta<br />Engine: 2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Volkswagen jetta<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen jetta<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen jetta<br />Engine: 2.5L<br />Highway MPG: 29<br />Cylinders: 5","Model: Volkswagen jetta<br />Engine: 2.5L<br />Highway MPG: 29<br />Cylinders: 5","Model: Volkswagen jetta<br />Engine: 2.8L<br />Highway MPG: 23<br />Cylinders: 6","Model: Volkswagen jetta<br />Engine: 2.8L<br />Highway MPG: 24<br />Cylinders: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(44,95,141,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(44,95,141,1)"}},"hoveron":"points","name":"compact","legendgroup":"compact","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.7999999999999998,3.1000000000000001,4.2000000000000002,2.3999999999999999,2.3999999999999999,3.1000000000000001,3.5,3.6000000000000001,2.3999999999999999,2.3999999999999999,2.3999999999999999,2.3999999999999999,2.5,2.5,3.2999999999999998,2.5,2.5,3.5,3.5,3,3,3.5,3.1000000000000001,3.7999999999999998,3.7999999999999998,3.7999999999999998,5.2999999999999998,2.2000000000000002,2.2000000000000002,2.3999999999999999,2.3999999999999999,3,3,3.5,1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.6000000000000001],"y":[24,25,23,27,30,26,29,26,26,27,30,31,26,26,28,31,32,27,26,26,25,25,26,26,27,28,25,29,27,31,31,26,26,28,29,29,28,29,26,26,26],"text":["Model: Audi a6 quattro<br />Engine: 2.8L<br />Highway MPG: 24<br />Cylinders: 6","Model: Audi a6 quattro<br />Engine: 3.1L<br />Highway MPG: 25<br />Cylinders: 6","Model: Audi a6 quattro<br />Engine: 4.2L<br />Highway MPG: 23<br />Cylinders: 8","Model: Chevrolet malibu<br />Engine: 2.4L<br />Highway MPG: 27<br />Cylinders: 4","Model: Chevrolet malibu<br />Engine: 2.4L<br />Highway MPG: 30<br />Cylinders: 4","Model: Chevrolet malibu<br />Engine: 3.1L<br />Highway MPG: 26<br />Cylinders: 6","Model: Chevrolet malibu<br />Engine: 3.5L<br />Highway MPG: 29<br />Cylinders: 6","Model: Chevrolet malibu<br />Engine: 3.6L<br />Highway MPG: 26<br />Cylinders: 6","Model: Hyundai sonata<br />Engine: 2.4L<br />Highway MPG: 26<br />Cylinders: 4","Model: Hyundai sonata<br />Engine: 2.4L<br />Highway MPG: 27<br />Cylinders: 4","Model: Hyundai sonata<br />Engine: 2.4L<br />Highway MPG: 30<br />Cylinders: 4","Model: Hyundai sonata<br />Engine: 2.4L<br />Highway MPG: 31<br />Cylinders: 4","Model: Hyundai sonata<br />Engine: 2.5L<br />Highway MPG: 26<br />Cylinders: 6","Model: Hyundai sonata<br />Engine: 2.5L<br />Highway MPG: 26<br />Cylinders: 6","Model: Hyundai sonata<br />Engine: 3.3L<br />Highway MPG: 28<br />Cylinders: 6","Model: Nissan altima<br />Engine: 2.5L<br />Highway MPG: 31<br />Cylinders: 4","Model: Nissan altima<br />Engine: 2.5L<br />Highway MPG: 32<br />Cylinders: 4","Model: Nissan altima<br />Engine: 3.5L<br />Highway MPG: 27<br />Cylinders: 6","Model: Nissan altima<br />Engine: 3.5L<br />Highway MPG: 26<br />Cylinders: 6","Model: Nissan maxima<br />Engine: 3L<br />Highway MPG: 26<br />Cylinders: 6","Model: Nissan maxima<br />Engine: 3L<br />Highway MPG: 25<br />Cylinders: 6","Model: Nissan maxima<br />Engine: 3.5L<br />Highway MPG: 25<br />Cylinders: 6","Model: Pontiac grand prix<br />Engine: 3.1L<br />Highway MPG: 26<br />Cylinders: 6","Model: Pontiac grand prix<br />Engine: 3.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Pontiac grand prix<br />Engine: 3.8L<br />Highway MPG: 27<br />Cylinders: 6","Model: Pontiac grand prix<br />Engine: 3.8L<br />Highway MPG: 28<br />Cylinders: 6","Model: Pontiac grand prix<br />Engine: 5.3L<br />Highway MPG: 25<br />Cylinders: 8","Model: Toyota camry<br />Engine: 2.2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Toyota camry<br />Engine: 2.2L<br />Highway MPG: 27<br />Cylinders: 4","Model: Toyota camry<br />Engine: 2.4L<br />Highway MPG: 31<br />Cylinders: 4","Model: Toyota camry<br />Engine: 2.4L<br />Highway MPG: 31<br />Cylinders: 4","Model: Toyota camry<br />Engine: 3L<br />Highway MPG: 26<br />Cylinders: 6","Model: Toyota camry<br />Engine: 3L<br />Highway MPG: 26<br />Cylinders: 6","Model: Toyota camry<br />Engine: 3.5L<br />Highway MPG: 28<br />Cylinders: 6","Model: Volkswagen passat<br />Engine: 1.8L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen passat<br />Engine: 1.8L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen passat<br />Engine: 2L<br />Highway MPG: 28<br />Cylinders: 4","Model: Volkswagen passat<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen passat<br />Engine: 2.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Volkswagen passat<br />Engine: 2.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Volkswagen passat<br />Engine: 3.6L<br />Highway MPG: 26<br />Cylinders: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(82,166,117,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(82,166,117,1)"}},"hoveron":"points","name":"midsize","legendgroup":"midsize","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.3999999999999999,3,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.7999999999999998,3.7999999999999998,3.7999999999999998,4],"y":[24,24,22,22,24,24,17,22,21,23,23],"text":["Model: Dodge caravan 2wd<br />Engine: 2.4L<br />Highway MPG: 24<br />Cylinders: 4","Model: Dodge caravan 2wd<br />Engine: 3L<br />Highway MPG: 24<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.3L<br />Highway MPG: 22<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.3L<br />Highway MPG: 22<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.3L<br />Highway MPG: 24<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.3L<br />Highway MPG: 24<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.3L<br />Highway MPG: 17<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.8L<br />Highway MPG: 22<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.8L<br />Highway MPG: 21<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 3.8L<br />Highway MPG: 23<br />Cylinders: 6","Model: Dodge caravan 2wd<br />Engine: 4L<br />Highway MPG: 23<br />Cylinders: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(244,162,97,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(244,162,97,1)"}},"hoveron":"points","name":"minivan","legendgroup":"minivan","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.7000000000000002,3.7000000000000002,3.8999999999999999,3.8999999999999999,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.2000000000000002,5.7000000000000002,5.9000000000000004,4.2000000000000002,4.2000000000000002,4.5999999999999996,4.5999999999999996,4.5999999999999996,5.4000000000000004,5.4000000000000004,2.7000000000000002,2.7000000000000002,2.7000000000000002,3.3999999999999999,3.3999999999999999,4,4],"y":[19,18,17,17,19,19,12,17,15,16,12,17,17,16,12,15,16,17,15,17,17,16,16,17,15,17,20,20,22,17,19,18,20],"text":["Model: Dodge dakota pickup 4wd<br />Engine: 3.7L<br />Highway MPG: 19<br />Cylinders: 6","Model: Dodge dakota pickup 4wd<br />Engine: 3.7L<br />Highway MPG: 18<br />Cylinders: 6","Model: Dodge dakota pickup 4wd<br />Engine: 3.9L<br />Highway MPG: 17<br />Cylinders: 6","Model: Dodge dakota pickup 4wd<br />Engine: 3.9L<br />Highway MPG: 17<br />Cylinders: 6","Model: Dodge dakota pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 19<br />Cylinders: 8","Model: Dodge dakota pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 19<br />Cylinders: 8","Model: Dodge dakota pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 12<br />Cylinders: 8","Model: Dodge dakota pickup 4wd<br />Engine: 5.2L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge dakota pickup 4wd<br />Engine: 5.2L<br />Highway MPG: 15<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 16<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 12<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 16<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 4.7L<br />Highway MPG: 12<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 5.2L<br />Highway MPG: 15<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 5.2L<br />Highway MPG: 16<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 5.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge ram 1500 pickup 4wd<br />Engine: 5.9L<br />Highway MPG: 15<br />Cylinders: 8","Model: Ford f150 pickup 4wd<br />Engine: 4.2L<br />Highway MPG: 17<br />Cylinders: 6","Model: Ford f150 pickup 4wd<br />Engine: 4.2L<br />Highway MPG: 17<br />Cylinders: 6","Model: Ford f150 pickup 4wd<br />Engine: 4.6L<br />Highway MPG: 16<br />Cylinders: 8","Model: Ford f150 pickup 4wd<br />Engine: 4.6L<br />Highway MPG: 16<br />Cylinders: 8","Model: Ford f150 pickup 4wd<br />Engine: 4.6L<br />Highway MPG: 17<br />Cylinders: 8","Model: Ford f150 pickup 4wd<br />Engine: 5.4L<br />Highway MPG: 15<br />Cylinders: 8","Model: Ford f150 pickup 4wd<br />Engine: 5.4L<br />Highway MPG: 17<br />Cylinders: 8","Model: Toyota toyota tacoma 4wd<br />Engine: 2.7L<br />Highway MPG: 20<br />Cylinders: 4","Model: Toyota toyota tacoma 4wd<br />Engine: 2.7L<br />Highway MPG: 20<br />Cylinders: 4","Model: Toyota toyota tacoma 4wd<br />Engine: 2.7L<br />Highway MPG: 22<br />Cylinders: 4","Model: Toyota toyota tacoma 4wd<br />Engine: 3.4L<br />Highway MPG: 17<br />Cylinders: 6","Model: Toyota toyota tacoma 4wd<br />Engine: 3.4L<br />Highway MPG: 19<br />Cylinders: 6","Model: Toyota toyota tacoma 4wd<br />Engine: 4L<br />Highway MPG: 18<br />Cylinders: 6","Model: Toyota toyota tacoma 4wd<br />Engine: 4L<br />Highway MPG: 20<br />Cylinders: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(176,122,161,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(176,122,161,1)"}},"hoveron":"points","name":"pickup","legendgroup":"pickup","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.7999999999999998,3.7999999999999998,4,4,4.5999999999999996,4.5999999999999996,4.5999999999999996,4.5999999999999996,5.4000000000000004,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.8,1.8,1.8,2,2,2,2,2,2.7000000000000002,2.7000000000000002,2.7000000000000002,2.2000000000000002,2.2000000000000002,2.5,2.5,1.8999999999999999,1.8999999999999999,2,2,2.5,2.5],"y":[26,25,26,24,21,22,23,22,20,33,32,32,29,32,34,36,36,29,26,29,28,27,24,24,24,26,26,26,26,44,41,29,26,28,29],"text":["Model: Ford mustang<br />Engine: 3.8L<br />Highway MPG: 26<br />Cylinders: 6","Model: Ford mustang<br />Engine: 3.8L<br />Highway MPG: 25<br />Cylinders: 6","Model: Ford mustang<br />Engine: 4L<br />Highway MPG: 26<br />Cylinders: 6","Model: Ford mustang<br />Engine: 4L<br />Highway MPG: 24<br />Cylinders: 6","Model: Ford mustang<br />Engine: 4.6L<br />Highway MPG: 21<br />Cylinders: 8","Model: Ford mustang<br />Engine: 4.6L<br />Highway MPG: 22<br />Cylinders: 8","Model: Ford mustang<br />Engine: 4.6L<br />Highway MPG: 23<br />Cylinders: 8","Model: Ford mustang<br />Engine: 4.6L<br />Highway MPG: 22<br />Cylinders: 8","Model: Ford mustang<br />Engine: 5.4L<br />Highway MPG: 20<br />Cylinders: 8","Model: Honda civic<br />Engine: 1.6L<br />Highway MPG: 33<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.6L<br />Highway MPG: 32<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.6L<br />Highway MPG: 32<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.6L<br />Highway MPG: 29<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.6L<br />Highway MPG: 32<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.8L<br />Highway MPG: 34<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.8L<br />Highway MPG: 36<br />Cylinders: 4","Model: Honda civic<br />Engine: 1.8L<br />Highway MPG: 36<br />Cylinders: 4","Model: Honda civic<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Hyundai tiburon<br />Engine: 2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Hyundai tiburon<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Hyundai tiburon<br />Engine: 2L<br />Highway MPG: 28<br />Cylinders: 4","Model: Hyundai tiburon<br />Engine: 2L<br />Highway MPG: 27<br />Cylinders: 4","Model: Hyundai tiburon<br />Engine: 2.7L<br />Highway MPG: 24<br />Cylinders: 6","Model: Hyundai tiburon<br />Engine: 2.7L<br />Highway MPG: 24<br />Cylinders: 6","Model: Hyundai tiburon<br />Engine: 2.7L<br />Highway MPG: 24<br />Cylinders: 6","Model: Subaru impreza awd<br />Engine: 2.2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 26<br />Cylinders: 4","Model: Subaru impreza awd<br />Engine: 2.5L<br />Highway MPG: 26<br />Cylinders: 4","Model: Volkswagen new beetle<br />Engine: 1.9L<br />Highway MPG: 44<br />Cylinders: 4","Model: Volkswagen new beetle<br />Engine: 1.9L<br />Highway MPG: 41<br />Cylinders: 4","Model: Volkswagen new beetle<br />Engine: 2L<br />Highway MPG: 29<br />Cylinders: 4","Model: Volkswagen new beetle<br />Engine: 2L<br />Highway MPG: 26<br />Cylinders: 4","Model: Volkswagen new beetle<br />Engine: 2.5L<br />Highway MPG: 28<br />Cylinders: 5","Model: Volkswagen new beetle<br />Engine: 2.5L<br />Highway MPG: 29<br />Cylinders: 5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(91,155,213,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(91,155,213,1)"}},"hoveron":"points","name":"subcompact","legendgroup":"subcompact","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.2999999999999998,5.2999999999999998,5.2999999999999998,5.7000000000000002,6,5.2999999999999998,5.2999999999999998,5.7000000000000002,6.5,3.8999999999999999,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.7000000000000002,5.9000000000000004,4.5999999999999996,5.4000000000000004,5.4000000000000004,4,4,4,4,4.5999999999999996,5,3,3.7000000000000002,4,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.7000000000000002,6.0999999999999996,4,4.2000000000000002,4.4000000000000004,4.5999999999999996,5.4000000000000004,5.4000000000000004,5.4000000000000004,4,4,4.5999999999999996,5,3.2999999999999998,3.2999999999999998,4,5.5999999999999996,2.5,2.5,2.5,2.5,2.5,2.5,2.7000000000000002,2.7000000000000002,3.3999999999999999,3.3999999999999999,4,4.7000000000000002,4.7000000000000002,5.7000000000000002],"y":[20,15,20,17,17,19,14,15,17,17,17,12,17,16,18,15,17,17,18,17,19,17,19,19,17,22,19,20,17,12,19,18,14,15,18,18,15,17,16,18,17,19,19,17,17,17,20,18,25,24,27,25,26,23,20,20,19,17,20,17,15,18],"text":["Model: Chevrolet c1500 suburban 2wd<br />Engine: 5.3L<br />Highway MPG: 20<br />Cylinders: 8","Model: Chevrolet c1500 suburban 2wd<br />Engine: 5.3L<br />Highway MPG: 15<br />Cylinders: 8","Model: Chevrolet c1500 suburban 2wd<br />Engine: 5.3L<br />Highway MPG: 20<br />Cylinders: 8","Model: Chevrolet c1500 suburban 2wd<br />Engine: 5.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Chevrolet c1500 suburban 2wd<br />Engine: 6L<br />Highway MPG: 17<br />Cylinders: 8","Model: Chevrolet k1500 tahoe 4wd<br />Engine: 5.3L<br />Highway MPG: 19<br />Cylinders: 8","Model: Chevrolet k1500 tahoe 4wd<br />Engine: 5.3L<br />Highway MPG: 14<br />Cylinders: 8","Model: Chevrolet k1500 tahoe 4wd<br />Engine: 5.7L<br />Highway MPG: 15<br />Cylinders: 8","Model: Chevrolet k1500 tahoe 4wd<br />Engine: 6.5L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 3.9L<br />Highway MPG: 17<br />Cylinders: 6","Model: Dodge durango 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 4.7L<br />Highway MPG: 12<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 5.2L<br />Highway MPG: 16<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 5.7L<br />Highway MPG: 18<br />Cylinders: 8","Model: Dodge durango 4wd<br />Engine: 5.9L<br />Highway MPG: 15<br />Cylinders: 8","Model: Ford expedition 2wd<br />Engine: 4.6L<br />Highway MPG: 17<br />Cylinders: 8","Model: Ford expedition 2wd<br />Engine: 5.4L<br />Highway MPG: 17<br />Cylinders: 8","Model: Ford expedition 2wd<br />Engine: 5.4L<br />Highway MPG: 18<br />Cylinders: 8","Model: Ford explorer 4wd<br />Engine: 4L<br />Highway MPG: 17<br />Cylinders: 6","Model: Ford explorer 4wd<br />Engine: 4L<br />Highway MPG: 19<br />Cylinders: 6","Model: Ford explorer 4wd<br />Engine: 4L<br />Highway MPG: 17<br />Cylinders: 6","Model: Ford explorer 4wd<br />Engine: 4L<br />Highway MPG: 19<br />Cylinders: 6","Model: Ford explorer 4wd<br />Engine: 4.6L<br />Highway MPG: 19<br />Cylinders: 8","Model: Ford explorer 4wd<br />Engine: 5L<br />Highway MPG: 17<br />Cylinders: 8","Model: Jeep grand cherokee 4wd<br />Engine: 3L<br />Highway MPG: 22<br />Cylinders: 6","Model: Jeep grand cherokee 4wd<br />Engine: 3.7L<br />Highway MPG: 19<br />Cylinders: 6","Model: Jeep grand cherokee 4wd<br />Engine: 4L<br />Highway MPG: 20<br />Cylinders: 6","Model: Jeep grand cherokee 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Jeep grand cherokee 4wd<br />Engine: 4.7L<br />Highway MPG: 12<br />Cylinders: 8","Model: Jeep grand cherokee 4wd<br />Engine: 4.7L<br />Highway MPG: 19<br />Cylinders: 8","Model: Jeep grand cherokee 4wd<br />Engine: 5.7L<br />Highway MPG: 18<br />Cylinders: 8","Model: Jeep grand cherokee 4wd<br />Engine: 6.1L<br />Highway MPG: 14<br />Cylinders: 8","Model: Land Rover range rover<br />Engine: 4L<br />Highway MPG: 15<br />Cylinders: 8","Model: Land Rover range rover<br />Engine: 4.2L<br />Highway MPG: 18<br />Cylinders: 8","Model: Land Rover range rover<br />Engine: 4.4L<br />Highway MPG: 18<br />Cylinders: 8","Model: Land Rover range rover<br />Engine: 4.6L<br />Highway MPG: 15<br />Cylinders: 8","Model: Lincoln navigator 2wd<br />Engine: 5.4L<br />Highway MPG: 17<br />Cylinders: 8","Model: Lincoln navigator 2wd<br />Engine: 5.4L<br />Highway MPG: 16<br />Cylinders: 8","Model: Lincoln navigator 2wd<br />Engine: 5.4L<br />Highway MPG: 18<br />Cylinders: 8","Model: Mercury mountaineer 4wd<br />Engine: 4L<br />Highway MPG: 17<br />Cylinders: 6","Model: Mercury mountaineer 4wd<br />Engine: 4L<br />Highway MPG: 19<br />Cylinders: 6","Model: Mercury mountaineer 4wd<br />Engine: 4.6L<br />Highway MPG: 19<br />Cylinders: 8","Model: Mercury mountaineer 4wd<br />Engine: 5L<br />Highway MPG: 17<br />Cylinders: 8","Model: Nissan pathfinder 4wd<br />Engine: 3.3L<br />Highway MPG: 17<br />Cylinders: 6","Model: Nissan pathfinder 4wd<br />Engine: 3.3L<br />Highway MPG: 17<br />Cylinders: 6","Model: Nissan pathfinder 4wd<br />Engine: 4L<br />Highway MPG: 20<br />Cylinders: 6","Model: Nissan pathfinder 4wd<br />Engine: 5.6L<br />Highway MPG: 18<br />Cylinders: 8","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 25<br />Cylinders: 4","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 24<br />Cylinders: 4","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 27<br />Cylinders: 4","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 25<br />Cylinders: 4","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 26<br />Cylinders: 4","Model: Subaru forester awd<br />Engine: 2.5L<br />Highway MPG: 23<br />Cylinders: 4","Model: Toyota 4runner 4wd<br />Engine: 2.7L<br />Highway MPG: 20<br />Cylinders: 4","Model: Toyota 4runner 4wd<br />Engine: 2.7L<br />Highway MPG: 20<br />Cylinders: 4","Model: Toyota 4runner 4wd<br />Engine: 3.4L<br />Highway MPG: 19<br />Cylinders: 6","Model: Toyota 4runner 4wd<br />Engine: 3.4L<br />Highway MPG: 17<br />Cylinders: 6","Model: Toyota 4runner 4wd<br />Engine: 4L<br />Highway MPG: 20<br />Cylinders: 6","Model: Toyota 4runner 4wd<br />Engine: 4.7L<br />Highway MPG: 17<br />Cylinders: 8","Model: Toyota land cruiser wagon 4wd<br />Engine: 4.7L<br />Highway MPG: 15<br />Cylinders: 8","Model: Toyota land cruiser wagon 4wd<br />Engine: 5.7L<br />Highway MPG: 18<br />Cylinders: 8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(232,168,124,1)","opacity":0.69999999999999996,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(232,168,124,1)"}},"hoveron":"points","name":"suv","legendgroup":"suv","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":null,"yaxis":null,"hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Interactive Scatter Plot: Hover for Details","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342468},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.3300000000000001,7.2699999999999996],"tickmode":"array","ticktext":["2","3","4","5","6","7"],"tickvals":[2,3,4,5,6,7],"categoryorder":"array","categoryarray":["2","3","4","5","6","7"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Engine Displacement (L)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[10.4,45.600000000000001],"tickmode":"array","ticktext":["20","30","40"],"tickvals":[20,30,40],"categoryorder":"array","categoryarray":["20","30","40"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Highway MPG","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"class","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"7fa87886692b":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"7fa81464212f":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"7fa87886692b","visdat":{"7fa87886692b":["function (y) ","x"],"7fa81464212f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr>
+</section>
+<section id="correlation-matrix-scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-matrix-scatter-plot">Correlation Matrix Scatter Plot</h2>
+<p>When exploring many variables, create a pairs plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select continuous variables for correlation</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>continuous_vars <span class="ot">&lt;-</span> data_scatter <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(displ, cyl, cty, hwy)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create correlation matrix scatter plot</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  continuous_vars,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"cor"</span>, <span class="at">size =</span> <span class="dv">5</span>)),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"points"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">1</span>)),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">diag =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"densityDiag"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Correlation Matrix: All Continuous Variables"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ScatterChart_files/figure-html/pairs-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">ggplot2 Scatter Plot Documentation</a></li>
+<li><a href="https://ggrepel.slowkow.com/">ggrepel for Smart Labels</a></li>
+<li><a href="https://www.statmethods.net/stats/correlations.html">Correlation Analysis in R</a></li>
+<li><a href="https://github.com/daattali/ggExtra">ggExtra for Marginal Plots</a></li>
+<li><a href="https://www.data-to-viz.com/graph/scatter.html">When to Use Scatter Plots</a></li>
+<li><a href="https://colorbrewer2.org/">ColorBrewer for Palettes</a></li>
+</ul>
+<p>Happy scatter plotting! 📊✨</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

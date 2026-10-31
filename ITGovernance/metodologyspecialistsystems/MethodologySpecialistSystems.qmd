@@ -1,0 +1,232 @@
+---
+title: "Specialist Systems - Methodologies"
+description: "Implementation Methodologies for Specialist Systems"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: [Specialist Systems,Methodology,Project Management]
+---
+
+# Implementation Methodologies for Specialist Systems
+
+## Introduction
+
+Yes, many specialist systems have distinct implementation methodologies.
+
+In practice, these methodologies usually come from one of four sources:
+
+-   **vendor-branded methodologies**
+-   **systems integrator or partner delivery frameworks**
+-   **industry-specific engineering or validation lifecycles**
+-   **generic project delivery models** tailored to the platform, such as agile, waterfall, hybrid, or phased rollout
+
+Some products have a very explicit named methodology, while others rely on a delivery pattern shaped by the operational and regulatory context.
+
+## Key Principle
+
+The implementation approach usually depends less on the software brand alone and more on the **type of system being deployed**.
+
+For example:
+
+-   a large **ERP** platform is usually implemented through a **fit-to-standard, configuration-led method**
+-   an **industrial control system** is usually implemented through an **engineering lifecycle** with testing and commissioning
+-   a **healthcare or laboratory platform** often requires a **validation-heavy rollout**
+-   a **multi-site retail or operational platform** often uses a **template-and-wave rollout**
+
+## Named Vendor Methodologies
+
+### SAP
+
+SAP historically used **ASAP**, while its current implementation method is **SAP Activate**.
+
+SAP describes SAP Activate as a structured implementation framework combining best practices, implementation methodology, and guided configuration tools. SAP also describes six phases in the framework and positions it around fit-to-standard and clean core principles.[@sap_activate]
+
+### Oracle
+
+Oracle has long used the **Oracle Unified Method (OUM)** as its formal delivery method framework. Oracle continues to maintain OUM learning and training content, including structure, principles, and delivery readiness material.[@oracle_oum]
+
+In practice, Oracle projects may also use cloud-specific implementation approaches layered on top of OUM or aligned with product-specific delivery guidance.[@oracle_oum_training]
+
+### Guidewire
+
+Guidewire refers to **SurePath** as a guided, proven implementation approach intended to support faster and more predictable delivery. This is especially relevant in InsuranceSuite and cloud-oriented implementations, often alongside agile delivery and partner-led execution.[@guidewire_surepath; @guidewire_training]
+
+## Systems Without a Single Public Branded Method
+
+Not every specialist platform has a widely publicised branded method.
+
+Many sectors instead rely on a delivery model shaped by operational realities:
+
+-   **industrial and OT platforms** tend to use detailed engineering, FAT, SAT, commissioning, and handover
+-   **clinical and regulated systems** tend to use controlled deployment, traceability, validation, and strong change management
+-   **transport, hospitality, retail, and logistics systems** often use site templates and deployment waves
+-   **core banking and insurance systems** often combine vendor guidance, systems integrator methods, and programme-level governance
+
+## Methodology Styles by System Category
+
+| System Category | Typical Delivery Style | Common Characteristics | Named Examples |
+|------------------|------------------|------------------|------------------|
+| ERP and enterprise platforms | Fit-to-standard, configuration-led, agile or hybrid | Process design, configuration, extensions, data migration, integration, testing, training, cutover | SAP Activate, Oracle Unified Method |
+| Insurance platforms | Agile, configuration-led, partner-led | Product configuration, integration, data conversion, iterative releases, business readiness | Guidewire SurePath |
+| Core banking platforms | Package-led transformation | Product fit-gap, process standardisation, data migration, controls, phased migration | Vendor + SI methodologies |
+| Industrial control systems | Engineering lifecycle / V-model | Requirements, control philosophy, detailed design, FAT, SAT, commissioning, handover | Vendor engineering methods |
+| MES / OT manufacturing platforms | Hybrid engineering + operational rollout | Solution design, shop-floor integration, testing, commissioning, training, stabilisation | Vendor / partner methods |
+| Healthcare and laboratory systems | Validation-heavy phased rollout | Workflow design, controlled configuration, data migration, validation, training, go-live support | Vendor + clinical transformation methods |
+| Retail, hospitality, POS, WMS, TMS | Template-based rollout | Core template, localisation, pilot, wave deployment, site readiness, cutover | Vendor / partner rollout methods |
+| Airport, airline, rail, and transport systems | Programme-based operational deployment | Integration-heavy planning, operational rehearsal, training, cutover, resilience testing | Vendor + operational change methods |
+
+## Typical Phases by Methodology Type
+
+### 1. Configuration-Led Business Platform Method
+
+Typical for:
+
+-   SAP
+-   Oracle ERP
+-   Guidewire
+-   core banking
+-   insurance policy administration
+-   WMS and TMS platforms
+
+Typical phases:
+
+1.  mobilisation
+2.  discovery and fit-to-standard
+3.  solution design
+4.  configuration and extension
+5.  data migration and integration
+6.  testing
+7.  training and business readiness
+8.  cutover
+9.  hypercare and transition to support
+
+### 2. Engineering and Commissioning Method
+
+Typical for:
+
+-   SCADA
+-   DCS
+-   plant automation
+-   utility control platforms
+-   some MES deployments
+
+Typical phases:
+
+1.  requirements and control philosophy
+2.  architecture and security design
+3.  detailed engineering
+4.  build and integration
+5.  factory acceptance testing
+6.  site acceptance testing
+7.  commissioning
+8.  operational handover
+9.  optimisation and support
+
+### 3. Validation-Heavy Regulated Deployment Method
+
+Typical for:
+
+-   EHR / EMR
+-   PACS
+-   LIS / LIMS
+-   CTMS
+-   regulated pharmaceutical manufacturing systems
+
+Typical phases:
+
+1.  process and workflow assessment
+2.  requirements and traceability
+3.  controlled configuration
+4.  validation planning
+5.  data migration and interface testing
+6.  user acceptance and validation evidence
+7.  training and readiness
+8.  go-live control
+9.  stabilisation and audit support
+
+### 4. Template and Wave Rollout Method
+
+Typical for:
+
+-   POS
+-   hotel PMS
+-   SIS
+-   WMS across multiple sites
+-   restaurant platforms
+-   branch or regional operational systems
+
+Typical phases:
+
+1.  define core template
+2.  pilot implementation
+3.  localisation and site readiness
+4.  data and integration preparation
+5.  cutover by wave
+6.  post-go-live support
+7.  rollout governance and lessons learned
+
+## Why Methodology Choice Matters
+
+Choosing the wrong implementation methodology creates major delivery risk.
+
+A methodology should match:
+
+-   the **criticality** of the platform
+-   the **degree of regulation**
+-   the **level of standardisation versus customisation**
+-   the **number of deployment sites**
+-   the **data migration complexity**
+-   the **integration footprint**
+-   the **need for operational rehearsal, commissioning, or validation**
+
+For example, a SCADA deployment should not be run exactly like a SaaS HR implementation, and a hospital EHR rollout should not be treated as a simple packaged software installation.
+
+## Practical Architecture View
+
+A useful architecture classification is:
+
+| System Type | Best-Fit Methodology Logic |
+|------------------------------------|------------------------------------|
+| Transaction-heavy business platform | Fit-to-standard, process-led, configuration-first |
+| Operational control platform | Engineering-led, safety-aware, commissioning-based |
+| Regulated record platform | Validation-heavy, traceable, readiness-led |
+| Multi-site operational platform | Template-based, pilot-first, wave rollout |
+| Highly integrated legacy transformation | Hybrid programme method with phased coexistence |
+
+## Enterprise Governance Implications
+
+Implementation methodology should be aligned with governance disciplines such as:
+
+-   programme and project management
+-   architecture governance
+-   cyber security and resilience
+-   data migration governance
+-   test management
+-   operational readiness
+-   training and change management
+-   service transition and support model design
+
+This means implementation methodology is not just a project method; it is also a governance and assurance mechanism.
+
+## Conclusion
+
+Yes, there are specific methodologies for implementing specialist systems.
+
+Some are explicitly branded, such as:
+
+-   **SAP Activate**
+-   **Oracle Unified Method**
+-   **Guidewire SurePath**
+
+Others are not branded in the same way, but still follow recognisable industry-specific patterns such as:
+
+-   engineering and commissioning lifecycles
+-   validation-heavy regulated deployment
+-   template-and-wave rollouts
+-   package-led transformation methods
+
+The most useful way to analyse them is not only by vendor, but by **system class**, **risk profile**, **regulatory burden**, and **deployment model**.
+
+## References
+
+::: {#refs}
+:::

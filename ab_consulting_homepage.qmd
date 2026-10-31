@@ -1,0 +1,145 @@
+---
+title: "AB Consulting"
+format:
+  html:
+    theme: cosmo
+    toc: false
+    page-layout: full
+execute:
+  echo: false
+---
+
+::: {.hero-banner style="padding: 5rem 2rem; background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: white; border-radius: 16px; margin-bottom: 2rem;"}
+# Transforming IT into a Strategic Advantage
+
+AB Consulting helps organisations modernise technology, strengthen governance, improve delivery, and build resilient operating models.
+
+[Talk to Us](#contact){.btn .btn-light style="margin-right: 0.75rem;"} [Our Services](#services){.btn .btn-outline-light}
+:::
+
+::::: columns
+::: {.column width="58%"}
+## Trusted IT consulting for change, control, and growth
+
+We partner with business and technology leaders to design practical solutions that improve performance across strategy, governance, delivery, service management, architecture, risk, and assurance.
+
+Whether you are reshaping your operating model, improving portfolio delivery, modernising IT services, or strengthening governance, AB Consulting brings a structured, outcome-focused approach grounded in real-world delivery experience.
+
+### What we do
+
+-   Align technology initiatives to business goals
+-   Strengthen IT governance and decision-making
+-   Improve programme, project, and portfolio delivery
+-   Support architecture, service, and process transformation
+-   Reduce operational and delivery risk
+-   Enable sustainable change through practical implementation
+:::
+
+::: {.column width="42%"}
+![](https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80){fig-alt="Consultants in a modern business meeting" style="width:100%; border-radius: 14px;"}
+:::
+:::::
+
+## Why clients choose AB Consulting
+
+::::::: {.grid style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem;"}
+::: {.card style="padding: 1.25rem; border: 1px solid #e5e7eb; border-radius: 14px;"}
+### Strategic clarity
+
+We translate complex technology and governance issues into practical choices, roadmaps, and decisions.
+:::
+
+::: {.card style="padding: 1.25rem; border: 1px solid #e5e7eb; border-radius: 14px;"}
+### Delivery confidence
+
+We help organisations improve control, prioritisation, planning, and execution across change initiatives.
+:::
+
+::: {.card style="padding: 1.25rem; border: 1px solid #e5e7eb; border-radius: 14px;"}
+### Practical governance
+
+We design governance that supports delivery and accountability without creating unnecessary bureaucracy.
+:::
+
+::: {.card style="padding: 1.25rem; border: 1px solid #e5e7eb; border-radius: 14px;"}
+### Senior experience
+
+We work comfortably with executive stakeholders, PMOs, architects, operational teams, and suppliers.
+:::
+:::::::
+
+## Services {#services}
+
+::::: columns
+::: {.column width="50%"}
+### IT Governance and Operating Model
+
+We help clients define governance structures, decision forums, accountability models, policies, and management practices that connect strategy to execution.
+
+### PMO, Portfolio, Programme, and Project Delivery
+
+We improve delivery capability through portfolio prioritisation, governance design, controls, planning disciplines, reporting, and assurance.
+
+### IT Service Management and Process Improvement
+
+We review and redesign services, processes, controls, and operating practices to improve quality, responsiveness, and user experience.
+:::
+
+::: {.column width="50%"}
+### Enterprise Architecture and Transformation
+
+We support target-state design, capability mapping, roadmap development, and change alignment across business and technology domains.
+
+### Risk, Assurance, and Compliance
+
+We help organisations strengthen control environments, delivery assurance, risk visibility, and readiness for internal and external scrutiny.
+
+### Advisory for Complex Change
+
+We provide structured advisory support for leadership teams navigating transformation, recovery, supplier complexity, and organisational change.
+:::
+:::::
+
+![](https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80){fig-alt="Professional technology consulting team reviewing plans" style="width:100%; border-radius: 14px; margin: 1.5rem 0;"}
+
+## How we work
+
+1.  **Understand the context** — business goals, constraints, stakeholders, delivery realities, and current maturity.
+2.  **Define the target** — clear outcomes, practical governance, realistic priorities, and measurable improvements.
+3.  **Design the approach** — frameworks, structures, processes, roadmaps, and decision points suited to your organisation.
+4.  **Support implementation** — from advisory and design through to mobilisation, improvement, and assurance.
+
+## Industries we support
+
+We work across sectors where governance, technology, and delivery discipline matter, including financial services, telecoms, manufacturing, government, professional services, and regulated environments.
+
+## Results that matter
+
+Our focus is not theory for its own sake. We aim to help clients achieve outcomes such as:
+
+-   Better executive visibility and control
+-   Stronger alignment between business priorities and IT investment
+-   More predictable delivery performance
+-   Clearer roles, responsibilities, and decision rights
+-   Improved service quality and operational resilience
+-   Reduced delivery, control, and compliance risk
+
+## About AB Consulting
+
+AB Consulting was founded to help organisations navigate the gap between ambition and execution. We combine structured thinking with practical delivery experience to create solutions that are credible at board level and workable on the ground.
+
+We believe good consulting should be clear, useful, and implementable.
+
+## Contact {#contact}
+
+### Let’s discuss your priorities
+
+Whether you need support with IT governance, transformation, delivery improvement, architecture, or assurance, we would be glad to speak with you.
+
+-   **Email:** contact\@abconsulting.example
+-   **Phone:** +44 (0)20 0000 0000
+-   **Location:** London, United Kingdom
+
+::: callout-note
+Replace the placeholder contact details, company name, and image URLs with your real brand assets and licensed images before publishing.
+:::

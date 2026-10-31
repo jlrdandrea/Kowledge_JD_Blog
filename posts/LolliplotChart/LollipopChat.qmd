@@ -1,0 +1,488 @@
+---
+title: "Lollipop Charts with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic lollipop chart into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated lollipop charts using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Lollipop charts are excellent alternatives to bar charts when you want to emphasize individual data points while reducing visual clutter. They're particularly effective for showing rankings, comparisons, or changes over categories.
+
+We'll use a dataset representing customer satisfaction scores across different service departments.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+
+# Create sample data: customer satisfaction scores by department
+data_satisfaction <- tibble(
+  department = c("Sales", "Support", "Billing", "Technical", 
+                 "Shipping", "Returns", "Quality", "Management"),
+  score = c(78, 85, 72, 88, 80, 68, 82, 75),
+  target = 80  # Company target score
+)
+
+# Preview the data
+head(data_satisfaction)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Lollipop Chart
+
+Let's start with a simple lollipop chart showing satisfaction scores by department.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_satisfaction, aes(x = department, y = score)) +  # Set up with x and y
+  geom_segment(aes(x = department, xend = department,        # Draw vertical lines
+                   y = 0, yend = score)) +
+  geom_point(size = 4)                                       # Add points at top
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_satisfaction, aes(x = department, y = score))` - Initializes the plot with department on x-axis and satisfaction score on y-axis
+
+**Lines 2-3:** `geom_segment()` creates vertical lines from y=0 to the score value for each department
+
+**Line 4:** `geom_point()` adds circular points at the top of each line, creating the "lollipop" appearance
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic lollipop chart. The data is visible but the chart lacks color, proper ordering, context, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by reordering, adding colors, including a target line, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Reordered departments** by score for easier comparison
+-   **Color coding** to distinguish above/below target
+-   **Horizontal orientation** for better label readability
+-   **Target reference line** showing company goal
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Larger points** for better visibility
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 6
+
+# Add column for above/below target
+data_satisfaction <- data_satisfaction %>%
+  mutate(
+    performance = ifelse(score >= target, "Above Target", "Below Target"),
+    performance = factor(performance, levels = c("Above Target", "Below Target"))
+  )
+
+ggplot(data_satisfaction, aes(x = reorder(department, score), y = score, 
+                              color = performance)) +
+  # Draw segments
+  geom_segment(aes(x = reorder(department, score), 
+                   xend = reorder(department, score),
+                   y = 0, yend = score),
+               linewidth = 1.5) +
+  # Add points
+  geom_point(size = 5) +
+  # Add target reference line
+  geom_hline(yintercept = 80, linetype = "dashed", 
+             color = "gray40", linewidth = 0.8) +
+  # Flip coordinates for horizontal layout
+  coord_flip() +
+  # Apply custom colors
+  scale_color_manual(values = c("Above Target" = "#52A675", 
+                                 "Below Target" = "#E76F51")) +
+  # Format y-axis
+  scale_y_continuous(breaks = seq(0, 100, by = 20),
+                     limits = c(0, 100)) +
+  labs(
+    title = "Customer Satisfaction Scores by Department",
+    subtitle = "Dashed line shows company target (80 points)",
+    x = "Department",
+    y = "Satisfaction Score (0-100)",
+    color = "Performance"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "top"
+  )
+```
+
+### Code Explanation
+
+**Lines 2-6:** Creates a new column `performance` categorizing departments as "Above Target" or "Below Target"
+
+**Lines 8-9:** `ggplot()` with `reorder(department, score)` to sort departments by score, and `color = performance` for conditional coloring
+
+**Lines 11-15:** `geom_segment()` creates vertical lines with increased thickness (`linewidth = 1.5`)
+
+**Line 17:** `geom_point()` adds larger points (size = 5)
+
+**Lines 19-20:** `geom_hline()` adds a dashed horizontal reference line at the target score (80)
+
+**Line 22:** `coord_flip()` rotates the chart to horizontal orientation for better department name readability
+
+**Lines 24-25:** `scale_color_manual()` applies green for above target and coral for below target
+
+**Lines 27-28:** `scale_y_continuous()` sets axis breaks and limits
+
+**Lines 29-35:** `labs()` adds descriptive title, subtitle explaining the target line, and clear axis labels
+
+**Line 36:** `theme_minimal()` applies clean theme
+
+**Lines 37-40:** `theme()` customizes title and legend position
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with sorted departments, color-coded performance, and a clear target reference. The horizontal orientation and clean formatting make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, value labels, variance from target, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Variance indicators** showing distance from target
+-   **Value labels** on each point
+-   **Segment styling** from target line instead of zero
+-   **Enhanced color palette** with gradient effect
+-   **Department rankings** in labels
+-   **Summary statistics** annotation
+-   **Enhanced typography** with refined spacing
+-   **Data source caption** for proper attribution
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 8
+
+# Calculate variance from target and add rankings
+target_value <- 80  # Store target as variable
+
+data_satisfaction <- data_satisfaction %>%
+  mutate(
+    variance = score - target_value,
+    rank = rank(-score, ties.method = "first"),
+    dept_label = paste0("#", rank, " ", department)
+  )
+
+# Calculate summary statistics
+avg_score <- round(mean(data_satisfaction$score), 1)
+above_target_pct <- round(sum(data_satisfaction$score >= target_value) / 
+                          nrow(data_satisfaction) * 100, 0)
+
+# Define enhanced color palette
+perf_colors <- c("Above Target" = "#2E7D32", "Below Target" = "#C62828")
+
+ggplot(data_satisfaction, aes(x = reorder(dept_label, score), y = score)) +
+  # Draw segments from target line to score
+  geom_segment(aes(x = reorder(dept_label, score), 
+                   xend = reorder(dept_label, score),
+                   y = target_value, yend = score,
+                   color = performance),
+               linewidth = 2,
+               alpha = 0.8) +
+  # Add target reference line
+  geom_hline(yintercept = target_value, 
+             linetype = "dashed", 
+             color = "gray30", 
+             linewidth = 1) +
+  # Add points with enhanced styling
+  geom_point(aes(color = performance), 
+             size = 6,
+             alpha = 0.9) +
+  # Add value labels
+  geom_text(aes(label = score),
+            hjust = -0.5,
+            size = 3.5,
+            fontface = "bold",
+            color = "gray20") +
+  # Add variance labels
+  geom_text(aes(label = ifelse(variance >= 0, 
+                                paste0("+", variance), 
+                                as.character(variance))),
+            hjust = 1.5,
+            size = 3,
+            color = "gray40") +
+  # Flip coordinates
+  coord_flip() +
+  # Apply custom colors
+  scale_color_manual(values = perf_colors,
+                     name = "vs Target (80)") +
+  # Format x-axis (becomes y after flip)
+  scale_y_continuous(breaks = seq(0, 100, by = 10),
+                     limits = c(0, 95),
+                     expand = expansion(mult = c(0.02, 0.15))) +
+  # Add comprehensive labels
+  labs(
+    title = "Customer Satisfaction Performance: 63% of Departments Meet Target",
+    subtitle = "Technical leads with 88 points (+8 vs target) | Segments show variance from 80-point target",
+    x = NULL,
+    y = "Satisfaction Score (out of 100)",
+    caption = "Data source: Q4 2024 Customer Satisfaction Survey | n = 1,247 responses | Visualization: Your Name"
+  ) +
+  # Add summary statistics as text annotation (no box, positioned at bottom right)
+  annotate("text",
+           x = 1, y = 90,
+           label = paste0("Summary: Avg = ", avg_score, 
+                         " | Above Target = ", above_target_pct, 
+                         "% | Range = ", min(data_satisfaction$score), 
+                         "-", max(data_satisfaction$score)),
+           hjust = 0,
+           size = 3.2,
+           color = "gray30",
+           fontface = "italic") +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold",
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    axis.text.y = element_text(face = "bold"),
+    
+    # Legend styling
+    legend.position = "top",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    
+    # Grid and panel styling
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#E9ECEF", linewidth = 0.4),
+    panel.grid.minor = element_blank(),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-7:** Calculates variance from target, ranking, and creates department labels with rank numbers
+
+**Lines 10-12:** Calculates summary statistics including average score and percentage above target
+
+**Line 15:** Defines enhanced color palette with darker, more professional shades
+
+**Line 17:** `ggplot()` with reordered department labels including rankings
+
+**Lines 19-26:** `geom_segment()` creates segments that start at the target line (80) rather than zero, making variance immediately visible. Color coded by performance with increased thickness
+
+**Lines 28-31:** `geom_hline()` adds prominent target reference line
+
+**Lines 33-35:** `geom_point()` adds large colored points
+
+**Lines 37-41:** `geom_text()` adds score value labels to the right of points
+
+**Lines 43-48:** `geom_text()` adds variance labels (e.g., "+8" or "-12") to the left of points
+
+**Line 50:** `coord_flip()` for horizontal orientation
+
+**Lines 52-53:** `scale_color_manual()` applies custom colors
+
+**Lines 55-57:** `scale_y_continuous()` with expanded right margin for labels
+
+**Lines 59-65:** `labs()` adds comprehensive labels including percentage meeting target in title, top performer in subtitle, and detailed caption
+
+**Lines 67-93:** Multiple `annotate()` calls create a summary statistics box showing average, percentage above target, and score range
+
+**Lines 94-122:** Comprehensive theme customization including enhanced typography, legend at top, grid customization, and proper margins
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready lollipop chart that clearly communicates satisfaction performance across departments. The segments starting from the target line, variance labels, ranking numbers, and summary statistics box create a comprehensive visualization suitable for executive presentations, reports, or dashboards.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (unsorted, vertical) | Good (sorted, horizontal, colored) | Excellent (all + rankings + variance) |
+| **Context** | None | Title & target line | Full context with summary stats |
+| **Visual Appeal** | Plain points and lines | Color-coded with reference | Enhanced colors + annotations |
+| **Data Layers** | Points only | Points + target line | Points + variance segments + labels |
+| **Statistical Info** | Visual values only | Target comparison | Variance, rankings, summary stats |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Lollipop Charts:**
+
+1.  **Always reorder categories** - Use `reorder()` to sort by value for easier visual comparison and pattern recognition
+
+2.  **Use horizontal orientation for long labels** - Apply `coord_flip()` when category names are lengthy or numerous
+
+3.  **Start segments meaningfully** - Instead of always starting at zero, consider starting from a baseline (like target or mean) to emphasize variance
+
+4.  **Add reference lines** - Use `geom_hline()` or `geom_vline()` to show targets, averages, or thresholds
+
+5.  **Color with purpose** - Use color to show categorical groups or highlight above/below threshold performance
+
+6.  **Label directly** - Add value labels with `geom_text()` to reduce need for axis reading, especially with many categories
+
+7.  **Adjust segment thickness** - Use `linewidth = 1.5-2.5` for segments; too thin looks fragile, too thick looks heavy
+
+8.  **Mind the point size** - Points should be 4-6 size units; large enough to see but not overwhelming
+
+9.  **Consider Cleveland dot plots** - For comparing multiple groups, consider faceting or using `geom_linerange()` with two points
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 8, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other comparison visualizations:
+
+-   **Dumbbell plots** for showing change between two time points
+-   **Slope charts** for visualizing trends across categories
+-   **Dot plots** with error bars for showing uncertainty
+-   **Cleveland dot plots** for multi-group comparisons
+
+::: {.highlight-box .info}
+**Want to create grouped lollipop charts?**
+
+You can show multiple series with position dodging:
+
+``` r
+# Create data with two time periods
+data_comparison <- data_satisfaction %>%
+  select(department, score) %>%
+  rename(current = score) %>%
+  mutate(previous = current - sample(-5:8, n(), replace = TRUE)) %>%
+  pivot_longer(cols = c(current, previous), 
+               names_to = "period", 
+               values_to = "score")
+
+# Create grouped lollipop chart
+ggplot(data_comparison, 
+       aes(x = reorder(department, score), 
+           y = score, 
+           color = period)) +
+  geom_point(size = 4, 
+             position = position_dodge(width = 0.5)) +
+  geom_segment(aes(xend = department, 
+                   y = 0, yend = score),
+               position = position_dodge(width = 0.5),
+               linewidth = 1) +
+  coord_flip() +
+  scale_color_manual(values = c("#2C5F8D", "#E76F51"),
+                     labels = c("Current Quarter", "Previous Quarter")) +
+  labs(title = "Satisfaction Score Comparison",
+       x = "Department",
+       y = "Score",
+       color = "Period") +
+  theme_minimal()
+```
+
+This creates side-by-side lollipops showing changes over time.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Dumbbell Chart
+
+Here's a bonus approach showing change between two points:
+
+```{r}
+#| label: bonus-dumbbell
+#| fig-width: 9
+#| fig-height: 6
+
+# Create before/after data
+data_dumbbell <- data_satisfaction %>%
+  mutate(previous_score = score - sample(3:12, n(), replace = TRUE)) %>%
+  select(department, previous_score, score, rank)
+
+ggplot(data_dumbbell) +
+  # Draw segments between points
+  geom_segment(aes(x = previous_score, xend = score,
+                   y = reorder(department, score), 
+                   yend = reorder(department, score)),
+               color = "gray70",
+               linewidth = 2) +
+  # Add previous period points
+  geom_point(aes(x = previous_score, 
+                 y = reorder(department, score)),
+             color = "#E76F51",
+             size = 5) +
+  # Add current period points
+  geom_point(aes(x = score, 
+                 y = reorder(department, score)),
+             color = "#52A675",
+             size = 5) +
+  # Add labels
+  labs(
+    title = "Customer Satisfaction Improvement by Department",
+    subtitle = "All departments showed improvement from Q3 to Q4 2024",
+    x = "Satisfaction Score",
+    y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [From Data to Viz - Lollipop](https://www.data-to-viz.com/graph/lollipop.html)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

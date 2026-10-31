@@ -1,0 +1,427 @@
+---
+title: "ITIL "
+description: "Service Management and Value Co-Creation Framework"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Governance
+  - Framework
+---
+
+# Overview
+
+## What is ITIL 4
+
+ITIL 4 is a service management framework used to design, deliver, operate, and continually improve services. It moves beyond a narrow process view and frames service management as a system for co-creating value with customers, users, suppliers, and internal stakeholders.
+
+ITIL 4 is centred on the **Service Value System (SVS)**, the **Service Value Chain**, the **Four Dimensions of Service Management**, and a set of practices that help organisations translate strategy into reliable and improving service outcomes.
+
+It is useful not only in traditional IT operations but also in digital product management, platform teams, cloud operations, enterprise support functions, and cross-functional service organisations.
+
+## Purpose
+
+The purpose of ITIL 4 is to help organisations:
+
+-   align services with business outcomes and customer value;
+-   establish a common operating model for design, transition, support, and improvement;
+-   improve reliability, responsiveness, and service experience;
+-   create consistent governance and accountability across service teams;
+-   support digital transformation through adaptable practices rather than rigid process bureaucracy; and
+-   embed continual improvement into daily operations and strategic change.
+
+## When to Use It
+
+ITIL 4 is especially useful when an organisation needs a coherent service management model across operations, support, delivery, and supplier ecosystems. Common situations include:
+
+-   establishing or improving IT service management;
+-   modernising service desk, incident, problem, and change practices;
+-   introducing service ownership and service catalogue management;
+-   improving end-to-end service design and transition controls;
+-   integrating Agile, DevOps, product, and operations ways of working;
+-   improving customer experience and service-level performance; and
+-   strengthening governance over outsourced or multi-supplier environments.
+
+## Target Audience
+
+-   CIO
+-   Head of IT Service Management
+-   Service Management Office / SMO
+-   Service Owners
+-   Operations Managers
+-   Service Desk Leaders
+-   Change, Incident, and Problem Managers
+-   Supplier Managers
+-   Enterprise Architects
+-   PMO / Transformation Office
+-   Risk, compliance, and audit teams
+-   Digital product and platform leaders
+
+## ITIL 4 Service Value System
+
+```{mermaid}
+flowchart LR
+
+OD["Opportunity / Demand"] --> SVS["Service Value System"]
+SVS --> VC["Value"]
+
+GP["Guiding Principles"] --> SVS
+GOV["Governance"] --> SVS
+SVC["Service Value Chain"] --> SVS
+PR["Practices"] --> SVS
+CI["Continual Improvement"] --> SVS
+
+PLAN["Plan"] --> ENG["Engage"]
+ENG --> DS["Design & Transition"]
+DS --> OBT["Obtain / Build"]
+OBT --> DEL["Deliver & Support"]
+DEL --> IMP["Improve"]
+IMP --> PLAN
+
+SVC --> PLAN
+SVC --> ENG
+SVC --> DS
+SVC --> OBT
+SVC --> DEL
+SVC --> IMP
+
+CAT["Service Catalogue"] --> ENG
+SLA["SLAs / XLAs"] --> DEL
+CHG["Change Enablement"] --> DS
+INC["Incident & Request Fulfilment"] --> DEL
+CSI["Improvement Backlog"] --> IMP
+ARCH["Policies, standards, controls"] --> PLAN
+
+```
+
+The SVS describes how the organisation’s components and activities work together to enable value co-creation. It connects governance, principles, practices, improvement, and operational activity into one integrated model.
+
+------------------------------------------------------------------------
+
+# History and Evolution
+
+| Version | Year | Key Changes |
+|------------------------|------------------------|------------------------|
+| ITIL v1 | 1989–1996 | Foundational library of IT service management guidance |
+| ITIL v2 | 2000–2001 | Consolidated guidance around service support and service delivery |
+| ITIL v3 | 2007 | Lifecycle model introduced: strategy, design, transition, operation, CSI |
+| ITIL 2011 Edition | 2011 | Refined lifecycle guidance and glossary, clarified practices |
+| ITIL 4 | 2019 | Introduced SVS, service value chain, four dimensions, guiding principles, and 34 practices |
+| ITIL Foundation (Version 5) / Bridge | 2025–2026 | New certification evolution published by PeopleCert; ITIL 4 remains the core prior framework and installed base |
+
+ITIL evolved from a process-heavy service support model into a broader value and operating model for digital services. The major shift in ITIL 4 was the move from the older lifecycle structure to a more flexible system that works better with Agile, DevOps, Lean, and product-based delivery.
+
+For this chapter, the focus remains on **ITIL 4** because it is the framework most organisations currently reference when discussing the service value system, 34 practices, and the modern IT service management operating model.
+
+------------------------------------------------------------------------
+
+# Core Principles
+
+ITIL 4 uses seven guiding principles that can be applied in nearly any service management context:
+
+1.  **Focus on value**\
+    Every activity should connect to value for customers, users, and the organisation.
+
+2.  **Start where you are**\
+    Assess current capabilities, services, tools, and relationships before redesigning or replacing them.
+
+3.  **Progress iteratively with feedback**\
+    Improve in manageable increments and learn continuously.
+
+4.  **Collaborate and promote visibility**\
+    Make work visible, reduce silos, and involve the right stakeholders.
+
+5.  **Think and work holistically**\
+    Manage services as systems, not isolated teams or processes.
+
+6.  **Keep it simple and practical**\
+    Use only the controls, steps, and documentation that genuinely add value.
+
+7.  **Optimise and automate**\
+    Standardise first where sensible, then automate repetitive and scalable work.
+
+These principles are especially valuable because ITIL 4 is designed to be adaptable. The framework gives structure, but these principles help leaders make balanced decisions without becoming overly bureaucratic.
+
+------------------------------------------------------------------------
+
+# Governance Structure
+
+## Governance, Service Management, and Operations
+
+ITIL 4 includes governance as a formal part of the Service Value System. This is important because service management is not only an operational discipline; it also requires policy direction, prioritisation, risk oversight, and performance review.
+
+A practical governance structure for ITIL 4 often includes:
+
+-   a board or executive forum providing strategic direction;
+-   a CIO or service executive accountable for service performance and value;
+-   service owners accountable for individual end-to-end services;
+-   practice owners accountable for the design and performance of practices such as incident, change enablement, or service level management;
+-   operational teams responsible for execution; and
+-   assurance, security, risk, and audit teams providing oversight and challenge.
+
+## Service Value Chain Activities
+
+| Activity | Description |
+|------------------------------------|------------------------------------|
+| Plan | Shared understanding of vision, current state, improvement priorities, and direction. |
+| Improve | Continual improvement of products, services, practices, and all value chain activities. |
+| Engage | Understanding stakeholder needs, maintaining relationships, and ensuring transparency. |
+| Design & Transition | Ensuring new or changed services meet stakeholder expectations for quality, cost, and time to market. |
+| Obtain / Build | Acquiring, developing, and implementing service components. |
+| Deliver & Support | Operating services and supporting users according to agreed expectations. |
+
+## Four Dimensions of Service Management
+
+| Dimension | Description |
+|------------------------------------|------------------------------------|
+| Organisations and People | Roles, culture, structure, competencies, and workforce capacity needed to deliver services. |
+| Information and Technology | Data, knowledge, applications, infrastructure, automation, and supporting tools. |
+| Partners and Suppliers | External providers, contracts, sourcing models, and ecosystem dependencies. |
+| Value Streams and Processes | End-to-end workflows, controls, activities, and measurement paths that produce outcomes. |
+
+The four dimensions help prevent service design from being too narrow. A change that looks good from a tooling perspective may still fail because of skills, supplier, process, or governance gaps.
+
+------------------------------------------------------------------------
+
+# Practices
+
+ITIL 4 defines **34 management practices**, grouped into three families.
+
+## General Management Practices
+
+| Practice | Purpose |
+|------------------------------------|------------------------------------|
+| Architecture Management | Align technology and services with organisational strategy and target-state design. |
+| Continual Improvement | Improve products, services, and practices on an ongoing basis. |
+| Information Security Management | Protect information needed by the organisation. |
+| Knowledge Management | Ensure knowledge is captured, shared, and used effectively. |
+| Measurement and Reporting | Support good decisions through meaningful information and reporting. |
+| Organisational Change Management | Prepare people and organisations for change. |
+| Portfolio Management | Ensure the right mix of investments, services, and initiatives. |
+| Project Management | Plan and control temporary change initiatives. |
+| Relationship Management | Build and sustain stakeholder relationships. |
+| Risk Management | Identify, assess, and treat uncertainty. |
+| Financial Management for Services | Plan, allocate, and control service-related costs and value. |
+| Strategy Management | Define direction, priorities, and positioning. |
+| Supplier Management | Manage supplier relationships and performance. |
+| Workforce and Talent Management | Build the capacity and capabilities needed for service delivery. |
+
+## Service Management Practices
+
+| Practice | Purpose |
+|------------------------------------|------------------------------------|
+| Availability Management | Ensure services meet agreed availability targets. |
+| Business Analysis | Translate stakeholder needs into requirements and improvement opportunities. |
+| Capacity and Performance Management | Ensure services and resources perform to current and future needs. |
+| Change Enablement | Maximise successful changes while controlling risk. |
+| Incident Management | Restore normal service as quickly as possible after disruption. |
+| IT Asset Management | Manage lifecycle, control, and value of IT assets. |
+| Monitoring and Event Management | Observe services, components, and events to support stability and response. |
+| Problem Management | Reduce the likelihood and impact of incidents by managing root causes and workarounds. |
+| Release Management | Make new and changed services or features available for use. |
+| Service Catalogue Management | Provide accurate information about available services and offers. |
+| Service Configuration Management | Maintain trusted information about configuration items and their relationships. |
+| Service Continuity Management | Ensure the organisation can continue or recover services after disruption. |
+| Service Design | Design products and services fit for purpose and use. |
+| Service Desk | Provide the primary point of contact for users and many operational workflows. |
+| Service Level Management | Set, monitor, and improve service targets and service experience. |
+| Service Request Management | Fulfil pre-defined user requests efficiently and consistently. |
+| Service Validation and Testing | Confirm that services meet design and business requirements. |
+
+## Technical Management Practices
+
+| Practice | Purpose |
+|------------------------------------|------------------------------------|
+| Deployment Management | Move new or changed components into live or test environments. |
+| Infrastructure and Platform Management | Oversee infrastructure and platform components supporting services. |
+| Software Development and Management | Develop, maintain, and control software throughout its lifecycle. |
+
+In practice, organisations rarely implement all practices at the same level of maturity from the start. A phased adoption approach often begins with service desk, incident, request, change enablement, problem, service level, monitoring, and configuration-related capabilities, then expands into broader governance, portfolio, supplier, and improvement disciplines.
+
+------------------------------------------------------------------------
+
+# Documentation and Artefacts
+
+This section defines the key documents produced within the framework and the roles responsible for creating, approving, and maintaining them.
+
+## ITIL 4 Documentation RACI Matrix
+
+**Legend:** R = Responsible, A = Accountable, C = Consulted, I = Informed
+
+| Document / Artefact | Executive Sponsor / CIO | Head of ITSM / SMO | Service Owner | Practice Owner | Service Desk / Operations Manager | Enterprise Architect | Risk / Security / Compliance | Supplier Manager | Internal Audit |
+|--------|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+| Service Management Policy | A | R | C | C | I | C | C | I | I |
+| Service Management Operating Model | A | R | C | C | C | C | C | I | I |
+| Service Portfolio | A | R | C | I | I | C | I | I | I |
+| Service Catalogue | I | A | R | C | C | I | I | I | I |
+| Service Definition / Service Design Package | I | C | A/R | C | C | C | C | I | I |
+| Service Level Policy | I | A | R | C | C | I | C | I | I |
+| SLA / OLA / Underpinning Contract | I | C | A/R | C | C | I | C | C | I |
+| Service Review Report | I | A | R | C | C | I | C | I | I |
+| Service Improvement Register | I | A | R | C | C | I | C | I | I |
+| Continual Improvement Plan | I | A | R | C | C | I | C | I | I |
+| Incident Management Policy | I | A | C | R | C | I | C | I | I |
+| Major Incident Procedure | I | A | C | R | R | I | C | I | I |
+| Incident Record / Major Incident Record | I | I | C | C | A/R | I | I | I | I |
+| Problem Management Policy | I | A | C | R | C | I | C | I | I |
+| Problem Record / Known Error Record | I | I | C | A | R | I | I | I | I |
+| Change Enablement Policy | I | A | C | R | C | I | C | I | I |
+| Change Record / Change Schedule | I | I | C | A | R | I | C | I | I |
+| CAB Terms of Reference | I | A | C | R | C | I | C | I | I |
+| Release and Deployment Plan | I | C | A | C | R | C | C | I | I |
+| Configuration Management Policy | I | A | C | R | C | C | C | I | I |
+| CMDB / Service Configuration Model | I | I | C | A | R | C | I | I | I |
+| Availability and Capacity Plan | I | C | A/R | C | C | C | I | I | I |
+| Monitoring and Event Model | I | C | C | A | R | C | C | I | I |
+| Service Continuity Plan / DR Plan | I | C | A | C | R | C | C | I | C |
+| Knowledge Management Policy | I | A | C | R | C | I | I | I | I |
+| Knowledge Articles / Runbooks | I | I | C | C | A/R | I | I | I | I |
+| Supplier Management Policy | I | A | C | I | I | I | C | R | I |
+| Supplier Performance Report | I | C | C | I | I | I | C | A/R | I |
+| Information Security Policy Interface | I | C | C | I | C | I | A/R | I | C |
+| Audit and Compliance Evidence Pack | I | C | C | C | C | I | R | I | A/C |
+| KPI / Service Performance Dashboard | I | A | R | C | C | I | C | I | I |
+| Lessons Learned Repository | I | A | C | C | R | I | C | I | I |
+
+The exact role design varies by organisation, but the key pattern is stable: service owners are accountable for end-to-end service outcomes, practice owners are accountable for the health of specific practices, and operational teams are responsible for day-to-day execution and evidence generation.
+
+------------------------------------------------------------------------
+
+# Integration with Other Frameworks
+
+| Framework | Relationship |
+|------------------------------------|------------------------------------|
+| COBIT | Provides enterprise governance, control objectives, and assurance structure above ITIL service management. |
+| TOGAF | Provides target-state architecture, standards, and design governance that shape services and platforms. |
+| PRINCE2 | Governs projects that introduce or change services, environments, and supporting capabilities. |
+| MSP | Coordinates transformation programmes that change multiple services and operating models together. |
+| DevOps / Agile | Complements ITIL 4 by accelerating flow, feedback, automation, and cross-functional delivery. |
+| ISO/IEC 20000 | Offers a certifiable service management standard aligned with many ITIL practices. |
+| ISO 27001 / NIS2 / DORA | Add security, resilience, compliance, and operational control requirements around services. |
+
+ITIL 4 works particularly well as the operational layer in a broader governance stack:
+
+-   **COBIT** defines governance and control expectations;
+-   **TOGAF** defines architecture direction and standards;
+-   **ITIL 4** defines service management and operational value delivery;
+-   **PRINCE2 / MSP** drive controlled change and transformation.
+
+------------------------------------------------------------------------
+
+# Implementation Approach
+
+A pragmatic ITIL 4 adoption normally works best in phases rather than as a large one-off redesign.
+
+1.  **Assess the current state**\
+    Review services, support model, tooling, pain points, service levels, maturity, and stakeholder expectations.
+
+2.  **Define the target operating model**\
+    Clarify service ownership, governance forums, practice ownership, metrics, value streams, and integration with architecture, security, and delivery.
+
+3.  **Prioritise core practices**\
+    Start with the most business-critical areas such as service desk, incident, request, change enablement, problem, service level, monitoring, and knowledge.
+
+4.  **Design workflows and controls**\
+    Simplify handoffs, clarify escalation paths, define policies, and remove unnecessary bureaucracy.
+
+5.  **Enable tooling and data**\
+    Implement service management tooling, knowledge structures, CMDB/service configuration data where justified, dashboards, and automation.
+
+6.  **Establish measurement and review**\
+    Use service reviews, practice reviews, trend reporting, and continual improvement backlogs.
+
+7.  **Scale and integrate**\
+    Extend the model into supplier governance, continuity, portfolio alignment, product teams, cloud operations, and enterprise governance.
+
+A successful ITIL 4 implementation is usually less about copying every practice verbatim and more about building a coherent, measurable service operating model that fits the organisation.
+
+------------------------------------------------------------------------
+
+# KPIs and Metrics
+
+| KPI | Measurement |
+|------------------------------------|------------------------------------|
+| Service Availability | \% service uptime against agreed target |
+| Mean Time to Restore Service (MTRS) | Average elapsed time to restore normal service |
+| First Contact Resolution | \% incidents or requests resolved at first contact |
+| Incident Volume Trend | Number of incidents by service, severity, or period |
+| Major Incident Frequency | Number of priority incidents over time |
+| Change Success Rate | \% changes implemented without incident, rollback, or significant disruption |
+| Emergency Change Ratio | \% changes raised as emergency changes |
+| Problem Backlog Age | Average age of open problem records |
+| Reopened Incident Rate | \% incidents reopened after apparent resolution |
+| Request Fulfilment Time | Average time to complete standard requests |
+| SLA Achievement | \% targets achieved per service or customer group |
+| Customer Satisfaction / Experience | CSAT, CES, or XLA-linked measures |
+| Knowledge Article Reuse | Number or % of tickets resolved using knowledge content |
+| Supplier Performance | \% contractual targets met by supplier |
+| Improvement Delivery Rate | \% improvement actions completed on time |
+
+Metrics should be balanced. If an organisation only measures speed, teams may close tickets too early. If it only measures compliance, teams may become slow and overly procedural. ITIL 4 works best when service performance, experience, risk, and improvement are measured together.
+
+------------------------------------------------------------------------
+
+# Benefits
+
+-   Stronger alignment between services and business value
+-   Clearer service ownership and accountability
+-   Better incident, change, problem, and request control
+-   Improved user experience and service transparency
+-   Better integration across operations, architecture, suppliers, and delivery
+-   More structured continual improvement
+-   Stronger auditability and evidence for operational governance
+-   A framework that can coexist with Agile, DevOps, and product operating models
+
+------------------------------------------------------------------------
+
+# Limitations
+
+-   Can become bureaucratic if implemented as rigid process overhead
+-   Requires disciplined role ownership and governance to work well
+-   Tooling can dominate thinking if the operating model is weak
+-   Some organisations over-focus on ticketing rather than service value
+-   CMDB and configuration efforts can become expensive if over-engineered
+-   Benefits depend heavily on cultural adoption, not just documented process
+
+------------------------------------------------------------------------
+
+# Practical Use Case
+
+## Example: Stabilising Service Operations After Cloud Transformation
+
+An organisation has completed a rapid cloud migration but now faces frequent incidents, unclear ownership, inconsistent changes, weak supplier coordination, and poor visibility of service performance.
+
+A practical ITIL 4 response would include:
+
+-   defining the critical business services and assigning service owners;
+-   establishing service catalogue entries and service level targets;
+-   strengthening incident, major incident, request, problem, and change enablement practices;
+-   creating runbooks, knowledge articles, and event monitoring models;
+-   clarifying relationships between internal platform teams and cloud suppliers;
+-   setting up service review forums and improvement backlogs; and
+-   measuring restoration time, change success, major incident frequency, and customer satisfaction.
+
+The result is not simply better support. It is a more controlled service operating model in which cloud platforms, suppliers, operations teams, and business stakeholders work through shared governance, shared service definitions, and measurable value outcomes.
+
+------------------------------------------------------------------------
+
+# Closing View
+
+ITIL 4 is most powerful when used as a practical operating model for service value co-creation rather than a strict compliance checklist. In an enterprise governance landscape, it provides the link between strategy, architecture, change, and daily service delivery.
+
+For your wider governance book, ITIL 4 sits naturally after **COBIT** and **TOGAF**:
+
+-   **COBIT** explains how enterprise I&T should be governed;
+-   **TOGAF** explains how target-state architecture should be designed and governed; and
+-   **ITIL 4** explains how services should be designed, operated, supported, and improved to realise value in practice.
+
+# References
+
+-   AXELOS. *ITIL 4 Foundation*. AXELOS.
+-   AXELOS. *Reader’s Manual: ITIL 4 Practice Guide*. AXELOS.
+-   AXELOS. *Architecture Management: ITIL 4 Practice Guide*. AXELOS.
+-   AXELOS. *Measurement and Reporting Management: ITIL 4 Practice Guide*. AXELOS.
+-   PeopleCert. *ITIL 4 Practice Guides – a Hidden Gem*. PeopleCert.
+-   PeopleCert. *ITIL 4 Practice Guides Masterclass Series*. PeopleCert.
+-   PeopleCert. *ITIL Framework / ITIL 4 Foundation*. PeopleCert.
+-   PeopleCert. *PeopleCert Library*. PeopleCert.
+-   PeopleCert. *What’s Changing in ITIL?* PeopleCert FAQ.

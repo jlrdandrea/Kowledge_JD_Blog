@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.8.25" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Joao Luiz D’Andrea" />
+
+<title>ITIL 4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script  src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script  src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link  href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="/index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href=""  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href=""  title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="/github.com"  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href=""  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="/linkedin.com"  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">**Alert** -  pay attention to</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title-banner">
+    <div class="quarto-title column-body">
+      <h1 class="title">ITIL 4</h1>
+            <p class="subtitle lead">Service Management and Value Co-Creation Framework</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview"><span class="header-section-number">1</span> Overview</a>
+  <ul>
+  <li><a href="#what-is-itil-4" id="toc-what-is-itil-4"><span class="header-section-number">1.1</span> What is ITIL 4</a></li>
+  <li><a href="#purpose" id="toc-purpose"><span class="header-section-number">1.2</span> Purpose</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it"><span class="header-section-number">1.3</span> When to Use It</a></li>
+  <li><a href="#target-audience" id="toc-target-audience"><span class="header-section-number">1.4</span> Target Audience</a></li>
+  <li><a href="#itil-4-service-value-system" id="toc-itil-4-service-value-system"><span class="header-section-number">1.5</span> ITIL 4 Service Value System</a></li>
+  </ul></li>
+  <li><a href="#history-and-evolution" id="toc-history-and-evolution"><span class="header-section-number">2</span> History and Evolution</a></li>
+  <li><a href="#core-principles" id="toc-core-principles"><span class="header-section-number">3</span> Core Principles</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure"><span class="header-section-number">4</span> Governance Structure</a>
+  <ul>
+  <li><a href="#governance-service-management-and-operations" id="toc-governance-service-management-and-operations"><span class="header-section-number">4.1</span> Governance, Service Management, and Operations</a></li>
+  <li><a href="#service-value-chain-activities" id="toc-service-value-chain-activities"><span class="header-section-number">4.2</span> Service Value Chain Activities</a></li>
+  <li><a href="#four-dimensions-of-service-management" id="toc-four-dimensions-of-service-management"><span class="header-section-number">4.3</span> Four Dimensions of Service Management</a></li>
+  </ul></li>
+  <li><a href="#practices" id="toc-practices"><span class="header-section-number">5</span> Practices</a>
+  <ul>
+  <li><a href="#general-management-practices" id="toc-general-management-practices"><span class="header-section-number">5.1</span> General Management Practices</a></li>
+  <li><a href="#service-management-practices" id="toc-service-management-practices"><span class="header-section-number">5.2</span> Service Management Practices</a></li>
+  <li><a href="#technical-management-practices" id="toc-technical-management-practices"><span class="header-section-number">5.3</span> Technical Management Practices</a></li>
+  </ul></li>
+  <li><a href="#documentation-and-artefacts" id="toc-documentation-and-artefacts"><span class="header-section-number">6</span> Documentation and Artefacts</a>
+  <ul>
+  <li><a href="#itil-4-documentation-raci-matrix" id="toc-itil-4-documentation-raci-matrix"><span class="header-section-number">6.1</span> ITIL 4 Documentation RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks"><span class="header-section-number">7</span> Integration with Other Frameworks</a></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach"><span class="header-section-number">8</span> Implementation Approach</a></li>
+  <li><a href="#kpis-and-metrics" id="toc-kpis-and-metrics"><span class="header-section-number">9</span> KPIs and Metrics</a></li>
+  <li><a href="#benefits" id="toc-benefits"><span class="header-section-number">10</span> Benefits</a></li>
+  <li><a href="#limitations" id="toc-limitations"><span class="header-section-number">11</span> Limitations</a></li>
+  <li><a href="#practical-use-case" id="toc-practical-use-case"><span class="header-section-number">12</span> Practical Use Case</a>
+  <ul>
+  <li><a href="#example-stabilising-service-operations-after-cloud-transformation" id="toc-example-stabilising-service-operations-after-cloud-transformation"><span class="header-section-number">12.1</span> Example: Stabilising Service Operations After Cloud Transformation</a></li>
+  </ul></li>
+  <li><a href="#closing-view" id="toc-closing-view"><span class="header-section-number">13</span> Closing View</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">14</span> References</a></li>
+  </ul>
+</nav>
+<section id="overview" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
+<section id="what-is-itil-4" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> What is ITIL 4</h2>
+<p>ITIL 4 is a service management framework used to design, deliver, operate, and continually improve services. It moves beyond a narrow process view and frames service management as a system for co-creating value with customers, users, suppliers, and internal stakeholders.</p>
+<p>ITIL 4 is centred on the <strong>Service Value System (SVS)</strong>, the <strong>Service Value Chain</strong>, the <strong>Four Dimensions of Service Management</strong>, and a set of practices that help organisations translate strategy into reliable and improving service outcomes.</p>
+<p>It is useful not only in traditional IT operations but also in digital product management, platform teams, cloud operations, enterprise support functions, and cross-functional service organisations.</p>
+</section>
+<section id="purpose" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Purpose</h2>
+<p>The purpose of ITIL 4 is to help organisations:</p>
+<ul>
+<li>align services with business outcomes and customer value;</li>
+<li>establish a common operating model for design, transition, support, and improvement;</li>
+<li>improve reliability, responsiveness, and service experience;</li>
+<li>create consistent governance and accountability across service teams;</li>
+<li>support digital transformation through adaptable practices rather than rigid process bureaucracy; and</li>
+<li>embed continual improvement into daily operations and strategic change.</li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> When to Use It</h2>
+<p>ITIL 4 is especially useful when an organisation needs a coherent service management model across operations, support, delivery, and supplier ecosystems. Common situations include:</p>
+<ul>
+<li>establishing or improving IT service management;</li>
+<li>modernising service desk, incident, problem, and change practices;</li>
+<li>introducing service ownership and service catalogue management;</li>
+<li>improving end-to-end service design and transition controls;</li>
+<li>integrating Agile, DevOps, product, and operations ways of working;</li>
+<li>improving customer experience and service-level performance; and</li>
+<li>strengthening governance over outsourced or multi-supplier environments.</li>
+</ul>
+</section>
+<section id="target-audience" class="level2" data-number="1.4">
+<h2 data-number="1.4"><span class="header-section-number">1.4</span> Target Audience</h2>
+<ul>
+<li>CIO</li>
+<li>Head of IT Service Management</li>
+<li>Service Management Office / SMO</li>
+<li>Service Owners</li>
+<li>Operations Managers</li>
+<li>Service Desk Leaders</li>
+<li>Change, Incident, and Problem Managers</li>
+<li>Supplier Managers</li>
+<li>Enterprise Architects</li>
+<li>PMO / Transformation Office</li>
+<li>Risk, compliance, and audit teams</li>
+<li>Digital product and platform leaders</li>
+</ul>
+</section>
+<section id="itil-4-service-value-system" class="level2" data-number="1.5">
+<h2 data-number="1.5"><span class="header-section-number">1.5</span> ITIL 4 Service Value System</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p><figure class=''></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+OD[&quot;Opportunity / Demand&quot;] --&gt; SVS[&quot;Service Value System&quot;]
+SVS --&gt; VC[&quot;Value&quot;]
+
+GP[&quot;Guiding Principles&quot;] --&gt; SVS
+GOV[&quot;Governance&quot;] --&gt; SVS
+SVC[&quot;Service Value Chain&quot;] --&gt; SVS
+PR[&quot;Practices&quot;] --&gt; SVS
+CI[&quot;Continual Improvement&quot;] --&gt; SVS
+
+PLAN[&quot;Plan&quot;] --&gt; ENG[&quot;Engage&quot;]
+ENG --&gt; DS[&quot;Design &amp; Transition&quot;]
+DS --&gt; OBT[&quot;Obtain / Build&quot;]
+OBT --&gt; DEL[&quot;Deliver &amp; Support&quot;]
+DEL --&gt; IMP[&quot;Improve&quot;]
+IMP --&gt; PLAN
+
+SVC --&gt; PLAN
+SVC --&gt; ENG
+SVC --&gt; DS
+SVC --&gt; OBT
+SVC --&gt; DEL
+SVC --&gt; IMP
+
+CAT[&quot;Service Catalogue&quot;] --&gt; ENG
+SLA[&quot;SLAs / XLAs&quot;] --&gt; DEL
+CHG[&quot;Change Enablement&quot;] --&gt; DS
+INC[&quot;Incident &amp; Request Fulfilment&quot;] --&gt; DEL
+CSI[&quot;Improvement Backlog&quot;] --&gt; IMP
+ARCH[&quot;Policies, standards, controls&quot;] --&gt; PLAN
+
+</pre>
+</div>
+<p></figure></p>
+</div>
+</div>
+</div>
+<p>The SVS describes how the organisation’s components and activities work together to enable value co-creation. It connects governance, principles, practices, improvement, and operational activity into one integrated model.</p>
+<hr />
+</section>
+</section>
+<section id="history-and-evolution" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> History and Evolution</h1>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th>Year</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ITIL v1</td>
+<td>1989–1996</td>
+<td>Foundational library of IT service management guidance</td>
+</tr>
+<tr class="even">
+<td>ITIL v2</td>
+<td>2000–2001</td>
+<td>Consolidated guidance around service support and service delivery</td>
+</tr>
+<tr class="odd">
+<td>ITIL v3</td>
+<td>2007</td>
+<td>Lifecycle model introduced: strategy, design, transition, operation, CSI</td>
+</tr>
+<tr class="even">
+<td>ITIL 2011 Edition</td>
+<td>2011</td>
+<td>Refined lifecycle guidance and glossary, clarified practices</td>
+</tr>
+<tr class="odd">
+<td>ITIL 4</td>
+<td>2019</td>
+<td>Introduced SVS, service value chain, four dimensions, guiding principles, and 34 practices</td>
+</tr>
+<tr class="even">
+<td>ITIL Foundation (Version 5) / Bridge</td>
+<td>2025–2026</td>
+<td>New certification evolution published by PeopleCert; ITIL 4 remains the core prior framework and installed base</td>
+</tr>
+</tbody>
+</table>
+<p>ITIL evolved from a process-heavy service support model into a broader value and operating model for digital services. The major shift in ITIL 4 was the move from the older lifecycle structure to a more flexible system that works better with Agile, DevOps, Lean, and product-based delivery.</p>
+<p>For this chapter, the focus remains on <strong>ITIL 4</strong> because it is the framework most organisations currently reference when discussing the service value system, 34 practices, and the modern IT service management operating model.</p>
+<hr />
+</section>
+<section id="core-principles" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Core Principles</h1>
+<p>ITIL 4 uses seven guiding principles that can be applied in nearly any service management context:</p>
+<ol type="1">
+<li><p><strong>Focus on value</strong><br />
+Every activity should connect to value for customers, users, and the organisation.</p></li>
+<li><p><strong>Start where you are</strong><br />
+Assess current capabilities, services, tools, and relationships before redesigning or replacing them.</p></li>
+<li><p><strong>Progress iteratively with feedback</strong><br />
+Improve in manageable increments and learn continuously.</p></li>
+<li><p><strong>Collaborate and promote visibility</strong><br />
+Make work visible, reduce silos, and involve the right stakeholders.</p></li>
+<li><p><strong>Think and work holistically</strong><br />
+Manage services as systems, not isolated teams or processes.</p></li>
+<li><p><strong>Keep it simple and practical</strong><br />
+Use only the controls, steps, and documentation that genuinely add value.</p></li>
+<li><p><strong>Optimise and automate</strong><br />
+Standardise first where sensible, then automate repetitive and scalable work.</p></li>
+</ol>
+<p>These principles are especially valuable because ITIL 4 is designed to be adaptable. The framework gives structure, but these principles help leaders make balanced decisions without becoming overly bureaucratic.</p>
+<hr />
+</section>
+<section id="governance-structure" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Governance Structure</h1>
+<section id="governance-service-management-and-operations" class="level2" data-number="4.1">
+<h2 data-number="4.1"><span class="header-section-number">4.1</span> Governance, Service Management, and Operations</h2>
+<p>ITIL 4 includes governance as a formal part of the Service Value System. This is important because service management is not only an operational discipline; it also requires policy direction, prioritisation, risk oversight, and performance review.</p>
+<p>A practical governance structure for ITIL 4 often includes:</p>
+<ul>
+<li>a board or executive forum providing strategic direction;</li>
+<li>a CIO or service executive accountable for service performance and value;</li>
+<li>service owners accountable for individual end-to-end services;</li>
+<li>practice owners accountable for the design and performance of practices such as incident, change enablement, or service level management;</li>
+<li>operational teams responsible for execution; and</li>
+<li>assurance, security, risk, and audit teams providing oversight and challenge.</li>
+</ul>
+</section>
+<section id="service-value-chain-activities" class="level2" data-number="4.2">
+<h2 data-number="4.2"><span class="header-section-number">4.2</span> Service Value Chain Activities</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plan</td>
+<td>Shared understanding of vision, current state, improvement priorities, and direction.</td>
+</tr>
+<tr class="even">
+<td>Improve</td>
+<td>Continual improvement of products, services, practices, and all value chain activities.</td>
+</tr>
+<tr class="odd">
+<td>Engage</td>
+<td>Understanding stakeholder needs, maintaining relationships, and ensuring transparency.</td>
+</tr>
+<tr class="even">
+<td>Design &amp; Transition</td>
+<td>Ensuring new or changed services meet stakeholder expectations for quality, cost, and time to market.</td>
+</tr>
+<tr class="odd">
+<td>Obtain / Build</td>
+<td>Acquiring, developing, and implementing service components.</td>
+</tr>
+<tr class="even">
+<td>Deliver &amp; Support</td>
+<td>Operating services and supporting users according to agreed expectations.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="four-dimensions-of-service-management" class="level2" data-number="4.3">
+<h2 data-number="4.3"><span class="header-section-number">4.3</span> Four Dimensions of Service Management</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Organisations and People</td>
+<td>Roles, culture, structure, competencies, and workforce capacity needed to deliver services.</td>
+</tr>
+<tr class="even">
+<td>Information and Technology</td>
+<td>Data, knowledge, applications, infrastructure, automation, and supporting tools.</td>
+</tr>
+<tr class="odd">
+<td>Partners and Suppliers</td>
+<td>External providers, contracts, sourcing models, and ecosystem dependencies.</td>
+</tr>
+<tr class="even">
+<td>Value Streams and Processes</td>
+<td>End-to-end workflows, controls, activities, and measurement paths that produce outcomes.</td>
+</tr>
+</tbody>
+</table>
+<p>The four dimensions help prevent service design from being too narrow. A change that looks good from a tooling perspective may still fail because of skills, supplier, process, or governance gaps.</p>
+<hr />
+</section>
+</section>
+<section id="practices" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Practices</h1>
+<p>ITIL 4 defines <strong>34 management practices</strong>, grouped into three families.</p>
+<section id="general-management-practices" class="level2" data-number="5.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> General Management Practices</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Architecture Management</td>
+<td>Align technology and services with organisational strategy and target-state design.</td>
+</tr>
+<tr class="even">
+<td>Continual Improvement</td>
+<td>Improve products, services, and practices on an ongoing basis.</td>
+</tr>
+<tr class="odd">
+<td>Information Security Management</td>
+<td>Protect information needed by the organisation.</td>
+</tr>
+<tr class="even">
+<td>Knowledge Management</td>
+<td>Ensure knowledge is captured, shared, and used effectively.</td>
+</tr>
+<tr class="odd">
+<td>Measurement and Reporting</td>
+<td>Support good decisions through meaningful information and reporting.</td>
+</tr>
+<tr class="even">
+<td>Organisational Change Management</td>
+<td>Prepare people and organisations for change.</td>
+</tr>
+<tr class="odd">
+<td>Portfolio Management</td>
+<td>Ensure the right mix of investments, services, and initiatives.</td>
+</tr>
+<tr class="even">
+<td>Project Management</td>
+<td>Plan and control temporary change initiatives.</td>
+</tr>
+<tr class="odd">
+<td>Relationship Management</td>
+<td>Build and sustain stakeholder relationships.</td>
+</tr>
+<tr class="even">
+<td>Risk Management</td>
+<td>Identify, assess, and treat uncertainty.</td>
+</tr>
+<tr class="odd">
+<td>Financial Management for Services</td>
+<td>Plan, allocate, and control service-related costs and value.</td>
+</tr>
+<tr class="even">
+<td>Strategy Management</td>
+<td>Define direction, priorities, and positioning.</td>
+</tr>
+<tr class="odd">
+<td>Supplier Management</td>
+<td>Manage supplier relationships and performance.</td>
+</tr>
+<tr class="even">
+<td>Workforce and Talent Management</td>
+<td>Build the capacity and capabilities needed for service delivery.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="service-management-practices" class="level2" data-number="5.2">
+<h2 data-number="5.2"><span class="header-section-number">5.2</span> Service Management Practices</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Availability Management</td>
+<td>Ensure services meet agreed availability targets.</td>
+</tr>
+<tr class="even">
+<td>Business Analysis</td>
+<td>Translate stakeholder needs into requirements and improvement opportunities.</td>
+</tr>
+<tr class="odd">
+<td>Capacity and Performance Management</td>
+<td>Ensure services and resources perform to current and future needs.</td>
+</tr>
+<tr class="even">
+<td>Change Enablement</td>
+<td>Maximise successful changes while controlling risk.</td>
+</tr>
+<tr class="odd">
+<td>Incident Management</td>
+<td>Restore normal service as quickly as possible after disruption.</td>
+</tr>
+<tr class="even">
+<td>IT Asset Management</td>
+<td>Manage lifecycle, control, and value of IT assets.</td>
+</tr>
+<tr class="odd">
+<td>Monitoring and Event Management</td>
+<td>Observe services, components, and events to support stability and response.</td>
+</tr>
+<tr class="even">
+<td>Problem Management</td>
+<td>Reduce the likelihood and impact of incidents by managing root causes and workarounds.</td>
+</tr>
+<tr class="odd">
+<td>Release Management</td>
+<td>Make new and changed services or features available for use.</td>
+</tr>
+<tr class="even">
+<td>Service Catalogue Management</td>
+<td>Provide accurate information about available services and offers.</td>
+</tr>
+<tr class="odd">
+<td>Service Configuration Management</td>
+<td>Maintain trusted information about configuration items and their relationships.</td>
+</tr>
+<tr class="even">
+<td>Service Continuity Management</td>
+<td>Ensure the organisation can continue or recover services after disruption.</td>
+</tr>
+<tr class="odd">
+<td>Service Design</td>
+<td>Design products and services fit for purpose and use.</td>
+</tr>
+<tr class="even">
+<td>Service Desk</td>
+<td>Provide the primary point of contact for users and many operational workflows.</td>
+</tr>
+<tr class="odd">
+<td>Service Level Management</td>
+<td>Set, monitor, and improve service targets and service experience.</td>
+</tr>
+<tr class="even">
+<td>Service Request Management</td>
+<td>Fulfil pre-defined user requests efficiently and consistently.</td>
+</tr>
+<tr class="odd">
+<td>Service Validation and Testing</td>
+<td>Confirm that services meet design and business requirements.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="technical-management-practices" class="level2" data-number="5.3">
+<h2 data-number="5.3"><span class="header-section-number">5.3</span> Technical Management Practices</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deployment Management</td>
+<td>Move new or changed components into live or test environments.</td>
+</tr>
+<tr class="even">
+<td>Infrastructure and Platform Management</td>
+<td>Oversee infrastructure and platform components supporting services.</td>
+</tr>
+<tr class="odd">
+<td>Software Development and Management</td>
+<td>Develop, maintain, and control software throughout its lifecycle.</td>
+</tr>
+</tbody>
+</table>
+<p>In practice, organisations rarely implement all practices at the same level of maturity from the start. A phased adoption approach often begins with service desk, incident, request, change enablement, problem, service level, monitoring, and configuration-related capabilities, then expands into broader governance, portfolio, supplier, and improvement disciplines.</p>
+<hr />
+</section>
+</section>
+<section id="documentation-and-artefacts" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Documentation and Artefacts</h1>
+<p>This section defines the key documents produced within the framework and the roles responsible for creating, approving, and maintaining them.</p>
+<section id="itil-4-documentation-raci-matrix" class="level2" data-number="6.1">
+<h2 data-number="6.1"><span class="header-section-number">6.1</span> ITIL 4 Documentation RACI Matrix</h2>
+<p><strong>Legend:</strong> R = Responsible, A = Accountable, C = Consulted, I = Informed</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Document / Artefact</th>
+<th style="text-align: right;">Executive Sponsor / CIO</th>
+<th style="text-align: right;">Head of ITSM / SMO</th>
+<th style="text-align: right;">Service Owner</th>
+<th style="text-align: right;">Practice Owner</th>
+<th style="text-align: right;">Service Desk / Operations Manager</th>
+<th style="text-align: right;">Enterprise Architect</th>
+<th style="text-align: right;">Risk / Security / Compliance</th>
+<th style="text-align: right;">Supplier Manager</th>
+<th style="text-align: right;">Internal Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Service Management Policy</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Management Operating Model</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Service Portfolio</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Catalogue</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Service Definition / Service Design Package</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Level Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>SLA / OLA / Underpinning Contract</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Review Report</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Service Improvement Register</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Continual Improvement Plan</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Incident Management Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Major Incident Procedure</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Incident Record / Major Incident Record</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Problem Management Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Problem Record / Known Error Record</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Change Enablement Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Change Record / Change Schedule</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>CAB Terms of Reference</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Release and Deployment Plan</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Configuration Management Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>CMDB / Service Configuration Model</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Availability and Capacity Plan</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Monitoring and Event Model</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Continuity Plan / DR Plan</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Knowledge Management Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Knowledge Articles / Runbooks</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Supplier Management Policy</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Supplier Performance Report</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Information Security Policy Interface</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Audit and Compliance Evidence Pack</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/C</td>
+</tr>
+<tr class="odd">
+<td>KPI / Service Performance Dashboard</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Lessons Learned Repository</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+</tbody>
+</table>
+<p>The exact role design varies by organisation, but the key pattern is stable: service owners are accountable for end-to-end service outcomes, practice owners are accountable for the health of specific practices, and operational teams are responsible for day-to-day execution and evidence generation.</p>
+<hr />
+</section>
+</section>
+<section id="integration-with-other-frameworks" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Integration with Other Frameworks</h1>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>COBIT</td>
+<td>Provides enterprise governance, control objectives, and assurance structure above ITIL service management.</td>
+</tr>
+<tr class="even">
+<td>TOGAF</td>
+<td>Provides target-state architecture, standards, and design governance that shape services and platforms.</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2</td>
+<td>Governs projects that introduce or change services, environments, and supporting capabilities.</td>
+</tr>
+<tr class="even">
+<td>MSP</td>
+<td>Coordinates transformation programmes that change multiple services and operating models together.</td>
+</tr>
+<tr class="odd">
+<td>DevOps / Agile</td>
+<td>Complements ITIL 4 by accelerating flow, feedback, automation, and cross-functional delivery.</td>
+</tr>
+<tr class="even">
+<td>ISO/IEC 20000</td>
+<td>Offers a certifiable service management standard aligned with many ITIL practices.</td>
+</tr>
+<tr class="odd">
+<td>ISO 27001 / NIS2 / DORA</td>
+<td>Add security, resilience, compliance, and operational control requirements around services.</td>
+</tr>
+</tbody>
+</table>
+<p>ITIL 4 works particularly well as the operational layer in a broader governance stack:</p>
+<ul>
+<li><strong>COBIT</strong> defines governance and control expectations;</li>
+<li><strong>TOGAF</strong> defines architecture direction and standards;</li>
+<li><strong>ITIL 4</strong> defines service management and operational value delivery;</li>
+<li><strong>PRINCE2 / MSP</strong> drive controlled change and transformation.</li>
+</ul>
+<hr />
+</section>
+<section id="implementation-approach" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Implementation Approach</h1>
+<p>A pragmatic ITIL 4 adoption normally works best in phases rather than as a large one-off redesign.</p>
+<ol type="1">
+<li><p><strong>Assess the current state</strong><br />
+Review services, support model, tooling, pain points, service levels, maturity, and stakeholder expectations.</p></li>
+<li><p><strong>Define the target operating model</strong><br />
+Clarify service ownership, governance forums, practice ownership, metrics, value streams, and integration with architecture, security, and delivery.</p></li>
+<li><p><strong>Prioritise core practices</strong><br />
+Start with the most business-critical areas such as service desk, incident, request, change enablement, problem, service level, monitoring, and knowledge.</p></li>
+<li><p><strong>Design workflows and controls</strong><br />
+Simplify handoffs, clarify escalation paths, define policies, and remove unnecessary bureaucracy.</p></li>
+<li><p><strong>Enable tooling and data</strong><br />
+Implement service management tooling, knowledge structures, CMDB/service configuration data where justified, dashboards, and automation.</p></li>
+<li><p><strong>Establish measurement and review</strong><br />
+Use service reviews, practice reviews, trend reporting, and continual improvement backlogs.</p></li>
+<li><p><strong>Scale and integrate</strong><br />
+Extend the model into supplier governance, continuity, portfolio alignment, product teams, cloud operations, and enterprise governance.</p></li>
+</ol>
+<p>A successful ITIL 4 implementation is usually less about copying every practice verbatim and more about building a coherent, measurable service operating model that fits the organisation.</p>
+<hr />
+</section>
+<section id="kpis-and-metrics" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> KPIs and Metrics</h1>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Service Availability</td>
+<td>% service uptime against agreed target</td>
+</tr>
+<tr class="even">
+<td>Mean Time to Restore Service (MTRS)</td>
+<td>Average elapsed time to restore normal service</td>
+</tr>
+<tr class="odd">
+<td>First Contact Resolution</td>
+<td>% incidents or requests resolved at first contact</td>
+</tr>
+<tr class="even">
+<td>Incident Volume Trend</td>
+<td>Number of incidents by service, severity, or period</td>
+</tr>
+<tr class="odd">
+<td>Major Incident Frequency</td>
+<td>Number of priority incidents over time</td>
+</tr>
+<tr class="even">
+<td>Change Success Rate</td>
+<td>% changes implemented without incident, rollback, or significant disruption</td>
+</tr>
+<tr class="odd">
+<td>Emergency Change Ratio</td>
+<td>% changes raised as emergency changes</td>
+</tr>
+<tr class="even">
+<td>Problem Backlog Age</td>
+<td>Average age of open problem records</td>
+</tr>
+<tr class="odd">
+<td>Reopened Incident Rate</td>
+<td>% incidents reopened after apparent resolution</td>
+</tr>
+<tr class="even">
+<td>Request Fulfilment Time</td>
+<td>Average time to complete standard requests</td>
+</tr>
+<tr class="odd">
+<td>SLA Achievement</td>
+<td>% targets achieved per service or customer group</td>
+</tr>
+<tr class="even">
+<td>Customer Satisfaction / Experience</td>
+<td>CSAT, CES, or XLA-linked measures</td>
+</tr>
+<tr class="odd">
+<td>Knowledge Article Reuse</td>
+<td>Number or % of tickets resolved using knowledge content</td>
+</tr>
+<tr class="even">
+<td>Supplier Performance</td>
+<td>% contractual targets met by supplier</td>
+</tr>
+<tr class="odd">
+<td>Improvement Delivery Rate</td>
+<td>% improvement actions completed on time</td>
+</tr>
+</tbody>
+</table>
+<p>Metrics should be balanced. If an organisation only measures speed, teams may close tickets too early. If it only measures compliance, teams may become slow and overly procedural. ITIL 4 works best when service performance, experience, risk, and improvement are measured together.</p>
+<hr />
+</section>
+<section id="benefits" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Benefits</h1>
+<ul>
+<li>Stronger alignment between services and business value</li>
+<li>Clearer service ownership and accountability</li>
+<li>Better incident, change, problem, and request control</li>
+<li>Improved user experience and service transparency</li>
+<li>Better integration across operations, architecture, suppliers, and delivery</li>
+<li>More structured continual improvement</li>
+<li>Stronger auditability and evidence for operational governance</li>
+<li>A framework that can coexist with Agile, DevOps, and product operating models</li>
+</ul>
+<hr />
+</section>
+<section id="limitations" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Limitations</h1>
+<ul>
+<li>Can become bureaucratic if implemented as rigid process overhead</li>
+<li>Requires disciplined role ownership and governance to work well</li>
+<li>Tooling can dominate thinking if the operating model is weak</li>
+<li>Some organisations over-focus on ticketing rather than service value</li>
+<li>CMDB and configuration efforts can become expensive if over-engineered</li>
+<li>Benefits depend heavily on cultural adoption, not just documented process</li>
+</ul>
+<hr />
+</section>
+<section id="practical-use-case" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Practical Use Case</h1>
+<section id="example-stabilising-service-operations-after-cloud-transformation" class="level2" data-number="12.1">
+<h2 data-number="12.1"><span class="header-section-number">12.1</span> Example: Stabilising Service Operations After Cloud Transformation</h2>
+<p>An organisation has completed a rapid cloud migration but now faces frequent incidents, unclear ownership, inconsistent changes, weak supplier coordination, and poor visibility of service performance.</p>
+<p>A practical ITIL 4 response would include:</p>
+<ul>
+<li>defining the critical business services and assigning service owners;</li>
+<li>establishing service catalogue entries and service level targets;</li>
+<li>strengthening incident, major incident, request, problem, and change enablement practices;</li>
+<li>creating runbooks, knowledge articles, and event monitoring models;</li>
+<li>clarifying relationships between internal platform teams and cloud suppliers;</li>
+<li>setting up service review forums and improvement backlogs; and</li>
+<li>measuring restoration time, change success, major incident frequency, and customer satisfaction.</li>
+</ul>
+<p>The result is not simply better support. It is a more controlled service operating model in which cloud platforms, suppliers, operations teams, and business stakeholders work through shared governance, shared service definitions, and measurable value outcomes.</p>
+<hr />
+</section>
+</section>
+<section id="closing-view" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Closing View</h1>
+<p>ITIL 4 is most powerful when used as a practical operating model for service value co-creation rather than a strict compliance checklist. In an enterprise governance landscape, it provides the link between strategy, architecture, change, and daily service delivery.</p>
+<p>For your wider governance book, ITIL 4 sits naturally after <strong>COBIT</strong> and <strong>TOGAF</strong>:</p>
+<ul>
+<li><strong>COBIT</strong> explains how enterprise I&amp;T should be governed;</li>
+<li><strong>TOGAF</strong> explains how target-state architecture should be designed and governed; and</li>
+<li><strong>ITIL 4</strong> explains how services should be designed, operated, supported, and improved to realise value in practice.</li>
+</ul>
+</section>
+<section id="references" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> References</h1>
+<ul>
+<li>AXELOS. <em>ITIL 4 Foundation</em>. AXELOS.</li>
+<li>AXELOS. <em>Reader’s Manual: ITIL 4 Practice Guide</em>. AXELOS.</li>
+<li>AXELOS. <em>Architecture Management: ITIL 4 Practice Guide</em>. AXELOS.</li>
+<li>AXELOS. <em>Measurement and Reporting Management: ITIL 4 Practice Guide</em>. AXELOS.</li>
+<li>PeopleCert. <em>ITIL 4 Practice Guides – a Hidden Gem</em>. PeopleCert.</li>
+<li>PeopleCert. <em>ITIL 4 Practice Guides Masterclass Series</em>. PeopleCert.</li>
+<li>PeopleCert. <em>ITIL Framework / ITIL 4 Foundation</em>. PeopleCert.</li>
+<li>PeopleCert. <em>PeopleCert Library</em>. PeopleCert.</li>
+<li>PeopleCert. <em>What’s Changing in ITIL?</em> PeopleCert FAQ.</li>
+</ul>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">ITIL 4</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">JD`s Knowledge</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==">Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=">/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UG9ydGZvbGlv">Portfolio</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L3Bvc3RzL2luZGV4Lmh0bWw=">/posts/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXJ0aWNsZXM=">Articles</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2FydGljbGVzL2luZGV4Lmh0bWw=">/articles/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=">About</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw=">/about.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW5hdmJhci10b29sczovZ2l0aHViLmNvbQ==">/github.com</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW5hdmJhci10b29sczovbGlua2VkaW4uY29t">/linkedin.com</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLXJpZ2h0LS9hYm91dC5odG1s">
+<p>About</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="YW5ub3VuY2VtZW50">
+<p><strong>Alert</strong> - pay attention to</p>
+</div>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">ITIL 4</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">ITIL 4</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">ITIL 4</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">Service Management and Value Co-Creation Framework</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">Service Management and Value Co-Creation Framework</span></p>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="/about.html">
+ About
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

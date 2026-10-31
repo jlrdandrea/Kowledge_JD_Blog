@@ -1,0 +1,13 @@
+---
+title: Portfolio
+listing:
+  type: grid
+  image-height: 200px
+  image-align: left
+  image-lazy-loading: false
+  sort-ui: true
+  filter-ui: true
+  page-size: 9
+  categories: true
+  fields: [title, date, author, image]
+---

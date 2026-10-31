@@ -1,0 +1,642 @@
+---
+title: "NIST Cybersecurity Framework"
+description: "Governance, Risk, Controls, and Implementation Template"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Framework
+  - Risk
+  - Cybersecurity
+---
+
+# Executive Summary
+
+The NIST Cybersecurity Framework (CSF) provides a flexible, outcome-based structure for managing cybersecurity risk across organisations of different sizes, sectors, and levels of maturity. This document provides a practical template for defining the organisation’s cybersecurity governance model, risk management approach, control structure, implementation roadmap, and assurance model using NIST CSF 2.0.
+
+This template can be used to document the organisation’s target operating model for cybersecurity, align business and technology stakeholders, support risk-based investment decisions, and integrate cybersecurity with enterprise governance, resilience, compliance, and assurance processes.
+
+# Overview
+
+## Purpose
+
+This document provides a practical template for defining, implementing, operating, and assuring a cybersecurity management system aligned to the NIST Cybersecurity Framework.
+
+## Objectives
+
+The main objectives of applying the NIST Cybersecurity Framework are to:
+
+-   establish a common language for cybersecurity risk
+-   align cybersecurity with business objectives and enterprise risk
+-   define and prioritise cybersecurity outcomes
+-   improve governance, resilience, and incident readiness
+-   strengthen communication across executives, business units, risk teams, and technical teams
+-   support continuous improvement through profiles, tiers, metrics, and assurance
+
+## Scope
+
+Describe the scope of NIST CSF applicability in the organisation.
+
+### In scope
+
+-   enterprise cybersecurity governance
+-   business services and critical processes
+-   information assets and data
+-   applications, platforms, infrastructure, and cloud services
+-   operational technology where applicable
+-   third-party services and supply chain dependencies
+-   cyber resilience, incident response, and recovery arrangements
+
+### Out of scope
+
+Document justified exclusions, if any.
+
+## Intended Audience
+
+-   Board and executive leadership
+-   Chief Information Security Officer
+-   Chief Information Officer
+-   Enterprise Risk Management teams
+-   Security architecture and engineering teams
+-   IT operations and service management teams
+-   Business owners and control owners
+-   Compliance and legal teams
+-   Internal audit and assurance teams
+-   PMO / transformation teams
+
+# Framework Foundation
+
+## Background
+
+The NIST Cybersecurity Framework is designed to help organisations understand, assess, prioritise, and communicate cybersecurity risks. CSF 2.0 is intended for use by any organisation and is structured around six Functions: Govern, Identify, Protect, Detect, Respond, and Recover.
+
+## Core Components
+
+The framework is built around the following components:
+
+-   Functions
+-   Categories
+-   Subcategories
+-   Organisational Profiles
+-   Implementation Tiers
+
+Profiles support comparison between current and target cybersecurity outcomes, and Tiers help characterise how rigorously cybersecurity risk governance and management practices are applied.
+
+## Functions
+
+Document how the organisation applies the six CSF Functions:
+
+-   Govern
+-   Identify
+-   Protect
+-   Detect
+-   Respond
+-   Recover
+
+### Function summary
+
+| Function | Purpose |
+|------------------------------------|------------------------------------|
+| Govern | Establish, communicate, and monitor cybersecurity risk management strategy, expectations, and oversight |
+| Identify | Understand assets, business context, and cybersecurity risks |
+| Protect | Safeguard assets and reduce the likelihood or impact of incidents |
+| Detect | Discover and analyse anomalous events and cybersecurity incidents |
+| Respond | Contain, manage, and communicate during cybersecurity incidents |
+| Recover | Restore capabilities and services and improve resilience after incidents |
+
+## Profiles and Tiers
+
+Describe how the organisation will use:
+
+-   Current Profile
+-   Target Profile
+-   gap analysis
+-   prioritised improvement roadmap
+-   Implementation Tiers
+
+### Example profile table
+
+| CSF Area   | Current State | Target State | Gap     | Priority | Owner   |
+|------------|---------------|--------------|---------|----------|---------|
+| Governance | Example       | Example      | Example | High     | Example |
+
+# Governance Model
+
+## Governance Objectives
+
+Define the governance objectives for NIST CSF adoption:
+
+-   establish executive accountability for cybersecurity risk
+-   align cybersecurity priorities with enterprise strategy and risk appetite
+-   assign ownership for CSF outcomes
+-   embed governance into investment, change, operations, and resilience processes
+-   maintain evidence of implementation and control effectiveness
+-   support continuous improvement through profiles, metrics, and assurance
+
+## Governance Structure
+
+Describe the governance bodies and their responsibilities.
+
+### Example governance bodies
+
+-   Board / Risk Committee
+-   Executive Cybersecurity Steering Committee
+-   Information Security Forum
+-   Enterprise Risk Committee
+-   Architecture Review Board
+-   Operational Resilience Committee
+-   Internal Audit
+
+## Three Lines Model
+
+Describe responsibilities across the three lines.
+
+### First line
+
+-   business ownership of services, assets, and operational controls
+-   technology and security operations
+-   process execution and evidence production
+-   incident detection, response, and recovery execution
+
+### Second line
+
+-   cybersecurity governance
+-   risk oversight
+-   policy and standard setting
+-   compliance monitoring
+-   challenge and advisory support
+
+### Third line
+
+-   internal audit
+-   independent assurance
+-   control effectiveness review
+
+# Roles and Responsibilities
+
+## Key Roles
+
+Document the main NIST CSF-related roles.
+
+-   Board
+-   CEO / Executive Management
+-   Chief Information Security Officer
+-   Chief Information Officer
+-   Chief Risk Officer
+-   Business Service Owner
+-   Information Asset Owner
+-   Security Architect
+-   Security Operations Lead
+-   Incident Response Lead
+-   Infrastructure / Platform Owner
+-   Third-Party Risk Manager
+-   Business Continuity Lead
+-   Internal Audit
+
+## RACI Matrix
+
+Use the following model and adapt it.
+
+| Activity | Board | Exec | CISO | CIO | Risk | Business Owner | Security Ops | Architecture | Audit |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| Approve cybersecurity strategy | A | R | C | C | C | I | I | I | I |
+| Maintain current and target profiles | I | A | R | C | C | C | C | C | I |
+| Define cyber risk appetite | A | R | C | C | R | C | I | I | I |
+| Approve security policies and standards | I | A | R | C | C | I | C | C | I |
+| Operate detection and monitoring | I | I | A | C | I | I | R | C | I |
+| Manage cyber incidents | I | A | R | C | C | C | R | I | I |
+| Test resilience and recovery | I | A | C | C | C | R | C | C | I |
+| Perform independent assurance | I | I | I | I | I | I | I | I | R/A |
+
+# Policy Framework
+
+## Core Policies
+
+List and describe the main cybersecurity-related policies.
+
+-   Cybersecurity Policy
+-   Information Security Policy
+-   Risk Management Policy
+-   Asset Management Standard
+-   Identity and Access Management Policy
+-   Vulnerability Management Standard
+-   Logging and Monitoring Standard
+-   Incident Response Policy
+-   Business Continuity / Disaster Recovery Policy
+-   Third-Party Security Policy
+-   Secure Development Policy
+-   Data Protection and Classification Policy
+
+## Standards and Procedures
+
+Document the standards, baselines, procedures, and playbooks supporting implementation.
+
+# Core Processes
+
+## Govern
+
+Describe how the organisation establishes cybersecurity strategy, policy, oversight, risk tolerance, roles, supply chain governance, and performance monitoring. CSF 2.0 introduced **Govern** as a distinct Function to strengthen governance and enterprise alignment. :contentReference[oaicite:3]{index="3"}
+
+## Identify
+
+Describe the processes for:
+
+-   asset inventory
+-   business context analysis
+-   dependency mapping
+-   critical service identification
+-   risk assessment
+-   threat and vulnerability understanding
+
+## Protect
+
+Describe the processes for:
+
+-   access control
+-   awareness and training
+-   data protection
+-   platform and infrastructure hardening
+-   secure configuration
+-   maintenance
+-   protective technology
+-   secure development and change management
+
+## Detect
+
+Describe the processes for:
+
+-   continuous monitoring
+-   telemetry and log collection
+-   alerting
+-   anomaly detection
+-   detection engineering
+-   threat intelligence integration
+-   triage and escalation
+
+## Respond
+
+Describe the processes for:
+
+-   incident triage
+-   containment
+-   eradication
+-   internal and external communications
+-   stakeholder coordination
+-   regulatory notification where required
+-   lessons learned
+
+NIST’s incident response guidance aligns incident response activities with the CSF 2.0 functions and lifecycle. :contentReference[oaicite:4]{index="4"}
+
+## Recover
+
+Describe the processes for:
+
+-   restoration of services
+-   recovery prioritisation
+-   validation and assurance
+-   resilience testing
+-   crisis communications
+-   recovery lessons learned
+-   improvement planning
+
+## Profile Management
+
+Document how the organisation creates and maintains:
+
+-   Current Profile
+-   Target Profile
+-   gap analysis
+-   remediation plan
+-   prioritised initiatives
+-   review cycle
+
+NIST provides profile templates and guidance for using organisational profiles. :contentReference[oaicite:5]{index="5"}
+
+# Control Framework
+
+## Control Domains
+
+Organise the control environment using the six CSF Functions.
+
+### Example control domains
+
+-   governance and oversight
+-   risk management
+-   asset management
+-   identity and access management
+-   awareness and training
+-   data security
+-   platform security
+-   monitoring and detection
+-   incident response
+-   recovery and resilience
+-   third-party and supply chain security
+-   continuous improvement
+
+## Sample Control Catalogue
+
+| Control ID | Control Name | Objective | Control Owner | Frequency | Evidence |
+|------------|------------|------------|------------|------------|------------|
+| NIST-01 | Cybersecurity strategy approved | Ensure executive direction and accountability | CISO | Annual | Approved strategy |
+| NIST-02 | Current and target profiles maintained | Drive risk-based improvement | Cyber Governance Lead | Semi-annual | Profile register |
+| NIST-03 | Asset inventory maintained | Ensure visibility of assets and services | IT Operations | Monthly | Asset register |
+| NIST-04 | Security monitoring performed | Detect suspicious events in a timely manner | SOC Manager | Continuous | SIEM reports |
+| NIST-05 | Incident response exercised | Improve response readiness | Incident Manager | Quarterly | Exercise reports |
+| NIST-06 | Recovery capabilities tested | Validate resilience and restoration | Continuity Lead | Annual | Recovery test evidence |
+
+# Artefacts and Evidence
+
+## Required Artefacts
+
+Document the key artefacts used to support implementation and assurance.
+
+-   cybersecurity strategy
+-   cyber risk appetite statement
+-   policy set and control standards
+-   asset inventory
+-   dependency map
+-   business impact analysis
+-   current and target profiles
+-   risk register
+-   threat scenarios
+-   vulnerability management records
+-   detection use case catalogue
+-   incident response plan
+-   incident playbooks
+-   recovery plans
+-   resilience test reports
+-   third-party security assessments
+-   metrics and dashboard packs
+-   audit reports
+
+## Evidence Model
+
+For each artefact define:
+
+-   owner
+-   purpose
+-   location
+-   frequency of update
+-   retention period
+-   assurance mechanism
+
+# Architecture and Technology Implications
+
+## Security by Design
+
+Describe how cybersecurity requirements are embedded into:
+
+-   enterprise architecture
+-   solution design
+-   cloud architecture
+-   network design
+-   identity architecture
+-   endpoint and platform engineering
+-   data architecture
+-   software delivery pipelines
+-   third-party integration patterns
+
+## Technology Landscape View
+
+Document the security-relevant architecture elements:
+
+-   business services and critical processes
+-   application and data estate
+-   infrastructure and cloud platforms
+-   security tooling landscape
+-   identity and access ecosystem
+-   logging and monitoring architecture
+-   resilience and recovery architecture
+
+## Dependency and Data Flow Mapping
+
+Include or reference:
+
+-   business service maps
+-   application dependency diagrams
+-   network and trust zone diagrams
+-   third-party dependency maps
+-   crown jewel asset maps
+-   recovery dependency maps
+
+# Risk Management
+
+## Cyber Risk Model
+
+Describe how cyber risks are identified, assessed, treated, accepted, escalated, and monitored.
+
+## Example Risk Categories
+
+-   governance weakness
+-   incomplete asset visibility
+-   identity compromise
+-   unpatched vulnerabilities
+-   supply chain exposure
+-   insufficient monitoring coverage
+-   weak incident coordination
+-   inadequate resilience and recovery
+-   insecure change and development practices
+-   poor evidence and assurance
+
+## Risk Register Template
+
+| Risk ID | Risk Description | Cause | Impact | Likelihood | Inherent Risk | Control Strength | Residual Risk | Owner |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| CY-01 | Example | Example | Example | Medium | High | Medium | Medium | Example |
+
+# Metrics and Reporting
+
+## Key Metrics
+
+Examples of cybersecurity metrics:
+
+-   percentage of critical assets identified
+-   percentage of assets covered by monitoring
+-   percentage of systems compliant with baseline configuration
+-   vulnerability remediation performance
+-   identity and privileged access review completion
+-   mean time to detect
+-   mean time to contain
+-   mean time to recover
+-   number of severe incidents
+-   percentage of critical third parties assessed
+-   percentage of recovery tests passed
+-   percentage of target profile outcomes achieved
+
+## Dashboard Structure
+
+Suggested dashboard views:
+
+-   executive cyber risk dashboard
+-   operational security dashboard
+-   vulnerability and exposure dashboard
+-   incident and response dashboard
+-   resilience and recovery dashboard
+-   third-party cyber risk dashboard
+
+# Audit and Assurance
+
+## Assurance Model
+
+Document the assurance approach across:
+
+-   management self-assessment
+-   profile review and gap validation
+-   second-line control testing
+-   technical validation and exercises
+-   internal audit
+-   external assurance where applicable
+
+## Testing Themes
+
+-   governance and policy effectiveness
+-   asset coverage and visibility
+-   control design and operating effectiveness
+-   detection capability
+-   incident readiness
+-   recovery readiness
+-   third-party assurance
+-   metrics quality and reporting discipline
+
+# Implementation Roadmap
+
+## Maturity Phases
+
+### Phase 1: Foundation
+
+-   establish governance and executive sponsorship
+-   define policy framework
+-   identify critical services and assets
+-   create initial current profile
+-   establish cyber risk register
+
+### Phase 2: Control Design
+
+-   define target profile
+-   prioritise control improvements
+-   strengthen identity, monitoring, vulnerability, and response capabilities
+-   define resilience and recovery expectations
+
+### Phase 3: Integration
+
+-   integrate cyber governance with enterprise risk and architecture
+-   align security operations with business service priorities
+-   embed third-party and supply chain controls
+-   improve playbooks, exercises, and evidence management
+
+### Phase 4: Optimisation
+
+-   refine metrics and dashboards
+-   automate control evidence
+-   strengthen profile-based planning
+-   expand resilience testing and assurance
+-   drive continuous improvement
+
+## Roadmap Table
+
+| Initiative | Description | Owner   | Priority | Timeline | Dependency | Status  |
+|------------|-------------|---------|----------|----------|------------|---------|
+| Example    | Example     | Example | High     | Q1-Q2    | Example    | Planned |
+
+# Cross-Framework Integration
+
+## Relationship to Other Frameworks
+
+Describe how NIST CSF integrates with:
+
+-   ISO/IEC 27001
+-   NIS2
+-   DORA
+-   GDPR
+-   AI Act
+-   COBIT
+-   ITIL
+-   TOGAF
+-   enterprise risk management
+-   business continuity and operational resilience
+
+## Example Mapping Themes
+
+| NIST CSF Theme | Related Framework | Integration Point |
+|------------------------|------------------------|------------------------|
+| Govern | COBIT | Governance objectives and accountability |
+| Risk management | ISO 27001 | ISMS and risk treatment |
+| Detect / Respond / Recover | NIS2 / DORA | Incident management and resilience |
+| Service resilience | ITIL | Service continuity and operations |
+| Security architecture | TOGAF | Architecture governance and security viewpoints |
+
+# Maturity Model
+
+## Suggested Maturity Levels
+
+### Level 1: Initial
+
+Cybersecurity activities are reactive, fragmented, and poorly governed.
+
+### Level 2: Repeatable
+
+Basic practices exist but are inconsistently applied across the enterprise.
+
+### Level 3: Defined
+
+Profiles, roles, controls, and processes are documented and broadly implemented.
+
+### Level 4: Managed
+
+Cybersecurity activities are measured, risk-based, and regularly reviewed by leadership.
+
+### Level 5: Optimised
+
+Cybersecurity is integrated into enterprise governance, architecture, operations, and resilience with continuous improvement and strong evidence.
+
+## Assessment Dimensions
+
+-   governance
+-   asset visibility
+-   protection capability
+-   detection capability
+-   incident response
+-   recovery readiness
+-   third-party assurance
+-   metrics and reporting
+-   control assurance
+-   improvement discipline
+
+# Practical Templates
+
+## Suggested Appendices
+
+-   Appendix A: Current Profile template
+-   Appendix B: Target Profile template
+-   Appendix C: Gap assessment template
+-   Appendix D: Cyber risk register
+-   Appendix E: Cybersecurity control catalogue
+-   Appendix F: Incident playbook template
+-   Appendix G: Recovery exercise template
+-   Appendix H: NIST CSF RACI matrix
+
+# Customisation Notes
+
+This template should be tailored to reflect:
+
+-   organisational structure
+-   sector and regulatory environment
+-   critical business services
+-   threat landscape
+-   sourcing and third-party model
+-   cloud and technology estate
+-   maturity level
+-   assurance expectations
+-   operating model and budget constraints
+
+# References
+
+Add authoritative references here, for example:
+
+-   NIST Cybersecurity Framework 2.0
+-   NIST SP 1299 Resource and Overview Guide
+-   NIST CSF Profiles guidance
+-   NIST CSF Tiers guidance
+-   NIST incident response guidance
+-   internal cybersecurity policies and standards
+-   enterprise risk framework
+-   architecture and resilience standards

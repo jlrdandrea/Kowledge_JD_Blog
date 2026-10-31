@@ -1,0 +1,257 @@
+/*-- scss:defaults --*/
+  
+  // Light theme customization
+$body-bg: #ffffff;
+  $body-color: #212529;
+  
+  // Primary brand colors
+$primary: #2563eb;
+  $secondary: #10b981;
+  $success: #10b981;
+  $info: #06b6d4;
+  $warning: #f59e0b;
+  $danger: #ef4444;
+  
+  // Links
+$link-color: #2563eb;
+  $link-hover-color: darken($link-color, 15%);
+
+// Headings
+$headings-color: #1e293b;
+  $headings-font-weight: 700;
+
+// Code
+$code-bg: #f1f5f9;
+  $code-color: #dc2626;
+  
+  // Sidebar
+$sidebar-bg: #f8fafc;
+  $sidebar-fg: #334155;
+  
+  // Navigation
+$navbar-bg: #ffffff;
+  $navbar-fg: #1e293b;
+  
+  /*-- scss:rules --*/
+  
+  // Custom styling
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+}
+
+// Headings with accent
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  color: $primary;
+  border-bottom: 3px solid $primary;
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  color: darken($primary, 5%);
+  border-bottom: 2px solid rgba($primary, 0.3);
+  padding-bottom: 0.2em;
+}
+
+// Enhanced code blocks
+pre {
+  background-color: $code-bg;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 1em;
+}
+
+code {
+  background-color: $code-bg;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+// Callouts
+.callout {
+  border-left: 4px solid $primary;
+  background-color: rgba($primary, 0.05);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+.callout-note {
+  border-left-color: $info;
+  background-color: rgba($info, 0.05);
+}
+
+.callout-warning {
+  border-left-color: $warning;
+  background-color: rgba($warning, 0.05);
+}
+
+.callout-important {
+  border-left-color: $danger;
+  background-color: rgba($danger, 0.05);
+}
+
+.callout-tip {
+  border-left-color: $success;
+  background-color: rgba($success, 0.05);
+}
+
+// Tables
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+}
+
+thead {
+  background-color: rgba($primary, 0.1);
+  border-bottom: 2px solid $primary;
+}
+
+th {
+  font-weight: 600;
+  padding: 0.75em;
+  text-align: left;
+}
+
+td {
+  padding: 0.75em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+  background-color: rgba($primary, 0.03);
+}
+
+// Sidebar styling
+.sidebar {
+  background-color: $sidebar-bg;
+  border-right: 1px solid #e2e8f0;
+}
+
+.sidebar nav a {
+  color: $sidebar-fg;
+  transition: all 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  color: $primary;
+  padding-left: 1.2em;
+}
+
+.sidebar nav a.active {
+  color: $primary;
+  font-weight: 600;
+  border-left: 3px solid $primary;
+  padding-left: 1em;
+}
+
+// Chapter title pages
+.part-title {
+  text-align: center;
+  padding: 3em 0;
+  color: $primary;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-top: 3px solid $primary;
+  border-bottom: 3px solid $primary;
+  margin: 2em 0;
+}
+
+// Practical takeaways box
+.takeaways {
+  background-color: rgba($success, 0.05);
+  border: 2px solid $success;
+  border-radius: 8px;
+  padding: 1.5em;
+  margin: 2em 0;
+}
+
+.takeaways h3 {
+  color: $success;
+  margin-top: 0;
+}
+
+// Case study boxes
+.case-study {
+  background-color: rgba($info, 0.05);
+  border-left: 5px solid $info;
+  padding: 1.5em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+.case-study h3 {
+  color: $info;
+  margin-top: 0;
+}
+
+// AI context boxes
+.ai-context {
+  background: linear-gradient(135deg, rgba($primary, 0.08) 0%, rgba($secondary, 0.08) 100%);
+  border: 2px solid $primary;
+  border-radius: 8px;
+  padding: 1.5em;
+  margin: 2em 0;
+  position: relative;
+}
+
+.ai-context::before {
+  content: "🤖 AI Context";
+  position: absolute;
+  top: -0.8em;
+  left: 1em;
+  background-color: $body-bg;
+  padding: 0 0.5em;
+  color: $primary;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+// Blockquotes
+blockquote {
+  border-left: 4px solid $primary;
+  padding-left: 1.5em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #64748b;
+}
+
+// Buttons and links
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: darken($primary, 10%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba($primary, 0.2);
+}
+
+// Search box
+#quarto-search {
+background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+border-radius: 6px;
+}
+
+// Footer
+footer {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 2em;
+  margin-top: 4em;
+  color: #64748b;
+}

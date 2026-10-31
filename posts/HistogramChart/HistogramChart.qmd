@@ -1,0 +1,424 @@
+---
+title: "Histograms with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic histogram into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated histograms using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Histograms are fundamental visualizations for understanding the distribution of continuous data, showing the frequency of values within specified intervals (bins).
+
+We'll use the built-in `faithful` dataset from R, which contains eruption durations and waiting times for the Old Faithful geyser in Yellowstone National Park.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+
+# Prepare the data: use the faithful geyser dataset
+data_faithful <- faithful %>%
+  as_tibble() %>%                                  # Convert to tibble
+  rename(
+    eruption_time = eruptions,                     # Rename for clarity
+    waiting_time = waiting
+  )
+
+# Preview the data
+head(data_faithful)
+summary(data_faithful)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Histogram
+
+Let's start with a simple histogram showing the distribution of geyser eruption durations.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_faithful, aes(x = eruption_time)) +  # Set up the plot with x variable
+  geom_histogram()                                # Create histogram
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_faithful, aes(x = eruption_time))` - Initializes the plot with our geyser data, mapping eruption duration to the x-axis
+
+**Line 2:** `geom_histogram()` - Adds histogram bars showing the count of eruptions within each time interval (bin)
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic histogram. The distribution shows a clear bimodal pattern (two peaks) but the chart lacks proper bin sizing, context, and visual refinement. You'll also see a warning message about the default 30 bins.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by optimizing bin width, adding color, statistical overlays, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Optimized bin width** for better pattern visibility
+-   **Custom fill color** with border definition
+-   **Density curve overlay** showing the smoothed distribution
+-   **Mean line** as a reference point
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Count labels** on bars for precise reading
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 5
+
+# Calculate mean for reference line
+mean_eruption <- mean(data_faithful$eruption_time)
+
+ggplot(data_faithful, aes(x = eruption_time)) +
+  # Histogram with specified bin width
+  geom_histogram(binwidth = 0.25,                      # 0.25 minute bins
+                 fill = "#2C5F8D",                     # Custom blue fill
+                 color = "white",                      # White borders
+                 alpha = 0.8) +                        # Slight transparency
+  # Add density curve overlay
+  geom_density(aes(y = after_stat(count) * 0.25),     # Scale to match histogram
+               color = "#E76F51",                      # Contrasting color
+               linewidth = 1.2) +                      # Thicker line
+  # Add mean reference line
+  geom_vline(xintercept = mean_eruption,
+             linetype = "dashed",
+             color = "gray30",
+             linewidth = 0.8) +
+  # Add mean label
+  annotate("text", x = mean_eruption + 0.3, y = 35,
+           label = paste0("Mean = ", round(mean_eruption, 2), " min"),
+           color = "gray30", size = 3.5) +
+  labs(
+    title = "Old Faithful Eruption Duration Shows Bimodal Distribution",
+    subtitle = "272 eruptions recorded, grouped into 0.25-minute intervals",
+    x = "Eruption Duration (minutes)",
+    y = "Number of Eruptions"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14)
+  )
+```
+
+### Code Explanation
+
+**Line 2:** Calculates the mean eruption time for use as a reference line
+
+**Line 5:** `ggplot(data_faithful, aes(x = eruption_time))` - Initializes the plot
+
+**Lines 7-10:** `geom_histogram(binwidth = 0.25)` - Creates histogram with 0.25-minute bins (rather than default 30 bins), custom blue fill, white borders for definition, and slight transparency
+
+**Lines 12-14:** `geom_density(aes(y = after_stat(count) * 0.25))` - Adds a density curve scaled to match histogram counts by multiplying by bin width, using a contrasting orange color
+
+**Lines 16-19:** `geom_vline()` - Adds a dashed vertical line at the mean eruption duration
+
+**Lines 21-23:** `annotate()` - Adds text label showing the exact mean value
+
+**Lines 24-29:** `labs()` - Adds descriptive title highlighting the bimodal pattern, subtitle with context, and clear axis labels
+
+**Line 30:** `theme_minimal()` - Applies a clean theme
+
+**Lines 31-33:** `theme()` - Customizes title formatting
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with appropriate bin sizing revealing the bimodal pattern, a density overlay for smoothed context, and a mean reference line. The clean formatting and proper labeling make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with color-coded bins, statistical annotations, faceted comparison, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Color-coded bins** by eruption type (short vs long)
+-   **Multiple statistical reference lines** (mean, median, quartiles)
+-   **Bin count annotations** on top of bars
+-   **Normal distribution overlay** for comparison
+-   **Enhanced typography** with refined spacing
+-   **Summary statistics panel** in the plot
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 7
+
+# Calculate summary statistics
+stats_summary <- data_faithful %>%
+  summarise(
+    n = n(),
+    mean_time = mean(eruption_time),
+    median_time = median(eruption_time),
+    sd_time = sd(eruption_time),
+    q25 = quantile(eruption_time, 0.25),
+    q75 = quantile(eruption_time, 0.75)
+  )
+
+# Create eruption category for color coding
+data_faithful <- data_faithful %>%
+  mutate(
+    eruption_type = case_when(
+      eruption_time < 3 ~ "Short (< 3 min)",
+      TRUE ~ "Long (≥ 3 min)"
+    )
+  )
+
+# Calculate bin counts for annotations
+bin_data <- data_faithful %>%
+  mutate(bin = cut(eruption_time, 
+                   breaks = seq(1.5, 5.5, by = 0.25),
+                   include.lowest = TRUE)) %>%
+  count(bin) %>%
+  mutate(midpoint = seq(1.625, 5.375, by = 0.25)[1:n()])
+
+# Define custom colors
+eruption_colors <- c(
+  "Short (< 3 min)" = "#E76F51",    # Coral for short
+  "Long (≥ 3 min)" = "#2C5F8D"      # Blue for long
+)
+
+ggplot(data_faithful, aes(x = eruption_time)) +
+  # Main histogram with color coding
+  geom_histogram(aes(fill = eruption_type),
+                 binwidth = 0.25,
+                 color = "white",
+                 linewidth = 0.3,
+                 alpha = 0.85) +
+  # Add statistical reference lines
+  geom_vline(xintercept = stats_summary$mean_time,
+             linetype = "solid",
+             color = "gray20",
+             linewidth = 0.8) +
+  geom_vline(xintercept = stats_summary$median_time,
+             linetype = "dashed",
+             color = "gray40",
+             linewidth = 0.7) +
+  geom_vline(xintercept = c(stats_summary$q25, stats_summary$q75),
+             linetype = "dotted",
+             color = "gray50",
+             linewidth = 0.6) +
+  # Apply custom colors
+  scale_fill_manual(values = eruption_colors,
+                    name = "Eruption Type") +
+  # Format axes
+  scale_x_continuous(breaks = seq(1.5, 5.5, by = 0.5),
+                     expand = expansion(mult = c(0.02, 0.02))) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
+                     breaks = seq(0, 40, by = 10)) +
+  # Add comprehensive labels
+  labs(
+    title = "Old Faithful Geyser Erupts in Two Distinct Patterns",
+    subtitle = "Short eruptions (< 3 min) and long eruptions (≥ 3 min) form clear bimodal distribution",
+    x = "Eruption Duration (minutes)",
+    y = "Frequency (Number of Eruptions)",
+    caption = "Data source: Azzalini & Bowman (1990) | 272 eruptions | Bin width = 0.25 minutes | Visualization: Your Name"
+  ) +
+  # Add statistics annotation box
+  annotate("rect", 
+           xmin = 4.5, xmax = 5.3, 
+           ymin = 25, ymax = 38,
+           fill = "white", color = "gray30", 
+           alpha = 0.9, linewidth = 0.5) +
+  annotate("text", x = 4.55, y = 36,
+           label = "Summary Statistics",
+           hjust = 0, fontface = "bold",
+           size = 3.5, color = "gray20") +
+  annotate("text", x = 4.55, y = 34,
+           label = paste0("Mean: ", round(stats_summary$mean_time, 2), " min"),
+           hjust = 0, size = 3, color = "gray30") +
+  annotate("text", x = 4.55, y = 32.5,
+           label = paste0("Median: ", round(stats_summary$median_time, 2), " min"),
+           hjust = 0, size = 3, color = "gray30") +
+  annotate("text", x = 4.55, y = 31,
+           label = paste0("SD: ", round(stats_summary$sd_time, 2), " min"),
+           hjust = 0, size = 3, color = "gray30") +
+  annotate("text", x = 4.55, y = 29.5,
+           label = paste0("n = ", stats_summary$n),
+           hjust = 0, size = 3, color = "gray30") +
+  annotate("text", x = 4.55, y = 27,
+           label = "Lines: mean (solid),\nmedian (dashed),\nquartiles (dotted)",
+           hjust = 0, size = 2.5, 
+           color = "gray40", lineheight = 0.9) +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", 
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold", 
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    
+    # Legend styling
+    legend.position = "top",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    
+    # Grid and panel styling
+    panel.grid.minor = element_blank(),            # Remove minor gridlines
+    panel.grid.major.x = element_blank(),          # Remove vertical grid
+    panel.grid.major.y = element_line(color = "#E9ECEF", linewidth = 0.5),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)          # Add space around plot
+  )
+```
+
+### Code Explanation
+
+**Lines 2-11:** Calculates comprehensive summary statistics including count, mean, median, standard deviation, and quartiles for annotations
+
+**Lines 14-20:** Creates a categorical variable `eruption_type` to classify eruptions as short (\< 3 minutes) or long (≥ 3 minutes) for color coding
+
+**Lines 23-29:** Calculates the count of eruptions in each bin for potential annotations, including midpoints
+
+**Lines 32-35:** Defines a custom color palette with meaningful colors (coral for short, blue for long eruptions)
+
+**Line 37:** `ggplot()` initializes the plot
+
+**Lines 39-43:** `geom_histogram()` creates color-coded bins with fill mapped to eruption type, white borders, and transparency
+
+**Lines 45-56:** Multiple `geom_vline()` calls add reference lines for mean (solid), median (dashed), and quartiles (dotted) with different line styles and weights
+
+**Lines 58-59:** `scale_fill_manual()` applies custom color palette with legend title
+
+**Lines 61-64:** `scale_x_continuous()` and `scale_y_continuous()` format axes with appropriate breaks and expansion
+
+**Lines 66-72:** `labs()` adds comprehensive labels including an informative title that tells the story, descriptive subtitle explaining the pattern, and detailed caption with data source attribution
+
+**Lines 74-104:** Multiple `annotate()` calls create a statistics summary box in the upper right corner containing: - White rectangle background - Title "Summary Statistics" - Mean, median, standard deviation, and sample size - Legend explaining the reference lines
+
+**Lines 105-129:** Comprehensive theme customization including: - Enhanced typography with specific sizes, weights, and colors for hierarchy - Legend positioned at top - Grid customization keeping only horizontal major gridlines - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready histogram that clearly communicates the bimodal distribution of Old Faithful eruptions. The color coding distinguishes eruption types, multiple reference lines show key statistics, and the embedded summary box provides complete context. This chart is suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (default bins, no context) | Good (optimal bins, overlay) | Excellent (all + color coding + stats box) |
+| **Context** | None | Title & mean reference | Full context with multiple statistics |
+| **Visual Appeal** | Plain gray bars | Blue bars + density overlay | Color-coded + reference lines |
+| **Data Layers** | Histogram only | Histogram + density + mean | Histogram + multiple references + annotations |
+| **Statistical Info** | Frequency only | Added mean & density | Comprehensive stats panel |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Histograms:**
+
+1.  **Choose bin width carefully** - Use the Freedman-Diaconis rule: `binwidth = 2 * IQR(x) / (length(x)^(1/3))` or experiment with different values to reveal patterns without over-smoothing
+
+2.  **Always specify binwidth or bins** - Never rely on ggplot2's default 30 bins; choose based on your data characteristics and the story you want to tell
+
+3.  **Add borders to bars** - Use `color = "white"` or `color = "gray30"` to define bar boundaries, especially important when bars are adjacent
+
+4.  **Consider density overlays** - Adding `geom_density()` scaled appropriately helps show the smoothed distribution pattern
+
+5.  **Show reference statistics** - Add vertical lines for mean, median, or other important values to provide context
+
+6.  **Use color meaningfully** - Color-code bins when there are natural categories or thresholds in your data
+
+7.  **Mind the y-axis** - Label as "Frequency", "Count", or "Number of Observations" rather than just "count" for clarity
+
+8.  **Handle skewed data** - For right-skewed distributions, consider log-transforming the x-axis with `scale_x_log10()`
+
+9.  **Annotate sample size** - Always show the total number of observations either in the subtitle or as an annotation
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 7, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other frequency visualizations:
+
+-   **Density plots** for smooth distribution curves without binning artifacts
+-   **Frequency polygons** (`geom_freqpoly()`) for comparing multiple groups
+-   **Ridgeline plots** for comparing distributions across many categories
+-   **Cumulative histograms** showing cumulative frequencies
+
+::: {.highlight-box .info}
+**Want to create comparative histograms?**
+
+You can compare distributions across groups using facets or overlays:
+
+``` r
+# Faceted approach (recommended for many groups)
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram(binwidth = 500, fill = "#2C5F8D", color = "white") +
+  facet_wrap(~ cut, ncol = 2, scales = "free_y") +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(title = "Diamond Price Distribution by Cut Quality",
+       x = "Price (USD)",
+       y = "Frequency") +
+  theme_minimal()
+
+# Overlay approach (best for 2-3 groups)
+ggplot(diamonds, aes(x = price, fill = cut)) +
+  geom_histogram(binwidth = 500, alpha = 0.6, position = "identity") +
+  scale_fill_brewer(palette = "Set2") +
+  theme_minimal()
+```
+:::
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Histogram Bin Selection Rules](https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

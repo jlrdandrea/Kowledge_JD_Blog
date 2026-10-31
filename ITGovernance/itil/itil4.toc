@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Overview}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}What is ITIL 4}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Purpose}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}When to Use It}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Target Audience}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}ITIL 4 Service Value System}{5}{subsection.1.5}%
+\contentsline {section}{\numberline {2}History and Evolution}{6}{section.2}%
+\contentsline {section}{\numberline {3}Core Principles}{7}{section.3}%
+\contentsline {section}{\numberline {4}Governance Structure}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Governance, Service Management, and Operations}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Service Value Chain Activities}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Four Dimensions of Service Management}{8}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Practices}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}General Management Practices}{9}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Service Management Practices}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Technical Management Practices}{10}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Documentation and Artefacts}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}ITIL 4 Documentation RACI Matrix}{11}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Integration with Other Frameworks}{18}{section.7}%
+\contentsline {section}{\numberline {8}Implementation Approach}{19}{section.8}%
+\contentsline {section}{\numberline {9}KPIs and Metrics}{20}{section.9}%
+\contentsline {section}{\numberline {10}Benefits}{21}{section.10}%
+\contentsline {section}{\numberline {11}Limitations}{21}{section.11}%
+\contentsline {section}{\numberline {12}Practical Use Case}{21}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Example: Stabilising Service Operations After Cloud Transformation}{21}{subsection.12.1}%
+\contentsline {section}{\numberline {13}Closing View}{22}{section.13}%
+\contentsline {section}{\numberline {14}References}{22}{section.14}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

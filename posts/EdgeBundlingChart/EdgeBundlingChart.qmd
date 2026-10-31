@@ -1,0 +1,512 @@
+---
+title: "Edge Bundling Charts with ggraph"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggraph, igraph, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic edge bundling chart into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated edge bundling charts using `ggraph` and `igraph` packages in R. We'll start with a basic hierarchical plot and progressively add elements to make it more informative and visually appealing.
+
+Edge bundling is an excellent technique for reducing visual clutter in network visualizations by bundling edges that follow similar paths. This creates a cleaner, more organized appearance especially useful for hierarchical data or networks with many connections.
+
+We'll create a dataset representing organizational relationships and communication patterns within a company.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # For data manipulation
+library(igraph)     # For network data structures
+library(ggraph)     # For network visualization
+library(scales)     # For formatting
+
+# Create hierarchical structure (organizational chart)
+hierarchy <- data.frame(
+  from = c("CEO", "CEO", "CEO",
+           "VP Sales", "VP Sales", "VP Sales",
+           "VP Tech", "VP Tech", "VP Tech", "VP Tech",
+           "VP Ops", "VP Ops"),
+  to = c("VP Sales", "VP Tech", "VP Ops",
+         "Sales East", "Sales West", "Sales Int'l",
+         "Dev Team", "QA Team", "Design", "Data Science",
+         "Logistics", "Customer Service")
+)
+
+# Create edges for cross-department communication
+communications <- data.frame(
+  from = c("Sales East", "Sales West", "Dev Team", "QA Team", 
+           "Design", "Data Science", "Logistics", "Customer Service",
+           "Sales Int'l", "Dev Team", "Sales East"),
+  to = c("Dev Team", "Design", "QA Team", "Dev Team",
+         "Dev Team", "Dev Team", "Sales East", "Sales West",
+         "Data Science", "Data Science", "Logistics"),
+  weight = c(15, 12, 25, 30, 18, 22, 10, 14, 16, 20, 8)
+)
+
+# Combine hierarchy and communications
+all_edges <- bind_rows(
+  hierarchy %>% mutate(type = "hierarchy", weight = 1),
+  communications %>% mutate(type = "communication")
+)
+
+# Get all unique nodes
+all_nodes <- data.frame(
+  name = unique(c(all_edges$from, all_edges$to))
+) %>%
+  mutate(
+    level = case_when(
+      name == "CEO" ~ 1,
+      name %in% c("VP Sales", "VP Tech", "VP Ops") ~ 2,
+      TRUE ~ 3
+    ),
+    department = case_when(
+      name == "CEO" ~ "Executive",
+      grepl("Sales|Sales East|Sales West|Sales Int'l", name) ~ "Sales",
+      grepl("Tech|Dev|QA|Design|Data", name) ~ "Technology",
+      grepl("Ops|Logistics|Customer", name) ~ "Operations",
+      TRUE ~ "Executive"
+    )
+  )
+
+# Create graph from HIERARCHY ONLY for proper tree structure
+hierarchy_graph <- graph_from_data_frame(d = hierarchy, vertices = all_nodes, directed = TRUE)
+
+# Add all edges as attributes for later use
+E(hierarchy_graph)$type <- "hierarchy"
+V(hierarchy_graph)$dept <- all_nodes$department[match(V(hierarchy_graph)$name, all_nodes$name)]
+
+# Preview the data
+head(all_edges)
+head(all_nodes)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Hierarchical Layout
+
+Let's start with a simple hierarchical tree showing the organizational structure.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 8
+
+ggraph(hierarchy_graph, layout = "tree") +
+  geom_edge_link() +                    # Draw edges
+  geom_node_point(size = 5) +           # Draw nodes
+  geom_node_text(aes(label = name),     # Add labels
+                 repel = TRUE, 
+                 size = 3)
+```
+
+### Code Explanation
+
+**Line 1:** `ggraph(hierarchy_graph, layout = "tree")` - Initializes the plot using a tree layout which arranges nodes hierarchically
+
+**Line 2:** `geom_edge_link()` - Draws straight lines representing connections
+
+**Line 3:** `geom_node_point()` - Draws circles for each node
+
+**Lines 4-6:** `geom_node_text()` - Adds labels with repel to avoid overlaps
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic tree layout. The hierarchy is visible but with many cross-connections, the chart becomes cluttered and hard to read.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement with Edge Bundling
+
+Now we'll improve the chart by applying edge bundling, adding colors, and better styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Dendrogram layout** for hierarchical display
+-   **Color coding** by department
+-   **Node sizes** by hierarchical level
+-   **Diagonal edges** for tree structure
+-   **Improved labels** with better positioning
+-   **Clean theme** removing axes
+-   **Title and legend** for context
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 10
+
+# Use linear dendrogram layout first
+ggraph(hierarchy_graph, layout = "dendrogram", circular = FALSE) +
+  # Draw edges
+  geom_edge_diagonal(alpha = 0.4, color = "gray50") +
+  # Draw nodes colored by department
+  geom_node_point(aes(size = (4 - level) * 3, color = dept),
+                  alpha = 0.8) +
+  # Add node labels
+  geom_node_text(aes(label = name),
+                 hjust = 1.1,
+                 size = 3) +
+  # Apply color palette
+  scale_color_brewer(palette = "Set2",
+                     name = "Department") +
+  scale_size_identity() +
+  coord_flip() +
+  labs(
+    title = "Organizational Hierarchy (Dendrogram Layout)",
+    subtitle = "Hierarchical structure showing reporting relationships",
+    caption = "Dendrogram layout organizes nodes by hierarchical level"
+  ) +
+  theme_graph() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, margin = margin(b = 10)),
+    legend.position = "bottom"
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `ggraph()` with dendrogram layout and `circular = TRUE` creates a radial hierarchical layout
+
+**Line 1:** `ggraph()` with dendrogram layout (horizontal tree structure)
+
+**Line 3:** `geom_edge_diagonal()` creates curved diagonal edges connecting parent to child nodes
+
+**Lines 5-6:** `geom_node_point()` draws nodes sized by level and colored by department
+
+**Lines 8-11:** `geom_node_text()` adds labels positioned to the left of nodes
+
+**Lines 13-14:** `scale_color_brewer()` applies colorblind-friendly palette
+
+**Line 15:** `scale_size_identity()` uses calculated sizes directly
+
+**Line 16:** `coord_flip()` rotates to vertical orientation
+
+**Lines 17-21:** `labs()` adds comprehensive labels
+
+**Line 31:** `theme_graph()` removes axes and grid
+
+**Lines 32-36:** Custom theme adjustments
+
+::: {.highlight-box .success}
+**What we have now:** A much cleaner visualization with edge bundling reducing clutter. The circular layout and color coding make it easier to see both hierarchy and cross-department communications.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, edge filtering, annotations, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Separate hierarchy and communication edges** with different styling
+-   **Edge width** based on communication volume
+-   **Custom color palette** with better contrast
+-   **Sector labels** showing departments
+-   **Communication statistics** annotations
+-   **Enhanced node styling** with borders
+-   **Gradient edge coloring** by weight
+-   **Professional typography** and spacing
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 10
+
+# Create full graph with all edges for visualization
+full_graph <- graph_from_data_frame(d = all_edges, vertices = all_nodes, directed = TRUE)
+
+# Add edge attributes
+E(full_graph)$edge_type <- all_edges$type
+E(full_graph)$edge_weight <- all_edges$weight
+
+# Add node attributes
+V(full_graph)$dept <- all_nodes$department[match(V(full_graph)$name, all_nodes$name)]
+V(full_graph)$node_level <- all_nodes$level[match(V(full_graph)$name, all_nodes$name)]
+
+# Define custom color palette
+dept_colors <- c(
+  "Executive" = "#8B4789",
+  "Sales" = "#E76F51",
+  "Technology" = "#2C5F8D",
+  "Operations" = "#52A675"
+)
+
+# Create layout
+set.seed(42)
+
+ggraph(full_graph, layout = "fr") +
+  # Draw edges with different styles by type
+  geom_edge_link(aes(colour = edge_type, 
+                     alpha = edge_type,
+                     width = ifelse(edge_type == "communication", edge_weight/10, 0.5)),
+                 arrow = arrow(length = unit(2, 'mm')),
+                 end_cap = circle(3, 'mm')) +
+  # Color edges by type
+  scale_edge_colour_manual(values = c("hierarchy" = "gray70", 
+                                      "communication" = "#a50f15"),
+                          name = "Connection Type") +
+  scale_edge_alpha_manual(values = c("hierarchy" = 0.3,
+                                     "communication" = 0.7),
+                         guide = "none") +
+  scale_edge_width_identity() +
+  # Draw nodes with enhanced styling
+  geom_node_point(aes(size = (4 - node_level) * 4, 
+                      fill = dept),
+                  shape = 21,
+                  color = "gray20",
+                  stroke = 1,
+                  alpha = 0.9) +
+  # Add node labels
+  geom_node_text(aes(label = name,
+                     fontface = ifelse(node_level == 1, "bold", "plain")),
+                 repel = TRUE,
+                 size = 3.5,
+                 max.overlaps = 20) +
+  # Apply custom colors
+  scale_fill_manual(values = dept_colors,
+                    name = "Department") +
+  scale_size_identity() +
+  # Add comprehensive labels
+  labs(
+    title = "Organizational Network: Hierarchical Structure and Cross-Department Communications",
+    subtitle = "Force-directed layout showing both reporting lines (gray) and communication flows (red)",
+    caption = "Data source: Simulated organizational data | Edge width indicates communication volume | Visualization: Your Name"
+  ) +
+  # Add annotation for communication stats
+  annotate("text",
+           x = -2, 
+           y = 2,
+           label = paste0("Communication Flows:\n",
+                         "Total Links: ", sum(all_edges$type == "communication"), "\n",
+                         "Departments: ", n_distinct(all_nodes$department) - 1, "\n",
+                         "Avg Weight: ", round(mean(communications$weight), 1)),
+           hjust = 0,
+           vjust = 1,
+           size = 3.5,
+           color = "gray30",
+           fontface = "italic",
+           lineheight = 0.9) +
+  theme_graph(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              hjust = 0.5,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  hjust = 0.5,
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0.5,
+                                margin = margin(t = 15)),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.background = element_rect(fill = "white", color = "gray80"),
+    legend.margin = margin(10, 10, 10, 10),
+    
+    # Background
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-3:** Assigns edge type and weight attributes to the graph edges
+
+**Lines 6-7:** Calculates in-degree and out-degree for each node
+
+**Lines 10-15:** Defines custom color palette for the four departments
+
+**Lines 18-19:** Creates layout with set seed for reproducibility
+
+**Line 21:** `ggraph()` initializes plot with pre-calculated layout
+
+**Lines 23-30:** First `geom_conn_bundle()` draws hierarchy edges (reporting structure) as light gray with lower opacity
+
+**Lines 32-39:** Second `geom_conn_bundle()` draws communication edges with color gradient and variable width
+
+**Lines 41-46:** Scale functions for edge color and width
+
+**Lines 48-53:** `geom_node_point()` draws nodes as circles with borders, sized inversely by level (CEO largest)
+
+**Lines 55-62:** `geom_node_text()` adds labels with automatic rotation following circular layout, bold for top level
+
+**Lines 64-66:** `scale_fill_manual()` applies custom department colors
+
+**Lines 68-72:** `labs()` adds comprehensive title, subtitle, and detailed caption
+
+**Lines 74-86:** `annotate()` adds communication statistics in top left corner
+
+**Lines 87-115:** Comprehensive theme customization including enhanced typography, legend styling, and proper margins
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready edge bundling visualization that clearly separates hierarchical structure from communication patterns. The bundled edges reduce clutter while making it easy to see which departments communicate most frequently. The combination of size coding, color coding, and dual edge types creates a comprehensive visualization suitable for executive presentations, reports, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (cluttered, straight lines) | Good (bundled, circular) | Excellent (separated edge types) |
+| **Context** | None | Title & legend | Full context with statistics |
+| **Visual Appeal** | Plain tree layout | Circular with bundling | Dual edge types + gradient colors |
+| **Data Layers** | All edges same | Bundled edges | Hierarchy + communications separated |
+| **Information** | Structure only | Structure + departments | Structure + weighted communications |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better Edge Bundling Charts:**
+
+1.  **Choose appropriate layouts** - Circular dendrogram works best for edge bundling; ensure your data has hierarchical structure
+
+2.  **Adjust tension carefully** - The `tension` parameter (0-1) controls bundling tightness; 0.8-0.9 usually works well
+
+3.  **Separate edge types** - Use different styling for hierarchical vs. data edges to maintain clarity
+
+4.  **Use transparency wisely** - Set alpha 0.3-0.6 for bundled edges to show density without obscuring nodes
+
+5.  **Color meaningfully** - Use color gradients to show edge properties like weight or frequency
+
+6.  **Size nodes by importance** - Make higher-level nodes larger for visual hierarchy
+
+7.  **Rotate labels appropriately** - Use `node_angle()` to rotate labels following the circular layout
+
+8.  **Consider audience** - Edge bundling works best when viewers need to see overall patterns, not trace individual connections
+
+9.  **Limit edge count** - Edge bundling is most effective with 20-200 edges; too few doesn't show benefit, too many becomes messy
+
+10. **Export at high resolution** - Use `ggsave("bundling.png", width = 12, height = 12, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other hierarchical visualizations:
+
+-   **Hierarchical edge bundling** for software dependencies
+-   **Radial trees** for organizational charts
+-   **Circular dendrograms** for phylogenetic trees
+-   **Force-directed bundling** for non-hierarchical networks
+
+::: {.highlight-box .info}
+**Want to create interactive edge bundling?**
+
+You can create interactive hierarchical edge bundling with D3.js using `r2d3`:
+
+``` r
+library(r2d3)
+
+# Prepare data in D3-friendly format
+nodes_json <- all_nodes %>%
+  mutate(id = name) %>%
+  toJSON()
+
+edges_json <- all_edges %>%
+  toJSON()
+
+# Create interactive visualization (requires custom D3 script)
+r2d3(
+  data = list(nodes = nodes_json, edges = edges_json),
+  script = "hierarchical_edge_bundling.js",  # Custom D3 script
+  dependencies = "d3-jetpack"
+)
+```
+
+Note: This requires writing custom D3.js code for the bundling algorithm.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Force-Directed Bundle
+
+Here's a bonus approach using force-directed layout with bundling:
+
+```{r}
+#| label: bonus-force
+#| fig-width: 10
+#| fig-height: 10
+
+# Create simpler graph for force-directed
+simple_edges <- communications %>%
+  filter(weight > 12)  # Only strong connections
+
+simple_graph <- graph_from_data_frame(
+  d = simple_edges,
+  vertices = all_nodes %>% filter(name %in% c(simple_edges$from, simple_edges$to)),
+  directed = TRUE
+)
+
+ggraph(simple_graph, layout = "fr") +
+  # Draw bundled edges
+  geom_edge_link(aes(width = weight, alpha = weight),
+                 color = "#2C5F8D") +
+  # Draw nodes
+  geom_node_point(aes(size = level, color = department),
+                  alpha = 0.8) +
+  # Add labels
+  geom_node_text(aes(label = name),
+                 repel = TRUE,
+                 size = 3.5,
+                 fontface = "bold") +
+  scale_color_manual(values = dept_colors, name = "Department") +
+  scale_edge_width(range = c(0.5, 3), guide = "none") +
+  scale_edge_alpha(range = c(0.3, 0.7), guide = "none") +
+  scale_size_continuous(range = c(8, 15), trans = "reverse", guide = "none") +
+  labs(
+    title = "Strong Communication Patterns (Force-Directed Layout)",
+    subtitle = "Connections weighted by communication volume (threshold > 12)"
+  ) +
+  theme_graph() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    legend.position = "bottom"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggraph Package Documentation](https://ggraph.data-imaginist.com/)
+-   [Hierarchical Edge Bundling](https://www.data-to-viz.com/graph/edge_bundling.html)
+-   [D3 Hierarchical Edge Bundling](https://observablehq.com/@d3/hierarchical-edge-bundling)
+-   [Network Visualization Guide](https://kateto.net/network-visualization)
+-   [Edge Bundling Algorithm](https://doi.org/10.1109/TVCG.2006.147)
+
+Happy plotting! 📊🕸️

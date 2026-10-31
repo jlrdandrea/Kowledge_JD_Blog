@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="IT engineering is the discipline of designing, building, integrating, operating, securing, and improving the technology systems">
+
+<title>IT Engineering</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-251603f34fb100524ce6c94bd8510ba7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">IT Engineering</h1>
+                  <div>
+        <div class="description">
+          IT engineering is the discipline of designing, building, integrating, operating, securing, and improving the technology systems
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Software</div>
+                <div class="quarto-category">Engeneering</div>
+                <div class="quarto-category">Development</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#what-it-engineering-is" id="toc-what-it-engineering-is" class="nav-link" data-scroll-target="#what-it-engineering-is">What IT Engineering Is</a></li>
+  <li><a href="#the-main-branches-of-it-engineering" id="toc-the-main-branches-of-it-engineering" class="nav-link" data-scroll-target="#the-main-branches-of-it-engineering">The Main Branches of IT Engineering</a>
+  <ul class="collapse">
+  <li><a href="#software-engineering" id="toc-software-engineering" class="nav-link" data-scroll-target="#software-engineering">Software Engineering</a></li>
+  <li><a href="#infrastructure-engineering" id="toc-infrastructure-engineering" class="nav-link" data-scroll-target="#infrastructure-engineering">Infrastructure Engineering</a></li>
+  <li><a href="#network-engineering" id="toc-network-engineering" class="nav-link" data-scroll-target="#network-engineering">Network Engineering</a></li>
+  <li><a href="#security-engineering" id="toc-security-engineering" class="nav-link" data-scroll-target="#security-engineering">Security Engineering</a></li>
+  <li><a href="#platform-engineering" id="toc-platform-engineering" class="nav-link" data-scroll-target="#platform-engineering">Platform Engineering</a></li>
+  <li><a href="#data-engineering" id="toc-data-engineering" class="nav-link" data-scroll-target="#data-engineering">Data Engineering</a></li>
+  <li><a href="#devops-and-site-reliability-engineering" id="toc-devops-and-site-reliability-engineering" class="nav-link" data-scroll-target="#devops-and-site-reliability-engineering">DevOps and Site Reliability Engineering</a></li>
+  <li><a href="#architecture-and-solution-engineering" id="toc-architecture-and-solution-engineering" class="nav-link" data-scroll-target="#architecture-and-solution-engineering">Architecture and Solution Engineering</a></li>
+  </ul></li>
+  <li><a href="#the-it-engineering-lifecycle" id="toc-the-it-engineering-lifecycle" class="nav-link" data-scroll-target="#the-it-engineering-lifecycle">The IT Engineering Lifecycle</a>
+  <ul class="collapse">
+  <li><a href="#discover" id="toc-discover" class="nav-link" data-scroll-target="#discover">Discover</a></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#build" id="toc-build" class="nav-link" data-scroll-target="#build">Build</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
+  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">Deploy</a></li>
+  <li><a href="#operate" id="toc-operate" class="nav-link" data-scroll-target="#operate">Operate</a></li>
+  <li><a href="#improve" id="toc-improve" class="nav-link" data-scroll-target="#improve">Improve</a></li>
+  </ul></li>
+  <li><a href="#core-building-blocks" id="toc-core-building-blocks" class="nav-link" data-scroll-target="#core-building-blocks">Core Building Blocks</a>
+  <ul class="collapse">
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration">Integration</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#security" id="toc-security" class="nav-link" data-scroll-target="#security">Security</a></li>
+  <li><a href="#operations" id="toc-operations" class="nav-link" data-scroll-target="#operations">Operations</a></li>
+  </ul></li>
+  <li><a href="#the-most-important-technical-concepts" id="toc-the-most-important-technical-concepts" class="nav-link" data-scroll-target="#the-most-important-technical-concepts">The Most Important Technical Concepts</a>
+  <ul class="collapse">
+  <li><a href="#reliability" id="toc-reliability" class="nav-link" data-scroll-target="#reliability">Reliability</a></li>
+  <li><a href="#scalability" id="toc-scalability" class="nav-link" data-scroll-target="#scalability">Scalability</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance">Performance</a></li>
+  <li><a href="#maintainability" id="toc-maintainability" class="nav-link" data-scroll-target="#maintainability">Maintainability</a></li>
+  <li><a href="#observability" id="toc-observability" class="nav-link" data-scroll-target="#observability">Observability</a></li>
+  <li><a href="#resilience" id="toc-resilience" class="nav-link" data-scroll-target="#resilience">Resilience</a></li>
+  <li><a href="#automation" id="toc-automation" class="nav-link" data-scroll-target="#automation">Automation</a></li>
+  </ul></li>
+  <li><a href="#the-people-side-of-it-engineering" id="toc-the-people-side-of-it-engineering" class="nav-link" data-scroll-target="#the-people-side-of-it-engineering">The People Side of IT Engineering</a></li>
+  <li><a href="#governance-in-it-engineering" id="toc-governance-in-it-engineering" class="nav-link" data-scroll-target="#governance-in-it-engineering">Governance in IT Engineering</a></li>
+  <li><a href="#how-it-engineering-connects-to-the-business" id="toc-how-it-engineering-connects-to-the-business" class="nav-link" data-scroll-target="#how-it-engineering-connects-to-the-business">How IT Engineering Connects to the Business</a></li>
+  <li><a href="#common-artefacts-and-documents" id="toc-common-artefacts-and-documents" class="nav-link" data-scroll-target="#common-artefacts-and-documents">Common Artefacts and Documents</a>
+  <ul class="collapse">
+  <li><a href="#strategy-and-planning" id="toc-strategy-and-planning" class="nav-link" data-scroll-target="#strategy-and-planning">Strategy and Planning</a></li>
+  <li><a href="#design-1" id="toc-design-1" class="nav-link" data-scroll-target="#design-1">Design</a></li>
+  <li><a href="#delivery" id="toc-delivery" class="nav-link" data-scroll-target="#delivery">Delivery</a></li>
+  <li><a href="#operations-1" id="toc-operations-1" class="nav-link" data-scroll-target="#operations-1">Operations</a></li>
+  <li><a href="#governance-and-assurance" id="toc-governance-and-assurance" class="nav-link" data-scroll-target="#governance-and-assurance">Governance and Assurance</a></li>
+  </ul></li>
+  <li><a href="#frameworks-commonly-used-around-it-engineering" id="toc-frameworks-commonly-used-around-it-engineering" class="nav-link" data-scroll-target="#frameworks-commonly-used-around-it-engineering">Frameworks Commonly Used Around IT Engineering</a>
+  <ul class="collapse">
+  <li><a href="#itil" id="toc-itil" class="nav-link" data-scroll-target="#itil">ITIL</a></li>
+  <li><a href="#cobit" id="toc-cobit" class="nav-link" data-scroll-target="#cobit">COBIT</a></li>
+  <li><a href="#togaf" id="toc-togaf" class="nav-link" data-scroll-target="#togaf">TOGAF</a></li>
+  <li><a href="#isoiec-27001" id="toc-isoiec-27001" class="nav-link" data-scroll-target="#isoiec-27001">ISO/IEC 27001</a></li>
+  <li><a href="#nist-cybersecurity-framework" id="toc-nist-cybersecurity-framework" class="nav-link" data-scroll-target="#nist-cybersecurity-framework">NIST Cybersecurity Framework</a></li>
+  <li><a href="#devops-and-sre-practices" id="toc-devops-and-sre-practices" class="nav-link" data-scroll-target="#devops-and-sre-practices">DevOps and SRE Practices</a></li>
+  <li><a href="#delivery-frameworks" id="toc-delivery-frameworks" class="nav-link" data-scroll-target="#delivery-frameworks">Delivery Frameworks</a></li>
+  </ul></li>
+  <li><a href="#the-skills-that-matter-most" id="toc-the-skills-that-matter-most" class="nav-link" data-scroll-target="#the-skills-that-matter-most">The Skills That Matter Most</a>
+  <ul class="collapse">
+  <li><a href="#technical-depth" id="toc-technical-depth" class="nav-link" data-scroll-target="#technical-depth">Technical Depth</a></li>
+  <li><a href="#systems-thinking" id="toc-systems-thinking" class="nav-link" data-scroll-target="#systems-thinking">Systems Thinking</a></li>
+  <li><a href="#problem-solving" id="toc-problem-solving" class="nav-link" data-scroll-target="#problem-solving">Problem Solving</a></li>
+  <li><a href="#communication" id="toc-communication" class="nav-link" data-scroll-target="#communication">Communication</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#risk-awareness" id="toc-risk-awareness" class="nav-link" data-scroll-target="#risk-awareness">Risk Awareness</a></li>
+  <li><a href="#business-literacy" id="toc-business-literacy" class="nav-link" data-scroll-target="#business-literacy">Business Literacy</a></li>
+  </ul></li>
+  <li><a href="#common-misconceptions" id="toc-common-misconceptions" class="nav-link" data-scroll-target="#common-misconceptions">Common Misconceptions</a>
+  <ul class="collapse">
+  <li><a href="#it-is-just-coding" id="toc-it-is-just-coding" class="nav-link" data-scroll-target="#it-is-just-coding">“It is just coding”</a></li>
+  <li><a href="#infrastructure-alone-is-enough" id="toc-infrastructure-alone-is-enough" class="nav-link" data-scroll-target="#infrastructure-alone-is-enough">“Infrastructure alone is enough”</a></li>
+  <li><a href="#security-can-be-added-later" id="toc-security-can-be-added-later" class="nav-link" data-scroll-target="#security-can-be-added-later">“Security can be added later”</a></li>
+  <li><a href="#if-it-works-it-is-well-engineered" id="toc-if-it-works-it-is-well-engineered" class="nav-link" data-scroll-target="#if-it-works-it-is-well-engineered">“If it works, it is well engineered”</a></li>
+  <li><a href="#operations-is-separate-from-engineering" id="toc-operations-is-separate-from-engineering" class="nav-link" data-scroll-target="#operations-is-separate-from-engineering">“Operations is separate from engineering”</a></li>
+  </ul></li>
+  <li><a href="#what-good-looks-like" id="toc-what-good-looks-like" class="nav-link" data-scroll-target="#what-good-looks-like">What Good Looks Like</a></li>
+  <li><a href="#a-simple-layered-mental-model" id="toc-a-simple-layered-mental-model" class="nav-link" data-scroll-target="#a-simple-layered-mental-model">A Simple Layered Mental Model</a>
+  <ul class="collapse">
+  <li><a href="#business-layer" id="toc-business-layer" class="nav-link" data-scroll-target="#business-layer">1. Business Layer</a></li>
+  <li><a href="#process-layer" id="toc-process-layer" class="nav-link" data-scroll-target="#process-layer">2. Process Layer</a></li>
+  <li><a href="#application-layer" id="toc-application-layer" class="nav-link" data-scroll-target="#application-layer">3. Application Layer</a></li>
+  <li><a href="#data-layer" id="toc-data-layer" class="nav-link" data-scroll-target="#data-layer">4. Data Layer</a></li>
+  <li><a href="#technology-layer" id="toc-technology-layer" class="nav-link" data-scroll-target="#technology-layer">5. Technology Layer</a></li>
+  <li><a href="#control-layer" id="toc-control-layer" class="nav-link" data-scroll-target="#control-layer">6. Control Layer</a></li>
+  </ul></li>
+  <li><a href="#how-to-learn-it-engineering" id="toc-how-to-learn-it-engineering" class="nav-link" data-scroll-target="#how-to-learn-it-engineering">How to Learn IT Engineering</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>IT engineering is the discipline of designing, building, integrating, operating, securing, and improving the technology systems that organisations rely on. It is where business intent is translated into working digital capability.</p>
+<p>In practice, IT engineering is not limited to software development or infrastructure support. It spans the full lifecycle of digital systems, from understanding business needs and defining requirements to architecture, implementation, deployment, operations, resilience, and continual improvement.</p>
+<p>A helpful way to view IT engineering is as <strong>applied engineering for digital systems</strong>. It combines technical depth with systems thinking, governance, operational discipline, and business alignment.</p>
+</section>
+<section id="what-it-engineering-is" class="level1">
+<h1>What IT Engineering Is</h1>
+<p>IT engineering sits at the intersection of several domains:</p>
+<ul>
+<li>business needs and operating models</li>
+<li>software and application development</li>
+<li>infrastructure and cloud platforms</li>
+<li>networks and connectivity</li>
+<li>cybersecurity and identity</li>
+<li>data platforms and integration</li>
+<li>service operations and reliability</li>
+<li>architecture and standards</li>
+<li>automation and delivery practices</li>
+</ul>
+<p>Its purpose is to turn business demand into secure, reliable, scalable, supportable, and cost-effective technology services.</p>
+<p>For example, if an organisation wants to launch a digital service for customers, IT engineering must make that service real. This typically includes the application itself, the cloud or on-premise platform, the network design, user identity and access controls, data storage, integration with back-office systems, monitoring, backup, disaster recovery, testing, and deployment pipelines. That end-to-end responsibility is what makes IT engineering a true engineering discipline.</p>
+</section>
+<section id="the-main-branches-of-it-engineering" class="level1">
+<h1>The Main Branches of IT Engineering</h1>
+<section id="software-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="software-engineering">Software Engineering</h2>
+<p>Software engineering focuses on designing and building applications, APIs, automation, and user-facing or internal digital services.</p>
+<p>Typical concerns include:</p>
+<ul>
+<li>requirements and acceptance criteria</li>
+<li>software design and modularity</li>
+<li>maintainability and technical debt</li>
+<li>testing and quality assurance</li>
+<li>version control and release management</li>
+<li>security in code</li>
+<li>performance and scalability</li>
+</ul>
+<p>Common tools and practices include Git, CI/CD pipelines, automated testing, containerisation, code review, and structured development methods.</p>
+</section>
+<section id="infrastructure-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="infrastructure-engineering">Infrastructure Engineering</h2>
+<p>Infrastructure engineering is concerned with the compute, storage, virtualisation, hosting, and operating environments that support digital services.</p>
+<p>This includes:</p>
+<ul>
+<li>physical and virtual servers</li>
+<li>operating systems</li>
+<li>storage platforms</li>
+<li>backup and restore capability</li>
+<li>high availability design</li>
+<li>cloud services</li>
+<li>infrastructure as code</li>
+<li>patching and lifecycle management</li>
+</ul>
+<p>A mature infrastructure engineering capability ensures that platforms are stable, efficient, recoverable, and aligned to architecture standards.</p>
+</section>
+<section id="network-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="network-engineering">Network Engineering</h2>
+<p>Network engineering enables secure and reliable communication between systems, users, sites, and external services.</p>
+<p>Typical areas include:</p>
+<ul>
+<li>routing and switching</li>
+<li>LAN, WAN, and Wi-Fi</li>
+<li>DNS and DHCP</li>
+<li>firewalls and segmentation</li>
+<li>VPN and remote access</li>
+<li>load balancing</li>
+<li>bandwidth, throughput, and latency management</li>
+</ul>
+<p>Without sound network engineering, even well-built applications can fail due to poor connectivity, instability, or weak security boundaries.</p>
+</section>
+<section id="security-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="security-engineering">Security Engineering</h2>
+<p>Security engineering ensures that protection is built into systems from the start rather than added as an afterthought.</p>
+<p>This includes:</p>
+<ul>
+<li>identity and access management</li>
+<li>privileged access controls</li>
+<li>encryption</li>
+<li>secure configuration baselines</li>
+<li>vulnerability management</li>
+<li>endpoint and server hardening</li>
+<li>logging and detection</li>
+<li>incident response integration</li>
+<li>zero trust principles</li>
+<li>secure design and threat modelling</li>
+</ul>
+<p>In modern organisations, security engineering is a core discipline of IT engineering rather than a separate final gate.</p>
+</section>
+<section id="platform-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="platform-engineering">Platform Engineering</h2>
+<p>Platform engineering focuses on creating internal platforms that make delivery easier, faster, and more consistent for engineering teams.</p>
+<p>Examples include:</p>
+<ul>
+<li>standard cloud landing zones</li>
+<li>reusable deployment patterns</li>
+<li>internal developer platforms</li>
+<li>shared Kubernetes environments</li>
+<li>common observability tooling</li>
+<li>self-service infrastructure templates</li>
+</ul>
+<p>Its goal is to reduce friction and improve consistency across teams.</p>
+</section>
+<section id="data-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="data-engineering">Data Engineering</h2>
+<p>Data engineering designs and builds the data pipelines and platforms that support reporting, analytics, operational decision-making, and AI use cases.</p>
+<p>Typical responsibilities include:</p>
+<ul>
+<li>data ingestion</li>
+<li>ETL and ELT pipelines</li>
+<li>warehousing and lakehouse platforms</li>
+<li>data quality controls</li>
+<li>metadata and lineage</li>
+<li>schema design</li>
+<li>streaming pipelines</li>
+<li>governance and retention</li>
+</ul>
+<p>Data engineering is increasingly central to enterprise IT engineering because many business capabilities now depend on trustworthy and timely data.</p>
+</section>
+<section id="devops-and-site-reliability-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="devops-and-site-reliability-engineering">DevOps and Site Reliability Engineering</h2>
+<p>DevOps and SRE practices connect development and operations to improve delivery speed, service reliability, and recovery capability.</p>
+<p>Important ideas include:</p>
+<ul>
+<li>automation of builds and deployments</li>
+<li>continuous integration and continuous delivery</li>
+<li>monitoring and alerting</li>
+<li>incident response</li>
+<li>post-incident review</li>
+<li>service level objectives</li>
+<li>reliability engineering</li>
+<li>error budgets and resilience thinking</li>
+</ul>
+<p>These practices help engineering teams move from fragmented handovers to integrated service ownership.</p>
+</section>
+<section id="architecture-and-solution-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-and-solution-engineering">Architecture and Solution Engineering</h2>
+<p>Architecture and solution engineering ensure that technology choices are coherent, scalable, secure, and aligned with enterprise direction.</p>
+<p>This includes:</p>
+<ul>
+<li>solution design</li>
+<li>integration patterns</li>
+<li>target-state thinking</li>
+<li>standards and guardrails</li>
+<li>technology rationalisation</li>
+<li>cost and risk trade-offs</li>
+<li>alignment with business capabilities</li>
+</ul>
+<p>Architecture provides the structural logic that prevents engineering from becoming a collection of disconnected technical decisions.</p>
+</section>
+</section>
+<section id="the-it-engineering-lifecycle" class="level1">
+<h1>The IT Engineering Lifecycle</h1>
+<p>IT engineering is best understood as a lifecycle rather than a one-off build activity.</p>
+<section id="discover" class="level2">
+<h2 class="anchored" data-anchor-id="discover">Discover</h2>
+<p>This stage clarifies the problem, the users, the business goals, and the constraints. It may include process analysis, stakeholder engagement, current-state assessment, and identification of risks or dependencies.</p>
+</section>
+<section id="design" class="level2">
+<h2 class="anchored" data-anchor-id="design">Design</h2>
+<p>This stage defines the solution. It includes architecture, data flows, security controls, operational model, resilience patterns, integration mechanisms, and design documentation.</p>
+</section>
+<section id="build" class="level2">
+<h2 class="anchored" data-anchor-id="build">Build</h2>
+<p>This stage turns the design into working reality through code, configuration, scripting, cloud resources, network changes, integrations, and automation.</p>
+</section>
+<section id="test" class="level2">
+<h2 class="anchored" data-anchor-id="test">Test</h2>
+<p>This stage validates that the service works as intended and is fit for purpose. Testing may include:</p>
+<ul>
+<li>functional testing</li>
+<li>integration testing</li>
+<li>performance testing</li>
+<li>security testing</li>
+<li>failover and recovery testing</li>
+<li>user acceptance testing</li>
+</ul>
+</section>
+<section id="deploy" class="level2">
+<h2 class="anchored" data-anchor-id="deploy">Deploy</h2>
+<p>This stage puts the solution into a live or production environment through managed release processes, deployment pipelines, environment promotion, and change controls.</p>
+</section>
+<section id="operate" class="level2">
+<h2 class="anchored" data-anchor-id="operate">Operate</h2>
+<p>This stage ensures the service is run properly. It includes monitoring, support, patching, backup, incident response, problem management, capacity management, and operational reporting.</p>
+</section>
+<section id="improve" class="level2">
+<h2 class="anchored" data-anchor-id="improve">Improve</h2>
+<p>This stage learns from performance, incidents, user feedback, audit findings, and technical debt, then uses those lessons to strengthen the service or engineering approach.</p>
+</section>
+</section>
+<section id="core-building-blocks" class="level1">
+<h1>Core Building Blocks</h1>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<p>Strong engineering starts with clarity about what problem is being solved and what success looks like.</p>
+<p>Requirements often include:</p>
+<ul>
+<li>functional requirements</li>
+<li>non-functional requirements</li>
+<li>constraints</li>
+<li>assumptions</li>
+<li>dependencies</li>
+<li>acceptance criteria</li>
+</ul>
+<p>Non-functional requirements are especially important because they shape how well a system performs in the real world. These typically cover:</p>
+<ul>
+<li>availability</li>
+<li>performance</li>
+<li>security</li>
+<li>scalability</li>
+<li>maintainability</li>
+<li>resilience</li>
+<li>recoverability</li>
+</ul>
+</section>
+<section id="architecture" class="level2">
+<h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
+<p>Architecture determines the structure of the solution and the logic that connects its parts. It is often considered across multiple layers:</p>
+<ul>
+<li>business architecture</li>
+<li>application architecture</li>
+<li>data architecture</li>
+<li>technology architecture</li>
+<li>security architecture</li>
+</ul>
+<p>Architecture is not abstract decoration; it is what gives engineering coherence and sustainability.</p>
+</section>
+<section id="integration" class="level2">
+<h2 class="anchored" data-anchor-id="integration">Integration</h2>
+<p>Most enterprise systems do not stand alone. They connect to other systems, users, and data sources.</p>
+<p>Common integration patterns include:</p>
+<ul>
+<li>APIs</li>
+<li>events and message queues</li>
+<li>batch interfaces</li>
+<li>file exchanges</li>
+<li>service buses</li>
+<li>data pipelines</li>
+</ul>
+<p>Integration is often where complexity and failure risk accumulate, so it deserves deliberate engineering attention.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Data is a core asset in nearly all modern services. Engineering must address:</p>
+<ul>
+<li>data quality</li>
+<li>ownership</li>
+<li>lifecycle</li>
+<li>privacy</li>
+<li>security</li>
+<li>retention</li>
+<li>access control</li>
+<li>traceability</li>
+</ul>
+<p>Poor data engineering can undermine reporting, decision-making, compliance, automation, and AI usage.</p>
+</section>
+<section id="security" class="level2">
+<h2 class="anchored" data-anchor-id="security">Security</h2>
+<p>Security applies at every layer, including:</p>
+<ul>
+<li>user identity</li>
+<li>device and endpoint</li>
+<li>network</li>
+<li>application</li>
+<li>platform</li>
+<li>data</li>
+<li>monitoring and detection</li>
+<li>backup and recovery</li>
+</ul>
+<p>Secure-by-design thinking is now a hallmark of modern IT engineering.</p>
+</section>
+<section id="operations" class="level2">
+<h2 class="anchored" data-anchor-id="operations">Operations</h2>
+<p>Engineering is incomplete if the solution cannot be run, supported, monitored, restored, or improved.</p>
+<p>Operational readiness usually includes:</p>
+<ul>
+<li>monitoring and alerting</li>
+<li>runbooks and support procedures</li>
+<li>ownership and escalation paths</li>
+<li>service metrics</li>
+<li>patching schedules</li>
+<li>backup validation</li>
+<li>recovery testing</li>
+</ul>
+</section>
+</section>
+<section id="the-most-important-technical-concepts" class="level1">
+<h1>The Most Important Technical Concepts</h1>
+<section id="reliability" class="level2">
+<h2 class="anchored" data-anchor-id="reliability">Reliability</h2>
+<p>A reliable system performs consistently and recovers effectively when faults occur.</p>
+<p>Key considerations include:</p>
+<ul>
+<li>redundancy</li>
+<li>failover</li>
+<li>dependency mapping</li>
+<li>recovery procedures</li>
+<li>recovery time objectives</li>
+<li>recovery point objectives</li>
+<li>graceful degradation</li>
+</ul>
+</section>
+<section id="scalability" class="level2">
+<h2 class="anchored" data-anchor-id="scalability">Scalability</h2>
+<p>Scalability is the ability of a service to handle increased load without unacceptable degradation.</p>
+<p>Approaches include:</p>
+<ul>
+<li>vertical scaling</li>
+<li>horizontal scaling</li>
+<li>caching</li>
+<li>queue-based workloads</li>
+<li>distributed architectures</li>
+<li>database tuning</li>
+</ul>
+</section>
+<section id="performance" class="level2">
+<h2 class="anchored" data-anchor-id="performance">Performance</h2>
+<p>Performance concerns how quickly and efficiently a service responds. It is affected by code, database design, infrastructure, networks, integration patterns, and concurrency.</p>
+</section>
+<section id="maintainability" class="level2">
+<h2 class="anchored" data-anchor-id="maintainability">Maintainability</h2>
+<p>Maintainability is the ease with which a system can be understood, supported, fixed, and enhanced. It is improved by modular design, coding standards, documentation, testing, and clear ownership.</p>
+</section>
+<section id="observability" class="level2">
+<h2 class="anchored" data-anchor-id="observability">Observability</h2>
+<p>Observability is the ability to understand what is happening inside a system by using logs, metrics, traces, dashboards, and alerts. It is essential for troubleshooting and operational improvement.</p>
+</section>
+<section id="resilience" class="level2">
+<h2 class="anchored" data-anchor-id="resilience">Resilience</h2>
+<p>Resilience is the capacity to continue operating or recover quickly when disruptions occur, whether caused by component failure, cyber incidents, demand spikes, or external outages.</p>
+</section>
+<section id="automation" class="level2">
+<h2 class="anchored" data-anchor-id="automation">Automation</h2>
+<p>Automation reduces manual effort, variation, and operational risk. Typical candidates for automation include:</p>
+<ul>
+<li>builds</li>
+<li>testing</li>
+<li>deployments</li>
+<li>infrastructure provisioning</li>
+<li>compliance checks</li>
+<li>account provisioning</li>
+<li>patching</li>
+<li>reporting</li>
+</ul>
+</section>
+</section>
+<section id="the-people-side-of-it-engineering" class="level1">
+<h1>The People Side of IT Engineering</h1>
+<p>IT engineering is highly technical, but it is also organisational.</p>
+<p>Common roles include:</p>
+<ul>
+<li>software engineer</li>
+<li>infrastructure engineer</li>
+<li>systems engineer</li>
+<li>cloud engineer</li>
+<li>network engineer</li>
+<li>security engineer</li>
+<li>platform engineer</li>
+<li>site reliability engineer</li>
+<li>data engineer</li>
+<li>enterprise architect</li>
+<li>solution architect</li>
+<li>test engineer</li>
+<li>release engineer</li>
+<li>support engineer</li>
+</ul>
+<p>Leadership and coordination roles may include:</p>
+<ul>
+<li>engineering manager</li>
+<li>head of engineering</li>
+<li>chief architect</li>
+<li>CIO</li>
+<li>CTO</li>
+<li>CISO</li>
+<li>service owner</li>
+<li>product owner</li>
+<li>delivery manager</li>
+</ul>
+<p>Many technology problems that appear technical are actually rooted in unclear ownership, fragmented responsibilities, weak standards, or poor communication. Good engineering therefore depends on both technical capability and organisational clarity.</p>
+</section>
+<section id="governance-in-it-engineering" class="level1">
+<h1>Governance in IT Engineering</h1>
+<p>Engineering requires governance so that technology is built and operated consistently, safely, and accountably.</p>
+<p>Governance typically answers questions such as:</p>
+<ul>
+<li>who defines standards</li>
+<li>who approves deviations</li>
+<li>what must be documented</li>
+<li>what risks are acceptable</li>
+<li>how changes are controlled</li>
+<li>how compliance is evidenced</li>
+<li>how accountability is assigned</li>
+</ul>
+<p>Typical governance mechanisms include:</p>
+<ul>
+<li>architecture review boards</li>
+<li>engineering standards</li>
+<li>secure development policies</li>
+<li>cloud guardrails</li>
+<li>change control</li>
+<li>service ownership models</li>
+<li>control testing</li>
+<li>audit trails</li>
+<li>risk registers</li>
+</ul>
+<p>The objective is not bureaucracy for its own sake. The objective is to create enough control to reduce chaos, inconsistency, and unmanaged risk without making delivery unnecessarily slow.</p>
+</section>
+<section id="how-it-engineering-connects-to-the-business" class="level1">
+<h1>How IT Engineering Connects to the Business</h1>
+<p>Business stakeholders rarely seek technology for its own sake. They usually seek outcomes such as:</p>
+<ul>
+<li>speed</li>
+<li>efficiency</li>
+<li>growth</li>
+<li>better customer experience</li>
+<li>better decisions</li>
+<li>lower risk</li>
+<li>compliance</li>
+<li>resilience</li>
+<li>innovation</li>
+</ul>
+<p>IT engineering exists to convert those aims into real operating capability.</p>
+<p>For example:</p>
+<ul>
+<li>automation can reduce manual effort and error</li>
+<li>strong architecture can reduce outages and rework</li>
+<li>effective security engineering can reduce exposure and strengthen trust</li>
+<li>good data engineering can improve reporting and forecasting</li>
+<li>platform engineering can accelerate delivery across many teams</li>
+</ul>
+<p>This is why strong engineers benefit from understanding not only technology but also business capability, operating models, value streams, and risk.</p>
+</section>
+<section id="common-artefacts-and-documents" class="level1">
+<h1>Common Artefacts and Documents</h1>
+<p>Professional IT engineering environments usually produce a range of artefacts.</p>
+<section id="strategy-and-planning" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-and-planning">Strategy and Planning</h2>
+<ul>
+<li>IT strategy</li>
+<li>engineering principles</li>
+<li>target architecture</li>
+<li>roadmaps</li>
+<li>investment cases</li>
+<li>standards catalogue</li>
+</ul>
+</section>
+<section id="design-1" class="level2">
+<h2 class="anchored" data-anchor-id="design-1">Design</h2>
+<ul>
+<li>solution architecture documents</li>
+<li>high-level design</li>
+<li>low-level design</li>
+<li>network diagrams</li>
+<li>integration specifications</li>
+<li>data models</li>
+<li>threat models</li>
+</ul>
+</section>
+<section id="delivery" class="level2">
+<h2 class="anchored" data-anchor-id="delivery">Delivery</h2>
+<ul>
+<li>product backlog</li>
+<li>user stories</li>
+<li>acceptance criteria</li>
+<li>test plans</li>
+<li>deployment plans</li>
+<li>release notes</li>
+<li>build and configuration scripts</li>
+</ul>
+</section>
+<section id="operations-1" class="level2">
+<h2 class="anchored" data-anchor-id="operations-1">Operations</h2>
+<ul>
+<li>service catalogue entries</li>
+<li>runbooks</li>
+<li>monitoring dashboards</li>
+<li>support procedures</li>
+<li>backup and recovery procedures</li>
+<li>asset inventories</li>
+<li>CMDB records</li>
+</ul>
+</section>
+<section id="governance-and-assurance" class="level2">
+<h2 class="anchored" data-anchor-id="governance-and-assurance">Governance and Assurance</h2>
+<ul>
+<li>risk assessments</li>
+<li>control matrices</li>
+<li>design authority decisions</li>
+<li>change records</li>
+<li>exceptions and waivers</li>
+<li>audit evidence</li>
+<li>compliance mappings</li>
+</ul>
+</section>
+</section>
+<section id="frameworks-commonly-used-around-it-engineering" class="level1">
+<h1>Frameworks Commonly Used Around IT Engineering</h1>
+<p>Frameworks do not replace engineering, but they can provide useful structure.</p>
+<section id="itil" class="level2">
+<h2 class="anchored" data-anchor-id="itil">ITIL</h2>
+<p>ITIL supports service management, operational processes, support models, incident and problem management, and service value thinking.</p>
+</section>
+<section id="cobit" class="level2">
+<h2 class="anchored" data-anchor-id="cobit">COBIT</h2>
+<p>COBIT supports governance, control, accountability, assurance, and management objectives.</p>
+</section>
+<section id="togaf" class="level2">
+<h2 class="anchored" data-anchor-id="togaf">TOGAF</h2>
+<p>TOGAF supports enterprise architecture, target-state design, and architecture development methods.</p>
+</section>
+<section id="isoiec-27001" class="level2">
+<h2 class="anchored" data-anchor-id="isoiec-27001">ISO/IEC 27001</h2>
+<p>This supports information security management, policy frameworks, controls, and assurance.</p>
+</section>
+<section id="nist-cybersecurity-framework" class="level2">
+<h2 class="anchored" data-anchor-id="nist-cybersecurity-framework">NIST Cybersecurity Framework</h2>
+<p>This supports practical cybersecurity structuring across identify, protect, detect, respond, and recover perspectives.</p>
+</section>
+<section id="devops-and-sre-practices" class="level2">
+<h2 class="anchored" data-anchor-id="devops-and-sre-practices">DevOps and SRE Practices</h2>
+<p>These support engineering flow, automation, reliability, observability, and integrated service ownership.</p>
+</section>
+<section id="delivery-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-frameworks">Delivery Frameworks</h2>
+<p>Frameworks such as Agile, Scrum, PRINCE2, MSP, and similar methods can help structure change delivery around engineering work.</p>
+</section>
+</section>
+<section id="the-skills-that-matter-most" class="level1">
+<h1>The Skills That Matter Most</h1>
+<p>The most effective IT engineers usually combine several forms of capability.</p>
+<section id="technical-depth" class="level2">
+<h2 class="anchored" data-anchor-id="technical-depth">Technical Depth</h2>
+<p>A strong grounding in at least one or two technical domains is essential.</p>
+</section>
+<section id="systems-thinking" class="level2">
+<h2 class="anchored" data-anchor-id="systems-thinking">Systems Thinking</h2>
+<p>Good engineers understand dependencies, trade-offs, interfaces, bottlenecks, and second-order effects.</p>
+</section>
+<section id="problem-solving" class="level2">
+<h2 class="anchored" data-anchor-id="problem-solving">Problem Solving</h2>
+<p>Engineering often involves diagnosing issues, structuring ambiguity, and making sound design choices under constraints.</p>
+</section>
+<section id="communication" class="level2">
+<h2 class="anchored" data-anchor-id="communication">Communication</h2>
+<p>Engineers must explain technical matters clearly to colleagues, managers, business leaders, auditors, suppliers, and support teams.</p>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<p>Good documentation enables support, transfer of knowledge, auditability, and maintainability.</p>
+</section>
+<section id="risk-awareness" class="level2">
+<h2 class="anchored" data-anchor-id="risk-awareness">Risk Awareness</h2>
+<p>Every technical decision has implications for cost, complexity, security, resilience, and supportability.</p>
+</section>
+<section id="business-literacy" class="level2">
+<h2 class="anchored" data-anchor-id="business-literacy">Business Literacy</h2>
+<p>Understanding processes, value, cost, and organisational objectives helps engineers make better decisions.</p>
+</section>
+</section>
+<section id="common-misconceptions" class="level1">
+<h1>Common Misconceptions</h1>
+<p>Several misconceptions often weaken IT engineering.</p>
+<section id="it-is-just-coding" class="level2">
+<h2 class="anchored" data-anchor-id="it-is-just-coding">“It is just coding”</h2>
+<p>Coding is important, but IT engineering is much broader and includes architecture, infrastructure, security, operations, integration, and governance.</p>
+</section>
+<section id="infrastructure-alone-is-enough" class="level2">
+<h2 class="anchored" data-anchor-id="infrastructure-alone-is-enough">“Infrastructure alone is enough”</h2>
+<p>Infrastructure provides a platform, but without applications, integrations, data, and operational controls it does not deliver business value on its own.</p>
+</section>
+<section id="security-can-be-added-later" class="level2">
+<h2 class="anchored" data-anchor-id="security-can-be-added-later">“Security can be added later”</h2>
+<p>Late-stage security usually creates rework, cost, and residual risk. It is far better to design it in from the outset.</p>
+</section>
+<section id="if-it-works-it-is-well-engineered" class="level2">
+<h2 class="anchored" data-anchor-id="if-it-works-it-is-well-engineered">“If it works, it is well engineered”</h2>
+<p>A service may function today but still be fragile, undocumented, insecure, or difficult to support. Good engineering is about more than short-term functionality.</p>
+</section>
+<section id="operations-is-separate-from-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="operations-is-separate-from-engineering">“Operations is separate from engineering”</h2>
+<p>A service that cannot be monitored, restored, patched, or supported has not been fully engineered.</p>
+</section>
+</section>
+<section id="what-good-looks-like" class="level1">
+<h1>What Good Looks Like</h1>
+<p>A mature IT engineering capability usually demonstrates:</p>
+<ul>
+<li>clear architecture principles</li>
+<li>sensible standards</li>
+<li>secure-by-design thinking</li>
+<li>good documentation</li>
+<li>automated testing and deployment</li>
+<li>strong observability</li>
+<li>clear ownership</li>
+<li>managed change</li>
+<li>resilience and recovery capability</li>
+<li>continual improvement</li>
+</ul>
+<p>The outcomes tend to include:</p>
+<ul>
+<li>more stable services</li>
+<li>fewer avoidable incidents</li>
+<li>faster delivery</li>
+<li>better security</li>
+<li>lower support overhead</li>
+<li>stronger auditability</li>
+<li>improved trust from the business</li>
+</ul>
+</section>
+<section id="a-simple-layered-mental-model" class="level1">
+<h1>A Simple Layered Mental Model</h1>
+<p>A helpful way to explain IT engineering is through six connected layers:</p>
+<section id="business-layer" class="level2">
+<h2 class="anchored" data-anchor-id="business-layer">1. Business Layer</h2>
+<p>Why the service exists and what business capability it enables.</p>
+</section>
+<section id="process-layer" class="level2">
+<h2 class="anchored" data-anchor-id="process-layer">2. Process Layer</h2>
+<p>How work flows through the organisation and where technology supports or automates it.</p>
+</section>
+<section id="application-layer" class="level2">
+<h2 class="anchored" data-anchor-id="application-layer">3. Application Layer</h2>
+<p>What software, services, and interfaces provide the required functionality.</p>
+</section>
+<section id="data-layer" class="level2">
+<h2 class="anchored" data-anchor-id="data-layer">4. Data Layer</h2>
+<p>What information is created, stored, transformed, exchanged, and protected.</p>
+</section>
+<section id="technology-layer" class="level2">
+<h2 class="anchored" data-anchor-id="technology-layer">5. Technology Layer</h2>
+<p>What infrastructure, platforms, cloud services, and networks run the solution.</p>
+</section>
+<section id="control-layer" class="level2">
+<h2 class="anchored" data-anchor-id="control-layer">6. Control Layer</h2>
+<p>How governance, security, operations, compliance, and risk management keep the service safe and reliable.</p>
+<p>This model is especially useful because it helps connect executive concerns with engineering realities.</p>
+</section>
+</section>
+<section id="how-to-learn-it-engineering" class="level1">
+<h1>How to Learn IT Engineering</h1>
+<p>A practical learning path usually begins with the foundations:</p>
+<ul>
+<li>operating systems</li>
+<li>networking</li>
+<li>databases</li>
+<li>programming</li>
+<li>cloud fundamentals</li>
+<li>security fundamentals</li>
+</ul>
+<p>Then it expands into engineering practice:</p>
+<ul>
+<li>system design</li>
+<li>testing</li>
+<li>version control</li>
+<li>infrastructure as code</li>
+<li>CI/CD</li>
+<li>observability</li>
+<li>service operations</li>
+<li>documentation</li>
+</ul>
+<p>Then it extends into enterprise understanding:</p>
+<ul>
+<li>architecture</li>
+<li>governance</li>
+<li>service management</li>
+<li>risk and control</li>
+<li>compliance</li>
+<li>financial and operational trade-offs</li>
+</ul>
+<p>Finally, many professionals choose to deepen in one or more specialisms such as cloud, cybersecurity, data, software, networking, architecture, or site reliability engineering.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>IT engineering is the structured discipline of turning business needs into secure, reliable, scalable, supportable digital systems.</p>
+<p>It is both technical and organisational. It requires design discipline, operational thinking, risk awareness, and a clear connection to business value. In modern enterprises, strong IT engineering is not optional; it is one of the core capabilities that allows strategy to become working technology.</p>
+<p>In executive terms, IT engineering is where strategy becomes operational digital capability.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

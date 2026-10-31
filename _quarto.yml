@@ -1,0 +1,53 @@
+project:
+  type: website
+
+website:
+  navbar:
+    title: "JD`s Knowledge Base"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: ITGovernance/index.qmd
+        text: IT Governance
+      - href: HumanElement/index.qmd
+        text: Human Element
+      - href: posts/index.qmd  
+        text: Portfolio
+      - href: posts/index.qmd  
+        text: Portfolio
+      - href: about.qmd
+        text: About
+    tools:
+      - icon: github
+      - text: "github"
+      - href: github.com
+      - icon: linkedin
+      - href: linkedin.com
+  
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "Welcome"
+    type: primary
+    position: below-navbar
+  page-footer:
+    right: 
+      - href: about.qmd
+        text: About
+        
+format:
+  html:
+    page-layout: full
+    code-fold: true
+    theme: cosmo
+    toc: true
+    css: styles.css
+    
+knitr:
+  opts_chunk:
+    fig.width: 10
+    fig.height: 7
+    fig.align: "center"
+    
+editor: visual
+

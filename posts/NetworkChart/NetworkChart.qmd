@@ -1,0 +1,499 @@
+---
+title: "Network Charts with ggraph"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggraph, igraph, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic network chart into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated network charts using `ggraph` and `igraph` packages in R. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Network charts (also called graph visualizations) are excellent for showing relationships, connections, and flows between entities. They're useful for social networks, organizational structures, citation networks, and system dependencies.
+
+We'll create a dataset representing collaboration relationships between research departments in a university.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # For data manipulation
+library(igraph)     # For network data structures
+library(ggraph)     # For network visualization
+library(ggforce)    # For geom_mark_hull
+library(scales)     # For formatting
+
+# Create nodes (departments)
+nodes <- tibble(
+  id = 1:10,
+  name = c("Computer Science", "Mathematics", "Physics", "Chemistry",
+           "Biology", "Engineering", "Statistics", "Medicine",
+           "Psychology", "Economics"),
+  type = c("STEM", "STEM", "STEM", "STEM", 
+           "STEM", "STEM", "STEM", "Health",
+           "Social", "Social"),
+  publications = c(150, 120, 140, 110, 130, 145, 95, 125, 85, 90)
+)
+
+# Create edges (collaborations)
+edges <- tibble(
+  from = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9),
+  to = c(2, 3, 6, 3, 7, 10, 4, 6, 5, 8, 8, 9, 7, 10, 10, 1, 9, 10),
+  collaborations = c(25, 18, 30, 22, 15, 12, 20, 28, 16, 14, 19, 11, 24, 17, 13, 10, 21, 8)
+)
+
+# Create igraph object
+network <- graph_from_data_frame(d = edges, vertices = nodes, directed = FALSE)
+
+# Preview the data
+head(nodes)
+head(edges)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Network Chart
+
+Let's start with a simple network chart showing departments and their collaborations.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 8
+
+ggraph(network, layout = "fr") +  # Fruchterman-Reingold layout
+  geom_edge_link() +                # Draw edges
+  geom_node_point(size = 5)         # Draw nodes
+```
+
+### Code Explanation
+
+**Line 1:** `ggraph(network, layout = "fr")` - Initializes the network plot using the Fruchterman-Reingold force-directed layout algorithm
+
+**Line 2:** `geom_edge_link()` - Draws lines representing connections between departments
+
+**Line 3:** `geom_node_point()` - Draws circles representing each department
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic network chart. The connections are visible but the chart lacks labels, color coding, edge weights, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding labels, colors by department type, edge weights, and better styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Node colors** by department type
+-   **Node sizes** based on publication counts
+-   **Edge transparency** based on collaboration strength
+-   **Node labels** showing department names
+-   **Improved layout** algorithm
+-   **Legend** for interpretation
+-   **Clean theme** removing axes
+-   **Title and subtitle** for context
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 10
+
+ggraph(network, layout = "fr") +
+  # Draw edges with transparency based on weight
+  geom_edge_link(aes(alpha = collaborations),
+                 color = "gray50",
+                 show.legend = FALSE) +
+  # Draw nodes colored by type, sized by publications
+  geom_node_point(aes(color = type, size = publications),
+                  alpha = 0.8) +
+  # Add node labels
+  geom_node_text(aes(label = name),
+                 repel = TRUE,
+                 size = 3.5,
+                 fontface = "bold") +
+  # Apply color palette
+  scale_color_brewer(palette = "Set2",
+                     name = "Department Type") +
+  # Scale sizes
+  scale_size_continuous(name = "Publications",
+                       range = c(5, 15)) +
+  # Add labels
+  labs(
+    title = "University Research Collaboration Network",
+    subtitle = "Departments connected by joint publications",
+    caption = "Node size represents publication volume | Edge opacity shows collaboration strength"
+  ) +
+  theme_graph() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, margin = margin(b = 10)),
+    legend.position = "bottom"
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `ggraph()` with Fruchterman-Reingold layout for force-directed positioning
+
+**Lines 3-5:** `geom_edge_link()` draws edges with alpha transparency mapped to collaboration count
+
+**Lines 7-8:** `geom_node_point()` draws nodes colored by department type and sized by publication count
+
+**Lines 10-13:** `geom_node_text()` adds department labels with `repel = TRUE` to avoid overlaps
+
+**Lines 15-16:** `scale_color_brewer()` applies colorblind-friendly palette
+
+**Lines 18-19:** `scale_size_continuous()` controls node size range
+
+**Lines 21-25:** `labs()` adds comprehensive labels
+
+**Line 26:** `theme_graph()` applies clean theme removing axes and grid
+
+**Lines 27-31:** Custom theme adjustments for titles and legend
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative network with color-coded departments, sized nodes showing productivity, and weighted edges showing collaboration strength. The labels and clean formatting make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, community detection, curved edges, annotations, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Community detection** highlighting clusters
+-   **Curved edges** for better aesthetics
+-   **Custom color palette** by community
+-   **Network statistics** annotations
+-   **Hub highlighting** for most connected nodes
+-   **Enhanced typography** and spacing
+-   **Background shading** by community
+-   **Edge width and transparency** based on strength
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 12
+
+# Detect communities using Louvain method
+communities <- cluster_louvain(network)
+V(network)$community <- membership(communities)
+
+# Calculate node degree (number of connections)
+V(network)$degree <- degree(network)
+
+# Identify hub nodes (degree > 4)
+V(network)$is_hub <- V(network)$degree > 4
+
+# Calculate network statistics
+n_nodes <- vcount(network)
+n_edges <- ecount(network)
+density <- edge_density(network)
+avg_degree <- mean(degree(network))
+
+# Define custom color palette for communities
+community_colors <- c(
+  "1" = "#E76F51",
+  "2" = "#2A9D8F",
+  "3" = "#E9C46A",
+  "4" = "#F4A261"
+)
+
+# Set layout for consistency
+set.seed(42)
+layout <- create_layout(network, layout = "fr")
+
+ggraph(layout) +
+  # Add community background shading
+  geom_mark_hull(aes(x, y, group = community, fill = as.factor(community)),
+                 alpha = 0.1,
+                 expand = unit(3, "mm"),
+                 radius = unit(3, "mm")) +
+  # Draw edges with curved paths
+  geom_edge_link(aes(alpha = collaborations, width = collaborations),
+                 color = "gray40",
+                 show.legend = FALSE,
+                 end_cap = circle(3, 'mm'),
+                 start_cap = circle(3, 'mm')) +
+  # Draw nodes colored by community
+  geom_node_point(aes(size = publications, 
+                      color = as.factor(community),
+                      shape = is_hub),
+                  alpha = 0.9,
+                  stroke = 1.5) +
+  # Add node labels
+  geom_node_text(aes(label = name, 
+                     fontface = ifelse(is_hub, "bold", "plain")),
+                 repel = TRUE,
+                 size = 3.5,
+                 max.overlaps = 20) +
+  # Apply custom colors
+  scale_fill_manual(values = community_colors,
+                    name = "Community",
+                    guide = "none") +
+  scale_color_manual(values = community_colors,
+                     name = "Research\nCommunity") +
+  # Scale edge properties
+  scale_edge_width(range = c(0.5, 3)) +
+  scale_edge_alpha(range = c(0.3, 0.8)) +
+  # Scale node sizes
+  scale_size_continuous(name = "Annual\nPublications",
+                       range = c(8, 20)) +
+  # Shape scale for hubs
+  scale_shape_manual(values = c(16, 18),
+                    name = "Node Type",
+                    labels = c("Regular", "Hub (>4 connections)")) +
+  # Add comprehensive labels
+  labs(
+    title = "University Research Network: Community Structure and Collaboration Patterns",
+    subtitle = "Four distinct research communities identified through collaboration patterns | Hub departments shown as diamonds",
+    caption = "Data source: Simulated collaboration data | Layout: Fruchterman-Reingold | Community detection: Louvain algorithm | Visualization: Your Name"
+  ) +
+  # Add network statistics annotation
+  annotate("text",
+           x = max(layout$x) - 1,
+           y = max(layout$y) - 0.5,
+           label = paste0("Network Statistics:\n",
+                         "Nodes: ", n_nodes, "\n",
+                         "Edges: ", n_edges, "\n",
+                         "Density: ", round(density, 3), "\n",
+                         "Avg Degree: ", round(avg_degree, 1)),
+           hjust = 1,
+           vjust = 1,
+           size = 3.5,
+           color = "gray30",
+           fontface = "italic",
+           lineheight = 0.9) +
+  theme_graph(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              hjust = 0.5,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  hjust = 0.5,
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0.5,
+                                margin = margin(t = 15)),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.box = "vertical",
+    legend.background = element_rect(fill = "white", color = "gray80"),
+    legend.margin = margin(10, 10, 10, 10),
+    
+    # Background
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-3:** Detects communities using the Louvain algorithm and assigns membership to nodes
+
+**Line 6:** Calculates degree (number of connections) for each node
+
+**Line 9:** Identifies hub nodes as those with more than 4 connections
+
+**Lines 12-15:** Calculates network statistics for annotation
+
+**Lines 18-23:** Defines custom color palette for the four communities
+
+**Lines 26-27:** Creates consistent layout with set seed
+
+**Line 29:** `ggraph()` initializes plot with pre-calculated layout
+
+**Lines 31-34:** `geom_mark_hull()` draws shaded background regions around communities
+
+**Lines 36-41:** `geom_edge_link()` draws edges with width and transparency based on collaboration strength, using end caps to avoid overlap with nodes
+
+**Lines 43-47:** `geom_node_point()` draws nodes colored by community, sized by publications, with different shapes for hubs
+
+**Lines 49-53:** `geom_node_text()` adds labels with bold formatting for hub nodes
+
+**Lines 55-73:** Multiple scale functions for fill colors, edge properties, node sizes, and shapes
+
+**Lines 75-79:** `labs()` adds comprehensive title, subtitle, and detailed caption
+
+**Lines 81-94:** `annotate()` adds network statistics in top right corner
+
+**Lines 95-122:** Comprehensive theme customization including enhanced typography, legend styling, and proper margins
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready network visualization that clearly communicates collaboration patterns, community structure, and hub departments. The combination of community shading, edge weights, hub highlighting, and statistical annotations creates a comprehensive visualization suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no labels, monochrome) | Good (labels, colors, sizes) | Excellent (all + communities + hubs) |
+| **Context** | None | Title & legend | Full context with statistics |
+| **Visual Appeal** | Plain points and lines | Color-coded with sizes | Communities + curved edges + annotations |
+| **Data Layers** | Nodes + edges only | Nodes + weighted edges | Nodes + communities + hubs + stats |
+| **Network Info** | Structure only | Types, publications, weights | Communities, centrality, metrics |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggraph Network Charts:**
+
+1.  **Choose appropriate layouts** - Use "fr" (Fruchterman-Reingold) for general networks, "kk" (Kamada-Kawai) for smaller networks, "circle" for hierarchies, "tree" for trees
+
+2.  **Scale node sizes meaningfully** - Map size to importance metrics like degree, betweenness centrality, or domain-specific values
+
+3.  **Use edge properties effectively** - Map edge width/alpha to connection strength, use colors for different relationship types
+
+4.  **Detect communities** - Use algorithms like Louvain, Walktrap, or Edge Betweenness to identify natural groupings
+
+5.  **Label strategically** - Use `repel = TRUE` to avoid overlaps, bold important nodes, consider showing only hubs for large networks
+
+6.  **Mind the layout seed** - Set `set.seed()` for reproducible layouts, especially for presentations
+
+7.  **Add context with annotations** - Include network statistics like density, clustering coefficient, or path lengths
+
+8.  **Use curved edges for clarity** - Curved edges reduce visual clutter and make individual connections easier to trace
+
+9.  **Highlight key nodes** - Use different shapes or borders for important nodes (hubs, bridges, etc.)
+
+10. **Export at high resolution** - Use `ggsave("network.png", width = 12, height = 12, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other network visualizations:
+
+-   **Hierarchical networks** using tree layouts
+-   **Bipartite networks** showing two distinct node types
+-   **Temporal networks** with animation showing evolution
+-   **Interactive networks** using `visNetwork` or `networkD3`
+
+::: {.highlight-box .info}
+**Want to create interactive network charts?**
+
+You can make your networks interactive using `visNetwork`:
+
+``` r
+library(visNetwork)
+
+# Prepare data for visNetwork
+vis_nodes <- nodes %>%
+  rename(label = name) %>%
+  mutate(
+    group = type,
+    value = publications,
+    title = paste0(name, "<br>Publications: ", publications)
+  )
+
+vis_edges <- edges %>%
+  mutate(
+    value = collaborations,
+    title = paste0("Collaborations: ", collaborations)
+  )
+
+# Create interactive network
+visNetwork(vis_nodes, vis_edges) %>%
+  visGroups(groupname = "STEM", color = "#E76F51") %>%
+  visGroups(groupname = "Health", color = "#2A9D8F") %>%
+  visGroups(groupname = "Social", color = "#E9C46A") %>%
+  visOptions(
+    highlightNearest = TRUE,
+    nodesIdSelection = TRUE
+  ) %>%
+  visLayout(randomSeed = 42) %>%
+  visPhysics(stabilization = TRUE)
+```
+
+This creates an interactive network where users can drag nodes, zoom, and click for details.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Circular Layout
+
+Here's a bonus approach using a circular layout:
+
+```{r}
+#| label: bonus-circular
+#| fig-width: 10
+#| fig-height: 10
+
+ggraph(network, layout = "circle") +
+  # Draw edges
+  geom_edge_arc(aes(alpha = collaborations, width = collaborations),
+                color = "gray50",
+                strength = 0.3,
+                show.legend = FALSE) +
+  # Draw nodes
+  geom_node_point(aes(size = publications, color = type),
+                  alpha = 0.8) +
+  # Add labels
+  geom_node_text(aes(label = name),
+                 repel = TRUE,
+                 size = 3.5) +
+  # Apply colors
+  scale_color_brewer(palette = "Set2", name = "Department Type") +
+  scale_size_continuous(name = "Publications", range = c(5, 15)) +
+  scale_edge_width(range = c(0.3, 2)) +
+  # Add labels
+  labs(
+    title = "Research Collaboration Network (Circular Layout)",
+    subtitle = "Departments arranged in circle showing interconnections"
+  ) +
+  theme_graph() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    legend.position = "bottom"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggraph Package Documentation](https://ggraph.data-imaginist.com/)
+-   [igraph Package](https://igraph.org/r/)
+-   [Network Analysis with R](https://www.jessesadler.com/post/network-analysis-with-r/)
+-   [Introduction to Network Analysis](https://kateto.net/network-visualization)
+-   [Graph Theory and Networks](https://en.wikipedia.org/wiki/Graph_theory)
+
+Happy plotting! 📊🕸️

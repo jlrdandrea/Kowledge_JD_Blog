@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Engineering Lifecycle Framework">
+
+<title>ISO/IEC/IEEE 12207 and 15288</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">ISO/IEC/IEEE 12207 and 15288</h1>
+                  <div>
+        <div class="description">
+          Engineering Lifecycle Framework
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Engineering</div>
+                <div class="quarto-category">Lifecycle</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-structured-guide-to-system-and-software-life-cycle-processes" id="toc-a-structured-guide-to-system-and-software-life-cycle-processes" class="nav-link active" data-scroll-target="#a-structured-guide-to-system-and-software-life-cycle-processes">A structured guide to system and software life cycle processes</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#why-these-standards-matter" id="toc-why-these-standards-matter" class="nav-link" data-scroll-target="#why-these-standards-matter">Why these standards matter</a></li>
+  <li><a href="#relationship-between-15288-and-12207" id="toc-relationship-between-15288-and-12207" class="nav-link" data-scroll-target="#relationship-between-15288-and-12207">Relationship between 15288 and 12207</a></li>
+  <li><a href="#core-lifecycle-philosophy" id="toc-core-lifecycle-philosophy" class="nav-link" data-scroll-target="#core-lifecycle-philosophy">Core lifecycle philosophy</a></li>
+  <li><a href="#high-level-process-architecture" id="toc-high-level-process-architecture" class="nav-link" data-scroll-target="#high-level-process-architecture">High-level process architecture</a></li>
+  <li><a href="#agreement-processes" id="toc-agreement-processes" class="nav-link" data-scroll-target="#agreement-processes">Agreement processes</a>
+  <ul class="collapse">
+  <li><a href="#acquisition" id="toc-acquisition" class="nav-link" data-scroll-target="#acquisition">Acquisition</a></li>
+  <li><a href="#supply" id="toc-supply" class="nav-link" data-scroll-target="#supply">Supply</a></li>
+  <li><a href="#why-they-matter" id="toc-why-they-matter" class="nav-link" data-scroll-target="#why-they-matter">Why they matter</a></li>
+  </ul></li>
+  <li><a href="#organizational-project-enabling-processes" id="toc-organizational-project-enabling-processes" class="nav-link" data-scroll-target="#organizational-project-enabling-processes">Organizational project-enabling processes</a>
+  <ul class="collapse">
+  <li><a href="#life-cycle-model-management" id="toc-life-cycle-model-management" class="nav-link" data-scroll-target="#life-cycle-model-management">Life cycle model management</a></li>
+  <li><a href="#infrastructure-management" id="toc-infrastructure-management" class="nav-link" data-scroll-target="#infrastructure-management">Infrastructure management</a></li>
+  <li><a href="#portfolio-management" id="toc-portfolio-management" class="nav-link" data-scroll-target="#portfolio-management">Portfolio management</a></li>
+  <li><a href="#human-resource-management" id="toc-human-resource-management" class="nav-link" data-scroll-target="#human-resource-management">Human resource management</a></li>
+  <li><a href="#quality-management" id="toc-quality-management" class="nav-link" data-scroll-target="#quality-management">Quality management</a></li>
+  <li><a href="#knowledge-management" id="toc-knowledge-management" class="nav-link" data-scroll-target="#knowledge-management">Knowledge management</a></li>
+  <li><a href="#why-they-matter-1" id="toc-why-they-matter-1" class="nav-link" data-scroll-target="#why-they-matter-1">Why they matter</a></li>
+  </ul></li>
+  <li><a href="#technical-management-processes" id="toc-technical-management-processes" class="nav-link" data-scroll-target="#technical-management-processes">Technical management processes</a>
+  <ul class="collapse">
+  <li><a href="#project-planning" id="toc-project-planning" class="nav-link" data-scroll-target="#project-planning">Project planning</a></li>
+  <li><a href="#project-assessment-and-control" id="toc-project-assessment-and-control" class="nav-link" data-scroll-target="#project-assessment-and-control">Project assessment and control</a></li>
+  <li><a href="#decision-management" id="toc-decision-management" class="nav-link" data-scroll-target="#decision-management">Decision management</a></li>
+  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">Risk management</a></li>
+  <li><a href="#configuration-management" id="toc-configuration-management" class="nav-link" data-scroll-target="#configuration-management">Configuration management</a></li>
+  <li><a href="#information-management" id="toc-information-management" class="nav-link" data-scroll-target="#information-management">Information management</a></li>
+  <li><a href="#measurement" id="toc-measurement" class="nav-link" data-scroll-target="#measurement">Measurement</a></li>
+  <li><a href="#quality-assurance" id="toc-quality-assurance" class="nav-link" data-scroll-target="#quality-assurance">Quality assurance</a></li>
+  <li><a href="#why-they-matter-2" id="toc-why-they-matter-2" class="nav-link" data-scroll-target="#why-they-matter-2">Why they matter</a></li>
+  </ul></li>
+  <li><a href="#technical-processes" id="toc-technical-processes" class="nav-link" data-scroll-target="#technical-processes">Technical processes</a>
+  <ul class="collapse">
+  <li><a href="#business-or-mission-analysis" id="toc-business-or-mission-analysis" class="nav-link" data-scroll-target="#business-or-mission-analysis">Business or mission analysis</a></li>
+  <li><a href="#stakeholder-needs-and-requirements-definition" id="toc-stakeholder-needs-and-requirements-definition" class="nav-link" data-scroll-target="#stakeholder-needs-and-requirements-definition">Stakeholder needs and requirements definition</a></li>
+  <li><a href="#system-requirements-definition" id="toc-system-requirements-definition" class="nav-link" data-scroll-target="#system-requirements-definition">System requirements definition</a></li>
+  <li><a href="#system-architecture-definition" id="toc-system-architecture-definition" class="nav-link" data-scroll-target="#system-architecture-definition">System architecture definition</a></li>
+  <li><a href="#design-definition" id="toc-design-definition" class="nav-link" data-scroll-target="#design-definition">Design definition</a></li>
+  <li><a href="#system-analysis" id="toc-system-analysis" class="nav-link" data-scroll-target="#system-analysis">System analysis</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration">Integration</a></li>
+  <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification">Verification</a></li>
+  <li><a href="#transition" id="toc-transition" class="nav-link" data-scroll-target="#transition">Transition</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation">Validation</a></li>
+  <li><a href="#operation" id="toc-operation" class="nav-link" data-scroll-target="#operation">Operation</a></li>
+  <li><a href="#maintenance" id="toc-maintenance" class="nav-link" data-scroll-target="#maintenance">Maintenance</a></li>
+  <li><a href="#disposal" id="toc-disposal" class="nav-link" data-scroll-target="#disposal">Disposal</a></li>
+  </ul></li>
+  <li><a href="#where-12207-fits-within-the-engineering-lifecycle" id="toc-where-12207-fits-within-the-engineering-lifecycle" class="nav-link" data-scroll-target="#where-12207-fits-within-the-engineering-lifecycle">Where 12207 fits within the engineering lifecycle</a></li>
+  <li><a href="#tailoring" id="toc-tailoring" class="nav-link" data-scroll-target="#tailoring">Tailoring</a>
+  <ul class="collapse">
+  <li><a href="#practical-tailoring-examples" id="toc-practical-tailoring-examples" class="nav-link" data-scroll-target="#practical-tailoring-examples">Practical tailoring examples</a></li>
+  </ul></li>
+  <li><a href="#typical-lifecycle-artefacts" id="toc-typical-lifecycle-artefacts" class="nav-link" data-scroll-target="#typical-lifecycle-artefacts">Typical lifecycle artefacts</a>
+  <ul class="collapse">
+  <li><a href="#upstream-and-concept-artefacts" id="toc-upstream-and-concept-artefacts" class="nav-link" data-scroll-target="#upstream-and-concept-artefacts">Upstream and concept artefacts</a></li>
+  <li><a href="#requirements-artefacts" id="toc-requirements-artefacts" class="nav-link" data-scroll-target="#requirements-artefacts">Requirements artefacts</a></li>
+  <li><a href="#architecture-and-design-artefacts" id="toc-architecture-and-design-artefacts" class="nav-link" data-scroll-target="#architecture-and-design-artefacts">Architecture and design artefacts</a></li>
+  <li><a href="#delivery-and-control-artefacts" id="toc-delivery-and-control-artefacts" class="nav-link" data-scroll-target="#delivery-and-control-artefacts">Delivery and control artefacts</a></li>
+  <li><a href="#assurance-artefacts" id="toc-assurance-artefacts" class="nav-link" data-scroll-target="#assurance-artefacts">Assurance artefacts</a></li>
+  <li><a href="#transition-and-live-service-artefacts" id="toc-transition-and-live-service-artefacts" class="nav-link" data-scroll-target="#transition-and-live-service-artefacts">Transition and live-service artefacts</a></li>
+  </ul></li>
+  <li><a href="#lifecycle-governance-interpretation" id="toc-lifecycle-governance-interpretation" class="nav-link" data-scroll-target="#lifecycle-governance-interpretation">Lifecycle governance interpretation</a></li>
+  <li><a href="#relationship-to-modern-delivery-approaches" id="toc-relationship-to-modern-delivery-approaches" class="nav-link" data-scroll-target="#relationship-to-modern-delivery-approaches">Relationship to modern delivery approaches</a>
+  <ul class="collapse">
+  <li><a href="#agile" id="toc-agile" class="nav-link" data-scroll-target="#agile">Agile</a></li>
+  <li><a href="#devops" id="toc-devops" class="nav-link" data-scroll-target="#devops">DevOps</a></li>
+  <li><a href="#hybrid-delivery" id="toc-hybrid-delivery" class="nav-link" data-scroll-target="#hybrid-delivery">Hybrid delivery</a></li>
+  </ul></li>
+  <li><a href="#comparison-summary" id="toc-comparison-summary" class="nav-link" data-scroll-target="#comparison-summary">Comparison summary</a></li>
+  <li><a href="#executive-interpretation" id="toc-executive-interpretation" class="nav-link" data-scroll-target="#executive-interpretation">Executive interpretation</a></li>
+  <li><a href="#how-to-use-this-in-practice" id="toc-how-to-use-this-in-practice" class="nav-link" data-scroll-target="#how-to-use-this-in-practice">How to use this in practice</a></li>
+  <li><a href="#closing-summary" id="toc-closing-summary" class="nav-link" data-scroll-target="#closing-summary">Closing summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="a-structured-guide-to-system-and-software-life-cycle-processes" class="level1">
+<h1>A structured guide to system and software life cycle processes</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>ISO/IEC/IEEE 15288 provides the overarching framework for <strong>system life cycle processes</strong> across the full life of a system, from conception through development, production, utilisation, support, and retirement. ISO/IEC/IEEE 12207 provides the corresponding framework for <strong>software life cycle processes</strong>, and is typically used either on its own for software-centric work or together with 15288 when software forms part of a broader system.</p>
+<p>Taken together, the two standards provide a disciplined engineering lifecycle model that helps organisations structure and govern how they define, design, build, integrate, verify, validate, transition, operate, maintain, and retire systems and software.</p>
+<p>These standards do <strong>not</strong> prescribe a single delivery method such as waterfall, V-model, agile, DevOps, or spiral. Instead, they define a <strong>process architecture</strong> that can be tailored and applied iteratively, concurrently, and recursively.</p>
+</section>
+<section id="why-these-standards-matter" class="level2">
+<h2 class="anchored" data-anchor-id="why-these-standards-matter">Why these standards matter</h2>
+<p>The value of 12207 and 15288 is that they create a common language for engineering and lifecycle governance across:</p>
+<ul>
+<li>business stakeholders</li>
+<li>acquirers and suppliers</li>
+<li>architects and engineers</li>
+<li>project and programme managers</li>
+<li>quality and assurance functions</li>
+<li>operations and support teams</li>
+</ul>
+<p>They help answer core questions such as:</p>
+<ul>
+<li>What lifecycle processes should exist?</li>
+<li>How do system engineering and software engineering fit together?</li>
+<li>How do governance, project control, and engineering execution connect?</li>
+<li>How do we maintain traceability from business need to retirement?</li>
+</ul>
+<p>This makes the standards particularly useful in large IT and engineering programmes, regulated environments, critical systems, systems integration, product engineering, and enterprise transformation.</p>
+</section>
+<section id="relationship-between-15288-and-12207" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-between-15288-and-12207">Relationship between 15288 and 12207</h2>
+<p>A practical way to understand the two standards is:</p>
+<ul>
+<li><strong>15288</strong> = the lifecycle framework for the <strong>system of interest</strong></li>
+<li><strong>12207</strong> = the lifecycle framework for the <strong>software elements</strong> within that system</li>
+</ul>
+<p>The standards share a common lifecycle philosophy and aligned process intent. The main difference is that 15288 is written from a <strong>systems engineering viewpoint</strong>, while 12207 is written from a <strong>software engineering viewpoint</strong>.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[Business or Mission Need] --&gt; B[System of Interest]
+    B --&gt; C[System Lifecycle - ISO/IEC/IEEE 15288]
+    C --&gt; D[Hardware Elements]
+    C --&gt; E[People and Process Elements]
+    C --&gt; F[Data and Service Elements]
+    C --&gt; G[Software Elements]
+    G --&gt; H[Software Lifecycle - ISO/IEC/IEEE 12207]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This means an enterprise can use 15288 to govern the whole engineering lifecycle, while using 12207 to deepen the software-specific engineering processes inside that broader lifecycle.</p>
+</section>
+<section id="core-lifecycle-philosophy" class="level2">
+<h2 class="anchored" data-anchor-id="core-lifecycle-philosophy">Core lifecycle philosophy</h2>
+<p>The key philosophy behind both standards is that a lifecycle is managed through <strong>processes</strong>, not only through stages.</p>
+<p>A project may describe stages such as:</p>
+<ul>
+<li>concept</li>
+<li>definition</li>
+<li>development</li>
+<li>transition</li>
+<li>operation</li>
+<li>retirement</li>
+</ul>
+<p>But the processes themselves can be invoked wherever needed. Requirements, architecture, risk, verification, configuration, measurement, and assurance are therefore not one-off events. They are ongoing lifecycle disciplines.</p>
+<p>This is one of the reasons these standards remain relevant in modern delivery environments. They can support predictive, iterative, incremental, agile, DevOps, and hybrid approaches without losing engineering discipline.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Need] --&gt; B[Requirements]
+    B --&gt; C[Architecture]
+    C --&gt; D[Design]
+    D --&gt; E[Build]
+    E --&gt; F[Integrate]
+    F --&gt; G[Verify]
+    G --&gt; H[Validate]
+    H --&gt; I[Transition]
+    I --&gt; J[Operate]
+    J --&gt; K[Maintain]
+    K --&gt; L[Retire]
+    G -. feedback .-&gt; B
+    H -. feedback .-&gt; B
+    J -. change and learning .-&gt; B
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="high-level-process-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="high-level-process-architecture">High-level process architecture</h2>
+<p>Both standards use a harmonised process model organised into four process groups:</p>
+<ol type="1">
+<li><strong>Agreement processes</strong></li>
+<li><strong>Organizational project-enabling processes</strong></li>
+<li><strong>Technical management processes</strong></li>
+<li><strong>Technical processes</strong></li>
+</ol>
+<p>This is one of the most useful features of the standards because it separates commercial and organisational context from delivery governance and engineering execution.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[Agreement Processes] --&gt; E[Engineering Delivery Context]
+    B[Organizational Project-Enabling Processes] --&gt; E
+    C[Technical Management Processes] --&gt; E
+    D[Technical Processes] --&gt; E
+
+    A1[Acquisition] --&gt; A
+    A2[Supply] --&gt; A
+
+    B1[Life Cycle Model Management] --&gt; B
+    B2[Infrastructure Management] --&gt; B
+    B3[Portfolio Management] --&gt; B
+    B4[Human Resource Management] --&gt; B
+    B5[Quality Management] --&gt; B
+    B6[Knowledge Management] --&gt; B
+
+    C1[Planning] --&gt; C
+    C2[Assessment and Control] --&gt; C
+    C3[Decision Management] --&gt; C
+    C4[Risk Management] --&gt; C
+    C5[Configuration Management] --&gt; C
+    C6[Information Management] --&gt; C
+    C7[Measurement] --&gt; C
+    C8[Quality Assurance] --&gt; C
+
+    D1[Mission Analysis] --&gt; D
+    D2[Stakeholder Needs] --&gt; D
+    D3[System Requirements] --&gt; D
+    D4[Architecture Definition] --&gt; D
+    D5[Design Definition] --&gt; D
+    D6[System Analysis] --&gt; D
+    D7[Implementation] --&gt; D
+    D8[Integration] --&gt; D
+    D9[Verification] --&gt; D
+    D10[Transition] --&gt; D
+    D11[Validation] --&gt; D
+    D12[Operation] --&gt; D
+    D13[Maintenance] --&gt; D
+    D14[Disposal] --&gt; D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="agreement-processes" class="level2">
+<h2 class="anchored" data-anchor-id="agreement-processes">Agreement processes</h2>
+<p>The agreement processes govern the relationship between the party that needs a solution and the party that provides it.</p>
+<section id="acquisition" class="level3">
+<h3 class="anchored" data-anchor-id="acquisition">Acquisition</h3>
+<p>The acquisition process addresses how an acquirer identifies the need, defines expectations, engages suppliers, and manages the agreement for the required system or software capability.</p>
+</section>
+<section id="supply" class="level3">
+<h3 class="anchored" data-anchor-id="supply">Supply</h3>
+<p>The supply process addresses how the supplier responds to demand, commits to delivery, and fulfils agreed lifecycle obligations.</p>
+<p>These processes are especially important where engineering spans procurement, outsourced delivery, managed services, package implementation, systems integration, or multi-vendor environments.</p>
+</section>
+<section id="why-they-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-they-matter">Why they matter</h3>
+<p>They connect commercial intent and delivery accountability. Without them, there is often a weak handoff between what the business expects and what engineering is obligated to deliver.</p>
+</section>
+</section>
+<section id="organizational-project-enabling-processes" class="level2">
+<h2 class="anchored" data-anchor-id="organizational-project-enabling-processes">Organizational project-enabling processes</h2>
+<p>These processes establish the enterprise environment needed for consistent delivery.</p>
+<section id="life-cycle-model-management" class="level3">
+<h3 class="anchored" data-anchor-id="life-cycle-model-management">Life cycle model management</h3>
+<p>Defines and maintains the lifecycle models, methods, and governance patterns used across the organisation.</p>
+</section>
+<section id="infrastructure-management" class="level3">
+<h3 class="anchored" data-anchor-id="infrastructure-management">Infrastructure management</h3>
+<p>Provides the tools, environments, repositories, and enabling platforms required for lifecycle work.</p>
+</section>
+<section id="portfolio-management" class="level3">
+<h3 class="anchored" data-anchor-id="portfolio-management">Portfolio management</h3>
+<p>Aligns engineering investments with organisational priorities and balances change across the portfolio.</p>
+</section>
+<section id="human-resource-management" class="level3">
+<h3 class="anchored" data-anchor-id="human-resource-management">Human resource management</h3>
+<p>Ensures the right competencies, roles, and capacity are available.</p>
+</section>
+<section id="quality-management" class="level3">
+<h3 class="anchored" data-anchor-id="quality-management">Quality management</h3>
+<p>Defines how quality policy, standards, and improvement are institutionalised across projects and products.</p>
+</section>
+<section id="knowledge-management" class="level3">
+<h3 class="anchored" data-anchor-id="knowledge-management">Knowledge management</h3>
+<p>Captures and reuses knowledge, lessons learned, patterns, and engineering insight.</p>
+</section>
+<section id="why-they-matter-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-they-matter-1">Why they matter</h3>
+<p>This process group is where engineering becomes an organisational capability rather than a series of isolated projects.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Enterprise Strategy] --&gt; B[Portfolio Management]
+    B --&gt; C[Lifecycle Model Management]
+    C --&gt; D[Project Delivery Models]
+    A --&gt; E[Quality Management]
+    A --&gt; F[Knowledge Management]
+    A --&gt; G[Human Resource Management]
+    A --&gt; H[Infrastructure Management]
+    D --&gt; I[Project and Engineering Teams]
+    E --&gt; I
+    F --&gt; I
+    G --&gt; I
+    H --&gt; I
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="technical-management-processes" class="level2">
+<h2 class="anchored" data-anchor-id="technical-management-processes">Technical management processes</h2>
+<p>These processes govern the engineering work during execution.</p>
+<section id="project-planning" class="level3">
+<h3 class="anchored" data-anchor-id="project-planning">Project planning</h3>
+<p>Defines the lifecycle approach, work structure, resources, schedules, and commitments.</p>
+</section>
+<section id="project-assessment-and-control" class="level3">
+<h3 class="anchored" data-anchor-id="project-assessment-and-control">Project assessment and control</h3>
+<p>Monitors actual progress against plan and drives corrective action.</p>
+</section>
+<section id="decision-management" class="level3">
+<h3 class="anchored" data-anchor-id="decision-management">Decision management</h3>
+<p>Supports structured decisions, option analysis, and rationale capture.</p>
+</section>
+<section id="risk-management" class="level3">
+<h3 class="anchored" data-anchor-id="risk-management">Risk management</h3>
+<p>Identifies, analyses, treats, and monitors uncertainty across the lifecycle.</p>
+</section>
+<section id="configuration-management" class="level3">
+<h3 class="anchored" data-anchor-id="configuration-management">Configuration management</h3>
+<p>Controls baselines, versions, changes, and integrity of lifecycle items.</p>
+</section>
+<section id="information-management" class="level3">
+<h3 class="anchored" data-anchor-id="information-management">Information management</h3>
+<p>Ensures that lifecycle information is created, controlled, shared, and maintained appropriately.</p>
+</section>
+<section id="measurement" class="level3">
+<h3 class="anchored" data-anchor-id="measurement">Measurement</h3>
+<p>Defines and uses metrics to support management visibility and informed decision-making.</p>
+</section>
+<section id="quality-assurance" class="level3">
+<h3 class="anchored" data-anchor-id="quality-assurance">Quality assurance</h3>
+<p>Provides confidence that lifecycle processes and outputs meet defined expectations.</p>
+</section>
+<section id="why-they-matter-2" class="level3">
+<h3 class="anchored" data-anchor-id="why-they-matter-2">Why they matter</h3>
+<p>These processes form the controlling spine of lifecycle delivery. They are where project governance and engineering governance intersect.</p>
+</section>
+</section>
+<section id="technical-processes" class="level2">
+<h2 class="anchored" data-anchor-id="technical-processes">Technical processes</h2>
+<p>These are the core engineering processes that shape the solution across its lifecycle.</p>
+<section id="business-or-mission-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="business-or-mission-analysis">Business or mission analysis</h3>
+<p>Clarifies the problem space, strategic drivers, outcomes, and operational context.</p>
+</section>
+<section id="stakeholder-needs-and-requirements-definition" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholder-needs-and-requirements-definition">Stakeholder needs and requirements definition</h3>
+<p>Identifies stakeholder expectations and transforms them into structured expressions of need.</p>
+</section>
+<section id="system-requirements-definition" class="level3">
+<h3 class="anchored" data-anchor-id="system-requirements-definition">System requirements definition</h3>
+<p>Converts stakeholder needs into a defined, analysable, and testable set of system requirements.</p>
+</section>
+<section id="system-architecture-definition" class="level3">
+<h3 class="anchored" data-anchor-id="system-architecture-definition">System architecture definition</h3>
+<p>Establishes the high-level structure, elements, interfaces, and design principles of the system.</p>
+</section>
+<section id="design-definition" class="level3">
+<h3 class="anchored" data-anchor-id="design-definition">Design definition</h3>
+<p>Develops detailed design solutions that can be realised and implemented.</p>
+</section>
+<section id="system-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="system-analysis">System analysis</h3>
+<p>Supports trade-off analysis, performance evaluation, and solution optimisation.</p>
+</section>
+<section id="implementation" class="level3">
+<h3 class="anchored" data-anchor-id="implementation">Implementation</h3>
+<p>Realises system elements, including software, hardware, configurations, procedures, and enabling assets.</p>
+</section>
+<section id="integration" class="level3">
+<h3 class="anchored" data-anchor-id="integration">Integration</h3>
+<p>Combines system elements into higher-level assemblies and the complete system.</p>
+</section>
+<section id="verification" class="level3">
+<h3 class="anchored" data-anchor-id="verification">Verification</h3>
+<p>Confirms that the system or element has been built correctly against its specified requirements.</p>
+</section>
+<section id="transition" class="level3">
+<h3 class="anchored" data-anchor-id="transition">Transition</h3>
+<p>Moves the verified solution into its operational environment.</p>
+</section>
+<section id="validation" class="level3">
+<h3 class="anchored" data-anchor-id="validation">Validation</h3>
+<p>Confirms that the solution meets stakeholder needs in its intended use context.</p>
+</section>
+<section id="operation" class="level3">
+<h3 class="anchored" data-anchor-id="operation">Operation</h3>
+<p>Uses the system to deliver intended value in live service.</p>
+</section>
+<section id="maintenance" class="level3">
+<h3 class="anchored" data-anchor-id="maintenance">Maintenance</h3>
+<p>Sustains, adapts, corrects, and improves the system through its operational life.</p>
+</section>
+<section id="disposal" class="level3">
+<h3 class="anchored" data-anchor-id="disposal">Disposal</h3>
+<p>Retires, decommissions, or safely removes the system and associated assets.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Mission Analysis] --&gt; B[Stakeholder Needs]
+    B --&gt; C[System Requirements]
+    C --&gt; D[Architecture Definition]
+    D --&gt; E[Design Definition]
+    E --&gt; F[Implementation]
+    F --&gt; G[Integration]
+    G --&gt; H[Verification]
+    H --&gt; I[Transition]
+    I --&gt; J[Validation]
+    J --&gt; K[Operation]
+    K --&gt; L[Maintenance]
+    L --&gt; M[Disposal]
+    J -. confirms fitness for use .-&gt; B
+    H -. confirms conformance .-&gt; C
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="where-12207-fits-within-the-engineering-lifecycle" class="level2">
+<h2 class="anchored" data-anchor-id="where-12207-fits-within-the-engineering-lifecycle">Where 12207 fits within the engineering lifecycle</h2>
+<p>When software is a major part of the system, 12207 provides the software engineering detail within the broader 15288 lifecycle.</p>
+<p>A useful interpretation is:</p>
+<ul>
+<li>15288 governs the <strong>whole system lifecycle</strong></li>
+<li>12207 governs the <strong>software lifecycle within the system lifecycle</strong></li>
+<li>15289 supports the <strong>documentation and information items</strong> used across the lifecycle</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[15288 System Lifecycle] --&gt; B[Business or Mission Analysis]
+    A --&gt; C[Requirements and Architecture]
+    A --&gt; D[Implementation and Integration]
+    A --&gt; E[Verification and Validation]
+    A --&gt; F[Operation and Maintenance]
+
+    D --&gt; G[12207 Software Lifecycle Processes]
+    G --&gt; G1[Software Requirements]
+    G --&gt; G2[Software Architecture and Design]
+    G --&gt; G3[Software Construction]
+    G --&gt; G4[Software Integration and Testing]
+    G --&gt; G5[Software Release and Support]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This is especially useful for digital products, enterprise platforms, OT/IT integration, ERP ecosystems, cloud services, and complex business systems where software is only one part of a wider operational whole.</p>
+</section>
+<section id="tailoring" class="level2">
+<h2 class="anchored" data-anchor-id="tailoring">Tailoring</h2>
+<p>A major strength of both standards is that they are intended to be <strong>tailored</strong>.</p>
+<p>Tailoring means selecting and adapting processes according to factors such as:</p>
+<ul>
+<li>criticality</li>
+<li>size and complexity</li>
+<li>sourcing model</li>
+<li>regulatory obligations</li>
+<li>delivery cadence</li>
+<li>lifecycle model</li>
+<li>organisational maturity</li>
+<li>degree of reuse and integration</li>
+</ul>
+<p>This allows the same standards to support both heavily governed engineering and lighter iterative delivery.</p>
+<section id="practical-tailoring-examples" class="level3">
+<h3 class="anchored" data-anchor-id="practical-tailoring-examples">Practical tailoring examples</h3>
+<ul>
+<li>A safety-critical or highly regulated programme may apply most processes formally with strong evidence trails.</li>
+<li>A cloud-native product team may still use the same process architecture but with leaner information items, stronger automation, and faster review cycles.</li>
+<li>A package implementation may place more weight on acquisition, supply, integration, validation, transition, and operation than on full bespoke design.</li>
+</ul>
+</section>
+</section>
+<section id="typical-lifecycle-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="typical-lifecycle-artefacts">Typical lifecycle artefacts</h2>
+<p>Although the standards do not prescribe fixed templates, they imply a strong lifecycle information model. Typical artefacts include:</p>
+<section id="upstream-and-concept-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="upstream-and-concept-artefacts">Upstream and concept artefacts</h3>
+<ul>
+<li>business case inputs</li>
+<li>mission analysis outputs</li>
+<li>stakeholder maps</li>
+<li>operational concepts</li>
+<li>scope and context statements</li>
+</ul>
+</section>
+<section id="requirements-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="requirements-artefacts">Requirements artefacts</h3>
+<ul>
+<li>stakeholder requirements set</li>
+<li>system requirements specification</li>
+<li>software requirements specification</li>
+<li>interface requirements</li>
+<li>non-functional requirements</li>
+<li>acceptance criteria</li>
+</ul>
+</section>
+<section id="architecture-and-design-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="architecture-and-design-artefacts">Architecture and design artefacts</h3>
+<ul>
+<li>architecture principles</li>
+<li>system context diagrams</li>
+<li>logical and physical architecture</li>
+<li>detailed design records</li>
+<li>interface definitions</li>
+<li>data models</li>
+</ul>
+</section>
+<section id="delivery-and-control-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="delivery-and-control-artefacts">Delivery and control artefacts</h3>
+<ul>
+<li>project plan</li>
+<li>risk register</li>
+<li>decision log</li>
+<li>configuration baseline</li>
+<li>change records</li>
+<li>quality records</li>
+<li>measurement reports</li>
+</ul>
+</section>
+<section id="assurance-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="assurance-artefacts">Assurance artefacts</h3>
+<ul>
+<li>verification strategy</li>
+<li>validation strategy</li>
+<li>test specifications</li>
+<li>defect records</li>
+<li>traceability matrices</li>
+<li>review findings</li>
+</ul>
+</section>
+<section id="transition-and-live-service-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="transition-and-live-service-artefacts">Transition and live-service artefacts</h3>
+<ul>
+<li>deployment plan</li>
+<li>transition checklist</li>
+<li>operations manual</li>
+<li>support model</li>
+<li>maintenance plan</li>
+<li>retirement or disposal plan</li>
+</ul>
+</section>
+</section>
+<section id="lifecycle-governance-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="lifecycle-governance-interpretation">Lifecycle governance interpretation</h2>
+<p>A practical governance reading of 12207 and 15288 is as follows:</p>
+<ul>
+<li><strong>Agreement processes</strong> govern who commits to what</li>
+<li><strong>Organizational project-enabling processes</strong> govern whether the enterprise is capable of consistent delivery</li>
+<li><strong>Technical management processes</strong> govern whether delivery is controlled</li>
+<li><strong>Technical processes</strong> govern whether the solution is engineered properly across its life</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[Business Need] --&gt; B[Agreement]
+    B --&gt; C[Enterprise Enablement]
+    C --&gt; D[Technical Management]
+    D --&gt; E[Technical Engineering]
+    E --&gt; F[Operational Use]
+    F --&gt; G[Change, Learning, Retirement]
+    G --&gt; C
+    G --&gt; D
+    G --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This makes the standards powerful as a backbone for engineering governance. They connect strategy, sourcing, design, build, assurance, and live operations in one integrated lifecycle model.</p>
+</section>
+<section id="relationship-to-modern-delivery-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-modern-delivery-approaches">Relationship to modern delivery approaches</h2>
+<p>These standards are entirely compatible with modern ways of working when interpreted properly.</p>
+<section id="agile" class="level3">
+<h3 class="anchored" data-anchor-id="agile">Agile</h3>
+<p>The standards do not conflict with agile methods. Instead, they provide the lifecycle disciplines that agile teams still need: requirements control, architecture thinking, risk management, verification, validation, and configuration integrity.</p>
+</section>
+<section id="devops" class="level3">
+<h3 class="anchored" data-anchor-id="devops">DevOps</h3>
+<p>DevOps fits particularly well in the areas of implementation, integration, transition, operation, maintenance, measurement, and feedback. The standards provide the lifecycle scaffolding around continuous delivery and continuous improvement.</p>
+</section>
+<section id="hybrid-delivery" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-delivery">Hybrid delivery</h3>
+<p>Many enterprise programmes naturally use hybrid delivery. 12207 and 15288 provide a strong common structure for combining governance, architecture, engineering, testing, service transition, and operational support.</p>
+</section>
+</section>
+<section id="comparison-summary" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-summary">Comparison summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>ISO/IEC/IEEE 15288</th>
+<th>ISO/IEC/IEEE 12207</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary focus</td>
+<td>System lifecycle</td>
+<td>Software lifecycle</td>
+</tr>
+<tr class="even">
+<td>Viewpoint</td>
+<td>Systems engineering</td>
+<td>Software engineering</td>
+</tr>
+<tr class="odd">
+<td>Scope</td>
+<td>Whole system of interest</td>
+<td>Software-intensive elements</td>
+</tr>
+<tr class="even">
+<td>Best use</td>
+<td>Enterprise systems, integrated systems, system-of-systems</td>
+<td>Software products, applications, platforms, embedded software</td>
+</tr>
+<tr class="odd">
+<td>Relationship</td>
+<td>Parent lifecycle context</td>
+<td>Detailed software lifecycle within or alongside the broader system</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="executive-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="executive-interpretation">Executive interpretation</h2>
+<p>In executive terms, these standards help an organisation ensure that:</p>
+<ul>
+<li>the right problem is being addressed</li>
+<li>stakeholder needs are translated into controlled requirements</li>
+<li>architecture and design are intentional rather than accidental</li>
+<li>build and integration activities are governed</li>
+<li>verification and validation are distinct and meaningful</li>
+<li>transition to operations is planned and controlled</li>
+<li>support and maintenance are part of the lifecycle, not an afterthought</li>
+<li>retirement is managed responsibly</li>
+</ul>
+<p>This is why 12207 and 15288 are best understood not as narrow technical standards, but as an <strong>engineering lifecycle operating model</strong>.</p>
+</section>
+<section id="how-to-use-this-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-this-in-practice">How to use this in practice</h2>
+<p>A practical enterprise implementation approach is:</p>
+<ol type="1">
+<li>Use <strong>15288</strong> as the top-level engineering lifecycle reference.</li>
+<li>Apply <strong>12207</strong> where software engineering depth is required.</li>
+<li>Define your lifecycle stages, gates, roles, and evidence model.</li>
+<li>Tailor the process set by delivery type.</li>
+<li>Define the lifecycle artefacts and repositories.</li>
+<li>Map the model to project governance, architecture governance, service management, risk, and assurance.</li>
+<li>Use measurement and lessons learned to improve the lifecycle over time.</li>
+</ol>
+</section>
+<section id="closing-summary" class="level2">
+<h2 class="anchored" data-anchor-id="closing-summary">Closing summary</h2>
+<p>ISO/IEC/IEEE 12207 and 15288 together provide one of the clearest foundations for disciplined engineering lifecycle management.</p>
+<p>They allow an organisation to connect:</p>
+<ul>
+<li>business need</li>
+<li>acquisition and supply</li>
+<li>architecture and design</li>
+<li>engineering implementation</li>
+<li>project and quality control</li>
+<li>verification and validation</li>
+<li>transition and service operation</li>
+<li>maintenance and retirement</li>
+</ul>
+<p>For organisations trying to unify project delivery, architecture, engineering, service transition, operational support, and governance, these standards are not just reference texts. They can become the core structure of an integrated lifecycle operating model.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

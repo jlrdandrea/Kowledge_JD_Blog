@@ -1,0 +1,372 @@
+---
+title: "Density Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic density plot into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated density plots using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Density plots are excellent for visualizing the distribution of continuous variables, showing the probability density function and revealing patterns like skewness, modality, and concentration of values.
+
+We'll use the built-in `diamonds` dataset from ggplot2, which contains prices and attributes of nearly 54,000 diamonds.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+
+# Prepare the data: focus on diamonds with standard cuts
+data_diamonds <- diamonds %>%
+  filter(cut %in% c("Fair", "Good", "Very Good", "Premium", "Ideal"),
+         carat <= 3) %>%                           # Remove extreme outliers
+  mutate(cut = factor(cut, levels = c("Fair", "Good", "Very Good", 
+                                      "Premium", "Ideal")))  # Set factor order
+
+# Preview the data
+head(data_diamonds)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Density Plot
+
+Let's start with a simple density plot showing the distribution of diamond carat weights.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_diamonds, aes(x = carat)) +  # Set up the plot with x variable
+  geom_density()                          # Create density plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_diamonds, aes(x = carat))` - Initializes the plot with our diamond data, mapping carat weight to the x-axis
+
+**Line 2:** `geom_density()` - Adds a density curve showing the smoothed probability distribution of carat values
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic density plot. The distribution shape is visible but the chart lacks context, comparative groups, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by comparing multiple groups, adding fill colors, adjusting transparency, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Multiple density curves** comparing different cut qualities
+-   **Color fill** with transparency to show overlapping distributions
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Professional color palette** from ColorBrewer
+-   **Formatted x-axis** for better readability
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_diamonds, aes(x = carat, fill = cut)) +      # Add fill aesthetic by cut
+  geom_density(alpha = 0.6) +                             # Density with transparency
+  scale_fill_brewer(palette = "Set2") +                   # Apply color palette
+  scale_x_continuous(breaks = seq(0, 3, by = 0.5)) +      # Set x-axis breaks
+  labs(
+    title = "Distribution of Diamond Carat Weight by Cut Quality",  # Main title
+    subtitle = "Higher quality cuts tend toward smaller carat sizes",  # Subtitle
+    x = "Carat Weight",                                   # X-axis label
+    y = "Density",                                        # Y-axis label
+    fill = "Cut Quality"                                  # Legend title
+  ) +
+  theme_minimal() +                                       # Clean, minimal theme
+  theme(
+    plot.title = element_text(face = "bold", size = 14), # Bold title
+    legend.position = "top"                               # Move legend to top
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(x = carat, fill = cut)` - Maps carat weight to x-axis and cut quality to fill color, enabling comparison across groups
+
+**Line 2:** `geom_density(alpha = 0.6)` - Creates overlapping density curves with 60% opacity to show where distributions intersect
+
+**Line 3:** `scale_fill_brewer(palette = "Set2")` - Applies a professional, colorblind-friendly palette from ColorBrewer
+
+**Line 4:** `scale_x_continuous(breaks = seq(0, 3, by = 0.5))` - Sets regular x-axis breaks every 0.5 carats for easier reading
+
+**Lines 5-11:** `labs()` - Adds descriptive title, subtitle providing insight, axis labels, and legend title for context
+
+**Line 12:** `theme_minimal()` - Applies a clean theme with minimal visual elements
+
+**Lines 13-16:** `theme()` - Customizes title formatting and moves legend to top for better space utilization
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart showing how carat distributions differ across cut qualities. The transparent overlays and clean formatting make comparisons easy, revealing that ideal cuts concentrate in smaller carat ranges.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with ridge-style presentation, statistical annotations, enhanced colors, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Stacked density presentation** for clearer group comparison
+-   **Statistical reference lines** showing means for each group
+-   **Sample size annotations** in legend
+-   **Custom color palette** optimized for accessibility
+-   **Enhanced typography** with refined spacing
+-   **Rug plot** showing individual observations
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 7
+
+# Calculate summary statistics for annotations
+cut_summary <- data_diamonds %>%
+  group_by(cut) %>%
+  summarise(
+    n = n(),                                       # Count per category
+    mean_carat = mean(carat),                      # Mean carat
+    median_carat = median(carat),                  # Median carat
+    .groups = 'drop'
+  )
+
+# Define custom color palette (colorblind-friendly gradient)
+cut_colors <- c(
+  "Fair" = "#D55E00",                              # Orange-red for lowest
+  "Good" = "#E69F00",                              # Orange
+  "Very Good" = "#F0E442",                         # Yellow
+  "Premium" = "#009E73",                           # Green
+  "Ideal" = "#0072B2"                              # Blue for highest
+)
+
+ggplot(data_diamonds, aes(x = carat, fill = cut, color = cut)) +
+  # Main density curves
+  geom_density(alpha = 0.7, linewidth = 0.8) +
+  # Add rug plot showing individual observations (sampled to avoid overplotting)
+  geom_rug(data = data_diamonds %>% 
+             group_by(cut) %>% 
+             slice_sample(prop = 0.01),
+           alpha = 0.3, length = unit(0.02, "npc")) +
+  # Add mean reference lines
+  geom_vline(data = cut_summary,
+             aes(xintercept = mean_carat, color = cut),
+             linetype = "dashed",
+             linewidth = 0.7,
+             alpha = 0.8) +
+  # Apply custom colors
+  scale_fill_manual(values = cut_colors,
+                    name = "Cut Quality",
+                    labels = paste0(levels(data_diamonds$cut), 
+                                   " (n = ", 
+                                   format(cut_summary$n, big.mark = ","), 
+                                   ")")) +
+  scale_color_manual(values = cut_colors,
+                     name = "Cut Quality",
+                     labels = paste0(levels(data_diamonds$cut), 
+                                    " (n = ", 
+                                    format(cut_summary$n, big.mark = ","), 
+                                    ")")) +
+  # Format x-axis with better breaks and labels
+  scale_x_continuous(breaks = seq(0, 3, by = 0.25),
+                     labels = number_format(accuracy = 0.01),
+                     expand = expansion(mult = c(0.01, 0.01))) +
+  # Format y-axis
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  # Add comprehensive labels
+  labs(
+    title = "Diamond Carat Distribution Reveals Quality-Size Trade-offs",
+    subtitle = "Ideal cut diamonds concentrate around 0.5-1.0 carats, while lower grades show broader distributions\nDashed lines indicate mean values for each cut quality",
+    x = "Carat Weight",
+    y = "Probability Density",
+    caption = "Data source: ggplot2 diamonds dataset (53,940 diamonds) | Sample of 1% shown in rug plot | Visualization: Your Name"
+  ) +
+  # Add annotation for interpretation
+  annotate("text", x = 2.3, y = 2.5,
+           label = "Ideal cuts peak\nat lower carats",
+           size = 3.5, fontface = "italic",
+           color = "gray30", hjust = 0) +
+  annotate("curve", x = 2.3, y = 2.4, 
+           xend = 1.2, yend = 3.2,
+           arrow = arrow(length = unit(0.15, "cm"), type = "closed"),
+           curvature = -0.3, color = "gray40", linewidth = 0.5) +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D", 
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold", 
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    
+    # Legend styling
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.key.height = unit(0.4, "cm"),
+    legend.key.width = unit(1.2, "cm"),
+    
+    # Grid and panel styling
+    panel.grid.minor = element_blank(),            # Remove minor gridlines
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.4),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)          # Add space around plot
+  )
+```
+
+### Code Explanation
+
+**Lines 2-9:** Creates a summary dataframe with sample sizes, means, and medians for each cut category, used for annotations and legend labels
+
+**Lines 12-19:** Defines a custom color palette that progresses from warm (low quality) to cool (high quality) colors, optimized for colorblind accessibility
+
+**Line 21:** `ggplot()` initializes the plot with carat mapped to x-axis and cut quality mapped to both fill and color (for consistency)
+
+**Lines 23-24:** `geom_density()` creates density curves with transparency and thicker lines for better visibility
+
+**Lines 25-29:** `geom_rug()` adds small tick marks at the bottom showing individual data points (sampled to 1% to avoid overplotting)
+
+**Lines 30-35:** `geom_vline()` adds dashed vertical lines at the mean carat value for each cut quality, color-coded by group
+
+**Lines 37-48:** `scale_fill_manual()` and `scale_color_manual()` apply our custom color palette and enhance legend labels with sample sizes in parentheses
+
+**Lines 50-52:** `scale_x_continuous()` sets fine-grained breaks (every 0.25 carats) with proper decimal formatting
+
+**Line 54:** `scale_y_continuous()` expands the top slightly to prevent clipping
+
+**Lines 56-62:** `labs()` adds comprehensive labels including an informative title that tells a story, multi-line subtitle with interpretation guidance, and detailed caption with attribution and methodology notes
+
+**Lines 64-71:** `annotate()` adds a text annotation with an arrow pointing to the Ideal cut peak, helping guide interpretation
+
+**Lines 72-99:** Comprehensive theme customization including: - Enhanced typography with specific sizes, weights, and colors for hierarchy - Multi-line subtitle with adjusted line height - Legend positioned at bottom with custom sizing - Grid customization with lighter lines - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready visualization that clearly communicates how diamond carat distributions vary by cut quality. The combination of overlapping density curves, mean reference lines, rug plot, and interpretive annotations creates a comprehensive and accessible chart suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (single curve, no context) | Good (multiple groups, colored) | Excellent (all + means + annotations) |
+| **Context** | None | Title & subtitle added | Full context with interpretation guide |
+| **Visual Appeal** | Plain gray curve | Multiple colored curves | Multi-layered + custom palette + rug |
+| **Data Layers** | Density only | Density curves | Density + rug + mean lines + annotation |
+| **Statistical Info** | Distribution shape only | Multiple distributions | Added means, sample sizes, interpretation |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Density Plots:**
+
+1.  **Adjust bandwidth carefully** - Use the `adjust` parameter in `geom_density()` (default = 1) to control smoothness. Lower values show more detail, higher values create smoother curves
+
+2.  **Use transparency for overlaps** - Set `alpha` between 0.5-0.7 when comparing multiple groups to show where distributions intersect
+
+3.  **Add rug plots strategically** - For datasets with \<1,000 points per group, show all observations. For larger datasets, sample 1-5% with `slice_sample()`
+
+4.  **Show reference statistics** - Add vertical lines for means, medians, or other important values using `geom_vline()`
+
+5.  **Consider the y-axis** - Density values can be unintuitive; consider adding "Probability Density" to the label to clarify meaning
+
+6.  **Color with purpose** - Use color gradients that match the ordering or meaning of your categories
+
+7.  **Handle long tails** - For highly skewed data, consider log-transforming the x-axis with `scale_x_log10()`
+
+8.  **Annotate sample sizes** - Always show the number of observations per group in the legend or plot
+
+9.  **Choose appropriate alternatives** - For discrete data or small samples (\<30), consider histograms or violin plots instead
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 7, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other distribution visualizations:
+
+-   **Ridge plots** (via `ggridges`) for comparing many distributions vertically
+-   **Violin plots** for combining density with box plot statistics
+-   **Histograms** for showing actual counts rather than smoothed densities
+-   **Empirical cumulative distribution functions** for showing percentiles
+
+::: {.highlight-box .info}
+**Want to create faceted density plots?**
+
+You can split by additional variables using faceting:
+
+``` r
+ggplot(diamonds, aes(x = carat, fill = cut)) +
+  geom_density(alpha = 0.6) +
+  facet_wrap(~ color, ncol = 2) +
+  scale_fill_viridis_d() +
+  labs(title = "Carat Distribution by Cut and Color",
+       x = "Carat Weight",
+       y = "Density") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+This creates separate density plots for each diamond color, still showing cut quality comparisons within each panel.
+:::
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Understanding Kernel Density Estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

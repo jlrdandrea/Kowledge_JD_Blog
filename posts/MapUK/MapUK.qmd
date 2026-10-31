@@ -1,0 +1,503 @@
+---
+title: "Maps of the United Kingdom with sf and ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, sf, ggplot2, Data Visualization, Tutorial, Maps]
+description: "A step-by-step guide to evolving a basic UK map into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated maps of the United Kingdom using the `sf` (simple features) package and `ggplot2`. We'll start with a basic map and progressively add elements to make it more informative and visually appealing.
+
+Maps are excellent for visualizing spatial data, showing regional patterns, and communicating geographic information effectively.
+
+We'll use spatial data from the `rnaturalearth` package and create a choropleth map showing regional statistics across the UK.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # For data manipulation
+library(sf)             # For spatial data handling
+library(rnaturalearth)  # For geographic data
+library(rnaturalearthdata) # Additional geographic data
+library(ggspatial)      # For scale bars and north arrows
+library(scales)         # For formatting
+
+# Get UK map data at country level
+uk_country <- ne_countries(scale = "medium", country = "United Kingdom", returnclass = "sf")
+
+# Get UK regions (admin level 1)
+uk_regions <- ne_states(country = "United Kingdom", returnclass = "sf")
+
+# Create sample data: Average house price by region (fictional, in £1000s)
+set.seed(42)
+regional_data <- tibble(
+  region = uk_regions$name,
+  avg_house_price = round(rnorm(nrow(uk_regions), mean = 280, sd = 120)),
+  unemployment_rate = round(rnorm(nrow(uk_regions), mean = 4.5, sd = 1.5), 1)
+) %>%
+  mutate(
+    avg_house_price = pmax(avg_house_price, 150),  # Minimum value
+    unemployment_rate = pmax(unemployment_rate, 2.0),  # Minimum value
+    unemployment_rate = pmin(unemployment_rate, 8.0)   # Maximum value
+  )
+
+# Join spatial data with statistics
+uk_map_data <- uk_regions %>%
+  left_join(regional_data, by = c("name" = "region"))
+
+# Preview the data
+head(uk_map_data)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Map of UK
+
+Let's start with a simple map showing the outline and regions of the United Kingdom.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(uk_map_data) +
+  geom_sf()  # Draw the map
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(uk_map_data)` - Initializes the plot with our spatial data
+
+**Line 2:** `geom_sf()` - Draws the map using the simple features geometry, automatically handling the spatial coordinates
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic map of the United Kingdom. The regional boundaries are visible but the chart lacks color, labels, context, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the map by adding a choropleth layer, color scale, labels, and better styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Choropleth coloring** based on average house prices
+-   **Color scale** with meaningful breaks
+-   **Region boundaries** with white lines
+-   **Improved projection** for better appearance
+-   **Title and legend** for context
+-   **Clean theme** removing default elements
+-   **Currency formatting** in legend
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 7
+#| fig-height: 9
+
+ggplot(uk_map_data) +
+  # Fill regions by average house price
+  geom_sf(aes(fill = avg_house_price), 
+          color = "white", 
+          linewidth = 0.3) +
+  # Apply color gradient
+  scale_fill_gradient(low = "#eff3ff", 
+                      high = "#08519c",
+                      name = "Avg House Price\n(£1000s)",
+                      labels = comma_format()) +
+  labs(
+    title = "United Kingdom: Regional Housing Market",
+    subtitle = "Average house prices by region (simulated data)",
+    caption = "Data source: Simulated regional statistics"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+### Code Explanation
+
+**Lines 2-4:** `geom_sf(aes(fill = avg_house_price))` - Creates a choropleth map with regions colored by average house price, white boundaries, and thin line width
+
+**Lines 6-9:** `scale_fill_gradient()` - Applies a sequential color scale from light blue to dark blue, with formatted labels
+
+**Lines 10-14:** `labs()` - Adds title, subtitle, and caption for context
+
+**Line 15:** `theme_minimal()` - Applies a clean base theme
+
+**Lines 16-21:** `theme()` - Removes grid lines and axis elements that are unnecessary for maps
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative map with regional color coding showing housing market differences. The clean styling and proper legend make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, city markers, annotations, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color palette** with better breaks
+-   **Major city markers** showing key locations
+-   **City labels** for important places
+-   **Enhanced borders** with UK outline
+-   **Statistical categories** instead of continuous scale
+-   **North arrow and scale bar** for orientation
+-   **Professional typography** and spacing
+-   **Neighboring countries** for context
+-   **Inset for Northern Ireland** (conceptually)
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 12
+
+# Get neighboring countries for context
+neighbors <- ne_countries(scale = "medium", 
+                         country = c("Ireland", "France", "Belgium", 
+                                   "Netherlands", "Norway", "Denmark"),
+                         returnclass = "sf")
+
+# Create house price categories
+uk_map_data <- uk_map_data %>%
+  mutate(
+    price_category = cut(avg_house_price,
+                        breaks = c(0, 200, 250, 300, 350, 500),
+                        labels = c("< £200k", "£200-250k", "£250-300k", 
+                                  "£300-350k", "> £350k"),
+                        include.lowest = TRUE)
+  )
+
+# Major UK cities (approximate coordinates)
+major_cities <- tibble(
+  city = c("London", "Birmingham", "Manchester", "Glasgow", 
+           "Liverpool", "Edinburgh", "Bristol", "Cardiff"),
+  lon = c(-0.1278, -1.8904, -2.2426, -4.2518, 
+          -2.9916, -3.1883, -2.5879, -3.1791),
+  lat = c(51.5074, 52.4862, 53.4808, 55.8642, 
+          53.4084, 55.9533, 51.4545, 51.4816),
+  population_millions = c(9.0, 1.1, 2.8, 0.6, 0.5, 0.5, 0.5, 0.4)
+) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+# Define custom color palette
+price_colors <- c(
+  "< £200k" = "#eff3ff",
+  "£200-250k" = "#bdd7e7",
+  "£250-300k" = "#6baed6",
+  "£300-350k" = "#3182bd",
+  "> £350k" = "#08519c"
+)
+
+# Create the main map
+ggplot() +
+  # Add neighboring countries (in gray)
+  geom_sf(data = neighbors, 
+          fill = "gray95", 
+          color = "gray70",
+          linewidth = 0.3) +
+  # Add UK regions with house price categories
+  geom_sf(data = uk_map_data,
+          aes(fill = price_category),
+          color = "white",
+          linewidth = 0.5) +
+  # Add UK country outline
+  geom_sf(data = uk_country,
+          fill = NA,
+          color = "gray20",
+          linewidth = 1.2) +
+  # Add major cities
+  geom_sf(data = major_cities,
+          aes(size = population_millions),
+          shape = 21,
+          fill = "#FFA500",
+          color = "gray20",
+          stroke = 0.8,
+          alpha = 0.8) +
+  # Add city labels
+  geom_sf_text(data = major_cities,
+               aes(label = city),
+               size = 3,
+               fontface = "bold",
+               nudge_y = 0.25,
+               color = "gray20") +
+  # Apply custom color palette
+  scale_fill_manual(values = price_colors,
+                    name = "Average House Price",
+                    na.value = "gray90") +
+  # Size scale for cities
+  scale_size_continuous(name = "City Population\n(millions)",
+                       range = c(2, 10),
+                       breaks = c(0.5, 2, 5, 9)) +
+  # Set coordinate system
+  coord_sf(xlim = c(-11, 3), 
+           ylim = c(49.5, 61),
+           expand = FALSE) +
+  # Add comprehensive labels
+  labs(
+    title = "United Kingdom: Housing Market and Major Urban Centers",
+    subtitle = "House prices show significant regional variation | Major cities marked by metropolitan population",
+    caption = "Data source: Simulated regional statistics | Map data: Natural Earth | Visualization: Your Name"
+  ) +
+  # Add north arrow
+  annotation_north_arrow(
+    location = "tl",
+    which_north = "true",
+    pad_x = unit(0.2, "in"),
+    pad_y = unit(0.3, "in"),
+    style = north_arrow_fancy_orienteering
+  ) +
+  # Add scale bar
+  annotation_scale(
+    location = "bl",
+    width_hint = 0.25,
+    pad_x = unit(0.2, "in"),
+    pad_y = unit(0.2, "in")
+  ) +
+  theme_void(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              hjust = 0.5,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  hjust = 0.5,
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0.5,
+                                margin = margin(t = 15)),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.background = element_rect(fill = "white", color = "gray80"),
+    legend.margin = margin(10, 10, 10, 10),
+    
+    # Panel styling
+    panel.background = element_rect(fill = "lightblue", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-5:** Retrieves neighboring countries' boundaries using `ne_countries()` for geographic context
+
+**Lines 8-15:** Creates house price categories using `cut()` to convert continuous values into meaningful brackets
+
+**Lines 18-28:** Creates a tibble of major UK cities with coordinates and converts to spatial format using `st_as_sf()`
+
+**Lines 31-37:** Defines custom color palette for house price categories, progressing from light to dark blue
+
+**Line 40:** `ggplot()` initializes the plot
+
+**Lines 42-45:** `geom_sf()` adds neighboring countries in light gray for context
+
+**Lines 47-50:** `geom_sf()` adds UK regions colored by house price category with white boundaries
+
+**Lines 52-55:** `geom_sf()` adds UK's country outline with thick dark border
+
+**Lines 57-63:** `geom_sf()` adds major cities as circles sized by metropolitan population
+
+**Lines 65-70:** `geom_sf_text()` adds city name labels above the markers
+
+**Lines 72-74:** `scale_fill_manual()` applies custom color palette
+
+**Lines 76-78:** `scale_size_continuous()` controls city marker sizes
+
+**Lines 80-82:** `coord_sf()` sets the bounding box to show entire UK including Northern Ireland
+
+**Lines 84-88:** `labs()` adds comprehensive title, subtitle, and caption
+
+**Lines 90-96:** `annotation_north_arrow()` adds a decorative north arrow in top left
+
+**Lines 98-103:** `annotation_scale()` adds a scale bar in bottom left
+
+**Line 104:** `theme_void()` starts with blank canvas (appropriate for maps)
+
+**Lines 105-128:** Comprehensive theme customization including: - Centered titles and caption - Legend styling with background box - Light blue panel background (representing water) - Proper margins for professional appearance
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready map of the United Kingdom that clearly communicates regional housing market patterns with major cities marked. The combination of choropleth coloring, city markers, neighboring countries for context, north arrow, and scale bar creates a comprehensive and professional visualization suitable for reports, presentations, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no data, just outlines) | Good (choropleth, legend) | Excellent (categories + cities + context) |
+| **Context** | None | Title & subtitle | Full context with neighbors & scale |
+| **Visual Appeal** | Plain outlines | Color gradient | Custom palette + city markers |
+| **Data Layers** | Borders only | Choropleth | Choropleth + cities + countries |
+| **Geographic Info** | Regions visible | House price values | Categories, population, orientation |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better sf Maps in R:**
+
+1.  **Use appropriate projections** - For UK maps, consider British National Grid (EPSG:27700) for accurate measurements
+
+2.  **Choose color scales wisely** - Use sequential scales for continuous data like house prices, diverging for data with meaningful midpoint
+
+3.  **Add geographic context** - Include neighboring countries and water bodies to help viewers orient themselves
+
+4.  **Label strategically** - Add labels for major cities but avoid cluttering; use `nudge_y` to position labels clearly
+
+5.  **Include scale and orientation** - Always add north arrow and scale bar for maps of specific regions
+
+6.  **Mind the bounding box** - Use `coord_sf()` with xlim/ylim to include all parts (England, Scotland, Wales, Northern Ireland)
+
+7.  **Layer thoughtfully** - Order layers from background to foreground: context → main data → annotations → labels
+
+8.  **Use theme_void() for clean maps** - Remove axes and grid lines that are unnecessary for geographic visualization
+
+9.  **Consider accessibility** - Use colorblind-friendly palettes and ensure sufficient contrast between categories
+
+10. **Export at high resolution** - Use `ggsave("map.png", width = 10, height = 12, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other map visualizations:
+
+-   **Point maps** showing locations of businesses or facilities
+-   **Flow maps** showing migration or commuting patterns
+-   **Interactive maps** using `leaflet` or `mapview`
+-   **Small multiples** showing different metrics side-by-side
+
+::: {.highlight-box .info}
+**Want to create interactive maps?**
+
+You can make your maps interactive using `leaflet`:
+
+``` r
+library(leaflet)
+
+# Create color palette
+pal <- colorNumeric(palette = "Blues", 
+                   domain = uk_map_data$avg_house_price)
+
+# Create interactive map
+leaflet(uk_map_data) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(
+    fillColor = ~pal(avg_house_price),
+    fillOpacity = 0.7,
+    color = "white",
+    weight = 1,
+    popup = ~paste0("<strong>", name, "</strong><br>",
+                   "Avg House Price: £", 
+                   format(avg_house_price * 1000, big.mark = ","))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~avg_house_price,
+    title = "Avg Price (£1000s)",
+    position = "bottomright"
+  ) %>%
+  addMarkers(
+    data = major_cities,
+    popup = ~city
+  )
+```
+
+This creates an interactive map where users can zoom, pan, and click regions for detailed information.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Dot Density Map
+
+Here's a bonus approach showing unemployment rates with proportional symbols:
+
+```{r}
+#| label: bonus-dots
+#| fig-width: 9
+#| fig-height: 11
+
+# Get region centroids
+uk_centroids <- uk_map_data %>%
+  st_centroid() %>%
+  cbind(st_coordinates(.))
+
+ggplot() +
+  # Base map with light fill
+  geom_sf(data = uk_map_data,
+          aes(fill = unemployment_rate),
+          color = "white",
+          linewidth = 0.5) +
+  # Add country outline
+  geom_sf(data = uk_country,
+          fill = NA,
+          color = "gray20",
+          linewidth = 1) +
+  # Apply gradient
+  scale_fill_gradient(low = "#f0f9e8",
+                     high = "#43a2ca",
+                     name = "Unemployment\nRate (%)") +
+  coord_sf(xlim = c(-11, 3), ylim = c(49.5, 61), expand = FALSE) +
+  labs(
+    title = "United Kingdom: Regional Unemployment Patterns",
+    subtitle = "Unemployment rates vary across regions (simulated data)"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, margin = margin(b = 10)),
+    legend.position = "right",
+    panel.background = element_rect(fill = "lightblue", color = NA)
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [sf Package Documentation](https://r-spatial.github.io/sf/)
+-   [rnaturalearth Package](https://docs.ropensci.org/rnaturalearth/)
+-   [Geocomputation with R](https://geocompr.robinlovelace.net/)
+-   [ggplot2 Maps](https://ggplot2.tidyverse.org/reference/ggsf.html)
+-   [UK Geography Resources](https://www.ons.gov.uk/methodology/geography)
+
+Happy plotting! 📊🗺️

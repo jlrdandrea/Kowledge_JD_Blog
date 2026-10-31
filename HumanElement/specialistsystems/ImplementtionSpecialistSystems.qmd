@@ -1,0 +1,283 @@
+---
+title: "AI Act(EU)"
+description: "Artificial Intelligence Act — Governance, Risk, Controls, and Implementation Template"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - AI
+  - Regulation
+---
+
+
+
+---
+title: "Specialist Systems - Implementation time"
+description: "Artificial Intelligence Act — Governance, Risk, Controls, and Implementation Template"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Specialist Systems
+  - Implementation
+  - Estimation
+---
+
+# Estimated Implementation Time for Specialist Systems
+
+## Introduction
+
+Implementation time for specialist systems varies significantly depending on:
+
+-   scope and number of modules
+-   number of sites, countries, or business units
+-   data migration complexity
+-   integration footprint
+-   customisation level
+-   regulatory and validation requirements
+-   training and business change effort
+-   infrastructure readiness
+-   cutover and transition constraints
+
+The estimates in this section are **practical planning ranges**, not contractual commitments. They are intended to support early portfolio planning, architecture roadmaps, programme sequencing, and rough-order-of-magnitude estimation.
+
+## Estimation Principles
+
+A useful way to think about duration is to start with a **base delivery pattern** and then adjust for complexity.
+
+### Typical delivery patterns
+
+| Delivery Pattern                      | Typical Duration |
+|---------------------------------------|-----------------:|
+| Small focused package implementation  |      2--6 months |
+| Medium business-unit rollout          |     6--12 months |
+| Large enterprise implementation       |    12--24 months |
+| Multi-entity transformation programme |   18--36+ months |
+
+### Common factors that extend timelines
+
+| Complexity Factor                    | Typical Effect on Duration |
+|--------------------------------------|----------------------------|
+| Multiple business units or countries | +25% to +100%              |
+| Complex data migration               | +20% to +60%               |
+| Many system integrations             | +20% to +50%               |
+| High customisation                   | +25% to +75%               |
+| Regulatory validation                | +15% to +40%               |
+| Extensive training and change        | +15% to +35%               |
+| Site-by-site rollout                 | +20% to +80%               |
+
+## Estimated Duration by System Category
+
+| System Category | Small / Focused | Medium | Large / Enterprise Transformation |
+|------------------|-----------------:|-----------------:|-----------------:|
+| ERP (SAP, Oracle, etc.) | 3--6 months | 6--12 months | 12--24+ months |
+| Core banking | 6--12 months | 12--24 months | 24--48+ months |
+| Insurance policy / claims platforms | 4--8 months | 9--18 months | 18--36 months |
+| SCADA / DCS / industrial control | 3--6 months | 6--15 months | 12--30 months |
+| MES / manufacturing execution | 4--8 months | 8--18 months | 12--24+ months |
+| EHR / EMR | 6--12 months | 12--24 months | 18--36+ months |
+| PACS / RIS / LIS | 4--8 months | 8--15 months | 12--24 months |
+| WMS / TMS | 3--6 months | 6--12 months | 12--18 months |
+| POS / retail store systems | 2--4 months | 4--9 months | 9--18 months |
+| PMS / hotel systems | 2--4 months | 4--8 months | 9--15 months |
+| BSS / OSS | 6--12 months | 12--24 months | 18--36+ months |
+| Airline PSS / airport operations | 6--12 months | 12--24 months | 18--36+ months |
+| CTMS / regulated life sciences systems | 4--8 months | 8--15 months | 12--24 months |
+| BIM / CDE / construction platforms | 2--5 months | 5--10 months | 9--18 months |
+
+## Estimated Duration by Industry and Specialist System
+
+| Industry | Specialist System | Typical Implementation Style | Estimated Duration | Main Drivers of Delay | Key Risks |
+|------------|------------|------------|------------|------------|------------|
+| Industrial / Manufacturing | SCADA | Engineering-led, site commissioning | 3--15 months | OT integration, network design, FAT/SAT, commissioning | Operational disruption, cyber security, safety |
+| Industrial / Manufacturing | DCS | Engineering lifecycle, tightly controlled cutover | 6--18 months | Process design, shutdown windows, control validation | Plant downtime, safety, testing defects |
+| Industrial / Manufacturing | MES | Hybrid package + shop-floor integration | 4--18 months | ERP integration, equipment interfaces, master data | Production disruption, poor adoption |
+| Industrial / Manufacturing | PLM | Package-led process redesign | 4--12 months | Product structures, engineering workflows, CAD integration | Change resistance, data quality |
+| Utilities / Energy | ADMS / EMS / OMS | Programme-led operational deployment | 9--24 months | Real-time integration, resilience requirements, field data | Service disruption, resilience failures |
+| Utilities / Water | CIS / Utility Billing | Package-led transformation | 6--18 months | Billing migration, customer data, regulatory rules | Billing errors, reputational harm |
+| Oil and Gas | Reservoir / Production Systems | Technical platform deployment | 6--18 months | Specialist data models, legacy data conversion, field interfaces | Poor data quality, operational dependency |
+| Mining | Mine Planning Systems | Technical package rollout | 4--12 months | Geological data, planning integration, user capability | Planning errors, underutilisation |
+| Mining | Fleet Management Systems | Site-based operational rollout | 4--10 months | Vehicle telemetry, dispatch integration, radio/network readiness | Operational disruption, unstable telemetry |
+| Healthcare | EHR / EMR | Transformation-led phased deployment | 12--36 months | Workflow redesign, migration, interoperability, training | Clinical disruption, patient safety, adoption failure |
+| Healthcare | PACS / RIS | Departmental or enterprise imaging rollout | 4--15 months | Data migration, imaging integration, bandwidth/storage | Lost studies, downtime, clinician dissatisfaction |
+| Healthcare | LIS / LIMS | Validation-heavy deployment | 4--15 months | Instrument interfaces, validation, data conversion | Result delays, compliance gaps |
+| Healthcare | PAS / HIS | Phased administrative transformation | 6--18 months | Scheduling, admissions workflows, integration | Operational backlog, data quality |
+| Pharmaceuticals / Life Sciences | QMS | Configuration-led with compliance controls | 4--10 months | SOP alignment, validation, training | Audit findings, low adoption |
+| Pharmaceuticals / Life Sciences | LIMS | Validation-heavy rollout | 6--15 months | Method setup, instrument links, validation evidence | Compliance failure, inaccurate records |
+| Pharmaceuticals / Life Sciences | CTMS / eClinical | Regulated phased rollout | 4--12 months | Study design, integrations, validation, training | Trial delays, compliance issues |
+| Pharmaceuticals / Life Sciences | Regulated MES | Engineering + validation | 8--24 months | Batch design, equipment integration, validation | Batch release delays, compliance risk |
+| Banking | Core banking | Major package transformation | 12--48 months | Product migration, data conversion, payments, coexistence | Business continuity risk, migration failure |
+| Banking | Payments Hub | Integration-heavy transformation | 6--18 months | Legacy interfaces, scheme connectivity, testing | Settlement disruption, operational risk |
+| Banking | Treasury / Trading | High-control technical rollout | 6--15 months | Market interfaces, valuation models, controls | Financial loss, reporting errors |
+| Banking | Lending Platforms | Process and workflow transformation | 4--12 months | Product rules, workflow design, integration | Credit processing delays, poor controls |
+| Insurance | Policy Administration | Package-led product rollout | 9--24 months | Product configuration, migration, integration | Quotation errors, policy defects |
+| Insurance | Claims Management | Agile configuration-led rollout | 6--18 months | Workflow redesign, interfaces, training | Claims delays, poor customer experience |
+| Insurance | Billing Systems | Package-led rollout | 4--12 months | Billing rules, collections logic, migration | Premium errors, collections failure |
+| Telecoms | BSS | Large-scale transformation | 12--36 months | Product catalogue, billing, CRM, integrations | Revenue leakage, service disruption |
+| Telecoms | OSS | Engineering + service management transformation | 12--30 months | Inventory, provisioning, assurance, network integration | Provisioning failure, service instability |
+| Airlines | PSS | High-risk operational transformation | 12--36 months | Reservations, departure control, cutover complexity | Check-in disruption, revenue loss |
+| Airlines | OCC Systems | Operational control rollout | 6--18 months | Operations integration, disruption workflows, training | Flight operations issues, low resilience |
+| Aviation Maintenance | MRO Systems | Compliance-heavy phased rollout | 6--18 months | Maintenance records, parts data, regulatory traceability | Compliance breaches, aircraft downtime |
+| Airports | AODB / Airport Operations | Operationally constrained rollout | 9--24 months | Resource integration, operational readiness, rehearsal | Airport disruption, poor turnaround control |
+| Rail | Traffic Management | Operational engineering deployment | 9--24 months | Signalling interfaces, safety, testing | Operational incidents, timetable instability |
+| Rail | Timetabling / Rostering | Planning system rollout | 4--12 months | Business rules, optimisation, staff training | Scheduling errors, resistance to change |
+| Maritime / Shipping | TOS | Site-led operational deployment | 6--15 months | Yard logic, equipment integration, operational rehearsal | Port delays, planning instability |
+| Maritime / Shipping | Fleet / Voyage Systems | Technical deployment | 4--10 months | Data interfaces, voyage workflows, user adoption | Poor usage, data inconsistency |
+| Logistics / Warehousing | WMS | Site template + rollout | 4--12 months | Warehouse processes, scanners, ERP integration | Fulfilment disruption, inventory errors |
+| Logistics / Transport | TMS | Package-led transport rollout | 4--10 months | Route logic, carrier integration, master data | Delivery performance issues |
+| Logistics / Parcel | Parcel Management | Multi-node operational rollout | 4--12 months | Sortation integration, tracking, operational cutover | Delivery disruption, tracking failures |
+| Retail | POS | Pilot + wave rollout | 2--9 months | Hardware rollout, payment integration, store readiness | Store disruption, payment issues |
+| Retail | Merchandising Systems | Package-led retail transformation | 6--15 months | Pricing, replenishment, product hierarchy, integration | Stock distortion, margin leakage |
+| Retail | Ecommerce Platform | Agile digital rollout | 3--9 months | Catalogue, payments, fulfilment, integration | Checkout defects, customer abandonment |
+| Hospitality | PMS | Site rollout or group rollout | 2--8 months | Reservation migration, channel integration, training | Booking disruption, guest impact |
+| Hospitality | CRS | Group-level integration rollout | 4--12 months | Distribution channels, rates, inventory rules | Overbooking, revenue loss |
+| Restaurants / Food Service | Restaurant POS | Pilot + outlet rollout | 2--6 months | Till hardware, menu setup, staff training | Service disruption, order errors |
+| Construction / Engineering | BIM / CDE | Platform configuration and adoption rollout | 2--10 months | Project templates, standards, user onboarding | Low adoption, fragmented data |
+| Construction / Capital Projects | Project Controls | Process-led deployment | 3--9 months | Coding structures, reporting, governance adoption | Weak reporting, poor schedule control |
+| Construction / Engineering | Construction Management Systems | Site and project rollout | 3--12 months | Forms, workflows, mobile adoption, integration | Low field usage, incomplete records |
+| Real Estate | Property Management System | Package-led operational rollout | 3--9 months | Lease migration, finance interfaces, workflow change | Billing issues, incomplete tenancy data |
+| Education | SIS | Academic-cycle-driven rollout | 4--12 months | Student data, timetabling, enrolment cycles | Enrolment disruption, data errors |
+| Education | LMS / VLE | Agile or phased rollout | 2--6 months | Course migration, SSO, faculty adoption | Poor adoption, learner disruption |
+| Government / Public Safety | CAD | Mission-critical phased deployment | 6--18 months | Integration, operational readiness, resilience testing | Dispatch disruption, public safety risk |
+| Government / Public Safety | RMS | Records transformation | 6--15 months | Data conversion, evidential integrity, workflow alignment | Compliance issues, case handling delays |
+| Government / Tax | Tax and Revenue Systems | Large business-rule transformation | 9--24 months | Rules complexity, migration, integration | Collection failures, public dissatisfaction |
+| Justice / Courts | Case Management | Process-led controlled rollout | 6--18 months | Legal workflows, data migration, user readiness | Case delays, record integrity issues |
+| Media / Broadcast | MAM | Technical workflow rollout | 4--12 months | Storage, metadata, production integration | Asset loss, workflow disruption |
+| Media / Broadcast | Newsroom Systems | Operationally timed rollout | 3--9 months | Rundown workflows, newsroom adoption, integrations | On-air disruption, adoption failure |
+| Agriculture | Farm Management Systems | Seasonal operational rollout | 2--6 months | Machine telemetry, planning data, farmer adoption | Low utilisation, data inconsistency |
+| Agriculture | Precision Ag Platforms | Technical deployment with field integration | 3--8 months | Sensor connectivity, machine compatibility, data quality | Weak insights, unreliable telemetry |
+| Legal | Practice / Matter Management | Workflow-led package rollout | 3--9 months | Matter migration, billing rules, user habits | Poor adoption, billing disruption |
+| Professional Services | PSA | Package-led services transformation | 3--9 months | Resource structures, timesheets, billing integration | Low utilisation visibility, invoicing issues |
+| Energy Trading | ETRM / CTRM | High-control trading platform rollout | 6--18 months | Market interfaces, controls, reporting, migration | Financial exposure, reporting defects |
+| Automotive | Dealer Management System | Multi-site rollout | 3--9 months | Dealer templates, finance and parts integration | Sales/service disruption |
+| Automotive | Automotive PLM / ALM | Engineering-led deployment | 6--18 months | Product structures, supplier collaboration, tool integration | Poor engineering data integrity |
+
+## Typical Duration by Methodology Style
+
+| Methodology Style | Typical Duration | Notes |
+|----------------------|---------------------------:|----------------------|
+| SaaS package configuration | 2--6 months | Usually faster where standard processes are adopted |
+| Package-led transformation | 6--18 months | Common for ERP, insurance, lending, merchandising |
+| Engineering and commissioning lifecycle | 6--24 months | Common for SCADA, DCS, utility and OT systems |
+| Validation-heavy regulated rollout | 6--18 months | Common for LIMS, CTMS, regulated manufacturing |
+| Multi-site template and wave rollout | 6--24 months | Common for POS, PMS, WMS, branch or site deployments |
+| Major enterprise transformation | 18--48+ months | Common for core banking, EHR, BSS/OSS, PSS |
+
+## Why Some Projects Finish Faster Than Others
+
+Vendor case studies sometimes refer to implementations in three to six months. These are usually associated with one or more of the following conditions:
+
+-   narrow scope
+-   minimal customisation
+-   strong template reuse
+-   lower migration complexity
+-   limited site count
+-   low regulatory burden
+-   experienced implementation partner
+-   strong executive sponsorship and business availability
+
+By contrast, the longest programmes usually involve:
+
+-   large legacy estates
+-   many interfaces
+-   poor master data quality
+-   high customisation
+-   multiple geographies
+-   difficult cutover windows
+-   major operating model change
+-   extensive validation or assurance obligations
+
+## Practical Estimation Heuristic
+
+A practical early-stage formula is:
+
+> **Estimated Duration = Base Duration x Complexity Factors**
+
+### Example
+
+Assume a WMS starts with a base of **6 months**.
+
+Add complexity:
+
+-   three warehouses: **+30%**
+-   ERP and carrier integrations: **+25%**
+-   handheld device rollout: **+10%**
+-   large inventory migration: **+20%**
+
+Result:
+
+-   6 months x 1.85 = **approximately 11 months**
+
+This is not mathematically exact, but it is a useful planning approach for portfolio discussions.
+
+## Fastest and Slowest Categories
+
+### Usually faster
+
+-   LMS / VLE
+-   restaurant POS
+-   hotel PMS
+-   BIM / CDE
+-   smaller ecommerce platforms
+-   focused departmental systems
+
+### Usually medium
+
+-   WMS
+-   TMS
+-   PACS
+-   LIS
+-   merchandising platforms
+-   legal and PSA platforms
+-   MES at a single site
+
+### Usually longest
+
+-   core banking replacement
+-   enterprise EHR
+-   telecom BSS / OSS
+-   airline PSS
+-   large utility operational platforms
+-   multi-site SCADA / DCS programmes
+
+## Planning Guidance
+
+When estimating implementation time, it is useful to create at least three scenarios:
+
+-   **optimistic**
+-   **most likely**
+-   **high complexity**
+
+A robust planning model should also separate:
+
+-   design and mobilisation
+-   build and configuration
+-   migration and integration
+-   testing
+-   training and readiness
+-   cutover
+-   hypercare and stabilisation
+
+This makes it easier to communicate which part of the timeline is technical effort and which part is operational readiness.
+
+## Conclusion
+
+Implementation time for specialist systems should always be estimated as a **range**, not a single number.
+
+The best predictor is not only the product itself, but also:
+
+-   system class
+-   delivery method
+-   number of sites
+-   migration complexity
+-   integration footprint
+-   operational criticality
+-   regulatory burden
+-   business readiness
+
+As a result, a relatively small package implementation may take only a few months, while a large operational transformation programme may run for several years.
+
+## References
+
+Oracle describes ERP implementation as a substantial, multi-step process including configuration, migration, testing, training, and go-live planning.[@oracle_erp_impl] SAP positions SAP Activate as a structured implementation framework for SAP transformations.[@sap_activate] Guidewire describes accelerated implementations and cloud transformation approaches that can shorten delivery where scope is controlled.[@guidewire_bolt] Engineering-led industrial implementations commonly include testing and commissioning patterns such as factory acceptance testing and site acceptance testing.[@siemens_commissioning]
+
+::: {#refs}
+:::

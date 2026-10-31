@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>methodologyspecialistsystems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fd35d383c5c255923684e40b2b29d4c3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#implementation-methodologies-for-specialist-systems" id="toc-implementation-methodologies-for-specialist-systems" class="nav-link active" data-scroll-target="#implementation-methodologies-for-specialist-systems">Implementation Methodologies for Specialist Systems</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#key-principle" id="toc-key-principle" class="nav-link" data-scroll-target="#key-principle">Key Principle</a></li>
+  <li><a href="#named-vendor-methodologies" id="toc-named-vendor-methodologies" class="nav-link" data-scroll-target="#named-vendor-methodologies">Named Vendor Methodologies</a>
+  <ul class="collapse">
+  <li><a href="#sap" id="toc-sap" class="nav-link" data-scroll-target="#sap">SAP</a></li>
+  <li><a href="#oracle" id="toc-oracle" class="nav-link" data-scroll-target="#oracle">Oracle</a></li>
+  <li><a href="#guidewire" id="toc-guidewire" class="nav-link" data-scroll-target="#guidewire">Guidewire</a></li>
+  </ul></li>
+  <li><a href="#systems-without-a-single-public-branded-method" id="toc-systems-without-a-single-public-branded-method" class="nav-link" data-scroll-target="#systems-without-a-single-public-branded-method">Systems Without a Single Public Branded Method</a></li>
+  <li><a href="#methodology-styles-by-system-category" id="toc-methodology-styles-by-system-category" class="nav-link" data-scroll-target="#methodology-styles-by-system-category">Methodology Styles by System Category</a></li>
+  <li><a href="#typical-phases-by-methodology-type" id="toc-typical-phases-by-methodology-type" class="nav-link" data-scroll-target="#typical-phases-by-methodology-type">Typical Phases by Methodology Type</a>
+  <ul class="collapse">
+  <li><a href="#configuration-led-business-platform-method" id="toc-configuration-led-business-platform-method" class="nav-link" data-scroll-target="#configuration-led-business-platform-method">1. Configuration-Led Business Platform Method</a></li>
+  <li><a href="#engineering-and-commissioning-method" id="toc-engineering-and-commissioning-method" class="nav-link" data-scroll-target="#engineering-and-commissioning-method">2. Engineering and Commissioning Method</a></li>
+  <li><a href="#validation-heavy-regulated-deployment-method" id="toc-validation-heavy-regulated-deployment-method" class="nav-link" data-scroll-target="#validation-heavy-regulated-deployment-method">3. Validation-Heavy Regulated Deployment Method</a></li>
+  <li><a href="#template-and-wave-rollout-method" id="toc-template-and-wave-rollout-method" class="nav-link" data-scroll-target="#template-and-wave-rollout-method">4. Template and Wave Rollout Method</a></li>
+  </ul></li>
+  <li><a href="#why-methodology-choice-matters" id="toc-why-methodology-choice-matters" class="nav-link" data-scroll-target="#why-methodology-choice-matters">Why Methodology Choice Matters</a></li>
+  <li><a href="#practical-architecture-view" id="toc-practical-architecture-view" class="nav-link" data-scroll-target="#practical-architecture-view">Practical Architecture View</a></li>
+  <li><a href="#enterprise-governance-implications" id="toc-enterprise-governance-implications" class="nav-link" data-scroll-target="#enterprise-governance-implications">Enterprise Governance Implications</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+<section id="implementation-methodologies-for-specialist-systems" class="level1">
+<h1>Implementation Methodologies for Specialist Systems</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Yes, many specialist systems have distinct implementation methodologies.</p>
+<p>In practice, these methodologies usually come from one of four sources:</p>
+<ul>
+<li><strong>vendor-branded methodologies</strong></li>
+<li><strong>systems integrator or partner delivery frameworks</strong></li>
+<li><strong>industry-specific engineering or validation lifecycles</strong></li>
+<li><strong>generic project delivery models</strong> tailored to the platform, such as agile, waterfall, hybrid, or phased rollout</li>
+</ul>
+<p>Some products have a very explicit named methodology, while others rely on a delivery pattern shaped by the operational and regulatory context.</p>
+</section>
+<section id="key-principle" class="level2">
+<h2 class="anchored" data-anchor-id="key-principle">Key Principle</h2>
+<p>The implementation approach usually depends less on the software brand alone and more on the <strong>type of system being deployed</strong>.</p>
+<p>For example:</p>
+<ul>
+<li>a large <strong>ERP</strong> platform is usually implemented through a <strong>fit-to-standard, configuration-led method</strong></li>
+<li>an <strong>industrial control system</strong> is usually implemented through an <strong>engineering lifecycle</strong> with testing and commissioning</li>
+<li>a <strong>healthcare or laboratory platform</strong> often requires a <strong>validation-heavy rollout</strong></li>
+<li>a <strong>multi-site retail or operational platform</strong> often uses a <strong>template-and-wave rollout</strong></li>
+</ul>
+</section>
+<section id="named-vendor-methodologies" class="level2">
+<h2 class="anchored" data-anchor-id="named-vendor-methodologies">Named Vendor Methodologies</h2>
+<section id="sap" class="level3">
+<h3 class="anchored" data-anchor-id="sap">SAP</h3>
+<p>SAP historically used <strong>ASAP</strong>, while its current implementation method is <strong>SAP Activate</strong>.</p>
+<p>SAP describes SAP Activate as a structured implementation framework combining best practices, implementation methodology, and guided configuration tools. SAP also describes six phases in the framework and positions it around fit-to-standard and clean core principles.<span class="citation" data-cites="sap_activate">[@sap_activate]</span></p>
+</section>
+<section id="oracle" class="level3">
+<h3 class="anchored" data-anchor-id="oracle">Oracle</h3>
+<p>Oracle has long used the <strong>Oracle Unified Method (OUM)</strong> as its formal delivery method framework. Oracle continues to maintain OUM learning and training content, including structure, principles, and delivery readiness material.<span class="citation" data-cites="oracle_oum">[@oracle_oum]</span></p>
+<p>In practice, Oracle projects may also use cloud-specific implementation approaches layered on top of OUM or aligned with product-specific delivery guidance.<span class="citation" data-cites="oracle_oum_training">[@oracle_oum_training]</span></p>
+</section>
+<section id="guidewire" class="level3">
+<h3 class="anchored" data-anchor-id="guidewire">Guidewire</h3>
+<p>Guidewire refers to <strong>SurePath</strong> as a guided, proven implementation approach intended to support faster and more predictable delivery. This is especially relevant in InsuranceSuite and cloud-oriented implementations, often alongside agile delivery and partner-led execution.<span class="citation" data-cites="guidewire_surepath guidewire_training">[@guidewire_surepath; @guidewire_training]</span></p>
+</section>
+</section>
+<section id="systems-without-a-single-public-branded-method" class="level2">
+<h2 class="anchored" data-anchor-id="systems-without-a-single-public-branded-method">Systems Without a Single Public Branded Method</h2>
+<p>Not every specialist platform has a widely publicised branded method.</p>
+<p>Many sectors instead rely on a delivery model shaped by operational realities:</p>
+<ul>
+<li><strong>industrial and OT platforms</strong> tend to use detailed engineering, FAT, SAT, commissioning, and handover</li>
+<li><strong>clinical and regulated systems</strong> tend to use controlled deployment, traceability, validation, and strong change management</li>
+<li><strong>transport, hospitality, retail, and logistics systems</strong> often use site templates and deployment waves</li>
+<li><strong>core banking and insurance systems</strong> often combine vendor guidance, systems integrator methods, and programme-level governance</li>
+</ul>
+</section>
+<section id="methodology-styles-by-system-category" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-styles-by-system-category">Methodology Styles by System Category</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System Category</th>
+<th>Typical Delivery Style</th>
+<th>Common Characteristics</th>
+<th>Named Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ERP and enterprise platforms</td>
+<td>Fit-to-standard, configuration-led, agile or hybrid</td>
+<td>Process design, configuration, extensions, data migration, integration, testing, training, cutover</td>
+<td>SAP Activate, Oracle Unified Method</td>
+</tr>
+<tr class="even">
+<td>Insurance platforms</td>
+<td>Agile, configuration-led, partner-led</td>
+<td>Product configuration, integration, data conversion, iterative releases, business readiness</td>
+<td>Guidewire SurePath</td>
+</tr>
+<tr class="odd">
+<td>Core banking platforms</td>
+<td>Package-led transformation</td>
+<td>Product fit-gap, process standardisation, data migration, controls, phased migration</td>
+<td>Vendor + SI methodologies</td>
+</tr>
+<tr class="even">
+<td>Industrial control systems</td>
+<td>Engineering lifecycle / V-model</td>
+<td>Requirements, control philosophy, detailed design, FAT, SAT, commissioning, handover</td>
+<td>Vendor engineering methods</td>
+</tr>
+<tr class="odd">
+<td>MES / OT manufacturing platforms</td>
+<td>Hybrid engineering + operational rollout</td>
+<td>Solution design, shop-floor integration, testing, commissioning, training, stabilisation</td>
+<td>Vendor / partner methods</td>
+</tr>
+<tr class="even">
+<td>Healthcare and laboratory systems</td>
+<td>Validation-heavy phased rollout</td>
+<td>Workflow design, controlled configuration, data migration, validation, training, go-live support</td>
+<td>Vendor + clinical transformation methods</td>
+</tr>
+<tr class="odd">
+<td>Retail, hospitality, POS, WMS, TMS</td>
+<td>Template-based rollout</td>
+<td>Core template, localisation, pilot, wave deployment, site readiness, cutover</td>
+<td>Vendor / partner rollout methods</td>
+</tr>
+<tr class="even">
+<td>Airport, airline, rail, and transport systems</td>
+<td>Programme-based operational deployment</td>
+<td>Integration-heavy planning, operational rehearsal, training, cutover, resilience testing</td>
+<td>Vendor + operational change methods</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="typical-phases-by-methodology-type" class="level2">
+<h2 class="anchored" data-anchor-id="typical-phases-by-methodology-type">Typical Phases by Methodology Type</h2>
+<section id="configuration-led-business-platform-method" class="level3">
+<h3 class="anchored" data-anchor-id="configuration-led-business-platform-method">1. Configuration-Led Business Platform Method</h3>
+<p>Typical for:</p>
+<ul>
+<li>SAP</li>
+<li>Oracle ERP</li>
+<li>Guidewire</li>
+<li>core banking</li>
+<li>insurance policy administration</li>
+<li>WMS and TMS platforms</li>
+</ul>
+<p>Typical phases:</p>
+<ol type="1">
+<li>mobilisation</li>
+<li>discovery and fit-to-standard</li>
+<li>solution design</li>
+<li>configuration and extension</li>
+<li>data migration and integration</li>
+<li>testing</li>
+<li>training and business readiness</li>
+<li>cutover</li>
+<li>hypercare and transition to support</li>
+</ol>
+</section>
+<section id="engineering-and-commissioning-method" class="level3">
+<h3 class="anchored" data-anchor-id="engineering-and-commissioning-method">2. Engineering and Commissioning Method</h3>
+<p>Typical for:</p>
+<ul>
+<li>SCADA</li>
+<li>DCS</li>
+<li>plant automation</li>
+<li>utility control platforms</li>
+<li>some MES deployments</li>
+</ul>
+<p>Typical phases:</p>
+<ol type="1">
+<li>requirements and control philosophy</li>
+<li>architecture and security design</li>
+<li>detailed engineering</li>
+<li>build and integration</li>
+<li>factory acceptance testing</li>
+<li>site acceptance testing</li>
+<li>commissioning</li>
+<li>operational handover</li>
+<li>optimisation and support</li>
+</ol>
+</section>
+<section id="validation-heavy-regulated-deployment-method" class="level3">
+<h3 class="anchored" data-anchor-id="validation-heavy-regulated-deployment-method">3. Validation-Heavy Regulated Deployment Method</h3>
+<p>Typical for:</p>
+<ul>
+<li>EHR / EMR</li>
+<li>PACS</li>
+<li>LIS / LIMS</li>
+<li>CTMS</li>
+<li>regulated pharmaceutical manufacturing systems</li>
+</ul>
+<p>Typical phases:</p>
+<ol type="1">
+<li>process and workflow assessment</li>
+<li>requirements and traceability</li>
+<li>controlled configuration</li>
+<li>validation planning</li>
+<li>data migration and interface testing</li>
+<li>user acceptance and validation evidence</li>
+<li>training and readiness</li>
+<li>go-live control</li>
+<li>stabilisation and audit support</li>
+</ol>
+</section>
+<section id="template-and-wave-rollout-method" class="level3">
+<h3 class="anchored" data-anchor-id="template-and-wave-rollout-method">4. Template and Wave Rollout Method</h3>
+<p>Typical for:</p>
+<ul>
+<li>POS</li>
+<li>hotel PMS</li>
+<li>SIS</li>
+<li>WMS across multiple sites</li>
+<li>restaurant platforms</li>
+<li>branch or regional operational systems</li>
+</ul>
+<p>Typical phases:</p>
+<ol type="1">
+<li>define core template</li>
+<li>pilot implementation</li>
+<li>localisation and site readiness</li>
+<li>data and integration preparation</li>
+<li>cutover by wave</li>
+<li>post-go-live support</li>
+<li>rollout governance and lessons learned</li>
+</ol>
+</section>
+</section>
+<section id="why-methodology-choice-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-methodology-choice-matters">Why Methodology Choice Matters</h2>
+<p>Choosing the wrong implementation methodology creates major delivery risk.</p>
+<p>A methodology should match:</p>
+<ul>
+<li>the <strong>criticality</strong> of the platform</li>
+<li>the <strong>degree of regulation</strong></li>
+<li>the <strong>level of standardisation versus customisation</strong></li>
+<li>the <strong>number of deployment sites</strong></li>
+<li>the <strong>data migration complexity</strong></li>
+<li>the <strong>integration footprint</strong></li>
+<li>the <strong>need for operational rehearsal, commissioning, or validation</strong></li>
+</ul>
+<p>For example, a SCADA deployment should not be run exactly like a SaaS HR implementation, and a hospital EHR rollout should not be treated as a simple packaged software installation.</p>
+</section>
+<section id="practical-architecture-view" class="level2">
+<h2 class="anchored" data-anchor-id="practical-architecture-view">Practical Architecture View</h2>
+<p>A useful architecture classification is:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System Type</th>
+<th>Best-Fit Methodology Logic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Transaction-heavy business platform</td>
+<td>Fit-to-standard, process-led, configuration-first</td>
+</tr>
+<tr class="even">
+<td>Operational control platform</td>
+<td>Engineering-led, safety-aware, commissioning-based</td>
+</tr>
+<tr class="odd">
+<td>Regulated record platform</td>
+<td>Validation-heavy, traceable, readiness-led</td>
+</tr>
+<tr class="even">
+<td>Multi-site operational platform</td>
+<td>Template-based, pilot-first, wave rollout</td>
+</tr>
+<tr class="odd">
+<td>Highly integrated legacy transformation</td>
+<td>Hybrid programme method with phased coexistence</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="enterprise-governance-implications" class="level2">
+<h2 class="anchored" data-anchor-id="enterprise-governance-implications">Enterprise Governance Implications</h2>
+<p>Implementation methodology should be aligned with governance disciplines such as:</p>
+<ul>
+<li>programme and project management</li>
+<li>architecture governance</li>
+<li>cyber security and resilience</li>
+<li>data migration governance</li>
+<li>test management</li>
+<li>operational readiness</li>
+<li>training and change management</li>
+<li>service transition and support model design</li>
+</ul>
+<p>This means implementation methodology is not just a project method; it is also a governance and assurance mechanism.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Yes, there are specific methodologies for implementing specialist systems.</p>
+<p>Some are explicitly branded, such as:</p>
+<ul>
+<li><strong>SAP Activate</strong></li>
+<li><strong>Oracle Unified Method</strong></li>
+<li><strong>Guidewire SurePath</strong></li>
+</ul>
+<p>Others are not branded in the same way, but still follow recognisable industry-specific patterns such as:</p>
+<ul>
+<li>engineering and commissioning lifecycles</li>
+<li>validation-heavy regulated deployment</li>
+<li>template-and-wave rollouts</li>
+<li>package-led transformation methods</li>
+</ul>
+<p>The most useful way to analyse them is not only by vendor, but by <strong>system class</strong>, <strong>risk profile</strong>, <strong>regulatory burden</strong>, and <strong>deployment model</strong>.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" role="list">
+
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

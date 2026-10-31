@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+
+<title>FIRO and The Human Element</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">FIRO and The Human Element</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Human Element</div>
+                <div class="quarto-category">Behaviour</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-overview" id="toc-executive-overview" class="nav-link active" data-scroll-target="#executive-overview">Executive overview</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
+  <li><a href="#origins-and-background" id="toc-origins-and-background" class="nav-link" data-scroll-target="#origins-and-background">Origins and background</a>
+  <ul class="collapse">
+  <li><a href="#will-schutz" id="toc-will-schutz" class="nav-link" data-scroll-target="#will-schutz">Will Schutz</a></li>
+  <li><a href="#from-firo-to-the-human-element" id="toc-from-firo-to-the-human-element" class="nav-link" data-scroll-target="#from-firo-to-the-human-element">From FIRO to The Human Element</a></li>
+  </ul></li>
+  <li><a href="#core-structure-of-firo" id="toc-core-structure-of-firo" class="nav-link" data-scroll-target="#core-structure-of-firo">Core structure of FIRO</a>
+  <ul class="collapse">
+  <li><a href="#the-three-dimensions" id="toc-the-three-dimensions" class="nav-link" data-scroll-target="#the-three-dimensions">The three dimensions</a>
+  <ul class="collapse">
+  <li><a href="#inclusion" id="toc-inclusion" class="nav-link" data-scroll-target="#inclusion">Inclusion</a></li>
+  <li><a href="#control" id="toc-control" class="nav-link" data-scroll-target="#control">Control</a></li>
+  <li><a href="#openness-affection" id="toc-openness-affection" class="nav-link" data-scroll-target="#openness-affection">Openness / Affection</a></li>
+  </ul></li>
+  <li><a href="#expressed-and-wanted-behaviour" id="toc-expressed-and-wanted-behaviour" class="nav-link" data-scroll-target="#expressed-and-wanted-behaviour">Expressed and wanted behaviour</a></li>
+  </ul></li>
+  <li><a href="#human-element-principles" id="toc-human-element-principles" class="nav-link" data-scroll-target="#human-element-principles">Human Element principles</a>
+  <ul class="collapse">
+  <li><a href="#awareness" id="toc-awareness" class="nav-link" data-scroll-target="#awareness">Awareness</a></li>
+  <li><a href="#choice" id="toc-choice" class="nav-link" data-scroll-target="#choice">Choice</a></li>
+  <li><a href="#truthfulness" id="toc-truthfulness" class="nav-link" data-scroll-target="#truthfulness">Truthfulness</a></li>
+  <li><a href="#self-esteem" id="toc-self-esteem" class="nav-link" data-scroll-target="#self-esteem">Self-esteem</a></li>
+  <li><a href="#congruence" id="toc-congruence" class="nav-link" data-scroll-target="#congruence">Congruence</a></li>
+  </ul></li>
+  <li><a href="#the-human-element-in-groups-and-organisations" id="toc-the-human-element-in-groups-and-organisations" class="nav-link" data-scroll-target="#the-human-element-in-groups-and-organisations">The Human Element in groups and organisations</a>
+  <ul class="collapse">
+  <li><a href="#group-effectiveness" id="toc-group-effectiveness" class="nav-link" data-scroll-target="#group-effectiveness">Group effectiveness</a></li>
+  <li><a href="#leadership" id="toc-leadership" class="nav-link" data-scroll-target="#leadership">Leadership</a>
+  <ul class="collapse">
+  <li><a href="#inclusion-related-leadership-issues" id="toc-inclusion-related-leadership-issues" class="nav-link" data-scroll-target="#inclusion-related-leadership-issues">Inclusion-related leadership issues</a></li>
+  <li><a href="#control-related-leadership-issues" id="toc-control-related-leadership-issues" class="nav-link" data-scroll-target="#control-related-leadership-issues">Control-related leadership issues</a></li>
+  <li><a href="#openness-related-leadership-issues" id="toc-openness-related-leadership-issues" class="nav-link" data-scroll-target="#openness-related-leadership-issues">Openness-related leadership issues</a></li>
+  </ul></li>
+  <li><a href="#change-and-transformation" id="toc-change-and-transformation" class="nav-link" data-scroll-target="#change-and-transformation">Change and transformation</a></li>
+  </ul></li>
+  <li><a href="#practical-interpretation-of-the-three-dimensions" id="toc-practical-interpretation-of-the-three-dimensions" class="nav-link" data-scroll-target="#practical-interpretation-of-the-three-dimensions">Practical interpretation of the three dimensions</a>
+  <ul class="collapse">
+  <li><a href="#inclusion-in-practice" id="toc-inclusion-in-practice" class="nav-link" data-scroll-target="#inclusion-in-practice">Inclusion in practice</a></li>
+  <li><a href="#control-in-practice" id="toc-control-in-practice" class="nav-link" data-scroll-target="#control-in-practice">Control in practice</a></li>
+  <li><a href="#openness-in-practice" id="toc-openness-in-practice" class="nav-link" data-scroll-target="#openness-in-practice">Openness in practice</a></li>
+  </ul></li>
+  <li><a href="#common-human-element-workshop-themes" id="toc-common-human-element-workshop-themes" class="nav-link" data-scroll-target="#common-human-element-workshop-themes">Common Human Element workshop themes</a></li>
+  <li><a href="#links-to-firo-b-and-related-instruments" id="toc-links-to-firo-b-and-related-instruments" class="nav-link" data-scroll-target="#links-to-firo-b-and-related-instruments">Links to FIRO-B and related instruments</a></li>
+  <li><a href="#application-in-project-programme-and-pmo-contexts" id="toc-application-in-project-programme-and-pmo-contexts" class="nav-link" data-scroll-target="#application-in-project-programme-and-pmo-contexts">Application in project, programme, and PMO contexts</a>
+  <ul class="collapse">
+  <li><a href="#stakeholder-engagement" id="toc-stakeholder-engagement" class="nav-link" data-scroll-target="#stakeholder-engagement">Stakeholder engagement</a></li>
+  <li><a href="#project-governance" id="toc-project-governance" class="nav-link" data-scroll-target="#project-governance">Project governance</a></li>
+  <li><a href="#pmo-leadership" id="toc-pmo-leadership" class="nav-link" data-scroll-target="#pmo-leadership">PMO leadership</a></li>
+  </ul></li>
+  <li><a href="#relationship-to-psychological-safety" id="toc-relationship-to-psychological-safety" class="nav-link" data-scroll-target="#relationship-to-psychological-safety">Relationship to psychological safety</a></li>
+  <li><a href="#strengths-of-the-human-element-approach" id="toc-strengths-of-the-human-element-approach" class="nav-link" data-scroll-target="#strengths-of-the-human-element-approach">Strengths of the Human Element approach</a>
+  <ul class="collapse">
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths">Strengths</a></li>
+  <li><a href="#typical-value" id="toc-typical-value" class="nav-link" data-scroll-target="#typical-value">Typical value</a></li>
+  </ul></li>
+  <li><a href="#limitations-and-cautions" id="toc-limitations-and-cautions" class="nav-link" data-scroll-target="#limitations-and-cautions">Limitations and cautions</a>
+  <ul class="collapse">
+  <li><a href="#cautions" id="toc-cautions" class="nav-link" data-scroll-target="#cautions">Cautions</a></li>
+  </ul></li>
+  <li><a href="#suggested-facilitation-questions" id="toc-suggested-facilitation-questions" class="nav-link" data-scroll-target="#suggested-facilitation-questions">Suggested facilitation questions</a>
+  <ul class="collapse">
+  <li><a href="#individual-reflection" id="toc-individual-reflection" class="nav-link" data-scroll-target="#individual-reflection">Individual reflection</a></li>
+  <li><a href="#team-reflection" id="toc-team-reflection" class="nav-link" data-scroll-target="#team-reflection">Team reflection</a></li>
+  <li><a href="#leadership-reflection" id="toc-leadership-reflection" class="nav-link" data-scroll-target="#leadership-reflection">Leadership reflection</a></li>
+  </ul></li>
+  <li><a href="#a-concise-working-model" id="toc-a-concise-working-model" class="nav-link" data-scroll-target="#a-concise-working-model">A concise working model</a></li>
+  <li><a href="#how-this-fits-a-knowledge-base" id="toc-how-this-fits-a-knowledge-base" class="nav-link" data-scroll-target="#how-this-fits-a-knowledge-base">How this fits a knowledge base</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#core-works-and-source-lineage" id="toc-core-works-and-source-lineage" class="nav-link" data-scroll-target="#core-works-and-source-lineage">Core works and source lineage</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="executive-overview" class="level1">
+<h1>Executive overview</h1>
+<p>The Human Element is a personal and interpersonal development framework created by <strong>Will Schutz</strong>. It focuses on how <strong>awareness</strong>, <strong>choice</strong>, <strong>truthfulness</strong>, <strong>self-esteem</strong>, and <strong>behavioural flexibility</strong> affect performance, relationships, leadership, trust, and team effectiveness.</p>
+<p>A central intellectual foundation beneath The Human Element is <strong>FIRO</strong>:</p>
+<ul>
+<li><strong>F</strong>undamental</li>
+<li><strong>I</strong>nterpersonal</li>
+<li><strong>R</strong>elations</li>
+<li><strong>O</strong>rientation</li>
+</ul>
+<p>FIRO explains interpersonal behaviour through recurring human needs and concerns that appear in relationships, teams, and organisations. In its widely used form, it focuses on three dimensions:</p>
+<ol type="1">
+<li><strong>Inclusion</strong></li>
+<li><strong>Control</strong></li>
+<li><strong>Openness / Affection</strong></li>
+</ol>
+<p>Within the broader Human Element tradition, these dimensions are often interpreted not only as behavioural patterns, but also as gateways to deeper issues of belonging, competence, authenticity, trust, and self-regard.</p>
+</section>
+<section id="why-this-matters" class="level1">
+<h1>Why this matters</h1>
+<p>For leadership, team performance, coaching, facilitation, project delivery, and organisational change, technical competence is often not enough. Teams can fail despite strong technical capability because of:</p>
+<ul>
+<li>unspoken tension</li>
+<li>low trust</li>
+<li>defensive behaviour</li>
+<li>fear of conflict</li>
+<li>lack of psychological safety</li>
+<li>hidden needs for inclusion, control, or closeness</li>
+<li>poor emotional transparency</li>
+<li>unresolved status or authority struggles</li>
+</ul>
+<p>The Human Element addresses these hidden human dynamics directly.</p>
+</section>
+<section id="origins-and-background" class="level1">
+<h1>Origins and background</h1>
+<section id="will-schutz" class="level2">
+<h2 class="anchored" data-anchor-id="will-schutz">Will Schutz</h2>
+<p>Will Schutz was a psychologist whose work began with research into group compatibility and interpersonal behaviour. His early work developed into <strong>FIRO</strong>, and later into <strong>The Human Element</strong>, which integrated interpersonal theory with a broader developmental and experiential methodology.</p>
+</section>
+<section id="from-firo-to-the-human-element" class="level2">
+<h2 class="anchored" data-anchor-id="from-firo-to-the-human-element">From FIRO to The Human Element</h2>
+<p>A useful way to understand the evolution is:</p>
+<ul>
+<li><strong>FIRO</strong> began as a theory of interpersonal behaviour</li>
+<li><strong>FIRO-B</strong> became a behavioural instrument to assess interpersonal preferences and patterns</li>
+<li><strong>The Human Element</strong> expanded the model into a fuller developmental system involving self-awareness, emotional honesty, choice, self-esteem, and group effectiveness</li>
+</ul>
+<p>This progression matters because it shows that The Human Element is not merely a personality questionnaire. It is an approach to human effectiveness that combines:</p>
+<ul>
+<li>theory</li>
+<li>self-inquiry</li>
+<li>reflection</li>
+<li>emotional awareness</li>
+<li>experiential learning</li>
+<li>group process work</li>
+<li>application to leadership and organisations</li>
+</ul>
+</section>
+</section>
+<section id="core-structure-of-firo" class="level1">
+<h1>Core structure of FIRO</h1>
+<section id="the-three-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-dimensions">The three dimensions</h2>
+<section id="inclusion" class="level3">
+<h3 class="anchored" data-anchor-id="inclusion">Inclusion</h3>
+<p>Inclusion relates to contact, visibility, participation, recognition, belonging, and whether a person feels “in” or “out”.</p>
+<p>Common questions beneath inclusion include:</p>
+<ul>
+<li>Do I belong here?</li>
+<li>Am I seen?</li>
+<li>Am I accepted?</li>
+<li>Do I matter to this group?</li>
+<li>How much contact do I want with others?</li>
+</ul>
+<p>Typical team expressions:</p>
+<ul>
+<li>joining or withdrawing</li>
+<li>speaking up or staying silent</li>
+<li>seeking attention or avoiding exposure</li>
+<li>wanting frequent interaction or preferring distance</li>
+<li>feeling excluded, overlooked, or unnecessary</li>
+</ul>
+<p>At work, inclusion often appears in:</p>
+<ul>
+<li>onboarding</li>
+<li>team meetings</li>
+<li>participation in decisions</li>
+<li>stakeholder engagement</li>
+<li>social integration</li>
+<li>workshop dynamics</li>
+<li>cross-functional collaboration</li>
+</ul>
+</section>
+<section id="control" class="level3">
+<h3 class="anchored" data-anchor-id="control">Control</h3>
+<p>Control relates to influence, responsibility, structure, power, authority, competence, and decision rights.</p>
+<p>Common questions beneath control include:</p>
+<ul>
+<li>Am I competent?</li>
+<li>Who decides?</li>
+<li>How much influence do I have?</li>
+<li>Can I trust others to lead or deliver?</li>
+<li>Do I need structure or freedom?</li>
+</ul>
+<p>Typical team expressions:</p>
+<ul>
+<li>directing vs following</li>
+<li>organising vs resisting direction</li>
+<li>ambiguity tolerance</li>
+<li>conflict over ownership</li>
+<li>micro-management</li>
+<li>struggle over accountability</li>
+<li>preference for clear governance vs flexible autonomy</li>
+</ul>
+<p>At work, control often appears in:</p>
+<ul>
+<li>decision-making forums</li>
+<li>governance structures</li>
+<li>delegation</li>
+<li>accountability</li>
+<li>role clarity</li>
+<li>escalation paths</li>
+<li>programme and project leadership</li>
+</ul>
+</section>
+<section id="openness-affection" class="level3">
+<h3 class="anchored" data-anchor-id="openness-affection">Openness / Affection</h3>
+<p>In classic FIRO language this dimension was often called <strong>Affection</strong>. In later Human Element and related interpretations it is frequently rendered as <strong>Openness</strong>, emphasising authenticity, emotional transparency, closeness, warmth, and trust.</p>
+<p>Common questions beneath openness include:</p>
+<ul>
+<li>Can I be real here?</li>
+<li>Am I liked?</li>
+<li>Can I trust this person?</li>
+<li>Is it safe to tell the truth?</li>
+<li>How much emotional closeness do I want?</li>
+</ul>
+<p>Typical team expressions:</p>
+<ul>
+<li>honesty vs guardedness</li>
+<li>warmth vs distance</li>
+<li>trust vs suspicion</li>
+<li>empathy vs detachment</li>
+<li>emotional disclosure vs emotional control</li>
+<li>direct feedback vs polite avoidance</li>
+</ul>
+<p>At work, openness often appears in:</p>
+<ul>
+<li>feedback conversations</li>
+<li>conflict resolution</li>
+<li>mentoring</li>
+<li>leadership presence</li>
+<li>one-to-ones</li>
+<li>trust building</li>
+<li>collaboration under pressure</li>
+</ul>
+</section>
+</section>
+<section id="expressed-and-wanted-behaviour" class="level2">
+<h2 class="anchored" data-anchor-id="expressed-and-wanted-behaviour">Expressed and wanted behaviour</h2>
+<p>A very practical element in FIRO-based work is the difference between what a person <strong>expresses</strong> toward others and what the person <strong>wants</strong> from others.</p>
+<p>Examples:</p>
+<ul>
+<li>Someone may <strong>express high inclusion</strong> by inviting others in, yet <strong>want low inclusion</strong> and still feel crowded.</li>
+<li>Someone may <strong>express low control</strong> but <strong>want high control</strong>, creating frustration.</li>
+<li>Someone may <strong>express warmth</strong> but <strong>want little openness</strong> in return, or the reverse.</li>
+</ul>
+<p>This distinction is useful because many interpersonal tensions arise not from one trait alone, but from the mismatch between:</p>
+<ul>
+<li>what I do</li>
+<li>what I want</li>
+<li>what others do</li>
+<li>what others want</li>
+</ul>
+</section>
+</section>
+<section id="human-element-principles" class="level1">
+<h1>Human Element principles</h1>
+<p>The Human Element extends beyond behavioural preference into deeper developmental work.</p>
+<section id="awareness" class="level2">
+<h2 class="anchored" data-anchor-id="awareness">Awareness</h2>
+<p>Awareness means noticing what is happening in oneself and in the group:</p>
+<ul>
+<li>feelings</li>
+<li>assumptions</li>
+<li>bodily signals</li>
+<li>reactions</li>
+<li>defensiveness</li>
+<li>stories we are telling ourselves</li>
+<li>the impact we have on others</li>
+</ul>
+<p>Without awareness, people act automatically and often defensively.</p>
+</section>
+<section id="choice" class="level2">
+<h2 class="anchored" data-anchor-id="choice">Choice</h2>
+<p>One of the strongest Human Element ideas is that people often feel they “have no choice” when in fact they do have choice, even if the available choices are difficult.</p>
+<p>Growth comes from recognising:</p>
+<ul>
+<li>what I am doing</li>
+<li>why I am doing it</li>
+<li>what alternatives I have</li>
+<li>what consequences follow from each option</li>
+</ul>
+</section>
+<section id="truthfulness" class="level2">
+<h2 class="anchored" data-anchor-id="truthfulness">Truthfulness</h2>
+<p>Truthfulness does not mean brutal honesty or emotional dumping. It means reducing distortion and becoming more real, more congruent, and less defended.</p>
+<p>In practice this can mean:</p>
+<ul>
+<li>naming what is happening</li>
+<li>acknowledging discomfort</li>
+<li>speaking clearly about needs and boundaries</li>
+<li>giving feedback honestly and respectfully</li>
+<li>reducing pretence</li>
+</ul>
+</section>
+<section id="self-esteem" class="level2">
+<h2 class="anchored" data-anchor-id="self-esteem">Self-esteem</h2>
+<p>A defining Human Element view is that many performance and relationship problems are rooted in impaired self-esteem.</p>
+<p>Low self-esteem may show up as:</p>
+<ul>
+<li>defensiveness</li>
+<li>control behaviour</li>
+<li>perfectionism</li>
+<li>withdrawal</li>
+<li>blame</li>
+<li>avoidance</li>
+<li>over-compliance</li>
+<li>status anxiety</li>
+<li>inability to receive feedback</li>
+</ul>
+<p>Healthy self-esteem supports:</p>
+<ul>
+<li>openness</li>
+<li>accountability</li>
+<li>curiosity</li>
+<li>resilience</li>
+<li>confidence without domination</li>
+<li>connection without dependency</li>
+</ul>
+</section>
+<section id="congruence" class="level2">
+<h2 class="anchored" data-anchor-id="congruence">Congruence</h2>
+<p>Congruence is alignment between:</p>
+<ul>
+<li>what I feel</li>
+<li>what I think</li>
+<li>what I say</li>
+<li>what I do</li>
+</ul>
+<p>The more congruent a person is, the more trustworthy and effective they tend to be.</p>
+</section>
+</section>
+<section id="the-human-element-in-groups-and-organisations" class="level1">
+<h1>The Human Element in groups and organisations</h1>
+<section id="group-effectiveness" class="level2">
+<h2 class="anchored" data-anchor-id="group-effectiveness">Group effectiveness</h2>
+<p>The Human Element suggests that group performance depends not only on technical capability, but also on the quality of interpersonal relations.</p>
+<p>A technically strong team may still underperform because of:</p>
+<ul>
+<li>hidden agendas</li>
+<li>fear of embarrassment</li>
+<li>lack of trust</li>
+<li>superficial agreement</li>
+<li>dependence on hierarchy</li>
+<li>unresolved authority issues</li>
+<li>silence around conflict</li>
+<li>low willingness to say what is true</li>
+</ul>
+</section>
+<section id="leadership" class="level2">
+<h2 class="anchored" data-anchor-id="leadership">Leadership</h2>
+<p>For leaders, the model is particularly useful because it highlights the hidden emotional and relational layers under everyday management problems.</p>
+<p>Examples:</p>
+<section id="inclusion-related-leadership-issues" class="level3">
+<h3 class="anchored" data-anchor-id="inclusion-related-leadership-issues">Inclusion-related leadership issues</h3>
+<ul>
+<li>people not speaking in meetings</li>
+<li>stakeholders feeling left out</li>
+<li>cliques within teams</li>
+<li>remote staff becoming invisible</li>
+<li>new joiners struggling to integrate</li>
+</ul>
+</section>
+<section id="control-related-leadership-issues" class="level3">
+<h3 class="anchored" data-anchor-id="control-related-leadership-issues">Control-related leadership issues</h3>
+<ul>
+<li>unclear authority</li>
+<li>duplication of decisions</li>
+<li>micro-management</li>
+<li>passive resistance</li>
+<li>confusion over ownership</li>
+<li>weak escalation discipline</li>
+</ul>
+</section>
+<section id="openness-related-leadership-issues" class="level3">
+<h3 class="anchored" data-anchor-id="openness-related-leadership-issues">Openness-related leadership issues</h3>
+<ul>
+<li>lack of trust</li>
+<li>conflict avoidance</li>
+<li>performative agreement</li>
+<li>guarded communication</li>
+<li>poor quality feedback</li>
+<li>inability to discuss difficult topics</li>
+</ul>
+</section>
+</section>
+<section id="change-and-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="change-and-transformation">Change and transformation</h2>
+<p>During change, Human Element work helps explain why resistance is often emotional and relational rather than purely rational.</p>
+<p>People may resist because they fear:</p>
+<ul>
+<li>exclusion</li>
+<li>loss of competence</li>
+<li>loss of control</li>
+<li>loss of identity</li>
+<li>loss of status</li>
+<li>loss of relationship security</li>
+</ul>
+<p>That makes the framework useful in:</p>
+<ul>
+<li>organisation design</li>
+<li>programme leadership</li>
+<li>transformation offices</li>
+<li>mergers</li>
+<li>leadership transitions</li>
+<li>team reset workshops</li>
+<li>post-conflict repair</li>
+</ul>
+</section>
+</section>
+<section id="practical-interpretation-of-the-three-dimensions" class="level1">
+<h1>Practical interpretation of the three dimensions</h1>
+<section id="inclusion-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="inclusion-in-practice">Inclusion in practice</h2>
+<p>Healthy inclusion tends to look like:</p>
+<ul>
+<li>balanced participation</li>
+<li>clear welcome</li>
+<li>people feeling seen</li>
+<li>appropriate involvement</li>
+<li>respectful visibility</li>
+</ul>
+<p>Dysfunctional inclusion patterns can include:</p>
+<ul>
+<li>isolation</li>
+<li>attention-seeking</li>
+<li>social over-dependence</li>
+<li>disengagement</li>
+<li>chronic exclusion</li>
+<li>token involvement</li>
+</ul>
+<p>Questions for reflection:</p>
+<ul>
+<li>Who feels included in this team?</li>
+<li>Who is consistently left out?</li>
+<li>Who dominates airtime?</li>
+<li>Who never volunteers?</li>
+<li>Where are people seeking recognition indirectly?</li>
+</ul>
+</section>
+<section id="control-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="control-in-practice">Control in practice</h2>
+<p>Healthy control tends to look like:</p>
+<ul>
+<li>clear accountability</li>
+<li>proportionate authority</li>
+<li>good delegation</li>
+<li>confidence with boundaries</li>
+<li>structured freedom</li>
+</ul>
+<p>Dysfunctional control patterns can include:</p>
+<ul>
+<li>power struggle</li>
+<li>over-control</li>
+<li>abdication</li>
+<li>dependency</li>
+<li>ambiguity</li>
+<li>hidden vetoes</li>
+<li>passive resistance</li>
+</ul>
+<p>Questions for reflection:</p>
+<ul>
+<li>Who really decides here?</li>
+<li>Is accountability explicit?</li>
+<li>Are people over-directed or under-led?</li>
+<li>Where does ownership break down?</li>
+<li>Where is authority assumed but not agreed?</li>
+</ul>
+</section>
+<section id="openness-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="openness-in-practice">Openness in practice</h2>
+<p>Healthy openness tends to look like:</p>
+<ul>
+<li>honesty</li>
+<li>warmth</li>
+<li>trust</li>
+<li>empathy</li>
+<li>appropriate vulnerability</li>
+<li>respectful candour</li>
+</ul>
+<p>Dysfunctional openness patterns can include:</p>
+<ul>
+<li>guardedness</li>
+<li>emotional distance</li>
+<li>pseudo-harmony</li>
+<li>gossip</li>
+<li>avoidance</li>
+<li>overexposure without containment</li>
+</ul>
+<p>Questions for reflection:</p>
+<ul>
+<li>Can people tell the truth here?</li>
+<li>What remains unsaid?</li>
+<li>Is feedback safe?</li>
+<li>Are relationships real or performative?</li>
+<li>Is conflict handled directly?</li>
+</ul>
+</section>
+</section>
+<section id="common-human-element-workshop-themes" class="level1">
+<h1>Common Human Element workshop themes</h1>
+<p>A Human Element workshop or facilitation intervention may include themes such as:</p>
+<ul>
+<li>self-awareness</li>
+<li>self-esteem</li>
+<li>choice and responsibility</li>
+<li>interpersonal impact</li>
+<li>inclusion, control, and openness</li>
+<li>defensive routines</li>
+<li>emotional literacy</li>
+<li>truthfulness and candour</li>
+<li>team trust</li>
+<li>conflict and feedback</li>
+<li>leadership presence</li>
+<li>psychological safety</li>
+<li>alignment between intention and impact</li>
+</ul>
+<p>Activities may involve:</p>
+<ul>
+<li>self-reflection</li>
+<li>paired dialogue</li>
+<li>group exercises</li>
+<li>structured feedback</li>
+<li>experiential activities</li>
+<li>discussion of real work situations</li>
+<li>facilitated exploration of assumptions and emotions</li>
+</ul>
+</section>
+<section id="links-to-firo-b-and-related-instruments" class="level1">
+<h1>Links to FIRO-B and related instruments</h1>
+<p>The FIRO tradition includes formal instruments such as <strong>FIRO-B</strong> and later related measures. These can be useful when used responsibly, especially in:</p>
+<ul>
+<li>coaching</li>
+<li>team development</li>
+<li>leadership development</li>
+<li>workshop facilitation</li>
+<li>relationship awareness</li>
+<li>conflict analysis</li>
+</ul>
+<p>However, in practical organisational use, the value is not only in the score. The value comes from the conversation around:</p>
+<ul>
+<li>patterns</li>
+<li>needs</li>
+<li>reactions</li>
+<li>mismatches</li>
+<li>blind spots</li>
+<li>choices for change</li>
+</ul>
+</section>
+<section id="application-in-project-programme-and-pmo-contexts" class="level1">
+<h1>Application in project, programme, and PMO contexts</h1>
+<p>Because this project often explores leadership, governance, consulting, PMO, and stakeholder dynamics, the Human Element can be applied directly.</p>
+<section id="stakeholder-engagement" class="level2">
+<h2 class="anchored" data-anchor-id="stakeholder-engagement">Stakeholder engagement</h2>
+<p>FIRO provides a useful lens for stakeholder behaviour:</p>
+<ul>
+<li>some stakeholders want high inclusion and regular contact</li>
+<li>some want high control and strong decision rights</li>
+<li>some value openness and trust before they commit</li>
+<li>some become disruptive when their core needs are frustrated</li>
+</ul>
+<p>Questions to ask:</p>
+<ul>
+<li>Does this stakeholder need visibility, influence, reassurance, trust, or autonomy?</li>
+<li>Are they reacting to the content of the work, or to how they are being engaged?</li>
+<li>Is their resistance really about the proposal, or about belonging, power, or safety?</li>
+</ul>
+</section>
+<section id="project-governance" class="level2">
+<h2 class="anchored" data-anchor-id="project-governance">Project governance</h2>
+<p>Many governance issues that appear procedural are partly interpersonal:</p>
+<ul>
+<li>steering committees that do not make decisions</li>
+<li>sponsors who overrule informally</li>
+<li>teams that hide bad news</li>
+<li>workstreams that compete for authority</li>
+<li>delivery teams that feel excluded from decisions</li>
+</ul>
+<p>Human Element interpretation:</p>
+<ul>
+<li><strong>Inclusion</strong>: who is invited into the conversation?</li>
+<li><strong>Control</strong>: who believes they have the right to decide?</li>
+<li><strong>Openness</strong>: who feels safe enough to tell the truth?</li>
+</ul>
+</section>
+<section id="pmo-leadership" class="level2">
+<h2 class="anchored" data-anchor-id="pmo-leadership">PMO leadership</h2>
+<p>A PMO can use the Human Element in:</p>
+<ul>
+<li>workshop design</li>
+<li>stakeholder analysis</li>
+<li>conflict repair</li>
+<li>escalation coaching</li>
+<li>retrospectives</li>
+<li>leadership diagnostics</li>
+<li>team reset interventions</li>
+<li>role and governance clarity work</li>
+</ul>
+</section>
+</section>
+<section id="relationship-to-psychological-safety" class="level1">
+<h1>Relationship to psychological safety</h1>
+<p>The Human Element overlaps with the modern concept of psychological safety, but it is not identical.</p>
+<p>Psychological safety usually focuses on whether people feel safe to speak up, ask questions, admit mistakes, and contribute.</p>
+<p>The Human Element goes further by exploring:</p>
+<ul>
+<li>self-esteem</li>
+<li>authenticity</li>
+<li>defensive behaviour</li>
+<li>truthfulness</li>
+<li>relational needs</li>
+<li>the emotional roots of silence, control, and conflict</li>
+</ul>
+<p>In this sense, psychological safety can be seen as compatible with Human Element practice, while Human Element offers deeper language for what may be happening beneath the surface.</p>
+</section>
+<section id="strengths-of-the-human-element-approach" class="level1">
+<h1>Strengths of the Human Element approach</h1>
+<section id="strengths" class="level2">
+<h2 class="anchored" data-anchor-id="strengths">Strengths</h2>
+<ul>
+<li>practical and human-centred</li>
+<li>useful for teams, leadership, and relationships</li>
+<li>explains recurring interpersonal tension clearly</li>
+<li>integrates behaviour with deeper self-awareness</li>
+<li>applicable in coaching, facilitation, and organisational development</li>
+<li>helps connect performance problems with relational dynamics</li>
+<li>highly relevant where trust and candour matter</li>
+</ul>
+</section>
+<section id="typical-value" class="level2">
+<h2 class="anchored" data-anchor-id="typical-value">Typical value</h2>
+<ul>
+<li>improved communication</li>
+<li>better conflict handling</li>
+<li>stronger trust</li>
+<li>more honest feedback</li>
+<li>reduced defensiveness</li>
+<li>clearer leadership behaviour</li>
+<li>stronger team cohesion</li>
+<li>better decision quality</li>
+</ul>
+</section>
+</section>
+<section id="limitations-and-cautions" class="level1">
+<h1>Limitations and cautions</h1>
+<p>The framework is powerful, but it should be used carefully.</p>
+<section id="cautions" class="level2">
+<h2 class="anchored" data-anchor-id="cautions">Cautions</h2>
+<ul>
+<li>It is not a substitute for clinical or therapeutic treatment.</li>
+<li>It should not be used to label or trap people.</li>
+<li>Assessment scores should be interpreted with care.</li>
+<li>Deep emotional work requires skilled facilitation.</li>
+<li>Cultural context matters.</li>
+<li>Organisational problems are not only interpersonal; structure, incentives, workload, and strategy also matter.</li>
+</ul>
+<p>A weak application turns the model into simplistic typing. A strong application uses it as a lens for dialogue, awareness, and responsible choice.</p>
+</section>
+</section>
+<section id="suggested-facilitation-questions" class="level1">
+<h1>Suggested facilitation questions</h1>
+<section id="individual-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="individual-reflection">Individual reflection</h2>
+<ul>
+<li>When do I feel most included?</li>
+<li>When do I feel ignored or marginalised?</li>
+<li>How do I react when I lack control?</li>
+<li>How do I behave when I feel incompetent?</li>
+<li>What makes it hard for me to be open?</li>
+<li>What truths do I avoid saying?</li>
+<li>What defensive pattern do I return to under stress?</li>
+</ul>
+</section>
+<section id="team-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="team-reflection">Team reflection</h2>
+<ul>
+<li>What do we avoid talking about?</li>
+<li>Where is trust high and low?</li>
+<li>Who is not really included?</li>
+<li>How clear are decision rights?</li>
+<li>What happens when conflict appears?</li>
+<li>Do people feel safe enough to say bad news early?</li>
+<li>What would more truthfulness look like in this team?</li>
+</ul>
+</section>
+<section id="leadership-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="leadership-reflection">Leadership reflection</h2>
+<ul>
+<li>Do I create inclusion or dependency?</li>
+<li>Do I provide clarity or over-control?</li>
+<li>Do I invite candour or shut it down?</li>
+<li>Can people disagree with me safely?</li>
+<li>What human need is driving the resistance I see?</li>
+</ul>
+</section>
+</section>
+<section id="a-concise-working-model" class="level1">
+<h1>A concise working model</h1>
+<p>A simple working model for practitioners is:</p>
+<ol type="1">
+<li><strong>Notice behaviour</strong></li>
+<li><strong>Identify the interpersonal dimension</strong>
+<ul>
+<li>inclusion</li>
+<li>control</li>
+<li>openness</li>
+</ul></li>
+<li><strong>Explore underlying fear or need</strong></li>
+<li><strong>Increase awareness</strong></li>
+<li><strong>Create real choice</strong></li>
+<li><strong>Encourage truthful dialogue</strong></li>
+<li><strong>Support responsibility and self-esteem</strong></li>
+<li><strong>Translate insight into new behaviour</strong></li>
+</ol>
+</section>
+<section id="how-this-fits-a-knowledge-base" class="level1">
+<h1>How this fits a knowledge base</h1>
+<p>This chapter can sit in a broader knowledge base on:</p>
+<ul>
+<li>leadership</li>
+<li>communication</li>
+<li>facilitation</li>
+<li>stakeholder management</li>
+<li>team effectiveness</li>
+<li>consulting</li>
+<li>project and programme delivery</li>
+<li>organisational change</li>
+<li>behavioural frameworks</li>
+</ul>
+<p>It can also be linked to related topics such as:</p>
+<ul>
+<li>conflict resolution</li>
+<li>executive presence</li>
+<li>coaching</li>
+<li>persuasion and influence</li>
+<li>workshop diagnostics</li>
+<li>psychological safety</li>
+<li>negotiation</li>
+<li>systems thinking in organisations</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<section id="core-works-and-source-lineage" class="level2">
+<h2 class="anchored" data-anchor-id="core-works-and-source-lineage">Core works and source lineage</h2>
+<ul>
+<li>Schutz, W. C. <em>FIRO: A Three-Dimensional Theory of Interpersonal Behavior</em>.</li>
+<li>Schutz, W. C. <em>The Human Element: Productivity, Self-Esteem, and the Bottom Line</em>.</li>
+<li>Later FIRO-related developments include FIRO-B, Element B, and associated organisational applications.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

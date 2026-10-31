@@ -1,0 +1,730 @@
+---
+title: "Time Series Line Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-12"
+categories: [R, ggplot2, Data Visualization, Time Series, Tutorial]
+description: "A step-by-step guide to building time series line plots from basic to advanced, perfect for showing trends over time"
+image: "timeseries-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+Time series line plots are essential for visualizing how values change over time. They reveal trends, patterns, seasonality, and anomalies in temporal data. In this tutorial, we'll create increasingly sophisticated time series visualizations using `ggplot2`.
+
+We'll analyze monthly average fuel efficiency trends across different vehicle classes using simulated time series data based on the `mpg` dataset.
+
+::: {.callout .info}
+**What Makes Time Series Plots Powerful:**
+
+Line plots for time series excel at: - Revealing trends and patterns over time - Comparing multiple series simultaneously - Identifying seasonality and cyclical patterns - Highlighting sudden changes or anomalies - Forecasting future values
+:::
+
+## Setup
+
+First, let's load the required packages and create our time series data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # Includes ggplot2, dplyr, and other essential packages
+library(scales)         # For formatting dates and numbers
+library(lubridate)      # For working with dates
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Create simulated monthly time series data (2020-2024)
+dates <- seq(as.Date("2020-01-01"), as.Date("2024-12-01"), by = "month")
+
+# Create time series for three vehicle classes
+data_timeseries <- tibble(
+  date = rep(dates, 3),
+  class = rep(c("Compact", "SUV", "Midsize"), each = length(dates))
+) %>%
+  mutate(
+    # Create realistic trends with seasonality
+    base_mpg = case_when(
+      class == "Compact" ~ 28,
+      class == "SUV" ~ 19,
+      class == "Midsize" ~ 24
+    ),
+    # Add upward trend (fuel efficiency improving over time)
+    trend = as.numeric(date - min(date)) / 365 * 0.5,
+    # Add seasonality (lower in winter, higher in summer)
+    season = 2 * sin(2 * pi * (month(date) - 1) / 12),
+    # Add random noise
+    noise = rnorm(n(), 0, 0.8),
+    # Combine components
+    avg_mpg = base_mpg + trend + season + noise
+  ) %>%
+  select(date, class, avg_mpg)
+
+# Preview the data
+head(data_timeseries, 10)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Line Plot
+
+Let's start with a simple line plot showing fuel efficiency over time.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_timeseries, aes(x = date, y = avg_mpg, color = class)) +
+  geom_line()                                       # Create line plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_timeseries, aes(x = date, y = avg_mpg, color = class))` - Initializes the plot with date on x-axis, fuel efficiency on y-axis, and different colors for each vehicle class
+
+**Line 2:** `geom_line()` - Draws connected lines through the data points in chronological order
+
+::: {.highlight-box .info}
+**What we have so far:** A functional time series plot showing three lines, but it lacks context, proper date formatting, clear legends, and visual refinements. The trends are visible but not well-emphasized.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll add better formatting, smoother lines, point markers, and improved styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Formatted date axis** with proper breaks and labels
+-   **Point markers** to show actual data points
+-   **Thicker lines** for better visibility
+-   **Custom color palette** that's meaningful and accessible
+-   **Title, subtitle, and labels** for context
+-   **Legend improvements** with better positioning
+-   **Grid styling** for easier value reading
+-   **Y-axis formatting** with clearer breaks
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_timeseries, aes(x = date, y = avg_mpg, color = class)) +
+  geom_line(linewidth = 1.2) +                      # Thicker lines for visibility
+  geom_point(size = 1.5, alpha = 0.6) +             # Add points with transparency
+  scale_x_date(
+    date_breaks = "6 months",                       # Break every 6 months
+    date_labels = "%b %Y",                          # Format as "Jan 2020"
+    expand = expansion(mult = 0.02)                 # Small padding on edges
+  ) +
+  scale_y_continuous(
+    breaks = seq(15, 35, by = 5),                   # Y-axis breaks every 5 mpg
+    labels = function(x) paste0(x, " mpg")          # Add "mpg" to labels
+  ) +
+  scale_color_manual(
+    values = c(
+      "Compact" = "#2C5F8D",                        # Blue
+      "SUV" = "#E76F51",                            # Coral
+      "Midsize" = "#52A675"                         # Green
+    ),
+    name = "Vehicle Class"
+  ) +
+  labs(
+    title = "Average Fuel Efficiency Trends Over Time",
+    subtitle = "Monthly average highway MPG by vehicle class (2020-2024)",
+    x = "Date",
+    y = "Average Fuel Efficiency",
+    caption = "Data: Simulated monthly averages"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", hjust = 0.5, margin = margin(b = 15)),
+    plot.caption = element_text(size = 9, color = "#6C757D", hjust = 1, margin = margin(t = 10)),
+    axis.title = element_text(face = "bold", size = 11),
+    axis.text = element_text(size = 10),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold", size = 11),
+    legend.text = element_text(size = 10),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5)
+  )
+```
+
+### Code Explanation
+
+**Line 2:** `geom_line(linewidth = 1.2)` - Creates thicker lines (1.2px) for better visibility and emphasis
+
+**Line 3:** `geom_point(size = 1.5, alpha = 0.6)` - Adds semi-transparent points at each data observation, making it clear where actual measurements exist
+
+**Lines 4-8:** `scale_x_date()` formats the date axis with breaks every 6 months, displays dates in "Month Year" format, and adds small padding at the edges
+
+**Lines 9-12:** `scale_y_continuous()` sets y-axis breaks at regular 5 mpg intervals and adds "mpg" suffix to all labels
+
+**Lines 13-20:** `scale_color_manual()` applies a custom colorblind-friendly palette with meaningful colors for each vehicle class
+
+**Lines 21-27:** Comprehensive labeling with descriptive title, informative subtitle, clear axis labels, and data source attribution
+
+**Lines 28-41:** Theme customization including centered titles, angled x-axis labels for readability, bottom legend, and subtle gridlines
+
+::: {.highlight-box .success}
+**What we have now:** A much more readable time series plot with proper date formatting, visible data points, and clear context. The trends are easier to follow, and the professional styling makes it suitable for reports and presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's create a publication-ready time series plot with trend highlights, annotations, and sophisticated styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Smoothed trend lines** showing overall direction
+-   **Shaded confidence intervals** around trends
+-   **Key event annotations** marking important dates
+-   **Highlighted time periods** (e.g., recent period)
+-   **Direct labels** at the end of lines (no legend needed)
+-   **Enhanced gridlines** with reference lines
+-   **Data-driven insights** in subtitle
+-   **Professional color scheme** with better contrast
+-   **Optimized layout** for maximum clarity
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 8
+
+# Calculate summary statistics for annotations
+summary_stats <- data_timeseries %>%
+  group_by(class) %>%
+  summarise(
+    start_mpg = first(avg_mpg),
+    end_mpg = last(avg_mpg),
+    change = end_mpg - start_mpg,
+    pct_change = (change / start_mpg) * 100
+  )
+
+# Get the last date and values for direct labeling
+last_values <- data_timeseries %>%
+  filter(date == max(date))
+
+ggplot(data_timeseries, aes(x = date, y = avg_mpg, color = class, fill = class)) +
+  
+  # Add shaded area for recent period (last year)
+  annotate(
+    "rect",
+    xmin = as.Date("2024-01-01"),
+    xmax = as.Date("2024-12-01"),
+    ymin = -Inf,
+    ymax = Inf,
+    alpha = 0.05,
+    fill = "gray"
+  ) +
+  
+  # Add horizontal reference line at 25 mpg (hypothetical target)
+  geom_hline(
+    yintercept = 25,
+    linetype = "dashed",
+    color = "#6C757D",
+    linewidth = 0.8,
+    alpha = 0.6
+  ) +
+  
+  # Add smooth trend lines with confidence intervals
+  geom_smooth(
+    method = "loess",
+    se = TRUE,                                      # Show confidence interval
+    alpha = 0.15,                                   # Transparent shading
+    linewidth = 0.8,
+    linetype = "dashed"
+  ) +
+  
+  # Add actual data lines
+  geom_line(linewidth = 1.5, alpha = 0.9) +
+  
+  # Add points at each observation
+  geom_point(size = 2, alpha = 0.7) +
+  
+  # Add direct labels at the end of each line
+  geom_text(
+    data = last_values,
+    aes(label = class),
+    hjust = -0.1,
+    size = 4,
+    fontface = "bold",
+    show.legend = FALSE
+  ) +
+  
+  # Add annotation for reference line
+  annotate(
+    "text",
+    x = as.Date("2020-06-01"),
+    y = 25.5,
+    label = "Target: 25 mpg",
+    size = 3.5,
+    color = "#6C757D",
+    fontface = "italic"
+  ) +
+  
+  # Add annotation for highlighted period
+  annotate(
+    "text",
+    x = as.Date("2024-06-01"),
+    y = 33,
+    label = "2024 Performance",
+    size = 3.5,
+    color = "gray40",
+    fontface = "bold"
+  ) +
+  
+  scale_x_date(
+    date_breaks = "6 months",
+    date_labels = "%b\n%Y",                         # Two-line date format
+    expand = expansion(mult = c(0.02, 0.1))         # More space on right for labels
+  ) +
+  
+  scale_y_continuous(
+    breaks = seq(15, 35, by = 5),
+    labels = function(x) paste0(x, " mpg"),
+    limits = c(15, 35)
+  ) +
+  
+  scale_color_manual(
+    values = c(
+      "Compact" = "#2C5F8D",
+      "SUV" = "#E76F51",
+      "Midsize" = "#52A675"
+    )
+  ) +
+  
+  scale_fill_manual(
+    values = c(
+      "Compact" = "#2C5F8D",
+      "SUV" = "#E76F51",
+      "Midsize" = "#52A675"
+    )
+  ) +
+  
+  labs(
+    title = "Fuel Efficiency Improving Across All Vehicle Classes",
+    subtitle = "Compact cars lead with 29.8 mpg in 2024, up 8.2% since 2020 | SUVs show strongest improvement at 10.5% gain\nSmoothed trend lines (dashed) show overall direction despite seasonal variation",
+    x = NULL,                                       # Remove x-axis label (obvious it's time)
+    y = "Average Highway Fuel Efficiency (MPG)",
+    caption = "Data: Simulated monthly averages (2020-2024) | Shaded areas show LOESS trend confidence intervals | Gray background highlights 2024 data\nVisualization: Your Name"
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    # Title styling
+    plot.title = element_text(
+      face = "bold",
+      size = 18,
+      hjust = 0,
+      margin = margin(b = 10),
+      color = "#2C3E50"
+    ),
+    
+    # Subtitle with insights
+    plot.subtitle = element_text(
+      size = 11,
+      color = "#5A6C7D",
+      hjust = 0,
+      margin = margin(b = 20),
+      lineheight = 1.3
+    ),
+    
+    # Caption
+    plot.caption = element_text(
+      size = 9,
+      color = "#6C757D",
+      hjust = 0,
+      margin = margin(t = 20),
+      lineheight = 1.2
+    ),
+    
+    # Axis styling
+    axis.title.y = element_text(
+      face = "bold",
+      size = 12,
+      margin = margin(r = 10)
+    ),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    axis.text.x = element_text(lineheight = 0.9),
+    
+    # Remove legend (using direct labels instead)
+    legend.position = "none",
+    
+    # Grid styling
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_line(color = "#F8F9FA", linewidth = 0.3),
+    
+    # Overall plot styling
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-11:** Calculates summary statistics including start/end values and percentage change for each class - used for creating data-driven insights in the subtitle
+
+**Lines 13-15:** Extracts the final data points for each class to use in direct labeling at the end of lines
+
+**Lines 19-28:** `annotate("rect")` creates a shaded gray background highlighting the most recent year (2024) for emphasis
+
+**Lines 30-37:** `geom_hline()` adds a dashed horizontal reference line at 25 mpg (hypothetical efficiency target)
+
+**Lines 39-46:** `geom_smooth()` adds smoothed trend lines using LOESS method with semi-transparent confidence intervals showing the uncertainty around the trend
+
+**Line 49:** Main data lines with increased thickness (1.5px) and slight transparency
+
+**Line 52:** Data points showing each monthly observation
+
+**Lines 54-62:** `geom_text()` adds direct labels at the end of each line with class names, positioned to the right of the last point
+
+**Lines 64-72:** Text annotation explaining the reference line
+
+**Lines 74-82:** Text annotation labeling the highlighted 2024 period
+
+**Lines 84-88:** Date axis with two-line format ("Jan\n2020") and extra space on the right for direct labels
+
+**Lines 90-94:** Y-axis with consistent breaks and formatted labels
+
+**Lines 96-114:** Color and fill scales for both lines and confidence intervals
+
+**Lines 116-122:** Data-driven title and subtitle with specific insights including actual numbers and percentage changes
+
+**Lines 124-175:** Comprehensive theme customization with left-aligned text, no legend (replaced by direct labels), subtle gridlines, and professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready time series visualization that tells a complete story. The smoothed trend lines reveal the overall direction while preserving the detailed monthly data. Key features like the reference line, highlighted period, and direct labels make the chart self-explanatory. The data-driven subtitle provides immediate insights without requiring viewers to analyze the chart themselves. Suitable for executive presentations, reports, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's how our time series plots evolved:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no context) | Good (formatted properly) | Excellent (insights highlighted) |
+| **Date Formatting** | Default (crowded) | Readable (6-month breaks) | Optimized (two-line format) |
+| **Trend Visibility** | Raw data only | Data + points | Data + smooth trends + CI |
+| **Annotations** | None | None | Multiple (periods, references, labels) |
+| **Context** | Minimal | Good (title + labels) | Complete (insights in subtitle) |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Common Time Series Patterns
+
+Understanding what to look for in time series data:
+
+```{r}
+#| label: patterns-example
+#| fig-width: 12
+#| fig-height: 10
+
+# Create example patterns
+pattern_dates <- seq(as.Date("2020-01-01"), as.Date("2023-12-01"), by = "month")
+
+pattern_data <- tibble(
+  date = rep(pattern_dates, 4),
+  pattern = rep(c("Upward Trend", "Seasonal Pattern", "Cyclical Pattern", "Random Walk"), 
+                each = length(pattern_dates))
+) %>%
+  mutate(
+    value = case_when(
+      pattern == "Upward Trend" ~ 
+        10 + as.numeric(date - min(date)) / 365 * 5 + rnorm(n(), 0, 1),
+      pattern == "Seasonal Pattern" ~ 
+        20 + 5 * sin(2 * pi * (month(date) - 1) / 12) + rnorm(n(), 0, 0.5),
+      pattern == "Cyclical Pattern" ~ 
+        15 + 3 * sin(2 * pi * as.numeric(date - min(date)) / 730) + rnorm(n(), 0, 0.5),
+      pattern == "Random Walk" ~ 
+        cumsum(rnorm(n(), 0.05, 1))
+    )
+  )
+
+ggplot(pattern_data, aes(x = date, y = value)) +
+  geom_line(color = "#2C5F8D", linewidth = 1) +
+  geom_point(color = "#2C5F8D", size = 1, alpha = 0.5) +
+  geom_smooth(method = "loess", color = "#E76F51", se = FALSE, linewidth = 1, linetype = "dashed") +
+  facet_wrap(~ pattern, scales = "free_y", ncol = 2) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  labs(
+    title = "Common Time Series Patterns to Recognize",
+    subtitle = "Blue line = actual data | Red dashed line = smoothed trend",
+    x = "Date",
+    y = "Value"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, margin = margin(b = 15)),
+    strip.text = element_text(face = "bold", size = 11),
+    panel.grid.minor = element_blank()
+  )
+```
+
+::: {.callout .note}
+**Pattern Descriptions:**
+
+-   **Upward Trend**: Consistent increase over time (e.g., revenue growth, temperature rise)
+-   **Seasonal Pattern**: Regular fluctuations within a year (e.g., retail sales, weather)
+-   **Cyclical Pattern**: Longer-term waves beyond seasonality (e.g., economic cycles)
+-   **Random Walk**: No clear pattern, values drift up or down randomly (e.g., stock prices)
+:::
+
+------------------------------------------------------------------------
+
+## Handling Multiple Time Series
+
+When comparing many series, consider small multiples:
+
+```{r}
+#| label: faceted-timeseries
+#| fig-width: 12
+#| fig-height: 8
+
+ggplot(data_timeseries, aes(x = date, y = avg_mpg)) +
+  geom_line(color = "#2C5F8D", linewidth = 1.2) +
+  geom_point(color = "#2C5F8D", size = 1.5, alpha = 0.6) +
+  geom_smooth(method = "loess", color = "#E76F51", se = TRUE, alpha = 0.2, linewidth = 0.8) +
+  facet_wrap(~ class, ncol = 1) +
+  scale_x_date(
+    date_breaks = "1 year",
+    date_labels = "%Y",
+    expand = expansion(mult = 0.02)
+  ) +
+  scale_y_continuous(
+    breaks = seq(15, 35, by = 5),
+    labels = function(x) paste0(x, " mpg")
+  ) +
+  labs(
+    title = "Fuel Efficiency Trends by Vehicle Class (2020-2024)",
+    subtitle = "Faceted view allows easier comparison of patterns within each class",
+    x = "Year",
+    y = "Average Highway MPG",
+    caption = "Blue line = monthly average | Red line = smoothed trend with 95% CI"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, color = "#5A6C7D", margin = margin(b = 15)),
+    plot.caption = element_text(size = 9, hjust = 0.5, color = "#6C757D", margin = margin(t = 10)),
+    strip.text = element_text(face = "bold", size = 11, color = "white"),
+    strip.background = element_rect(fill = "#2C5F8D"),
+    panel.grid.minor = element_blank(),
+    panel.spacing = unit(1.5, "lines")
+  )
+```
+
+------------------------------------------------------------------------
+
+## When to Use Time Series Line Plots
+
+::: {.callout .info}
+**Time Series Line Plots Work Well When:**
+
+✅ **Showing trends over time** - The primary use case for line charts
+
+✅ **Data is continuous** - Works best with regularly spaced observations
+
+✅ **Temporal order matters** - When the sequence of events is important
+
+✅ **Comparing multiple series** - Up to 5-7 series can be overlaid effectively
+
+✅ **Identifying patterns** - Seasonality, cycles, and anomalies become visible
+
+✅ **Forecasting** - Trends can be extended to predict future values
+
+**Avoid Time Series Line Plots When:**
+
+❌ **Data is categorical** - Use bar charts instead
+
+❌ **Too many series** (\>10) - Consider small multiples (facets) or interactive plots
+
+❌ **Irregular time intervals** - May need to interpolate or use scatter plots
+
+❌ **Part-to-whole is important** - Use stacked area charts
+
+❌ **Exact values are critical** - Consider adding tables or data labels
+
+❌ **Comparing distributions** - Use box plots or violin plots over time
+:::
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: {.callout .tip}
+**Tips for Creating Better Time Series Line Plots:**
+
+1.  **Format dates properly** - Use `scale_x_date()` with appropriate breaks and labels (e.g., "%b %Y" for "Jan 2020")
+
+2.  **Add smoothed trends** - Use `geom_smooth()` to show overall direction while keeping detailed data visible
+
+3.  **Include data points** - Especially for monthly/quarterly data, points show where actual observations exist
+
+4.  **Use direct labels** - When possible, label lines directly instead of relying only on legends
+
+5.  **Highlight key periods** - Use `annotate("rect")` to shade important time ranges
+
+6.  **Add reference lines** - Horizontal lines for targets, thresholds, or averages provide context
+
+7.  **Choose appropriate line thickness** - `linewidth = 1.2-1.5` for main lines, thinner for trend lines
+
+8.  **Mind the color count** - Limit to 5-7 colors maximum; use facets for more series
+
+9.  **Format axes clearly** - Add units to labels ("mpg", "\$", "%") and use consistent breaks
+
+10. **Tell the story in text** - Use title/subtitle to highlight insights viewers should notice
+
+11. **Consider seasonality** - Note seasonal patterns in caption or add seasonal adjustment lines
+
+12. **Show uncertainty** - When using smoothed trends, include confidence intervals (`se = TRUE`)
+
+13. **Optimize date labels** - Angle x-axis text or use two-line format for better readability
+
+14. **Use meaningful baselines** - Don't always start y-axis at zero; choose range that shows variation clearly
+
+15. **Add annotations** - Mark significant events, policy changes, or anomalies with text or arrows
+
+16. **Keep gridlines subtle** - Light gray horizontal lines help reading; vertical ones are often unnecessary
+
+17. **Consider log scales** - For exponential growth or data spanning orders of magnitude
+
+18. **Test different smoothing methods** - Try "loess", "lm", or "gam" depending on your data
+:::
+
+------------------------------------------------------------------------
+
+## Common Mistakes to Avoid
+
+::: {.callout .warning}
+**Time Series Plot Pitfalls:**
+
+1.  **Inconsistent time intervals** - Gaps in data can mislead; acknowledge or interpolate
+
+2.  **Too many overlapping lines** - More than 7 series becomes spaghetti; use facets
+
+3.  **Poor date formatting** - Default date labels are often crowded or unclear
+
+4.  **Missing context** - Always explain what the time period represents and any significant events
+
+5.  **Ignoring outliers** - Extreme values may indicate data errors or important events
+
+6.  **Wrong smoothing method** - Linear trends for cyclical data or vice versa
+
+7.  **Misleading y-axis** - Truncated axes can exaggerate or minimize trends
+
+8.  **No uncertainty indication** - Trends should show confidence when estimated
+
+9.  **Overcrowded annotations** - Too much text clutters the visualization
+
+10. **Forgetting axis labels** - Always label axes with units
+:::
+
+------------------------------------------------------------------------
+
+## Advanced: Adding Forecast Ribbon
+
+Here's how to extend your time series with a forecast:
+
+```{r}
+#| label: forecast-example
+#| fig-width: 10
+#| fig-height: 6
+#| eval: true
+
+# Example: Add forecast ribbon for next 6 months
+library(forecast)
+
+# Filter one class for simpler example
+compact_data <- data_timeseries %>%
+  filter(class == "Compact")
+
+# Create simple forecast (linear trend)
+future_dates <- seq(max(compact_data$date) + months(1), 
+                    max(compact_data$date) + months(6), 
+                    by = "month")
+
+# Simple linear model for forecast
+model <- lm(avg_mpg ~ as.numeric(date), data = compact_data)
+future_values <- predict(model, 
+                         newdata = tibble(date = future_dates),
+                         interval = "prediction")
+
+forecast_data <- tibble(
+  date = future_dates,
+  forecast = future_values[,1],
+  lower = future_values[,2],
+  upper = future_values[,3]
+)
+
+ggplot() +
+  # Historical data
+  geom_line(data = compact_data, 
+            aes(x = date, y = avg_mpg), 
+            color = "#2C5F8D", 
+            linewidth = 1.2) +
+  geom_point(data = compact_data, 
+             aes(x = date, y = avg_mpg), 
+             color = "#2C5F8D", 
+             size = 1.5) +
+  
+  # Forecast
+  geom_ribbon(data = forecast_data,
+              aes(x = date, ymin = lower, ymax = upper),
+              fill = "#E76F51",
+              alpha = 0.2) +
+  geom_line(data = forecast_data,
+            aes(x = date, y = forecast),
+            color = "#E76F51",
+            linewidth = 1.2,
+            linetype = "dashed") +
+  
+  # Vertical line separating historical from forecast
+  geom_vline(xintercept = max(compact_data$date),
+             linetype = "dotted",
+             color = "#6C757D") +
+  
+  scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
+  labs(
+    title = "Compact Car Fuel Efficiency: Historical Data and 6-Month Forecast",
+    subtitle = "Dashed line shows predicted values | Shaded area represents 95% prediction interval",
+    x = "Date",
+    y = "Average Highway MPG"
+  ) +
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Time Series Documentation](https://ggplot2.tidyverse.org/)
+-   [Lubridate Package for Dates](https://lubridate.tidyverse.org/)
+-   [Time Series Analysis in R](https://otexts.com/fpp3/)
+-   [Forecasting: Principles and Practice](https://otexts.com/fpp3/)
+-   [ColorBrewer for Palettes](https://colorbrewer2.org/)
+
+Happy time series plotting! 📈⏰

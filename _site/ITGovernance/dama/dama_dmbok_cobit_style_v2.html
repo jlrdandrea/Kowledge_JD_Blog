@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Abdrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="It helps organisations treat data as a strategic asset by establishing governance.">
+
+<title>DMBOK Framework</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge Base</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ITGovernance/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../HumanElement/index.html"> 
+<span class="menu-text">Human Element</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">DMBOK Framework</h1>
+                  <div>
+        <div class="description">
+          It helps organisations treat data as a strategic asset by establishing governance.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Governance</div>
+                <div class="quarto-category">Data</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Abdrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a>
+  <ul class="collapse">
+  <li><a href="#framework-summary" id="toc-framework-summary" class="nav-link" data-scroll-target="#framework-summary">1.1 Framework Summary</a></li>
+  <li><a href="#dama-and-dmbok" id="toc-dama-and-dmbok" class="nav-link" data-scroll-target="#dama-and-dmbok">1.2 DAMA and DMBOK</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">1.3 Purpose</a></li>
+  <li><a href="#why-it-matters" id="toc-why-it-matters" class="nav-link" data-scroll-target="#why-it-matters">1.4 Why It Matters</a></li>
+  </ul></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles">2. Core Principles</a></li>
+  <li><a href="#knowledge-areas" id="toc-knowledge-areas" class="nav-link" data-scroll-target="#knowledge-areas">3. Knowledge Areas</a>
+  <ul class="collapse">
+  <li><a href="#dmbok-knowledge-areas" id="toc-dmbok-knowledge-areas" class="nav-link" data-scroll-target="#dmbok-knowledge-areas">3.1 DMBOK Knowledge Areas</a></li>
+  <li><a href="#knowledge-areas-map" id="toc-knowledge-areas-map" class="nav-link" data-scroll-target="#knowledge-areas-map">3.2 Knowledge Areas Map</a></li>
+  </ul></li>
+  <li><a href="#process-structure" id="toc-process-structure" class="nav-link" data-scroll-target="#process-structure">4. Process Structure</a>
+  <ul class="collapse">
+  <li><a href="#generic-operating-pattern" id="toc-generic-operating-pattern" class="nav-link" data-scroll-target="#generic-operating-pattern">4.1 Generic Operating Pattern</a></li>
+  <li><a href="#inputs-processes-outputs-consumers" id="toc-inputs-processes-outputs-consumers" class="nav-link" data-scroll-target="#inputs-processes-outputs-consumers">4.2 Inputs → Processes → Outputs → Consumers</a>
+  <ul class="collapse">
+  <li><a href="#data-governance-example" id="toc-data-governance-example" class="nav-link" data-scroll-target="#data-governance-example">Data Governance Example</a></li>
+  <li><a href="#data-quality-example" id="toc-data-quality-example" class="nav-link" data-scroll-target="#data-quality-example">Data Quality Example</a></li>
+  <li><a href="#metadata-management-example" id="toc-metadata-management-example" class="nav-link" data-scroll-target="#metadata-management-example">Metadata Management Example</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#dama-ecosystem-context" id="toc-dama-ecosystem-context" class="nav-link" data-scroll-target="#dama-ecosystem-context">5. DAMA Ecosystem Context</a>
+  <ul class="collapse">
+  <li><a href="#dama-ecosystem" id="toc-dama-ecosystem" class="nav-link" data-scroll-target="#dama-ecosystem">5.1 DAMA Ecosystem</a></li>
+  <li><a href="#certification-model" id="toc-certification-model" class="nav-link" data-scroll-target="#certification-model">5.2 Certification Model</a></li>
+  </ul></li>
+  <li><a href="#enterprise-data-management-view" id="toc-enterprise-data-management-view" class="nav-link" data-scroll-target="#enterprise-data-management-view">6. Enterprise Data Management View</a>
+  <ul class="collapse">
+  <li><a href="#capability-overview" id="toc-capability-overview" class="nav-link" data-scroll-target="#capability-overview">6.1 Capability Overview</a></li>
+  <li><a href="#knowledge-areas-interaction-map" id="toc-knowledge-areas-interaction-map" class="nav-link" data-scroll-target="#knowledge-areas-interaction-map">6.2 Knowledge Areas Interaction Map</a></li>
+  </ul></li>
+  <li><a href="#lifecycle-view" id="toc-lifecycle-view" class="nav-link" data-scroll-target="#lifecycle-view">7. Lifecycle View</a>
+  <ul class="collapse">
+  <li><a href="#data-lifecycle" id="toc-data-lifecycle" class="nav-link" data-scroll-target="#data-lifecycle">7.1 Data Lifecycle</a></li>
+  <li><a href="#lifecycle-mapping-to-dmbok" id="toc-lifecycle-mapping-to-dmbok" class="nav-link" data-scroll-target="#lifecycle-mapping-to-dmbok">7.2 Lifecycle Mapping to DMBOK</a></li>
+  </ul></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities">8. Roles and Responsibilities</a>
+  <ul class="collapse">
+  <li><a href="#key-roles" id="toc-key-roles" class="nav-link" data-scroll-target="#key-roles">8.1 Key Roles</a></li>
+  <li><a href="#raci-matrix-by-knowledge-area" id="toc-raci-matrix-by-knowledge-area" class="nav-link" data-scroll-target="#raci-matrix-by-knowledge-area">8.2 RACI Matrix by Knowledge Area</a></li>
+  </ul></li>
+  <li><a href="#key-artefacts" id="toc-key-artefacts" class="nav-link" data-scroll-target="#key-artefacts">9. Key Artefacts</a>
+  <ul class="collapse">
+  <li><a href="#core-artefact-catalogue" id="toc-core-artefact-catalogue" class="nav-link" data-scroll-target="#core-artefact-catalogue">9.1 Core Artefact Catalogue</a></li>
+  <li><a href="#artefact-mapping" id="toc-artefact-mapping" class="nav-link" data-scroll-target="#artefact-mapping">9.2 Artefact Mapping</a></li>
+  </ul></li>
+  <li><a href="#operating-process-diagrams" id="toc-operating-process-diagrams" class="nav-link" data-scroll-target="#operating-process-diagrams">10. Operating Process Diagrams</a>
+  <ul class="collapse">
+  <li><a href="#data-quality-management-cycle" id="toc-data-quality-management-cycle" class="nav-link" data-scroll-target="#data-quality-management-cycle">10.1 Data Quality Management Cycle</a></li>
+  <li><a href="#metadata-management-flow" id="toc-metadata-management-flow" class="nav-link" data-scroll-target="#metadata-management-flow">10.2 Metadata Management Flow</a></li>
+  <li><a href="#master-data-management" id="toc-master-data-management" class="nav-link" data-scroll-target="#master-data-management">10.3 Master Data Management</a></li>
+  <li><a href="#data-security-and-privacy" id="toc-data-security-and-privacy" class="nav-link" data-scroll-target="#data-security-and-privacy">10.4 Data Security and Privacy</a></li>
+  <li><a href="#data-issue-management" id="toc-data-issue-management" class="nav-link" data-scroll-target="#data-issue-management">10.5 Data Issue Management</a></li>
+  </ul></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks" class="nav-link" data-scroll-target="#integration-with-other-frameworks">11. Integration with Other Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#dmbok-and-cobit" id="toc-dmbok-and-cobit" class="nav-link" data-scroll-target="#dmbok-and-cobit">11.1 DMBOK and COBIT</a></li>
+  <li><a href="#dmbok-and-itil" id="toc-dmbok-and-itil" class="nav-link" data-scroll-target="#dmbok-and-itil">11.2 DMBOK and ITIL</a></li>
+  <li><a href="#dmbok-and-togaf" id="toc-dmbok-and-togaf" class="nav-link" data-scroll-target="#dmbok-and-togaf">11.3 DMBOK and TOGAF</a></li>
+  <li><a href="#cross-framework-positioning" id="toc-cross-framework-positioning" class="nav-link" data-scroll-target="#cross-framework-positioning">11.4 Cross-Framework Positioning</a></li>
+  </ul></li>
+  <li><a href="#capability-maturity-view" id="toc-capability-maturity-view" class="nav-link" data-scroll-target="#capability-maturity-view">12. Capability Maturity View</a>
+  <ul class="collapse">
+  <li><a href="#maturity-progression" id="toc-maturity-progression" class="nav-link" data-scroll-target="#maturity-progression">12.1 Maturity Progression</a></li>
+  <li><a href="#maturity-journey" id="toc-maturity-journey" class="nav-link" data-scroll-target="#maturity-journey">12.2 Maturity Journey</a></li>
+  </ul></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">13. Implementation Approach</a>
+  <ul class="collapse">
+  <li><a href="#practical-implementation-path" id="toc-practical-implementation-path" class="nav-link" data-scroll-target="#practical-implementation-path">13.1 Practical Implementation Path</a></li>
+  <li><a href="#typical-early-priorities" id="toc-typical-early-priorities" class="nav-link" data-scroll-target="#typical-early-priorities">13.2 Typical Early Priorities</a></li>
+  </ul></li>
+  <li><a href="#kpis-and-measures" id="toc-kpis-and-measures" class="nav-link" data-scroll-target="#kpis-and-measures">14. KPIs and Measures</a></li>
+  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations">15. Strengths and Limitations</a>
+  <ul class="collapse">
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths">15.1 Strengths</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">15.2 Limitations</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-dmbok" id="toc-when-to-use-dmbok" class="nav-link" data-scroll-target="#when-to-use-dmbok">16. When to Use DMBOK</a></li>
+  <li><a href="#position-in-the-enterprise-governance-model" id="toc-position-in-the-enterprise-governance-model" class="nav-link" data-scroll-target="#position-in-the-enterprise-governance-model">17. Position in the Enterprise Governance Model</a>
+  <ul class="collapse">
+  <li><a href="#enterprise-data-capability-map" id="toc-enterprise-data-capability-map" class="nav-link" data-scroll-target="#enterprise-data-capability-map">17.1 Enterprise Data Capability Map</a></li>
+  <li><a href="#positioning-statement" id="toc-positioning-statement" class="nav-link" data-scroll-target="#positioning-statement">17.2 Positioning Statement</a></li>
+  </ul></li>
+  <li><a href="#visual-governance-atlas-additions" id="toc-visual-governance-atlas-additions" class="nav-link" data-scroll-target="#visual-governance-atlas-additions">18. Visual Governance Atlas Additions</a>
+  <ul class="collapse">
+  <li><a href="#cross-framework-document-flow" id="toc-cross-framework-document-flow" class="nav-link" data-scroll-target="#cross-framework-document-flow">18.1 Cross-Framework Document Flow</a></li>
+  <li><a href="#unified-enterprise-governance-meta-model" id="toc-unified-enterprise-governance-meta-model" class="nav-link" data-scroll-target="#unified-enterprise-governance-meta-model">18.2 Unified Enterprise Governance Meta-Model</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">19. Key Takeaways</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">20. References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<section id="framework-summary" class="level2">
+<h2 class="anchored" data-anchor-id="framework-summary">1.1 Framework Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Framework Name</td>
+<td>DAMA-DMBOK</td>
+</tr>
+<tr class="even">
+<td>Full Name</td>
+<td>Data Management Body of Knowledge</td>
+</tr>
+<tr class="odd">
+<td>Publisher</td>
+<td>DAMA International</td>
+</tr>
+<tr class="even">
+<td>Framework Type</td>
+<td>Body of Knowledge</td>
+</tr>
+<tr class="odd">
+<td>Primary Domain</td>
+<td>Data Management and Data Governance</td>
+</tr>
+<tr class="even">
+<td>Primary Focus</td>
+<td>Managing data as a strategic enterprise asset</td>
+</tr>
+<tr class="odd">
+<td>Typical Scope</td>
+<td>Enterprise-wide</td>
+</tr>
+<tr class="even">
+<td>Nature</td>
+<td>Guidance, principles, practices, and capability model</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dama-and-dmbok" class="level2">
+<h2 class="anchored" data-anchor-id="dama-and-dmbok">1.2 DAMA and DMBOK</h2>
+<p>DAMA International is the professional association that promotes the discipline of data management.<br>
+DMBOK is the body of knowledge published by DAMA and used as the main reference model for enterprise data management.</p>
+<p>For consistency with the wider enterprise governance book, this chapter treats <strong>DMBOK</strong> as the framework and <strong>DAMA</strong> as the organisational and professional context around it.</p>
+</section>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">1.3 Purpose</h2>
+<p>DMBOK provides a structured view of the disciplines required to manage data across its lifecycle. It helps organisations treat data as a strategic asset by establishing governance, architecture, quality, security, metadata, master data, and analytics capabilities.</p>
+</section>
+<section id="why-it-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-matters">1.4 Why It Matters</h2>
+<p>DMBOK is particularly valuable where organisations need to:</p>
+<ul>
+<li>establish enterprise data governance</li>
+<li>improve trust in data</li>
+<li>reduce duplication and inconsistency</li>
+<li>strengthen compliance and control</li>
+<li>support analytics, reporting, and AI</li>
+<li>align business, technology, and risk perspectives around data</li>
+</ul>
+</section>
+</section>
+<section id="core-principles" class="level1">
+<h1>2. Core Principles</h1>
+<p>DMBOK is underpinned by a small set of core ideas that remain useful across sectors and operating models.</p>
+<ul>
+<li>Data is an enterprise asset.</li>
+<li>Data must be governed.</li>
+<li>Data management spans the full lifecycle.</li>
+<li>Data quality, security, and ethics are essential.</li>
+<li>Metadata is foundational.</li>
+<li>Data management requires business and technical collaboration.</li>
+<li>Accountability and stewardship are necessary to sustain control and value.</li>
+</ul>
+</section>
+<section id="knowledge-areas" class="level1">
+<h1>3. Knowledge Areas</h1>
+<section id="dmbok-knowledge-areas" class="level2">
+<h2 class="anchored" data-anchor-id="dmbok-knowledge-areas">3.1 DMBOK Knowledge Areas</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Knowledge Area</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Data Governance</td>
+<td>Policies, standards, decision rights, accountability</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Data Architecture</td>
+<td>Structure, principles, integration, and target state</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Data Modelling and Design</td>
+<td>Conceptual, logical, and physical data models</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Data Storage and Operations</td>
+<td>Databases, storage, backup, recovery, operational handling</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Data Security</td>
+<td>Protection, privacy, access, classification, and control</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Data Integration and Interoperability</td>
+<td>ETL, APIs, messaging, interfaces, and exchange</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Document and Content Management</td>
+<td>Unstructured information and content handling</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Reference and Master Data</td>
+<td>Shared definitions, golden records, consistency</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Data Warehousing and Business Intelligence</td>
+<td>Reporting, analytics, and decision support</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Metadata Management</td>
+<td>Business definitions, lineage, classification, and context</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Data Quality</td>
+<td>Accuracy, completeness, consistency, and fitness for use</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="knowledge-areas-map" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-areas-map">3.2 Knowledge Areas Map</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[DMBOK Core] --&gt; B[Data Governance]
+    A --&gt; C[Data Architecture]
+    A --&gt; D[Data Quality]
+    A --&gt; E[Metadata Management]
+    A --&gt; F[Data Security]
+    A --&gt; G[Master and Reference Data]
+    A --&gt; H[Data Integration]
+    A --&gt; I[Data Warehousing and BI]
+    A --&gt; J[Data Storage and Operations]
+    A --&gt; K[Document and Content Management]
+    A --&gt; L[Data Modelling and Design]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="process-structure" class="level1">
+<h1>4. Process Structure</h1>
+<section id="generic-operating-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="generic-operating-pattern">4.1 Generic Operating Pattern</h2>
+<p>Unlike COBIT, DMBOK is not primarily organised as a numbered process catalogue. However, its knowledge areas can be applied through a consistent operating pattern.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inputs</td>
+<td>Business strategy, regulatory obligations, data needs, policies, source systems</td>
+</tr>
+<tr class="even">
+<td>Activities</td>
+<td>Define, design, implement, monitor, improve</td>
+</tr>
+<tr class="odd">
+<td>Outputs</td>
+<td>Policies, models, standards, controls, metadata, reports, governed data assets</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inputs-processes-outputs-consumers" class="level2">
+<h2 class="anchored" data-anchor-id="inputs-processes-outputs-consumers">4.2 Inputs → Processes → Outputs → Consumers</h2>
+<section id="data-governance-example" class="level3">
+<h3 class="anchored" data-anchor-id="data-governance-example">Data Governance Example</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inputs</td>
+<td>Strategy, regulation, risk requirements, operating model</td>
+</tr>
+<tr class="even">
+<td>Processes</td>
+<td>Define policies, assign ownership, establish stewardship, govern priorities</td>
+</tr>
+<tr class="odd">
+<td>Outputs</td>
+<td>Data strategy, governance framework, policies, standards, ownership model</td>
+</tr>
+<tr class="even">
+<td>Consumers</td>
+<td>Business units, IT, risk, compliance, projects, operations</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-quality-example" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality-example">Data Quality Example</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inputs</td>
+<td>Critical data sets, business rules, quality thresholds</td>
+</tr>
+<tr class="even">
+<td>Processes</td>
+<td>Profile, validate, monitor, correct, improve</td>
+</tr>
+<tr class="odd">
+<td>Outputs</td>
+<td>Quality rules, issue log, quality metrics, quality reports</td>
+</tr>
+<tr class="even">
+<td>Consumers</td>
+<td>Operations, analytics teams, business owners, governance forums</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metadata-management-example" class="level3">
+<h3 class="anchored" data-anchor-id="metadata-management-example">Metadata Management Example</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inputs</td>
+<td>Source systems, data models, integration flows, business terms</td>
+</tr>
+<tr class="even">
+<td>Processes</td>
+<td>Capture, classify, catalogue, trace lineage, publish definitions</td>
+</tr>
+<tr class="odd">
+<td>Outputs</td>
+<td>Metadata catalogue, business glossary, lineage model, classification model</td>
+</tr>
+<tr class="even">
+<td>Consumers</td>
+<td>Business users, architects, engineers, audit, security</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="dama-ecosystem-context" class="level1">
+<h1>5. DAMA Ecosystem Context</h1>
+<section id="dama-ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="dama-ecosystem">5.1 DAMA Ecosystem</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[DAMA International] --&gt; B[DMBOK Framework]
+    A --&gt; C[Professional Certifications]
+    A --&gt; D[Local Chapters]
+    A --&gt; E[Conferences and Events]
+    A --&gt; F[Standards and Best Practices]
+
+    B --&gt; G[Enterprise Data Management]
+    C --&gt; H[CDMP Professionals]
+    D --&gt; I[Regional Communities]
+    E --&gt; J[Knowledge Sharing]
+    F --&gt; K[Industry Alignment]
+
+    G --&gt; L[Business Value]
+    H --&gt; L
+    I --&gt; L
+    J --&gt; L
+    K --&gt; L
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="certification-model" class="level2">
+<h2 class="anchored" data-anchor-id="certification-model">5.2 Certification Model</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Entry Level] --&gt; B[CDMP Associate]
+    B --&gt; C[CDMP Practitioner]
+    C --&gt; D[CDMP Master]
+
+    A --&gt; E[Fundamentals Knowledge]
+    B --&gt; F[Applied Knowledge]
+    C --&gt; G[Advanced Experience]
+    D --&gt; H[Leadership and Expertise]
+
+    F --&gt; I[DMBOK Knowledge Areas]
+    G --&gt; I
+    H --&gt; I
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="enterprise-data-management-view" class="level1">
+<h1>6. Enterprise Data Management View</h1>
+<section id="capability-overview" class="level2">
+<h2 class="anchored" data-anchor-id="capability-overview">6.1 Capability Overview</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Business Strategy] --&gt; B[Data Governance]
+    B --&gt; C[Data Architecture]
+    B --&gt; D[Data Quality]
+    B --&gt; E[Metadata Management]
+    B --&gt; F[Data Security]
+    B --&gt; G[Master and Reference Data]
+
+    C --&gt; H[Data Modelling and Design]
+    H --&gt; I[Data Storage and Operations]
+    I --&gt; J[Data Integration and Interoperability]
+    J --&gt; K[Data Warehousing and Business Intelligence]
+
+    E --&gt; K
+    D --&gt; K
+    F --&gt; K
+    G --&gt; K
+
+    K --&gt; L[Business Decisions and Operations]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="knowledge-areas-interaction-map" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-areas-interaction-map">6.2 Knowledge Areas Interaction Map</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Data Governance] --&gt; B[Data Architecture]
+    A --&gt; C[Data Quality]
+    A --&gt; D[Metadata Management]
+    A --&gt; E[Data Security]
+    A --&gt; F[Reference and Master Data]
+
+    B --&gt; G[Data Modelling and Design]
+    G --&gt; H[Data Storage and Operations]
+    H --&gt; I[Data Integration and Interoperability]
+    I --&gt; J[Data Warehousing and BI]
+
+    D --&gt; I
+    D --&gt; J
+    C --&gt; J
+    E --&gt; H
+    E --&gt; I
+    F --&gt; J
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lifecycle-view" class="level1">
+<h1>7. Lifecycle View</h1>
+<section id="data-lifecycle" class="level2">
+<h2 class="anchored" data-anchor-id="data-lifecycle">7.1 Data Lifecycle</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Create / Capture] --&gt; B[Store]
+    B --&gt; C[Integrate]
+    C --&gt; D[Use / Analyse]
+    D --&gt; E[Share / Publish]
+    E --&gt; F[Archive]
+    F --&gt; G[Retain / Dispose]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="lifecycle-mapping-to-dmbok" class="level2">
+<h2 class="anchored" data-anchor-id="lifecycle-mapping-to-dmbok">7.2 Lifecycle Mapping to DMBOK</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lifecycle Stage</th>
+<th>Primary DMBOK Areas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create / Capture</td>
+<td>Data Modelling and Design, Data Governance</td>
+</tr>
+<tr class="even">
+<td>Store</td>
+<td>Data Storage and Operations, Data Security</td>
+</tr>
+<tr class="odd">
+<td>Integrate</td>
+<td>Data Integration and Interoperability, Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Use / Analyse</td>
+<td>Data Warehousing and BI, Master and Reference Data</td>
+</tr>
+<tr class="odd">
+<td>Share / Publish</td>
+<td>Metadata Management, Data Security</td>
+</tr>
+<tr class="even">
+<td>Archive</td>
+<td>Document and Content Management, Governance</td>
+</tr>
+<tr class="odd">
+<td>Retain / Dispose</td>
+<td>Governance, Security, Privacy, Compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="roles-and-responsibilities" class="level1">
+<h1>8. Roles and Responsibilities</h1>
+<section id="key-roles" class="level2">
+<h2 class="anchored" data-anchor-id="key-roles">8.1 Key Roles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chief Data Officer (CDO)</td>
+<td>Enterprise accountability for data strategy and governance</td>
+</tr>
+<tr class="even">
+<td>Data Owner</td>
+<td>Accountability for a business data domain</td>
+</tr>
+<tr class="odd">
+<td>Data Steward</td>
+<td>Day-to-day governance, quality, and definition management</td>
+</tr>
+<tr class="even">
+<td>Data Architect</td>
+<td>Design of enterprise data structures and integration patterns</td>
+</tr>
+<tr class="odd">
+<td>Data Engineer</td>
+<td>Implementation of pipelines, platforms, and transformations</td>
+</tr>
+<tr class="even">
+<td>Data Custodian</td>
+<td>Technical custody, operations, backup, recovery, and handling</td>
+</tr>
+<tr class="odd">
+<td>Data Quality Analyst</td>
+<td>Quality profiling, monitoring, and issue analysis</td>
+</tr>
+<tr class="even">
+<td>Security and Compliance Lead</td>
+<td>Privacy, classification, access, and regulatory control</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="raci-matrix-by-knowledge-area" class="level2">
+<h2 class="anchored" data-anchor-id="raci-matrix-by-knowledge-area">8.2 RACI Matrix by Knowledge Area</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Knowledge Area</th>
+<th>CDO</th>
+<th>DO</th>
+<th>DS</th>
+<th>DA</th>
+<th>DE</th>
+<th>DC</th>
+<th>DQ</th>
+<th>SEC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Governance</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>Data Architecture</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Data Modelling and Design</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>A</td>
+<td>R</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Data Storage and Operations</td>
+<td>I</td>
+<td>I</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Data Security</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>R</td>
+<td>I</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td>Data Integration and Interoperability</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Document and Content Management</td>
+<td>C</td>
+<td>R</td>
+<td>R</td>
+<td>I</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>Reference and Master Data</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Data Warehousing and BI</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>A</td>
+<td>R</td>
+<td>I</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Metadata Management</td>
+<td>A</td>
+<td>C</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Data Quality</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>A</td>
+<td>I</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="key-artefacts" class="level1">
+<h1>9. Key Artefacts</h1>
+<section id="core-artefact-catalogue" class="level2">
+<h2 class="anchored" data-anchor-id="core-artefact-catalogue">9.1 Core Artefact Catalogue</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artefact</th>
+<th>Description</th>
+<th>Produced By</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Strategy</td>
+<td>Enterprise direction, priorities, and goals for data</td>
+<td>Data Governance</td>
+</tr>
+<tr class="even">
+<td>Data Governance Framework</td>
+<td>Decision rights, ownership, forums, and control model</td>
+<td>Data Governance</td>
+</tr>
+<tr class="odd">
+<td>Data Policies and Standards</td>
+<td>Rules, controls, definitions, and minimum requirements</td>
+<td>Data Governance</td>
+</tr>
+<tr class="even">
+<td>Data Architecture Blueprint</td>
+<td>Target structure of data and integration across the estate</td>
+<td>Data Architecture</td>
+</tr>
+<tr class="odd">
+<td>Data Models</td>
+<td>Conceptual, logical, and physical representations</td>
+<td>Data Modelling and Design</td>
+</tr>
+<tr class="even">
+<td>Data Dictionary</td>
+<td>Standard definitions of key data elements</td>
+<td>Metadata Management</td>
+</tr>
+<tr class="odd">
+<td>Metadata Catalogue</td>
+<td>Definitions, lineage, classification, ownership</td>
+<td>Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Data Lineage Model</td>
+<td>End-to-end traceability of data movement and transformation</td>
+<td>Metadata / Integration</td>
+</tr>
+<tr class="odd">
+<td>Data Quality Rules</td>
+<td>Rules and validation conditions for critical data</td>
+<td>Data Quality</td>
+</tr>
+<tr class="even">
+<td>Data Quality Report</td>
+<td>Monitoring outputs, trends, and issue positions</td>
+<td>Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Master Data Definitions</td>
+<td>Standard entity definitions and ownership rules</td>
+<td>Master and Reference Data</td>
+</tr>
+<tr class="even">
+<td>Golden Record</td>
+<td>Authoritative version of a mastered entity</td>
+<td>Master Data</td>
+</tr>
+<tr class="odd">
+<td>Data Security Policy</td>
+<td>Security, access, privacy, and handling requirements</td>
+<td>Data Security</td>
+</tr>
+<tr class="even">
+<td>Access Control Matrix</td>
+<td>Role-based access and segregation rules</td>
+<td>Data Security</td>
+</tr>
+<tr class="odd">
+<td>Integration Specifications</td>
+<td>Definitions of interface, pipeline, and exchange design</td>
+<td>Data Integration</td>
+</tr>
+<tr class="even">
+<td>ETL / Pipeline Definitions</td>
+<td>Transformation logic and operational movement rules</td>
+<td>Data Integration</td>
+</tr>
+<tr class="odd">
+<td>BI Reports and Dashboards</td>
+<td>Curated outputs for monitoring and decision-making</td>
+<td>Data Warehousing and BI</td>
+</tr>
+<tr class="even">
+<td>Data Issue Log</td>
+<td>Managed record of data issues and remediation actions</td>
+<td>Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Data Retention Policy</td>
+<td>Rules for archive, retention, and disposal</td>
+<td>Governance / Security</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="artefact-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="artefact-mapping">9.2 Artefact Mapping</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artefact</th>
+<th>Produced By</th>
+<th>RACI (A / R)</th>
+<th>Input From</th>
+<th>Output To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Strategy</td>
+<td>Data Governance</td>
+<td>A: CDO / R: DO</td>
+<td>Business Strategy</td>
+<td>All Domains</td>
+</tr>
+<tr class="even">
+<td>Data Governance Framework</td>
+<td>Governance</td>
+<td>A: CDO / R: DS</td>
+<td>Strategy, Compliance</td>
+<td>All Knowledge Areas</td>
+</tr>
+<tr class="odd">
+<td>Data Policies and Standards</td>
+<td>Governance</td>
+<td>A: CDO / R: DS</td>
+<td>Regulatory, Risk</td>
+<td>Architecture, Operations</td>
+</tr>
+<tr class="even">
+<td>Data Architecture Blueprint</td>
+<td>Architecture</td>
+<td>A: DA / R: DA</td>
+<td>Governance</td>
+<td>Engineering</td>
+</tr>
+<tr class="odd">
+<td>Data Models</td>
+<td>Modelling</td>
+<td>A: DA / R: DE</td>
+<td>Architecture</td>
+<td>Storage, Integration</td>
+</tr>
+<tr class="even">
+<td>Data Dictionary</td>
+<td>Metadata</td>
+<td>A: DS / R: DS</td>
+<td>Models</td>
+<td>Business, IT</td>
+</tr>
+<tr class="odd">
+<td>Metadata Catalogue</td>
+<td>Metadata</td>
+<td>A: CDO / R: DS</td>
+<td>All Systems</td>
+<td>All Users</td>
+</tr>
+<tr class="even">
+<td>Data Lineage</td>
+<td>Metadata</td>
+<td>A: DA / R: DE</td>
+<td>Integration Flows</td>
+<td>Audit, Risk</td>
+</tr>
+<tr class="odd">
+<td>Data Quality Rules</td>
+<td>Quality</td>
+<td>A: DQ / R: DS</td>
+<td>Business Rules</td>
+<td>Operations</td>
+</tr>
+<tr class="even">
+<td>Data Quality Reports</td>
+<td>Quality</td>
+<td>A: DQ / R: DQ</td>
+<td>Monitoring</td>
+<td>Governance</td>
+</tr>
+<tr class="odd">
+<td>Master Data Definitions</td>
+<td>Master Data</td>
+<td>A: DO / R: DS</td>
+<td>Business Domains</td>
+<td>All Systems</td>
+</tr>
+<tr class="even">
+<td>Golden Record</td>
+<td>Master Data</td>
+<td>A: DO / R: DE</td>
+<td>Source Systems</td>
+<td>Consumers</td>
+</tr>
+<tr class="odd">
+<td>Data Security Policy</td>
+<td>Security</td>
+<td>A: SEC / R: SEC</td>
+<td>Risk, Compliance</td>
+<td>IT, Business</td>
+</tr>
+<tr class="even">
+<td>Access Control Matrix</td>
+<td>Security</td>
+<td>A: SEC / R: DC</td>
+<td>Policies</td>
+<td>Systems</td>
+</tr>
+<tr class="odd">
+<td>Data Integration Specifications</td>
+<td>Integration</td>
+<td>A: DA / R: DE</td>
+<td>Models</td>
+<td>Engineering</td>
+</tr>
+<tr class="even">
+<td>ETL / Pipeline Definitions</td>
+<td>Integration</td>
+<td>A: DE / R: DE</td>
+<td>Specifications</td>
+<td>Platforms</td>
+</tr>
+<tr class="odd">
+<td>BI Reports and Dashboards</td>
+<td>BI</td>
+<td>A: DO / R: DE</td>
+<td>Data Warehouse</td>
+<td>Business</td>
+</tr>
+<tr class="even">
+<td>Data Issue Log</td>
+<td>Quality</td>
+<td>A: DQ / R: DS</td>
+<td>Monitoring</td>
+<td>Governance</td>
+</tr>
+<tr class="odd">
+<td>Data Retention Policy</td>
+<td>Governance</td>
+<td>A: SEC / R: CDO</td>
+<td>Legal</td>
+<td>Operations</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="operating-process-diagrams" class="level1">
+<h1>10. Operating Process Diagrams</h1>
+<section id="data-quality-management-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-management-cycle">10.1 Data Quality Management Cycle</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Requirements] --&gt; B[Define Rules]
+    B --&gt; C[Profile Data]
+    C --&gt; D[Detect Issues]
+    D --&gt; E[Root Cause Analysis]
+    E --&gt; F[Cleanse Data]
+    F --&gt; G[Monitor KPIs]
+    G --&gt; H[Report]
+    H --&gt; I[Improve Processes]
+    I --&gt; B
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="metadata-management-flow" class="level2">
+<h2 class="anchored" data-anchor-id="metadata-management-flow">10.2 Metadata Management Flow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Data Sources] --&gt; B[Capture Metadata]
+    B --&gt; C[Metadata Repository]
+    C --&gt; D[Business Glossary]
+    C --&gt; E[Technical Metadata]
+    C --&gt; F[Lineage]
+    C --&gt; G[Classification]
+
+    D --&gt; H[Business Users]
+    E --&gt; I[IT Teams]
+    F --&gt; J[Audit]
+    G --&gt; K[Security]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="master-data-management" class="level2">
+<h2 class="anchored" data-anchor-id="master-data-management">10.3 Master Data Management</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Source Systems] --&gt; B[Identify Entities]
+    B --&gt; C[Define Standards]
+    C --&gt; D[Match and Merge]
+    D --&gt; E[Golden Record]
+    E --&gt; F[Publish Data]
+    F --&gt; G[Consume]
+    G --&gt; H[Monitor]
+    H --&gt; I[Stewardship]
+    I --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-security-and-privacy" class="level2">
+<h2 class="anchored" data-anchor-id="data-security-and-privacy">10.4 Data Security and Privacy</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Data Asset] --&gt; B[Classify]
+    B --&gt; C[Risk Assessment]
+    C --&gt; D[Access Control]
+    D --&gt; E[Protection]
+    E --&gt; F[Monitoring]
+    F --&gt; G[Incident Detection]
+    G --&gt; H[Response]
+    H --&gt; I[Policy Review]
+    I --&gt; B
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-issue-management" class="level2">
+<h2 class="anchored" data-anchor-id="data-issue-management">10.5 Data Issue Management</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Issue Identified] --&gt; B[Log Issue]
+    B --&gt; C[Assign Owner]
+    C --&gt; D[Assess Impact]
+    D --&gt; E[Prioritise]
+    E --&gt; F[Investigate]
+    F --&gt; G[Fix Data]
+    G --&gt; H[Fix Process]
+    H --&gt; I[Validate]
+    I --&gt; J[Close]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="integration-with-other-frameworks" class="level1">
+<h1>11. Integration with Other Frameworks</h1>
+<section id="dmbok-and-cobit" class="level2">
+<h2 class="anchored" data-anchor-id="dmbok-and-cobit">11.1 DMBOK and COBIT</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>DMBOK Area</th>
+<th>COBIT Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Governance</td>
+<td>EDM, APO14</td>
+</tr>
+<tr class="even">
+<td>Data Quality</td>
+<td>APO11, DSS06</td>
+</tr>
+<tr class="odd">
+<td>Data Architecture</td>
+<td>APO03, BAI03</td>
+</tr>
+<tr class="even">
+<td>Data Security</td>
+<td>DSS05</td>
+</tr>
+<tr class="odd">
+<td>Metadata Management</td>
+<td>APO03, MEA</td>
+</tr>
+<tr class="even">
+<td>Master Data</td>
+<td>APO14, BAI</td>
+</tr>
+<tr class="odd">
+<td>BI and Analytics</td>
+<td>APO, MEA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation:</strong> COBIT establishes governance expectations and control objectives. DMBOK provides the data management disciplines needed to fulfil those expectations.</p>
+</section>
+<section id="dmbok-and-itil" class="level2">
+<h2 class="anchored" data-anchor-id="dmbok-and-itil">11.2 DMBOK and ITIL</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>DMBOK Area</th>
+<th>ITIL Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Quality</td>
+<td>Continual Improvement</td>
+</tr>
+<tr class="even">
+<td>Metadata Management</td>
+<td>Knowledge Management</td>
+</tr>
+<tr class="odd">
+<td>Data Security</td>
+<td>Information Security Management</td>
+</tr>
+<tr class="even">
+<td>Data Storage and Operations</td>
+<td>Service Operation</td>
+</tr>
+<tr class="odd">
+<td>BI and Analytics</td>
+<td>Measurement and Reporting</td>
+</tr>
+<tr class="even">
+<td>Master Data</td>
+<td>Service Configuration and operational data use</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dmbok-and-togaf" class="level2">
+<h2 class="anchored" data-anchor-id="dmbok-and-togaf">11.3 DMBOK and TOGAF</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>DMBOK Area</th>
+<th>TOGAF Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Architecture</td>
+<td>Data Architecture</td>
+</tr>
+<tr class="even">
+<td>Data Modelling and Design</td>
+<td>Architecture development detail</td>
+</tr>
+<tr class="odd">
+<td>Metadata Management</td>
+<td>Architecture repository and content</td>
+</tr>
+<tr class="even">
+<td>Integration and Interoperability</td>
+<td>Application and data architecture</td>
+</tr>
+<tr class="odd">
+<td>Governance</td>
+<td>Architecture governance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cross-framework-positioning" class="level2">
+<h2 class="anchored" data-anchor-id="cross-framework-positioning">11.4 Cross-Framework Positioning</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Enterprise Strategy] --&gt; B[Corporate Governance]
+    B --&gt; C[COBIT]
+    C --&gt; D[DAMA / DMBOK]
+
+    D --&gt; E[ITIL]
+    D --&gt; F[TOGAF]
+    D --&gt; G[PRINCE2 / MSP]
+    D --&gt; H[Risk / Compliance]
+
+    D --&gt; I[Data Capabilities]
+    I --&gt; J[Analytics / AI]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="capability-maturity-view" class="level1">
+<h1>12. Capability Maturity View</h1>
+<section id="maturity-progression" class="level2">
+<h2 class="anchored" data-anchor-id="maturity-progression">12.1 Maturity Progression</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>No meaningful data management discipline</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Ad hoc and reactive practices</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Repeatable local practices</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Defined enterprise practices</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Managed and measured capabilities</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Optimised, trusted, and data-driven enterprise</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="maturity-journey" class="level2">
+<h2 class="anchored" data-anchor-id="maturity-journey">12.2 Maturity Journey</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Data Chaos] --&gt; B[Ad Hoc]
+    B --&gt; C[Defined]
+    C --&gt; D[Governed]
+    D --&gt; E[Data-Driven]
+    E --&gt; F[Intelligent Enterprise]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="implementation-approach" class="level1">
+<h1>13. Implementation Approach</h1>
+<section id="practical-implementation-path" class="level2">
+<h2 class="anchored" data-anchor-id="practical-implementation-path">13.1 Practical Implementation Path</h2>
+<ol type="1">
+<li>Assess current-state maturity and pain points.</li>
+<li>Define enterprise data strategy and principles.</li>
+<li>Establish governance roles, councils, ownership, and stewardship.</li>
+<li>Prioritise critical data domains and use cases.</li>
+<li>Implement foundational capabilities such as metadata, quality, and master data.</li>
+<li>Strengthen security, privacy, and retention controls.</li>
+<li>Enable reporting, analytics, and insight generation.</li>
+<li>Monitor outcomes and improve continuously.</li>
+</ol>
+</section>
+<section id="typical-early-priorities" class="level2">
+<h2 class="anchored" data-anchor-id="typical-early-priorities">13.2 Typical Early Priorities</h2>
+<ul>
+<li>data ownership and stewardship</li>
+<li>business glossary and metadata catalogue</li>
+<li>critical data quality rules</li>
+<li>master data for key entities</li>
+<li>privacy and classification controls</li>
+<li>lineage for high-risk or high-value data flows</li>
+</ul>
+</section>
+</section>
+<section id="kpis-and-measures" class="level1">
+<h1>14. KPIs and Measures</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>Example KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Quality</td>
+<td>% completeness, % accuracy, defect rate</td>
+</tr>
+<tr class="even">
+<td>Metadata</td>
+<td>% of critical data assets documented</td>
+</tr>
+<tr class="odd">
+<td>Governance</td>
+<td>Policy compliance rate, ownership coverage</td>
+</tr>
+<tr class="even">
+<td>Security</td>
+<td>Number of data incidents, access control exceptions</td>
+</tr>
+<tr class="odd">
+<td>Master Data</td>
+<td>Duplicate rate, mastered entity coverage</td>
+</tr>
+<tr class="even">
+<td>BI and Analytics</td>
+<td>Report adoption, trusted data source usage</td>
+</tr>
+<tr class="odd">
+<td>Issue Management</td>
+<td>Time to resolve data issues</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="strengths-and-limitations" class="level1">
+<h1>15. Strengths and Limitations</h1>
+<section id="strengths" class="level2">
+<h2 class="anchored" data-anchor-id="strengths">15.1 Strengths</h2>
+<ul>
+<li>broad and coherent coverage of data management disciplines</li>
+<li>suitable for enterprise-wide operating models</li>
+<li>strong bridge between business and technology</li>
+<li>useful foundation for data governance and analytics programmes</li>
+<li>flexible enough to be adapted to different sectors and maturity levels</li>
+</ul>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">15.2 Limitations</h2>
+<ul>
+<li>not a prescriptive implementation method</li>
+<li>requires tailoring to become operational</li>
+<li>can feel broad or abstract without a clear delivery model</li>
+<li>works best when integrated with governance, architecture, service, risk, and change frameworks</li>
+</ul>
+</section>
+</section>
+<section id="when-to-use-dmbok" class="level1">
+<h1>16. When to Use DMBOK</h1>
+<p>DMBOK is especially useful when an organisation needs to:</p>
+<ul>
+<li>establish or refresh enterprise data governance</li>
+<li>improve data quality and trust</li>
+<li>create a business glossary and metadata capability</li>
+<li>define master data ownership and control</li>
+<li>connect data governance with architecture and service management</li>
+<li>support regulatory, audit, and assurance needs around data</li>
+<li>strengthen the data foundations for AI, analytics, and automation</li>
+</ul>
+</section>
+<section id="position-in-the-enterprise-governance-model" class="level1">
+<h1>17. Position in the Enterprise Governance Model</h1>
+<section id="enterprise-data-capability-map" class="level2">
+<h2 class="anchored" data-anchor-id="enterprise-data-capability-map">17.1 Enterprise Data Capability Map</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Enterprise Strategy and Business Goals]
+
+    A --&gt; B[Corporate Governance]
+    B --&gt; C[COBIT Governance and Management System]
+
+    C --&gt; C1[EDM - Evaluate Direct Monitor]
+    C --&gt; C2[APO - Align Plan Organise]
+    C --&gt; C3[BAI - Build Acquire Implement]
+    C --&gt; C4[DSS - Deliver Service Support]
+    C --&gt; C5[MEA - Monitor Evaluate Assess]
+
+    C2 --&gt; D[Enterprise Data Governance]
+    C3 --&gt; D
+    C4 --&gt; D
+    C5 --&gt; D
+
+    D --&gt; E[DMBOK Data Capabilities]
+
+    E --&gt; E1[Data Governance]
+    E --&gt; E2[Data Architecture]
+    E --&gt; E3[Data Modelling and Design]
+    E --&gt; E4[Data Storage and Operations]
+    E --&gt; E5[Data Integration and Interoperability]
+    E --&gt; E6[Metadata Management]
+    E --&gt; E7[Master and Reference Data]
+    E --&gt; E8[Data Quality]
+    E --&gt; E9[Data Security]
+    E --&gt; E10[Data Warehousing BI and Analytics]
+    E --&gt; E11[Document and Content Management]
+
+    E2 --&gt; F[TOGAF Architecture Layers]
+    E3 --&gt; F
+    E5 --&gt; F
+    E6 --&gt; F
+
+    F --&gt; F1[Business Architecture]
+    F --&gt; F2[Data Architecture]
+    F --&gt; F3[Application Architecture]
+    F --&gt; F4[Technology Architecture]
+
+    E4 --&gt; G[ITIL Service Capabilities]
+    E5 --&gt; G
+    E8 --&gt; G
+    E9 --&gt; G
+    E10 --&gt; G
+
+    G --&gt; G1[Service Design]
+    G --&gt; G2[Service Transition]
+    G --&gt; G3[Service Operation]
+    G --&gt; G4[Information Security Management]
+    G --&gt; G5[Monitoring and Event Management]
+    G --&gt; G6[Continual Improvement]
+    G --&gt; G7[Knowledge Management]
+    G --&gt; G8[Service Configuration Management]
+
+    F --&gt; H[Change Delivery]
+    G --&gt; H
+    D --&gt; H
+
+    H --&gt; H1[PRINCE2 Projects]
+    H --&gt; H2[MSP Programmes]
+    H --&gt; H3[Portfolio and Investment Decisions]
+
+    H1 --&gt; I[Implemented Data Solutions]
+    H2 --&gt; I
+    H3 --&gt; I
+
+    I --&gt; J[Business Operations]
+    I --&gt; K[Reporting and Insight]
+    I --&gt; L[AI Analytics and Automation]
+
+    J --&gt; M[Business Value]
+    K --&gt; M
+    L --&gt; M
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="positioning-statement" class="level2">
+<h2 class="anchored" data-anchor-id="positioning-statement">17.2 Positioning Statement</h2>
+<p>Within the broader enterprise governance model, COBIT provides the governance shell, DMBOK provides the data capability model, TOGAF provides architectural structure, ITIL provides operational service management, and PRINCE2 or MSP provide delivery mechanisms for change.</p>
+</section>
+</section>
+<section id="visual-governance-atlas-additions" class="level1">
+<h1>18. Visual Governance Atlas Additions</h1>
+<section id="cross-framework-document-flow" class="level2">
+<h2 class="anchored" data-anchor-id="cross-framework-document-flow">18.1 Cross-Framework Document Flow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Business Strategy] --&gt; B[Corporate Policies]
+
+    B --&gt; C[COBIT Governance Outputs]
+    C --&gt; C1[Governance Objectives]
+    C --&gt; C2[Risk Appetite]
+    C --&gt; C3[Control Requirements]
+
+    C1 --&gt; D[DMBOK Data Governance]
+    C2 --&gt; D
+    C3 --&gt; D
+
+    D --&gt; D1[Data Strategy]
+    D --&gt; D2[Data Policies]
+    D --&gt; D3[Data Standards]
+
+    D1 --&gt; E[TOGAF Architecture]
+    D2 --&gt; E
+    D3 --&gt; E
+
+    E --&gt; E1[Data Architecture]
+    E --&gt; E2[Application Architecture]
+    E --&gt; E3[Technology Architecture]
+
+    E1 --&gt; F[DMBOK Data Management]
+    E2 --&gt; F
+    E3 --&gt; F
+
+    F --&gt; F1[Data Models]
+    F --&gt; F2[Metadata]
+    F --&gt; F3[Data Quality Rules]
+    F --&gt; F4[Master Data Definitions]
+
+    F1 --&gt; G[ITIL Service Design]
+    F2 --&gt; G
+    F3 --&gt; G
+    F4 --&gt; G
+
+    G --&gt; G1[Service Design Package]
+    G1 --&gt; H[Service Transition]
+    H --&gt; I[Service Operation]
+    I --&gt; J[Operational Data]
+    J --&gt; K[Data Quality Monitoring]
+    K --&gt; L[Quality Reports]
+    L --&gt; M[COBIT MEA Monitoring]
+    M --&gt; C
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="unified-enterprise-governance-meta-model" class="level2">
+<h2 class="anchored" data-anchor-id="unified-enterprise-governance-meta-model">18.2 Unified Enterprise Governance Meta-Model</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Enterprise Strategy]
+    A --&gt; B[Policies and Principles]
+    B --&gt; C[Governance Objectives]
+    C --&gt; D[Capabilities]
+    D --&gt; E[Processes]
+    E --&gt; F[Services]
+    F --&gt; G[Systems and Platforms]
+    G --&gt; H[Data Assets]
+    H --&gt; I[Information and Insights]
+    I --&gt; J[Business Outcomes]
+    J --&gt; K[Performance Metrics]
+    K --&gt; L[Monitoring and Assurance]
+    L --&gt; C
+
+    H --&gt; M[Metadata]
+    H --&gt; N[Data Quality]
+    H --&gt; O[Security and Privacy]
+
+    M --&gt; L
+    N --&gt; L
+    O --&gt; L
+
+    C --&gt; P[Change Initiatives]
+    P --&gt; Q[Projects and Programmes]
+    Q --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>19. Key Takeaways</h1>
+<ul>
+<li>DAMA provides the organisational and professional context.</li>
+<li>DMBOK provides the structured body of knowledge for enterprise data management.</li>
+<li>DMBOK is strongest when used as part of an integrated governance model rather than as a standalone data initiative.</li>
+<li>Metadata, quality, security, and stewardship are foundational to sustainable data governance.</li>
+<li>Documents and artefacts are the practical integration layer between DMBOK and the wider framework landscape.</li>
+<li>DMBOK is a strong bridge between governance intent and operational data capability.</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>20. References</h1>
+<ul>
+<li>DAMA International – Data Management Body of Knowledge</li>
+<li>DAMA International – CDMP Certification</li>
+<li>Enterprise good practice in data governance, data management, and data architecture</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

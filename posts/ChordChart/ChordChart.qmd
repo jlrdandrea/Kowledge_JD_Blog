@@ -1,0 +1,502 @@
+---
+title: "Chord Diagrams with Circlize"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, circlize, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic chord diagram into an advanced, publication-ready visualization"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated chord diagrams using the `circlize` package in R. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Chord diagrams are excellent for visualizing flows and connections between entities in a circular layout, making them ideal for migration patterns, trade relationships, or network connections.
+
+We'll create a dataset representing student migration patterns between different regions for university education.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)   # For data manipulation
+library(circlize)    # For chord diagrams
+library(scales)      # For formatting
+
+# Create sample data: student migration between regions
+regions <- c("Northeast", "Southeast", "Midwest", "Southwest", "West")
+
+# Create a migration matrix
+set.seed(42)
+migration_matrix <- matrix(
+  c(
+    5000, 800, 600, 400, 1200,   # From Northeast
+    900, 4500, 500, 800, 700,    # From Southeast
+    700, 600, 3500, 500, 900,    # From Midwest
+    500, 900, 400, 3000, 1100,   # From Southwest
+    1300, 800, 1000, 1200, 4000  # From West
+  ),
+  nrow = 5, byrow = TRUE
+)
+
+rownames(migration_matrix) <- regions
+colnames(migration_matrix) <- regions
+
+# Convert to data frame for easier viewing
+migration_df <- as.data.frame(migration_matrix)
+rownames(migration_df) <- regions
+
+# Preview the data
+head(migration_df)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Chord Diagram
+
+Let's start with a simple chord diagram showing student migration flows between regions.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 8
+
+# Create basic chord diagram
+chordDiagram(migration_matrix)  # Create chord diagram from matrix
+```
+
+### Code Explanation
+
+**Line 2:** `chordDiagram(migration_matrix)` - Creates a chord diagram from the migration matrix where rows represent origin regions and columns represent destination regions
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic chord diagram. The connections are visible but the chart lacks custom colors, clear labels, and visual refinement. The default settings make it difficult to interpret flows.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding custom colors, adjusting gaps, adding a title, and improving the visual hierarchy.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Custom color palette** for each region
+-   **Adjusted gaps** between sectors for clarity
+-   **Transparency** on chord connections
+-   **Grid colors** matching region colors
+-   **Directional emphasis** with color coding
+-   **Better spacing** and layout
+-   **Title and annotations** for context
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 8
+
+# Define color palette for regions
+region_colors <- c(
+  "Northeast" = "#2C5F8D",
+  "Southeast" = "#52A675", 
+  "Midwest" = "#E76F51",
+  "Southwest" = "#F4A261",
+  "West" = "#8B4789"
+)
+
+# Set circlize parameters
+circos.clear()
+circos.par(
+  start.degree = 90,              # Start at top
+  gap.degree = 3                  # Gap between sectors
+)
+
+# Create chord diagram with custom colors
+chordDiagram(
+  migration_matrix,
+  grid.col = region_colors,       # Sector colors
+  transparency = 0.5,             # Make chords semi-transparent
+  annotationTrack = "grid",
+  preAllocateTracks = list(
+    track.height = 0.3            # Height for labels
+  )
+)
+
+# Add region labels
+circos.track(
+  track.index = 1,
+  panel.fun = function(x, y) {
+    circos.text(
+      CELL_META$xcenter, 
+      CELL_META$ylim[1],
+      CELL_META$sector.index,
+      facing = "clockwise",
+      niceFacing = TRUE,
+      adj = c(0, 0.5),
+      cex = 1
+    )
+  },
+  bg.border = NA
+)
+
+# Add title with proper margins
+par(mar = c(1, 1, 3, 1))  # Increase top margin for title
+title("Student Migration Between Regions\n(Origin → Destination)", 
+      cex.main = 1.3, font.main = 2, line = -1)
+
+# Clear the plot
+circos.clear()
+```
+
+### Code Explanation
+
+**Lines 2-8:** Defines a custom color palette assigning specific colors to each region
+
+**Line 11:** `circos.clear()` - Clears any previous circular plots
+
+**Lines 12-15:** `circos.par()` sets global parameters including starting position (90 degrees = top) and gaps between sectors
+
+**Lines 18-25:** `chordDiagram()` creates the diagram with: - `grid.col` applying custom region colors - `transparency = 0.5` for semi-transparent chords - `preAllocateTracks` reserving space for labels
+
+**Lines 28-42:** `circos.track()` adds custom text labels with optimal positioning and rotation
+
+**Lines 45-46:** Adds a descriptive title
+
+**Line 49:** `circos.clear()` - Essential cleanup to reset parameters
+
+::: {.highlight-box .success}
+**What we have now:** A much more readable chord diagram with custom colors, better spacing, and clear labels. The transparency and color coding make it easier to trace individual flows.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, directional indicators, flow highlights, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Gradient chord colors** showing direction of flow
+-   **Link border styling** for definition
+-   **Sector annotations** showing total in/out flows
+-   **Highlighted major flows** with emphasis
+-   **Enhanced labels** with values
+-   **Legend** explaining the visualization
+-   **Professional color scheme** optimized for accessibility
+-   **Order optimization** for better layout
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 10
+
+# Calculate flow statistics
+total_out <- rowSums(migration_matrix) - diag(migration_matrix)
+total_in <- colSums(migration_matrix) - diag(migration_matrix)
+net_migration <- total_in - total_out
+
+# Reorder regions by net migration
+region_order <- names(sort(net_migration, decreasing = TRUE))
+
+# Define enhanced color palette
+region_colors_adv <- c(
+  "West" = "#0072B2",
+  "Northeast" = "#2C5F8D",
+  "Southeast" = "#009E73",
+  "Midwest" = "#E69F00",
+  "Southwest" = "#D55E00"
+)
+
+# Clear and set parameters
+circos.clear()
+circos.par(
+  start.degree = 90,
+  gap.degree = 5,                          # Increase gap for clarity
+  track.margin = c(0.01, 0.01),
+  cell.padding = c(0.02, 1, 0.02, 1)
+)
+
+# Set plot margins for title and legend space
+par(mar = c(6, 1, 4, 1))  # Increased bottom margin
+
+# Create chord diagram with enhanced styling
+chordDiagram(
+  migration_matrix,
+  order = region_order,                    # Order by net migration
+  grid.col = region_colors_adv,
+  transparency = 0.4,
+  directional = 1,                         # Show direction
+  direction.type = c("diffHeight", "arrows"),
+  diffHeight = mm_h(2),                    # Height difference for direction
+  link.arr.type = "big.arrow",             # Arrow style
+  link.arr.length = 0.2,
+  annotationTrack = "grid",                # Only grid track
+  annotationTrackHeight = mm_h(8),         # Increased track height
+  link.border = "gray30",                  # Border around chords
+  link.lwd = 0.5,                          # Border width
+  link.sort = TRUE,                        # Sort links
+  link.largest.ontop = TRUE                # Put largest on top
+)
+
+# Add sector names and statistics in one track
+circos.track(
+  track.index = 1,
+  panel.fun = function(x, y) {
+    sector_name <- CELL_META$sector.index
+    xcenter <- CELL_META$xcenter
+    
+    # Get inflow and outflow
+    outflow <- format(round(total_out[sector_name]), big.mark = ",")
+    inflow <- format(round(total_in[sector_name]), big.mark = ",")
+    
+    # Add region name
+    circos.text(
+      x = xcenter,
+      y = CELL_META$cell.ylim[2] + mm_y(4),
+      labels = sector_name,
+      facing = "bending.outside",
+      niceFacing = TRUE,
+      cex = 1,
+      font = 2,
+      adj = c(0.5, 0)
+    )
+    
+    # Add statistics on same line, smaller
+    circos.text(
+      x = xcenter,
+      y = CELL_META$cell.ylim[2] + mm_y(1),
+      labels = paste0("↑", outflow, " ↓", inflow),
+      facing = "bending.outside",
+      niceFacing = TRUE,
+      cex = 0.6,
+      col = "gray40",
+      adj = c(0.5, 0)
+    )
+  },
+  bg.border = NA
+)
+
+# Add title and subtitle
+title(
+  main = "Regional Student Migration Patterns Show Net Flow to West Coast",
+  cex.main = 1.3,
+  font.main = 2,
+  col.main = "gray20",
+  line = 1.5
+)
+
+# Add subtitle separately
+mtext(
+  "Arrows indicate direction | ↑ = Outflow, ↓ = Inflow",
+  side = 3,
+  line = 0.3,
+  cex = 0.8,
+  col = "gray40"
+)
+
+# Add summary statistics
+mtext(
+  paste0(
+    "Total: ", 
+    format(sum(migration_matrix) - sum(diag(migration_matrix)), big.mark = ","),
+    " students | Largest: Northeast → West (",
+    format(migration_matrix["Northeast", "West"], big.mark = ","),
+    ")"
+  ),
+  side = 1,
+  line = 2,
+  cex = 0.75,
+  col = "gray30"
+)
+
+mtext(
+  "Net Winners: West, Southeast | Net Losers: Southwest, Midwest",
+  side = 1,
+  line = 3,
+  cex = 0.75,
+  col = "gray30"
+)
+
+# Add caption
+mtext(
+  "Data source: Simulated student migration data | Visualization: Your Name",
+  side = 1,
+  line = 4.5,
+  cex = 0.7,
+  col = "gray50"
+)
+
+# Clear
+circos.clear()
+```
+
+### Code Explanation
+
+**Lines 2-4:** Calculates total outflow and inflow for each region (excluding self-loops on diagonal)
+
+**Line 7:** Reorders regions by net migration for better visual layout
+
+**Lines 10-16:** Defines enhanced color palette sorted by migration patterns
+
+**Lines 19-26:** `circos.par()` sets comprehensive parameters including track margins and cell padding
+
+**Lines 29-47:** `chordDiagram()` with advanced features: - `order` to arrange regions optimally - `directional = 1` to show flow direction - `direction.type` using height difference and arrows - `link.border` and `link.lwd` for chord borders - `link.sort` and `link.largest.ontop` for visual hierarchy
+
+**Lines 50-84:** `circos.track()` adds detailed annotations including region names and in/out flow statistics
+
+**Lines 87-96:** Adds comprehensive title and subtitle explaining the visualization
+
+**Lines 99-109:** Adds legend with key statistics and insights
+
+**Lines 112-117:** Adds caption with data source attribution
+
+**Line 120:** Essential cleanup with `circos.clear()`
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready chord diagram that clearly communicates migration patterns with directional indicators, flow statistics, and professional styling. The combination of arrows, colors, annotations, and legend creates a comprehensive visualization suitable for reports, presentations, or academic papers.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|----|----|----|----|
+| **Readability** | Poor (default colors, no labels) | Good (custom colors, labels) | Excellent (all + direction + stats) |
+| **Context** | None | Title added | Full context with legend & caption |
+| **Visual Appeal** | Default gray scheme | Custom colors + transparency | Optimized colors + arrows + borders |
+| **Data Layers** | Chords only | Chords + labels | Chords + arrows + statistics |
+| **Statistical Info** | Visual flows only | Region names | In/out flows, net migration, totals |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better Chord Diagrams:**
+
+1.  **Use `circos.clear()` religiously** - Always call before and after creating chord diagrams to prevent parameter carryover issues
+
+2.  **Order sectors meaningfully** - Arrange regions by total flow, alphabetically, or by a meaningful metric using the `order` parameter
+
+3.  **Add directional indicators** - Use `directional = 1` with arrows or height differences to show flow direction clearly
+
+4.  **Adjust gaps strategically** - Use `gap.degree` between 2-5 to balance compactness with readability
+
+5.  **Color with purpose** - Assign colors that match regional or categorical meanings, ensuring sufficient contrast
+
+6.  **Show the data** - Add annotations with actual flow values, totals, or percentages to provide concrete numbers
+
+7.  **Mind the matrix diagonal** - Self-loops (diagonal elements) can clutter the visualization; consider setting them to zero
+
+8.  **Use transparency wisely** - Set `transparency` between 0.3-0.6 to show overlapping flows without losing definition
+
+9.  **Sort links for clarity** - Use `link.sort = TRUE` and `link.largest.ontop = TRUE` to bring important flows forward
+
+10. **Export with care** - Save as PDF or high-res PNG: `pdf("chord.pdf", width = 10, height = 10)` then run code, then `dev.off()`
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other circular relationship visualizations:
+
+-   **Sankey diagrams** for linear flow representations
+-   **Network graphs** for complex interconnections
+-   **Arc diagrams** for simpler connection displays
+-   **Circular dendrograms** for hierarchical relationships
+
+::: {.highlight-box .info}
+**Want to create interactive chord diagrams?**
+
+You can make your chord diagrams interactive using `chorddiag`:
+
+``` r
+# Install if needed
+# install.packages("chorddiag")
+library(chorddiag)
+
+# Create interactive chord diagram
+chorddiag(
+  migration_matrix,
+  groupColors = region_colors_adv,
+  groupnamePadding = 20,
+  groupThickness = 0.1,
+  chordedgeColor = "gray30",
+  showTicks = FALSE,
+  margin = 120
+)
+```
+
+This creates an interactive HTML widget where users can hover over chords to see exact values and highlight specific flows.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Adjacency Matrix Heatmap
+
+Here's a bonus approach showing the same data as a heatmap:
+
+```{r}
+#| label: bonus-heatmap
+#| fig-width: 8
+#| fig-height: 7
+
+# Convert to long format
+migration_long <- migration_matrix %>%
+  as.data.frame() %>%
+  rownames_to_column("from") %>%
+  pivot_longer(-from, names_to = "to", values_to = "students") %>%
+  filter(from != to)  # Remove diagonal
+
+# Create heatmap
+ggplot(migration_long, aes(x = to, y = from, fill = students)) +
+  geom_tile(color = "white", linewidth = 1) +
+  geom_text(aes(label = format(students, big.mark = ",")),
+            color = "white", fontface = "bold", size = 3.5) +
+  scale_fill_gradient(low = "#2C5F8D", high = "#E76F51",
+                      name = "Students",
+                      labels = comma_format()) +
+  labs(
+    title = "Student Migration Matrix: Origin to Destination",
+    subtitle = "Cell values show number of students moving between regions",
+    x = "Destination Region",
+    y = "Origin Region"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid = element_blank()
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [circlize Package Documentation](https://jokergoo.github.io/circlize_book/book/)
+-   [Chord Diagram Examples](https://jokergoo.github.io/circlize_book/book/the-chorddiagram-function.html)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Circular Visualization in R](https://jokergoo.github.io/circlize/)
+
+Happy plotting! 📊

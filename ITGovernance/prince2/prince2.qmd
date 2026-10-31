@@ -1,0 +1,476 @@
+---
+title: "PRINCE2"
+description: "Project Governance and Controlled Delivery Framework"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Project Management
+  - Management
+---
+
+# Overview
+
+## What is PRINCE2
+
+PRINCE2 is a structured project management method used to direct, manage, and control projects in a consistent and scalable way. The name stands for **Projects IN Controlled Environments**. It provides a governance framework, management products, roles, decisions, and stage controls that help an organisation move from an initial mandate to controlled delivery and closure.
+
+PRINCE2 is not tied to one industry or delivery style. It can be used for business change, technology transformation, infrastructure, product, regulatory, and operational improvement projects. It can also be tailored to predictive, Agile, or hybrid delivery contexts.
+
+In current practice, the relevant modern version is **PRINCE2 7**, released in 2023, which retains the method’s core logic while strengthening guidance on people, digital and data, sustainability, commercial context, and tailoring.
+
+## Purpose
+
+The purpose of PRINCE2 is to help organisations:
+
+-   justify projects through an ongoing business case;
+-   define roles, authority, and accountability clearly;
+-   control delivery through stages and decision points;
+-   manage scope, risk, quality, issues, and change in an integrated way;
+-   create a repeatable governance model across projects; and
+-   tailor project control to the scale, complexity, risk, and context of the initiative.
+
+## When to Use It
+
+PRINCE2 is especially useful when an organisation needs consistent project control and governance across multiple projects or delivery teams. Typical situations include:
+
+-   formal project delivery in public or regulated environments;
+-   technology and digital transformation projects;
+-   projects requiring strong business sponsorship and stage approval;
+-   multi-vendor or outsourced delivery environments;
+-   organisations seeking a standard method for PMO oversight;
+-   projects where documentation, assurance, and decision traceability matter; and
+-   complex initiatives that need separation between governance and day-to-day management.
+
+## Target Audience
+
+-   Project Board / Steering Committee
+-   Executive Sponsor / Senior Responsible Owner
+-   Project Manager
+-   Team Managers / Delivery Leads
+-   PMO / Project Office
+-   Programme and Portfolio Leaders
+-   Business Change Managers
+-   Assurance, audit, risk, and compliance teams
+-   Procurement and commercial managers
+-   Senior users, suppliers, and operational stakeholders
+
+## PRINCE2 Project Lifecycle and Governance Flow
+
+```{mermaid}
+flowchart LR
+
+MANDATE["Project Mandate"] --> SU["Starting Up a Project"]
+SU --> DP1["Directing a Project\nAuthorise Initiation"]
+DP1 --> IP["Initiating a Project"]
+IP --> DP2["Directing a Project\nAuthorise Project"]
+DP2 --> CS["Controlling a Stage"]
+CS --> MP["Managing Product Delivery"]
+MP --> CS
+CS --> SB["Managing a Stage Boundary"]
+SB --> DP3["Directing a Project\nAuthorise Next Stage"]
+DP3 --> CS2["Next Delivery Stage"]
+CS2 --> MP2["Managing Product Delivery"]
+MP2 --> CS2
+CS2 --> CP["Closing a Project"]
+CP --> DP4["Directing a Project\nConfirm Closure"]
+
+BC["Business Case"] --> IP
+BC --> SB
+BC --> DP3
+
+RISK["Risk Register"] --> CS
+ISSUE["Issue Register"] --> CS
+PLAN["Plans"] --> CS
+QUALITY["Quality Management"] --> MP
+LESSONS["Lessons Log"] --> SU
+LESSONS --> SB
+LESSONS --> CP
+```
+
+PRINCE2 organises a project into clear governance and management decision points. The **Project Board** directs the project, the **Project Manager** manages within agreed tolerances, and delivery teams create products under controlled work packages.
+
+------------------------------------------------------------------------
+
+# History and Evolution
+
+| Version | Year | Key Changes |
+|------------------------|------------------------|------------------------|
+| PRINCE | 1989 | Original method focused mainly on IT project control |
+| PRINCE2 | 1996 | Reworked into a generic project management method usable beyond IT |
+| PRINCE2 Refresh | 2005 | Improved guidance and usability |
+| PRINCE2:2009 | 2009 | Structured around 7 principles, 7 themes, and 7 processes |
+| PRINCE2 6th Edition / 2017 update | 2017 | Greater emphasis on tailoring, scalability, and practical guidance |
+| PRINCE2 Agile | 2015 onward | Integration guidance for combining PRINCE2 governance with Agile delivery |
+| PRINCE2 7 | 2023 | Modernised method with emphasis on people, sustainability, digital and data, commercial context, and stronger tailoring guidance |
+
+PRINCE2 evolved from a heavily controlled project method into a broader and more adaptable governance framework. The major structural model of principles, practices/themes, and processes became well known in the 2009 edition. The current **PRINCE2 7** keeps the core logic but reframes the method for modern projects and more diverse delivery environments. Official training and certification for PRINCE2 7 became available from September 2023.
+
+------------------------------------------------------------------------
+
+# Core Principles
+
+PRINCE2 is based on **seven principles**. A project that ignores these is not really being managed as PRINCE2 in substance, even if it uses some of the templates.
+
+1.  **Ensure continued business justification**\
+    The project must remain desirable, viable, and achievable. The business case is not a one-off approval document; it must be reviewed throughout the project.
+
+2.  **Learn from experience**\
+    Teams should capture lessons from previous and current work and apply them actively during planning and control.
+
+3.  **Define roles, responsibilities, and relationships**\
+    Governance, decision rights, delivery responsibility, and stakeholder roles must be explicit.
+
+4.  **Manage by stages**\
+    Projects are controlled in sections, with review and approval at stage boundaries.
+
+5.  **Manage by exception**\
+    Tolerances for time, cost, quality, scope, benefits, and risk are delegated. Escalation happens only when tolerances are forecast to be exceeded.
+
+6.  **Focus on products**\
+    PRINCE2 starts from what must be delivered and what quality criteria define success.
+
+7.  **Tailor to suit the project**\
+    The method must be adapted to the size, complexity, risk, delivery approach, and organisational context of the project.
+
+These principles remain central in PRINCE2 7. Current official training still frames the method around the seven principles, practices, and processes.
+
+------------------------------------------------------------------------
+
+# Governance Structure
+
+## Governance vs Management in PRINCE2
+
+PRINCE2 clearly separates **direction**, **management**, and **delivery**:
+
+-   the **Project Board** provides overall direction and key decisions;
+-   the **Project Manager** manages the project day to day within tolerances; and
+-   **Team Managers / delivery leads** produce agreed products through authorised work packages.
+
+This is one of PRINCE2’s strongest features. It reduces confusion between sponsorship and management and gives the PMO and senior stakeholders defined points for intervention.
+
+## Key Roles
+
+| Role | Main Accountability |
+|------------------------------------|------------------------------------|
+| Executive | Owns the business case and is ultimately accountable for project success |
+| Senior User | Represents user interests and ensures outcomes meet operational needs |
+| Senior Supplier | Represents supplier interests and delivery feasibility |
+| Project Board | Directs the project and makes major decisions |
+| Project Manager | Manages planning, control, reporting, risks, issues, and stage delivery |
+| Team Manager | Delivers work packages and reports progress |
+| Project Assurance | Provides independent confidence on business, user, and supplier interests |
+| Project Support / PMO | Provides administration, standards, reporting, controls, and configuration support |
+| Change Authority | Approves defined categories of change within delegated limits |
+
+## PRINCE2 7 Practices
+
+PRINCE2 7 uses **practices** as the enduring management disciplines that must be applied across the project lifecycle.
+
+| Practice | Purpose |
+|------------------------------------|------------------------------------|
+| Business Case | Ensure the project remains justified and aligned to value |
+| Organising | Define governance, roles, accountability, and stakeholder relationships |
+| Plans | Establish product-based planning, stage plans, team plans, and control baselines |
+| Quality | Define product quality requirements, criteria, methods, and responsibilities |
+| Risk | Identify, assess, own, respond to, and monitor uncertainty |
+| Issues | Control requests for change, off-specifications, and general problems requiring action |
+| Progress | Monitor actuals against plans, forecast performance, and escalate by exception |
+
+## PRINCE2 7 Focus Areas
+
+PRINCE2 7 places additional emphasis on themes that modern projects must handle more explicitly:
+
+-   **people**;
+-   **digital and data management**;
+-   **commercial management**;
+-   **sustainability**; and
+-   stronger **tailoring** to project context.
+
+PeopleCert describes PRINCE2 7 as a major update that introduces stronger focus on people management, digital and data, sustainability, and compatibility with modern delivery environments.
+
+------------------------------------------------------------------------
+
+# Processes
+
+PRINCE2 uses **seven processes** covering the project from pre-project through closure.
+
+| Process | Purpose | Typical Outputs |
+|------------------------|------------------------|------------------------|
+| Starting Up a Project (SU) | Confirm that the project is worthwhile and viable enough to initiate | Project brief, outline business case, initiation stage plan |
+| Directing a Project (DP) | Enable the Project Board to exercise overall control and decision-making | Authorisations, key decisions, exception decisions |
+| Initiating a Project (IP) | Establish the project foundations, controls, and baselines | PID, detailed business case, strategies, project plan |
+| Controlling a Stage (CS) | Day-to-day management of a stage by the Project Manager | Work packages, checkpoint control, issue and risk actions, highlight reports |
+| Managing Product Delivery (MP) | Control specialist work and product creation | Work package acceptance, product status, delivery reporting |
+| Managing a Stage Boundary (SB) | Review performance and prepare for the next stage | End stage report, updated business case, next stage plan, lessons |
+| Closing a Project (CP) | Confirm formal closure and transition | End project report, lessons report, benefits review follow-up |
+
+These seven processes remain the backbone of PRINCE2. Official PRINCE2 sources continue to describe the method through these processes, alongside principles and practices.
+
+## Product-Based Planning
+
+One of PRINCE2’s distinguishing strengths is its **product-based planning** approach. Instead of starting only with activities, it begins by asking:
+
+-   what products or outputs must exist;
+-   what quality criteria they must meet;
+-   how they depend on one another; and
+-   what work is needed to create them.
+
+This makes PRINCE2 especially useful in governance-heavy environments where the quality and acceptance of deliverables matter as much as the schedule.
+
+------------------------------------------------------------------------
+
+# Management Products and Documentation
+
+PRINCE2 uses structured management products rather than uncontrolled paperwork. The exact level of detail should be tailored, but the following artefacts are commonly expected.
+
+## Core Management Products
+
+| Management Product | Purpose | Typical Owner |
+|------------------------|------------------------|------------------------|
+| Project Mandate | Trigger for considering the project | Corporate / programme / sponsor |
+| Project Brief | High-level view of what the project is and why it exists | Project Manager |
+| Business Case | Ongoing justification for investment | Executive |
+| Project Initiation Documentation (PID) | Baseline set of controls, strategies, and plans for the project | Project Manager |
+| Project Plan | High-level plan for the whole project | Project Manager |
+| Stage Plan | Detailed control plan for a stage | Project Manager |
+| Team Plan | Optional lower-level delivery plan | Team Manager |
+| Work Package | Agreed assignment of work, constraints, reporting, and quality expectations | Project Manager / Team Manager |
+| Risk Register | Record of identified risks and responses | Project Manager |
+| Issue Register | Record of issues, change requests, and off-specifications | Project Manager |
+| Lessons Log / Lessons Report | Record and report of lessons learned | Project Manager |
+| Highlight Report | Periodic status report to the Project Board | Project Manager |
+| End Stage Report | Summary of stage performance and outlook | Project Manager |
+| Exception Report | Escalation report when tolerances will be exceeded | Project Manager |
+| End Project Report | Final performance and closure summary | Project Manager |
+| Benefits Review Plan | Defines when and how benefits will be measured post-project | Executive / Senior User |
+| Product Descriptions | Define purpose, composition, quality criteria, and quality methods for products | Project Manager / Team Leads |
+| Quality Register | Tracks planned and completed quality activities | Project Support / Project Manager |
+| Configuration Item Records / Product Status Account | Optional control products for configuration and status tracking | Project Support |
+
+## Documentation Approach
+
+PRINCE2 does **not** require heavy documentation for its own sake. The method requires that essential controls and decisions are explicit and auditable, but PRINCE2 7 also emphasises practical tailoring. In a small project, many of these products can be lightweight, combined, or maintained digitally in shared systems instead of large standalone documents.
+
+------------------------------------------------------------------------
+
+# RACI Matrix for Typical PRINCE2 Management Products
+
+| Management Product | Executive | Senior User | Senior Supplier | Project Board | Project Manager | Team Manager | PMO / Project Support | Assurance |
+|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| Project Mandate | A | C | C | I | R | I | C | I |
+| Project Brief | C | C | C | I | A/R | I | C | C |
+| Business Case | A/R | C | C | C | C | I | I | C |
+| PID | C | C | C | I | A/R | I | C | C |
+| Project Plan | C | C | C | I | A/R | C | C | C |
+| Stage Plan | I | I | I | I | A/R | C | C | C |
+| Team Plan | I | I | C | I | C | A/R | C | I |
+| Work Package | I | I | I | I | A | R | C | I |
+| Risk Register | C | C | C | I | A/R | C | C | C |
+| Issue Register | I | I | I | I | A/R | C | C | C |
+| Highlight Report | I | I | I | A | R | I | C | C |
+| End Stage Report | C | C | C | A | R | I | C | C |
+| Exception Report | C | C | C | A | R | I | C | C |
+| End Project Report | C | C | C | A | R | I | C | C |
+| Benefits Review Plan | A | R | I | C | C | I | I | C |
+| Lessons Log / Report | I | I | I | I | A/R | C | C | C |
+
+RACI Legend
+
+-   **R** = Responsible
+-   **A** = Accountable
+-   **C** = Consulted
+-   **I** = Informed
+
+This RACI is a practical interpretation. In some organisations the PMO may own more control products, and in others the sponsor or programme office may hold formal accountability for selected documents.
+
+------------------------------------------------------------------------
+
+# Tailoring PRINCE2
+
+Tailoring is one of the most important PRINCE2 disciplines. The method should be adapted across several dimensions:
+
+-   **project size**;
+-   **risk and complexity**;
+-   **delivery approach** (predictive, Agile, hybrid);
+-   **commercial model**;
+-   **regulatory and audit requirements**;
+-   **organisational maturity**; and
+-   **programme, portfolio, or enterprise governance context**.
+
+Examples of tailoring include:
+
+-   combining the PID and project plan for a small project;
+-   using digital backlogs and sprint plans while keeping PRINCE2 stage control;
+-   reducing the number of formal reports in low-risk work;
+-   increasing assurance and configuration control in regulated projects; and
+-   embedding PRINCE2 reporting within a PMO dashboard tool rather than static documents.
+
+The official PRINCE2 7 messaging strongly emphasises flexibility and the use of PRINCE2 with predictive, Agile, or hybrid delivery methods rather than as a single rigid style.
+
+------------------------------------------------------------------------
+
+# Integration with Other Frameworks
+
+## PRINCE2 and COBIT
+
+-   **COBIT** provides enterprise governance, control objectives, risk, and assurance structures.
+-   **PRINCE2** provides project-level governance and controlled delivery.
+
+A useful pattern is for COBIT to define policy, decision rights, assurance, and portfolio control while PRINCE2 governs the actual delivery mechanism for individual projects.
+
+## PRINCE2 and TOGAF
+
+-   **TOGAF** defines target-state architecture and implementation governance.
+-   **PRINCE2** manages the project that delivers architecture-led change.
+
+Architecture deliverables, design authority decisions, and compliance reviews can be built into PRINCE2 stage plans and product descriptions.
+
+## PRINCE2 and ITIL 4
+
+-   **ITIL 4** governs service design, transition, operation, and continual improvement.
+-   **PRINCE2** governs the project creating or changing the service.
+
+A technology implementation project may use PRINCE2 for delivery and ITIL 4 for operational readiness, service acceptance, change enablement, and handover.
+
+## PRINCE2 and MSP
+
+-   **MSP** governs transformational change at programme level.
+-   **PRINCE2** governs the projects within that programme.
+
+This is one of the most natural combinations, especially in large public-sector and enterprise transformation environments.
+
+## PRINCE2 and Agile / DevOps
+
+PRINCE2 can coexist with iterative delivery by using stages and governance at management level while allowing Agile teams to plan and deliver within work packages or stage boundaries.
+
+------------------------------------------------------------------------
+
+# Implementation Approach
+
+A practical PRINCE2 implementation usually works best in phases.
+
+## 1. Establish Governance Policy
+
+Define when PRINCE2 is mandatory, which project categories it applies to, which artefacts are required, and how it aligns with PMO, risk, procurement, and assurance standards.
+
+## 2. Define Tailored Method Packs
+
+Create lightweight, medium, and high-control variants of the method with corresponding templates, workflows, and approval gates.
+
+## 3. Train Key Roles
+
+Train sponsors, project managers, PMO staff, and assurance roles so the method is understood beyond just the project manager population.
+
+## 4. Embed in Tools and Reporting
+
+Translate management products into templates, dashboards, registers, and stage approval workflows in the organisation’s chosen toolset.
+
+## 5. Integrate with Portfolio and Architecture Governance
+
+Align PRINCE2 stage approvals with investment governance, architecture review, security assurance, and service transition checkpoints.
+
+## 6. Review and Improve
+
+Use lessons, audit findings, and delivery metrics to refine the tailored method and reduce unnecessary bureaucracy.
+
+------------------------------------------------------------------------
+
+# KPIs and Management Metrics
+
+A PRINCE2-based PMO or governance office may track metrics such as:
+
+| KPI | What It Indicates |
+|------------------------------------|------------------------------------|
+| \% of projects with approved business case | Governance and initiation discipline |
+| \% of projects with current PID and stage plan | Baseline control maturity |
+| Stage approval lead time | Decision efficiency |
+| \% of projects forecast to exceed tolerances | Early warning and control effectiveness |
+| Change request volume by stage | Stability of requirements and solution design |
+| Risk response completion rate | Risk management discipline |
+| Quality acceptance first-pass rate | Product quality and clarity of requirements |
+| Benefits realisation after closure | Outcome achievement |
+| Lessons implemented across projects | Organisational learning maturity |
+| \% of projects formally closed | Closure and benefits governance discipline |
+
+These metrics are most useful when combined with portfolio and PMO reporting, rather than treated as isolated project manager measures.
+
+------------------------------------------------------------------------
+
+# Benefits
+
+PRINCE2 provides several strong benefits:
+
+-   clear accountability and decision rights;
+-   stronger business-case discipline;
+-   predictable control through stages and tolerances;
+-   consistent documentation and reporting across projects;
+-   good fit with PMO, audit, and assurance functions;
+-   compatibility with many delivery methods; and
+-   strong traceability from mandate to closure.
+
+------------------------------------------------------------------------
+
+# Limitations and Common Misuse
+
+PRINCE2 can be misapplied if organisations:
+
+-   treat templates as more important than delivery outcomes;
+-   fail to tailor the method to context;
+-   use it only as a project manager method without sponsor engagement;
+-   overload small projects with large-project governance artefacts; or
+-   ignore product-based planning and focus only on activity schedules.
+
+The method works best when used as a governance framework for good decisions, not as an excuse for bureaucracy.
+
+------------------------------------------------------------------------
+
+# Practical Example
+
+## Scenario: ERP Implementation Project
+
+An organisation is implementing a new ERP platform across finance, procurement, and supply chain.
+
+### How PRINCE2 Helps
+
+-   **Starting Up a Project** confirms the project is viable and identifies the Executive, Senior User, and Senior Supplier.
+-   **Initiating a Project** creates the PID, defines governance, delivery approach, risk strategy, change control, and the overall project plan.
+-   The work is split into stages such as design, build, test, deployment, and transition.
+-   The **Project Board** reviews each stage boundary and revalidates the business case before authorising further investment.
+-   Product descriptions define what “completed” means for key outputs such as solution design, training materials, migration plans, and go-live readiness.
+-   Issues, risks, and change requests are controlled centrally.
+-   Closure confirms acceptance, captures lessons, and hands benefits tracking to business owners.
+
+### Combined Framework View
+
+-   **COBIT** governs investment, risk, and control expectations.
+-   **TOGAF** provides architecture standards and target-state design.
+-   **PRINCE2** governs project execution.
+-   **ITIL 4** supports service transition, change enablement, and operational handover.
+
+This is a strong example of how PRINCE2 fits inside a wider enterprise IT-governance ecosystem.
+
+------------------------------------------------------------------------
+
+# Summary
+
+PRINCE2 is one of the clearest frameworks for controlled project delivery. Its enduring strength lies in the combination of:
+
+-   continued business justification;
+-   explicit governance roles;
+-   management by stages and exception;
+-   product-based planning;
+-   structured management products; and
+-   disciplined but flexible tailoring.
+
+In a governance atlas, PRINCE2 is the framework that translates enterprise policy and architecture direction into **controlled project execution**. It is especially powerful when connected to COBIT, TOGAF, ITIL 4, MSP, and PMO practices.
+
+# References
+
+-   AXELOS. *PRINCE2 Project Management Certification*. AXELOS.
+-   AXELOS. *PRINCE2 Project Management Practitioner (Version 7)*. AXELOS.
+-   PeopleCert. *PRINCE2 Project Management Framework*. PeopleCert.
+-   PeopleCert. *PeopleCert unveils PRINCE2® 7: A major upgrade to the world's leading project management method*. 2023. PeopleCert.
+-   PeopleCert. *PRINCE2 7: a new chapter in a well-told story*. 2023. PeopleCert.
+-   PeopleCert. *PRINCE2 7 - A Process of Evolution*. 2023. PeopleCert.
+-   PeopleCert. *People – at the core of PRINCE2® 7*. 2023. PeopleCert.
+-   PeopleCert. *PRINCE2 7: the quality practice – “Ready, fire, aim”*. 2023. PeopleCert.

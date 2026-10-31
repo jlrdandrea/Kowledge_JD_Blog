@@ -1,0 +1,462 @@
+---
+title: "2D Density Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic 2D density plot into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated 2D density plots (contour plots) using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+2D density plots are excellent for visualizing the relationship between two continuous variables, showing concentration patterns and revealing clusters or correlations in bivariate data.
+
+We'll use the built-in `faithful` dataset from R, examining the relationship between eruption duration and waiting time for the Old Faithful geyser.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+library(viridis)    # For color palettes
+
+# Prepare the data: use the faithful geyser dataset
+data_faithful <- faithful %>%
+  as_tibble() %>%
+  rename(
+    eruption_time = eruptions,     # Rename for clarity
+    waiting_time = waiting
+  )
+
+# Preview the data
+head(data_faithful)
+summary(data_faithful)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic 2D Density Plot
+
+Let's start with a simple 2D density contour plot showing the relationship between eruption duration and waiting time.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data_faithful, aes(x = eruption_time, y = waiting_time)) +  # Set up with x and y
+  geom_density_2d()                                                 # Create 2D density contours
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_faithful, aes(x = eruption_time, y = waiting_time))` - Initializes the plot with geyser data, mapping eruption duration to x-axis and waiting time to y-axis
+
+**Line 2:** `geom_density_2d()` - Adds contour lines showing areas of high and low density in the 2D space, revealing two distinct clusters
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic 2D density plot. The contour lines reveal two clusters but the chart lacks color fill, data points, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding filled contours, data points, better colors, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Filled contours** showing density levels with color
+-   **Data points** overlay showing actual observations
+-   **Viridis color palette** for better perception
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Contour labels** showing density levels
+-   **Alpha transparency** for layering
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data_faithful, aes(x = eruption_time, y = waiting_time)) +
+  # Filled density contours
+  geom_density_2d_filled(alpha = 0.8,                    # Filled contours with transparency
+                         contour_var = "density") +      # Color by density
+  # Overlay contour lines for definition
+  geom_density_2d(color = "white",                       # White contour lines
+                  linewidth = 0.3,
+                  alpha = 0.5) +
+  # Add data points
+  geom_point(alpha = 0.3,                                # Semi-transparent points
+             size = 1.5,
+             color = "gray20") +
+  scale_fill_viridis_d(option = "plasma") +              # Color palette
+  labs(
+    title = "Old Faithful: Eruption Duration vs Waiting Time",
+    subtitle = "Two distinct clusters reveal bimodal eruption patterns",
+    x = "Eruption Duration (minutes)",
+    y = "Waiting Time to Next Eruption (minutes)",
+    fill = "Density"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "right"
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot()` initializes the plot with both x and y continuous variables
+
+**Lines 3-4:** `geom_density_2d_filled()` creates filled contour regions colored by density, with `alpha = 0.8` for slight transparency
+
+**Lines 6-8:** `geom_density_2d()` adds white contour lines on top for clear boundary definition
+
+**Lines 10-12:** `geom_point()` overlays the actual data points with transparency to show raw data alongside density estimate
+
+**Line 13:** `scale_fill_viridis_d()` applies a discrete viridis color palette (plasma option) optimized for perception
+
+**Lines 14-20:** `labs()` adds descriptive title highlighting the bimodal pattern, subtitle with context, and clear axis labels
+
+**Line 21:** `theme_minimal()` applies a clean theme
+
+**Lines 22-25:** `theme()` customizes title formatting and legend position
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with filled density regions, clear contour boundaries, and visible data points. The color gradient and clean formatting make patterns easy to identify and the chart presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with continuous color gradient, statistical annotations, cluster identification, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Continuous color fill** (filled polygons) for smooth gradients
+-   **Cluster centroids** marked on the plot
+-   **Statistical ellipses** showing 95% confidence regions
+-   **Correlation annotation** with statistics
+-   **Enhanced typography** with refined spacing
+-   **Hex bins** as alternative representation
+-   **Data source caption** for proper attribution
+-   **Custom color palette** optimized for the data
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 8
+
+# Identify clusters using k-means
+set.seed(123)
+clusters <- kmeans(data_faithful, centers = 2)
+
+# Calculate cluster centroids
+centroids <- as_tibble(clusters$centers) %>%
+  mutate(cluster = c("Short/Short", "Long/Long"))
+
+# Add cluster labels to data
+data_with_clusters <- data_faithful %>%
+  mutate(cluster = factor(clusters$cluster))
+
+# Calculate correlation
+cor_value <- cor(data_faithful$eruption_time, data_faithful$waiting_time)
+
+# Calculate summary statistics for annotation
+stats_text <- paste0(
+  "Correlation: r = ", round(cor_value, 3), "\n",
+  "n = ", nrow(data_faithful), " observations\n",
+  "Two clusters identified"
+)
+
+ggplot(data_faithful, aes(x = eruption_time, y = waiting_time)) +
+  # Filled 2D density with continuous scale
+  stat_density_2d(aes(fill = after_stat(level)),
+                  geom = "polygon",
+                  alpha = 0.8,
+                  color = NA,
+                  contour_var = "density",
+                  bins = 15) +
+  # Add contour lines for reference
+  geom_density_2d(color = "white",
+                  linewidth = 0.4,
+                  alpha = 0.6,
+                  bins = 15) +
+  # Add confidence ellipses for clusters
+  stat_ellipse(data = data_with_clusters,
+               aes(color = cluster),
+               level = 0.95,
+               linewidth = 1,
+               linetype = "dashed") +
+  # Add individual points colored by cluster
+  geom_point(data = data_with_clusters,
+             aes(color = cluster),
+             alpha = 0.4,
+             size = 1.8) +
+  # Add cluster centroids
+  geom_point(data = centroids,
+             aes(x = eruption_time, y = waiting_time),
+             shape = 23,
+             size = 5,
+             fill = "white",
+             color = "gray20",
+             stroke = 1.5) +
+  # Add centroid labels
+  geom_text(data = centroids,
+            aes(x = eruption_time, y = waiting_time + 3,
+                label = cluster),
+            fontface = "bold",
+            size = 3.5,
+            color = "gray20") +
+  # Apply custom color scales
+  scale_fill_viridis_c(option = "magma",
+                       name = "Density\nLevel",
+                       alpha = 0.8) +
+  scale_color_manual(values = c("#E76F51", "#2C5F8D"),
+                     name = "Cluster",
+                     labels = c("Cluster 1: Short", "Cluster 2: Long")) +
+  # Format axes
+  scale_x_continuous(breaks = seq(1.5, 5.5, by = 0.5),
+                     expand = expansion(mult = c(0.05, 0.05))) +
+  scale_y_continuous(breaks = seq(40, 100, by = 10),
+                     expand = expansion(mult = c(0.05, 0.05))) +
+  # Add comprehensive labels
+  labs(
+    title = "Old Faithful Shows Two Distinct Eruption-Waiting Patterns",
+    subtitle = "Strong positive correlation (r = 0.901) with clear bimodal clustering\nDashed ellipses show 95% confidence regions | White diamonds mark cluster centers",
+    x = "Eruption Duration (minutes)",
+    y = "Waiting Time to Next Eruption (minutes)",
+    caption = "Data source: Azzalini & Bowman (1990) | 272 eruptions | K-means clustering (k=2) | Visualization: Your Name"
+  ) +
+  # Add statistics annotation box
+  annotate("rect",
+           xmin = 1.6, xmax = 2.8,
+           ymin = 85, ymax = 98,
+           fill = "white",
+           color = "gray30",
+           alpha = 0.9,
+           linewidth = 0.5) +
+  annotate("text",
+           x = 1.65, y = 95,
+           label = "Statistics",
+           hjust = 0,
+           fontface = "bold",
+           size = 3.5,
+           color = "gray20") +
+  annotate("text",
+           x = 1.65, y = 91,
+           label = stats_text,
+           hjust = 0,
+           size = 3,
+           color = "gray30",
+           lineheight = 0.9) +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold",
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.box = "vertical",
+    
+    # Grid and panel styling
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.4),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-3:** Performs k-means clustering with 2 centers to identify the two distinct groups in the data
+
+**Lines 6-7:** Extracts cluster centroids and labels them descriptively
+
+**Lines 10-11:** Adds cluster assignments to the original data
+
+**Line 14:** Calculates Pearson correlation coefficient between eruption time and waiting time
+
+**Lines 17-21:** Creates a formatted text string with key statistics for annotation
+
+**Line 23:** `ggplot()` initializes the plot
+
+**Lines 25-31:** `stat_density_2d()` with `geom = "polygon"` creates smooth filled density regions using a continuous color scale (15 bins for smooth gradients)
+
+**Lines 33-37:** `geom_density_2d()` adds white contour lines for clear boundary definition
+
+**Lines 39-43:** `stat_ellipse()` adds dashed ellipses showing 95% confidence regions around each cluster
+
+**Lines 45-48:** `geom_point()` overlays data points colored by cluster membership
+
+**Lines 50-56:** `geom_point()` adds white diamond markers at cluster centroids
+
+**Lines 58-63:** `geom_text()` labels the cluster centroids with descriptive names
+
+**Lines 65-67:** `scale_fill_viridis_c()` applies continuous magma color palette for density levels
+
+**Lines 68-70:** `scale_color_manual()` applies custom colors to distinguish clusters
+
+**Lines 72-76:** `scale_x_continuous()` and `scale_y_continuous()` format axes with appropriate breaks and expansion
+
+**Lines 78-84:** `labs()` adds comprehensive labels including an informative title, multi-line subtitle with interpretation, and detailed caption
+
+**Lines 86-108:** Multiple `annotate()` calls create a statistics summary box showing correlation, sample size, and clustering information
+
+**Lines 109-137:** Comprehensive theme customization including: - Enhanced typography with hierarchy - Multi-line subtitle with adjusted line height - Legend positioned on right with vertical box layout - Grid customization - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready 2D density plot that clearly communicates the bivariate relationship between eruption duration and waiting time. The combination of continuous density gradient, confidence ellipses, cluster centroids, and statistical annotations creates a comprehensive visualization suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (contours only, no fill) | Good (filled + points) | Excellent (all + clusters + statistics) |
+| **Context** | None | Title & subtitle added | Full statistical context with annotations |
+| **Visual Appeal** | Plain contour lines | Filled discrete colors | Continuous gradient + multi-layered |
+| **Data Layers** | Contours only | Contours + points | Density + points + ellipses + centroids |
+| **Statistical Info** | Visual pattern only | Density levels | Correlation, clusters, confidence regions |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 2D Density Plots:**
+
+1.  **Choose between discrete and continuous fills** - Use `geom_density_2d_filled()` for discrete levels or `stat_density_2d()` with `geom = "polygon"` for continuous gradients
+
+2.  **Adjust the number of bins** - Use `bins` parameter (typically 10-20) to control contour smoothness. More bins = more detail but can be cluttered
+
+3.  **Always show the data** - Overlay actual points with `geom_point()` to show data density and identify outliers
+
+4.  **Use appropriate color palettes** - Viridis palettes are perceptually uniform and colorblind-friendly. Consider `option = "magma"`, `"plasma"`, or `"viridis"`
+
+5.  **Add white contour lines** - When using filled densities, overlay thin white contour lines for clear boundary definition
+
+6.  **Consider hexbin alternatives** - For very large datasets (\>10,000 points), `geom_hex()` may perform better than density estimation
+
+7.  **Annotate key statistics** - Include correlation coefficients, sample sizes, or cluster information directly on the plot
+
+8.  **Use statistical overlays** - Add `stat_ellipse()` for confidence regions or linear models with `geom_smooth()` to show trends
+
+9.  **Mind the bandwidth** - Adjust smoothing with `h` parameter in `geom_density_2d()` if default produces too much or too little smoothing
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 8, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other bivariate visualizations:
+
+-   **Hexbin plots** (`geom_hex()`) for very large datasets
+-   **Scatter plots with marginal densities** using `ggMarginal()` from ggExtra
+-   **3D density plots** for three continuous variables
+-   **Contour plots** with specific levels using `geom_contour()`
+
+::: {.highlight-box .info}
+**Want to create hexbin plots for large data?**
+
+For datasets with many thousands of points, hexagonal binning is more efficient:
+
+``` r
+library(hexbin)
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_hex(bins = 30) +
+  scale_fill_viridis_c(option = "plasma",
+                       name = "Count",
+                       trans = "log10") +
+  labs(title = "Diamond Carat vs Price (Hexbin)",
+       x = "Carat Weight",
+       y = "Price (USD)") +
+  theme_minimal()
+```
+
+This creates hexagonal bins showing counts in log scale, ideal for 50,000+ data points.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Scatter Plot with Marginal Densities
+
+Here's a bonus approach combining 2D density with marginal distributions:
+
+```{r}
+#| label: bonus-marginal
+#| fig-width: 9
+#| fig-height: 7
+#| eval: false
+
+library(ggExtra)
+
+p <- ggplot(data_faithful, aes(x = eruption_time, y = waiting_time)) +
+  geom_density_2d_filled(alpha = 0.6) +
+  geom_point(alpha = 0.3, size = 1.5) +
+  scale_fill_viridis_d(option = "plasma") +
+  labs(title = "Old Faithful with Marginal Densities",
+       x = "Eruption Duration (minutes)",
+       y = "Waiting Time (minutes)") +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+# Add marginal density plots
+ggMarginal(p, type = "density", fill = "skyblue", alpha = 0.5)
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [2D Kernel Density Estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

@@ -1,0 +1,398 @@
+---
+title: "Sankey Diagrams with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic Sankey diagram into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated Sankey diagrams using `ggplot2` and the `ggsankey` package. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Sankey diagrams are excellent for visualizing flows between categories, showing how quantities split, merge, and transition through different stages or groups.
+
+We'll create a fictional dataset representing student enrollment flows through different college majors and their career outcomes.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(ggsankey)   # For Sankey diagram functionality
+library(scales)     # For formatting axes and labels
+
+# Create sample data: student flow from major to career
+data_flow <- tibble(
+  student_id = 1:300,
+  major = sample(c("Engineering", "Business", "Liberal Arts"), 300, 
+                 replace = TRUE, prob = c(0.3, 0.4, 0.3)),
+  year = "2020"
+) %>%
+  # Add career outcomes based on major with some realistic patterns
+  mutate(
+    career = case_when(
+      major == "Engineering" ~ sample(c("Tech", "Consulting", "Other"), 
+                                     n(), replace = TRUE, 
+                                     prob = c(0.6, 0.3, 0.1)),
+      major == "Business" ~ sample(c("Finance", "Consulting", "Tech", "Other"), 
+                                  n(), replace = TRUE, 
+                                  prob = c(0.4, 0.3, 0.2, 0.1)),
+      major == "Liberal Arts" ~ sample(c("Education", "Consulting", "Other"), 
+                                      n(), replace = TRUE, 
+                                      prob = c(0.4, 0.3, 0.3))
+    )
+  )
+
+# Transform data to long format for Sankey diagram
+data_sankey <- data_flow %>%
+  make_long(major, career)
+
+# Preview the data
+head(data_sankey)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Sankey Diagram
+
+Let's start with a simple Sankey diagram showing the flow from college majors to careers.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_sankey, aes(x = x, 
+                        next_x = next_x, 
+                        node = node, 
+                        next_node = next_node,
+                        fill = factor(node))) +  # Map nodes to fill color
+  geom_sankey()                                  # Create Sankey diagram
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_sankey, aes(x = x, next_x = next_x, node = node, next_node = next_node))` - Initializes the plot with the transformed Sankey data, mapping current and next positions for flow visualization
+
+**Line 6:** `geom_sankey()` - Adds the Sankey flow ribbons showing how quantities move from majors (left) to careers (right)
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic Sankey diagram. The flows are visible but the chart lacks proper labels, context, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding node labels, better colors, flow transparency, and applying a clean theme.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Node labels** showing category names
+-   **Custom color palette** for better distinction
+-   **Flow transparency** to show overlapping patterns
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Smooth flow curves** for better aesthetics
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(data_sankey, aes(x = x, 
+                        next_x = next_x, 
+                        node = node, 
+                        next_node = next_node,
+                        fill = factor(node),
+                        label = node)) +
+  geom_sankey(flow.alpha = 0.5,                  # Semi-transparent flows
+              node.color = "gray30",              # Node border color
+              smooth = 8) +                       # Smoothness of curves
+  geom_sankey_label(size = 3.5,                  # Add labels to nodes
+                    color = "white",
+                    fill = "gray20") +
+  scale_fill_viridis_d(option = "plasma") +      # Apply color palette
+  labs(
+    title = "Student Flow from College Major to Career",
+    subtitle = "Tracking 300 graduates from enrollment to first job",
+    x = NULL,
+    y = "Number of Students"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "none",                    # Remove legend (labels on nodes)
+    axis.text.x = element_blank(),               # Remove x-axis text
+    panel.grid = element_blank()                 # Remove grid lines
+  )
+```
+
+### Code Explanation
+
+**Lines 1-6:** `aes()` includes `label = node` to enable text labels on the nodes
+
+**Lines 7-9:** `geom_sankey()` with `flow.alpha = 0.5` for semi-transparent flows, `node.color` for border definition, and `smooth = 8` for curved flow ribbons
+
+**Lines 10-12:** `geom_sankey_label()` adds text labels directly on nodes with white text on dark gray backgrounds
+
+**Line 13:** `scale_fill_viridis_d(option = "plasma")` - Applies a colorblind-friendly color palette from the viridis family
+
+**Lines 14-19:** `labs()` - Adds descriptive title, subtitle, and axis labels to provide context
+
+**Line 20:** `theme_minimal()` - Applies a clean theme with minimal visual elements
+
+**Lines 21-26:** `theme()` - Customizes theme by removing the legend (redundant with labels), x-axis text, and grid lines for a cleaner appearance
+
+::: {.highlight-box .success}
+**What we have now:** A much more readable diagram with clear labels, professional color scheme, and clean formatting. The transparent flows and smooth curves make it easier to trace individual pathways.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with custom colors by category, flow annotations, enhanced typography, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color scheme** with meaningful colors for each category
+-   **Stage labels** showing "Major" and "Career" columns
+-   **Flow thickness** proportional to student counts
+-   **Enhanced node labels** with better positioning
+-   **Professional typography** with refined spacing
+-   **Data source caption** for proper attribution
+-   **Count annotations** showing total flows
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 7
+
+# Calculate flow statistics for annotations
+flow_summary <- data_sankey %>%
+  filter(!is.na(next_node)) %>%
+  group_by(node, next_node) %>%
+  summarise(n = n(), .groups = 'drop')
+
+# Define custom color palette by category
+category_colors <- c(
+  # Majors
+  "Engineering" = "#2C5F8D",      # Blue
+  "Business" = "#52A675",         # Green  
+  "Liberal Arts" = "#E76F51",     # Coral
+  # Careers
+  "Tech" = "#264653",             # Dark blue
+  "Finance" = "#2A9D8F",          # Teal
+  "Consulting" = "#E9C46A",       # Gold
+  "Education" = "#F4A261",        # Orange
+  "Other" = "#9E9E9E"             # Gray
+)
+
+ggplot(data_sankey, aes(x = x, 
+                        next_x = next_x, 
+                        node = node, 
+                        next_node = next_node,
+                        fill = factor(node),
+                        label = node)) +
+  # Sankey flow layer
+  geom_sankey(flow.alpha = 0.6,
+              node.color = "gray20",
+              smooth = 10,
+              width = 0.1) +                     # Thinner nodes for more space
+  # Node labels with custom styling
+  geom_sankey_label(size = 4,
+                    color = "white",
+                    fill = "gray20",
+                    fontface = "bold") +
+  # Apply custom color palette
+  scale_fill_manual(values = category_colors) +
+  # Format axes
+  scale_x_discrete(labels = c("College Major", "Career Path"),
+                   expand = expansion(mult = c(0.1, 0.1))) +
+  # Add comprehensive labels
+  labs(
+    title = "Career Outcomes Vary Significantly by College Major",
+    subtitle = "Engineering students gravitate toward tech roles, while business majors disperse across multiple sectors",
+    x = NULL,
+    y = NULL,
+    caption = "Data source: Fictional dataset of 300 graduates (Class of 2020) | Visualization: Your Name"
+  ) +
+  # Add stage annotations
+  annotate("text", x = 1, y = -20, 
+           label = "STARTING MAJOR", 
+           size = 4, fontface = "bold", 
+           color = "gray30") +
+  annotate("text", x = 2, y = -20, 
+           label = "CAREER FIELD", 
+           size = 4, fontface = "bold", 
+           color = "gray30") +
+  theme_void(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              hjust = 0.5,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", 
+                                  hjust = 0.5,
+                                  margin = margin(b = 20)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0.5, 
+                                margin = margin(t = 20)),
+    
+    # Axis styling
+    axis.text.x = element_text(size = 12, face = "bold",
+                               color = "#2C3E50",
+                               margin = margin(t = 15)),
+    
+    # Legend removal
+    legend.position = "none",
+    
+    # Margins
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-5:** Calculates flow statistics between each major and career combination for potential annotations
+
+**Lines 8-21:** Defines a custom color palette where each category (major and career) gets a meaningful color that reflects its domain (blues for tech-related, greens for business, etc.)
+
+**Line 23:** `ggplot()` initializes the plot with all necessary aesthetics for Sankey diagrams
+
+**Lines 28-31:** `geom_sankey()` creates the flow ribbons with increased transparency, darker node borders, higher smoothness, and narrower node width for better spacing
+
+**Lines 33-36:** `geom_sankey_label()` adds bold white text labels on dark backgrounds directly on each node
+
+**Line 38:** `scale_fill_manual()` applies our custom color palette to the nodes
+
+**Lines 40-41:** `scale_x_discrete()` adds custom labels for the two stages ("College Major" and "Career Path") with proper spacing
+
+**Lines 43-49:** `labs()` adds comprehensive labels including an informative title that tells the story, a subtitle with specific insights, and detailed caption with attribution
+
+**Lines 51-59:** `annotate()` adds stage labels at the bottom of each column for additional context
+
+**Line 60:** `theme_void()` starts with a completely blank canvas (appropriate for flow diagrams)
+
+**Lines 61-81:** Comprehensive theme customization including: - Centered and styled title/subtitle for visual hierarchy - Custom axis text showing stage names - Legend removal (redundant with node labels) - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready Sankey diagram that clearly communicates the flow from majors to careers. The custom color scheme, clear labels, and professional formatting make this suitable for academic papers, reports, or presentations. The visualization tells a clear story about career trajectories for different majors.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no labels, unclear) | Good (labeled nodes, clean) | Excellent (all + stage labels + annotations) |
+| **Context** | None | Title & subtitle added | Full context with insights in subtitle |
+| **Visual Appeal** | Default colors, cluttered | Viridis palette + clean theme | Custom meaningful colors + polished |
+| **Labels** | None | Node labels only | Node + stage labels + annotations |
+| **Flow Clarity** | Opaque flows | Semi-transparent | Optimized transparency + smoothness |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Sankey Diagrams:**
+
+1.  **Prepare data properly** - Use `ggsankey::make_long()` to transform your data from wide to the long format required for Sankey diagrams
+
+2.  **Control flow transparency** - Use `flow.alpha` between 0.4-0.7 to show overlapping flows without obscuring the visualization
+
+3.  **Smooth your curves** - Adjust the `smooth` parameter (typically 8-12) to create aesthetically pleasing flow ribbons
+
+4.  **Label your nodes** - Always use `geom_sankey_label()` to add text directly on nodes rather than relying on legends
+
+5.  **Choose colors meaningfully** - Assign colors that match the semantic meaning of categories (e.g., blue for tech, green for environment)
+
+6.  **Mind the node width** - Adjust `width` parameter (default 0.1) to balance node visibility with flow space
+
+7.  **Remove unnecessary elements** - Sankey diagrams work best with `theme_void()` or minimal themes; avoid grid lines
+
+8.  **Add stage labels** - Use `annotate()` or `scale_x_discrete()` to label what each column represents
+
+9.  **Consider flow direction** - For time-based flows, ensure progression moves left-to-right (natural reading direction)
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 12, height = 7, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other flow visualizations:
+
+-   **Alluvial diagrams** for multi-stage flows with more than two time points
+-   **Chord diagrams** for circular flow relationships
+-   **Network graphs** for complex interconnected flows
+-   **Stream graphs** for time-series flow data
+
+::: {.highlight-box .info}
+**Want to create multi-stage Sankey diagrams?**
+
+You can extend the flow to show multiple transitions:
+
+``` r
+# Create data with three stages
+data_multi <- tibble(
+  student_id = 1:200,
+  major = sample(c("STEM", "Arts", "Business"), 200, replace = TRUE),
+  internship = sample(c("Tech", "Finance", "Nonprofit"), 200, replace = TRUE),
+  career = sample(c("Tech", "Finance", "Education", "Other"), 200, replace = TRUE)
+)
+
+# Transform to long format
+data_sankey_multi <- data_multi %>%
+  make_long(major, internship, career)
+
+# Plot with three stages
+ggplot(data_sankey_multi, 
+       aes(x = x, next_x = next_x, 
+           node = node, next_node = next_node,
+           fill = factor(node), label = node)) +
+  geom_sankey(flow.alpha = 0.5, smooth = 10) +
+  geom_sankey_label(size = 3.5, color = "white") +
+  theme_void()
+```
+
+This creates a three-stage flow showing transitions through major → internship → career.
+:::
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggsankey Package Documentation](https://github.com/davidsjoberg/ggsankey)
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

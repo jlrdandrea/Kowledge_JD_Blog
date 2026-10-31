@@ -1,0 +1,374 @@
+---
+title: "Ridgeline Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic ridgeline plot into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated ridgeline plots (also called joyplots) using `ggplot2` and the `ggridges` package. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Ridgeline plots are excellent for visualizing distributions across many categories, showing how patterns change over groups while maintaining compact vertical space.
+
+We'll use the built-in `diamonds` dataset from ggplot2, examining how diamond prices vary across different clarity grades.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(ggridges)   # For ridgeline plot functionality
+library(scales)     # For formatting axes and labels
+
+# Prepare the data: focus on standard clarity grades
+data_diamonds <- diamonds %>% slice_sample(prop=0.2)%>%
+  filter(clarity %in% c("I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF")) %>%
+  mutate(
+    clarity = factor(clarity, 
+                    levels = c("I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF"),
+                    ordered = TRUE)
+  ) %>%
+  filter(price <= 15000)  # Remove extreme outliers for better visualization
+
+# Preview the data
+head(data_diamonds)
+table(data_diamonds$clarity)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Ridgeline Plot
+
+Let's start with a simple ridgeline plot showing price distributions across clarity grades.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data_diamonds, aes(x = price, y = clarity)) +  # Set up the plot with x and y variables
+  geom_density_ridges()                                # Create ridgeline plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_diamonds, aes(x = price, y = clarity))` - Initializes the plot with diamond data, mapping price to the x-axis and clarity grades to the y-axis
+
+**Line 2:** `geom_density_ridges()` - Adds overlapping density curves for each clarity grade, creating the characteristic ridgeline appearance
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic ridgeline plot. The distribution shapes are visible but the chart lacks color, context, and visual refinement. The overlapping densities show how price distributions vary by clarity.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding gradient fills, adjusting overlap, adding quantile lines, and applying a clean theme with better labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Gradient fill colors** based on density height
+-   **Quantile lines** showing median and quartiles
+-   **Optimized overlap** for better visual separation
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Formatted x-axis** showing currency
+-   **Scale parameter** for better height proportions
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data_diamonds, aes(x = price, y = clarity, fill = after_stat(x))) +
+  geom_density_ridges_gradient(
+    scale = 3,                                       # Height scaling factor
+    rel_min_height = 0.01,                          # Trim very small tails
+    quantile_lines = TRUE,                          # Add quantile lines
+    quantiles = 2                                    # Show median
+  ) +
+  scale_fill_viridis_c(name = "Price", 
+                       option = "plasma",
+                       labels = dollar_format()) +   # Color gradient
+  scale_x_continuous(labels = dollar_format(),
+                     breaks = seq(0, 15000, by = 3000)) +
+  labs(
+    title = "Diamond Price Distribution by Clarity Grade",
+    subtitle = "Higher clarity grades (IF, VVS) show more concentrated distributions",
+    x = "Price (USD)",
+    y = "Clarity Grade"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "right"
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(x = price, y = clarity, fill = after_stat(x))` - Maps price to x-axis, clarity to y-axis, and uses price values to create a gradient fill color
+
+**Lines 2-6:** `geom_density_ridges_gradient()` with `scale = 3` for pronounced height (more overlap), `rel_min_height` to trim tiny tails, and `quantile_lines = TRUE` with `quantiles = 2` to show median lines
+
+**Lines 7-9:** `scale_fill_viridis_c()` applies a continuous color gradient from the viridis palette (plasma option) with dollar formatting in the legend
+
+**Lines 10-11:** `scale_x_continuous()` formats x-axis values as currency with regular breaks
+
+**Lines 12-17:** `labs()` adds descriptive title with insight, subtitle providing context, and clear axis labels
+
+**Line 18:** `theme_minimal()` applies a clean theme
+
+**Lines 19-22:** `theme()` customizes title formatting and positions legend on the right
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with beautiful gradient colors, median reference lines, and optimized spacing. The color gradient adds an extra dimension showing price values, while the clean formatting makes it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with custom colors by category, statistical annotations, jittered points, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color palette** for each clarity grade
+-   **Jittered data points** showing individual observations (sampled)
+-   **Multiple quantile lines** (Q1, median, Q3)
+-   **Sample size annotations** for each clarity grade
+-   **Enhanced typography** with refined spacing
+-   **Mean markers** on each distribution
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 8
+
+# Calculate summary statistics for annotations
+clarity_summary <- data_diamonds %>%
+  group_by(clarity) %>%
+  summarise(
+    n = n(),
+    median_price = median(price),
+    mean_price = mean(price),
+    q25 = quantile(price, 0.25),
+    q75 = quantile(price, 0.75),
+    .groups = 'drop'
+  )
+
+# Sample data for point overlay
+set.seed(123)
+data_sample <- data_diamonds %>%
+  group_by(clarity) %>%
+  slice_sample(prop = 0.005) %>%  # Sample 0.5% of points
+  ungroup()
+
+# Define custom color palette
+clarity_colors <- c(
+  "I1" = "#D55E00",      # Orange-red for lowest clarity
+  "SI2" = "#E69F00",     # Orange
+  "SI1" = "#F0E442",     # Yellow
+  "VS2" = "#009E73",     # Green
+  "VS1" = "#56B4E9",     # Light blue
+  "VVS2" = "#0072B2",    # Blue
+  "VVS1" = "#CC79A7",    # Purple
+  "IF" = "#8B4789"       # Dark purple for highest clarity
+)
+
+ggplot(data_diamonds, aes(x = price, y = clarity, fill = clarity)) +
+  # Main ridgeline layer with quantiles
+  geom_density_ridges(
+    scale = 2.5,
+    alpha = 0.7,
+    rel_min_height = 0.01,
+    quantile_lines = TRUE,
+    quantiles = c(0.25, 0.5, 0.75),  # Q1, median, Q3
+    color = "white",
+    linewidth = 0.6,
+    jittered_points = TRUE,
+    position = position_points_jitter(width = 0.05, height = 0),
+    point_shape = '|',
+    point_size = 1.5,
+    point_alpha = 0.3,
+    point_color = "gray30"
+  ) +
+  # Add mean markers
+  geom_point(data = clarity_summary,
+             aes(x = mean_price, y = as.numeric(clarity)),
+             inherit.aes = FALSE,
+             shape = 23,
+             size = 3,
+             fill = "white",
+             color = "gray20",
+             stroke = 1) +
+  # Apply custom colors
+  scale_fill_manual(values = clarity_colors,
+                    name = "Clarity Grade") +
+  # Format x-axis
+  scale_x_continuous(labels = dollar_format(),
+                     breaks = seq(0, 15000, by = 2500),
+                     expand = expansion(mult = c(0.01, 0.02))) +
+  # Add comprehensive labels
+  labs(
+    title = "Diamond Prices Show Clear Patterns Across Clarity Grades",
+    subtitle = "Higher clarity grades (IF, VVS) command premium prices with tighter distributions\nVertical lines show Q1, median, and Q3 | White diamonds indicate mean values",
+    x = "Price (USD)",
+    y = "Clarity Grade (Lowest → Highest)",
+    caption = "Data source: ggplot2 diamonds dataset (53,940 diamonds, filtered to ≤$15,000) | Points show 0.5% sample | Visualization: Your Name"
+  ) +
+  # Add sample size annotations
+  geom_text(data = clarity_summary,
+            aes(x = 14500, 
+                y = as.numeric(clarity),
+                label = paste0("n = ", format(n, big.mark = ","))),
+            inherit.aes = FALSE,
+            size = 3,
+            hjust = 1,
+            fontface = "italic",
+            color = "gray30") +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold", 
+                              margin = margin(t = 10, r = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    axis.text.y = element_text(face = "bold"),
+    
+    # Legend styling
+    legend.position = "none",  # Remove legend (y-axis labels sufficient)
+    
+    # Grid and panel styling
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#E9ECEF", linewidth = 0.4),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-12:** Calculates comprehensive summary statistics including count, median, mean, and quartiles for each clarity grade
+
+**Lines 15-20:** Samples 0.5% of data points from each clarity grade for overlay without overplotting
+
+**Lines 23-33:** Defines a custom color palette that progresses from warm (low clarity) to cool/purple (high clarity) colors
+
+**Line 35:** `ggplot()` initializes the plot with clarity mapped to fill color
+
+**Lines 37-51:** `geom_density_ridges()` with comprehensive parameters: - `scale = 2.5` for height scaling - `quantile_lines = TRUE` with three quantiles (Q1, median, Q3) - `jittered_points = TRUE` to show individual sampled observations as small vertical lines - Custom styling for lines and points
+
+**Lines 53-60:** `geom_point()` adds white diamond markers at mean values for each clarity grade
+
+**Lines 62-63:** `scale_fill_manual()` applies custom color palette
+
+**Lines 65-67:** `scale_x_continuous()` formats x-axis as currency with appropriate breaks
+
+**Lines 69-75:** `labs()` adds comprehensive labels including an informative title that tells the story, multi-line subtitle with interpretation guidance, and detailed caption with attribution
+
+**Lines 77-84:** `geom_text()` adds sample size annotations on the right side of each ridge
+
+**Lines 85-113:** Comprehensive theme customization including: - Enhanced typography with specific sizes, weights, and colors for hierarchy - Multi-line subtitle with adjusted line height - Bold y-axis text for clarity grades - Grid customization keeping only vertical gridlines - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready ridgeline plot that clearly communicates how diamond prices vary across clarity grades. The combination of density ridges, quantile lines, jittered points, mean markers, and sample size annotations creates a comprehensive and accessible visualization suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no color, minimal info) | Good (gradient, median lines) | Excellent (all + quartiles + points + means) |
+| **Context** | None | Title & subtitle added | Full context with sample sizes & interpretation |
+| **Visual Appeal** | Plain gray ridges | Gradient colors | Custom palette + multi-layered |
+| **Data Layers** | Density only | Density + median | Density + quantiles + points + means |
+| **Statistical Info** | Distribution shape only | Added median | Comprehensive (Q1, median, Q3, mean, n) |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Ridgeline Plots:**
+
+1.  **Adjust the scale parameter** - Values between 1-4 work well. Higher values create more overlap (dramatic effect), lower values create more separation (clarity)
+
+2.  **Use quantile lines strategically** - Show median only for simple comparisons, add Q1/Q3 for more detailed distribution insights
+
+3.  **Sample points for overlays** - When adding individual points with `jittered_points = TRUE`, sample 0.1-1% of large datasets to avoid overplotting
+
+4.  **Order categories meaningfully** - Arrange y-axis categories in a logical order (temporal, ordinal, or by a summary statistic like median)
+
+5.  **Choose colors purposefully** - Use gradients for continuous mappings or categorical palettes that reflect your data's structure
+
+6.  **Mind the `rel_min_height`** - Set to 0.01 to trim very small distribution tails that add clutter without information
+
+7.  **Add context annotations** - Include sample sizes, means, or other statistics directly on the plot
+
+8.  **Consider panel.spacing** - For faceted ridgeline plots, adjust spacing with `theme(panel.spacing = unit(0.1, "lines"))`
+
+9.  **Handle long tails** - For highly skewed data, consider log-transforming the x-axis or filtering extreme values
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 8, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other multi-group visualizations:
+
+-   **Faceted density plots** for side-by-side comparisons
+-   **Violin plots** for symmetric distribution displays
+-   **Stream graphs** for time-series data with multiple categories
+-   **Small multiples** using `facet_wrap()` for additional dimensions
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggridges Package Documentation](https://wilkelab.org/ggridges/)
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

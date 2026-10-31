@@ -1,0 +1,652 @@
+---
+title: "DORA"
+description: "Digital Operational Resilience Act"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Operation
+  - Regulation
+---
+
+# Executive Summary
+
+The Digital Operational Resilience Act (DORA) establishes a harmonised European Union framework for managing digital operational resilience across the financial sector. It strengthens the ability of financial entities to withstand, respond to, and recover from ICT-related disruptions, cyber incidents, and third-party service failures.
+
+This document provides a practical template for defining the organisation’s DORA governance model, ICT risk management approach, control structure, implementation roadmap, and assurance model. It can be used to document how the organisation aligns resilience, cybersecurity, third-party risk, and regulatory compliance into a coherent operating model.
+
+# Overview
+
+## Purpose
+
+This document provides a practical template for defining, implementing, operating, and assuring compliance with DORA across the enterprise.
+
+## Objectives
+
+The main objectives of applying DORA are to:
+
+-   strengthen digital operational resilience across regulated financial services
+-   establish clear accountability for ICT risk and resilience
+-   improve prevention, detection, response, and recovery capabilities
+-   ensure consistent handling and reporting of ICT-related incidents
+-   strengthen oversight of ICT third-party dependencies and concentration risk
+-   support resilience testing and continuous improvement
+-   integrate operational resilience with enterprise governance, risk, compliance, and assurance
+
+## Scope
+
+Describe the scope of DORA applicability in the organisation.
+
+### In scope
+
+-   regulated financial entities and relevant business functions
+-   ICT services supporting critical or important functions
+-   applications, infrastructure, cloud services, and networks
+-   cyber resilience, ICT operations, and service continuity arrangements
+-   ICT third-party service providers and contractual arrangements
+-   digital operational resilience testing activities
+-   incident management and regulatory reporting processes
+
+### Out of scope
+
+Document justified exclusions, if any.
+
+## Intended Audience
+
+-   Board and executive leadership
+-   Chief Information Officer
+-   Chief Information Security Officer
+-   Chief Risk Officer
+-   Operational resilience teams
+-   Technology and operations teams
+-   Procurement and vendor management teams
+-   Legal and compliance teams
+-   Internal audit and assurance teams
+-   PMO / transformation teams
+
+# Regulatory Foundation
+
+## Background
+
+DORA provides a unified regulatory framework for digital operational resilience in the financial sector. It addresses the management of ICT risk, resilience testing, ICT incident handling and reporting, ICT third-party risk, and supervisory oversight of critical ICT third-party providers.
+
+## Regulatory Objectives
+
+Document how the organisation interprets the regulatory objectives of DORA:
+
+-   maintain resilience of ICT systems supporting business processes
+-   reduce the impact of ICT-related disruptions and cyber threats
+-   strengthen governance and accountability for ICT risk
+-   improve visibility and management of third-party dependencies
+-   increase consistency in resilience testing and incident reporting
+-   enhance financial sector-wide resilience
+
+## Core DORA Pillars
+
+Describe how the organisation addresses the main DORA domains:
+
+-   ICT risk management
+-   ICT-related incident management, classification, and reporting
+-   digital operational resilience testing
+-   ICT third-party risk management
+-   information-sharing arrangements
+
+## Applicability and Entity Context
+
+Document the specific applicability of DORA to the organisation, including:
+
+-   legal entity structure
+-   regulatory status
+-   business model
+-   group / subsidiary context
+-   jurisdictional footprint
+-   critical and important functions
+-   supervisory relationships
+
+# Governance Model
+
+## Governance Objectives
+
+Define the governance objectives for DORA compliance:
+
+-   establish board-level oversight of digital operational resilience
+-   define accountability for ICT risk and resilience decisions
+-   align resilience priorities with enterprise risk appetite and business continuity objectives
+-   embed DORA requirements into operations, architecture, procurement, and change
+-   maintain evidence of compliance and control effectiveness
+-   support continuous improvement through testing, monitoring, assurance, and remediation
+
+## Governance Structure
+
+Describe the governance bodies and their responsibilities.
+
+### Example governance bodies
+
+-   Board / Risk Committee
+-   Executive Operational Resilience Committee
+-   Technology and Security Steering Committee
+-   ICT Risk Committee
+-   Third-Party Risk Committee
+-   Architecture Review Board
+-   Incident Review Board
+-   Internal Audit
+
+## Three Lines Model
+
+Describe responsibilities across the three lines.
+
+### First line
+
+-   ownership of business services, ICT operations, and controls
+-   implementation of resilience, security, and continuity controls
+-   incident handling and service restoration
+-   evidence production and remediation execution
+
+### Second line
+
+-   ICT risk oversight
+-   resilience policy and standards
+-   compliance monitoring
+-   independent challenge
+-   regulatory coordination
+
+### Third line
+
+-   internal audit
+-   independent assurance
+-   control effectiveness review
+
+# Roles and Responsibilities
+
+## Key Roles
+
+Document the main DORA-related roles.
+
+-   Board
+-   CEO / Executive Management
+-   Chief Information Officer
+-   Chief Information Security Officer
+-   Chief Risk Officer
+-   Chief Operating Officer
+-   Operational Resilience Lead
+-   ICT Risk Manager
+-   Incident Response Lead
+-   Service Owner
+-   Infrastructure / Platform Owner
+-   Third-Party Risk Manager
+-   Procurement Lead
+-   Legal and Compliance Lead
+-   Internal Audit
+
+## RACI Matrix
+
+Use the following model and adapt it.
+
+| Activity | Board | Exec | CIO | CISO | CRO | Ops Resilience | Service Owner | Third-Party Risk | Audit |
+|----|----|----|----|----|----|----|----|----|----|
+| Approve digital operational resilience strategy | A | R | C | C | C | C | I | I | I |
+| Maintain ICT risk framework | I | A | R | R | C | C | C | I | I |
+| Classify and report major ICT incidents | I | A | R | R | C | C | C | I | I |
+| Maintain testing programme | I | A | C | C | C | R | C | I | I |
+| Manage ICT third-party risk | I | A | C | C | C | C | C | R | I |
+| Maintain register of information | I | A | C | C | C | C | I | R | I |
+| Oversee remediation actions | I | A | R | R | C | C | R | C | I |
+| Perform independent assurance | I | I | I | I | I | I | I | I | R/A |
+
+# Policy Framework
+
+## Core Policies
+
+List and describe the main DORA-related policies.
+
+-   Digital Operational Resilience Policy
+-   ICT Risk Management Policy
+-   Information Security Policy
+-   ICT Incident Management Policy
+-   Business Continuity and Disaster Recovery Policy
+-   Operational Resilience Testing Policy
+-   Third-Party Risk Management Policy
+-   Outsourcing / ICT Provider Management Policy
+-   Change and Release Management Policy
+-   Asset and Configuration Management Policy
+-   Logging and Monitoring Standard
+-   Crisis Management and Communications Policy
+
+## Standards and Procedures
+
+Document the standards, procedures, playbooks, and operational guidance supporting compliance.
+
+# Core Processes
+
+## ICT Risk Management
+
+Describe the process for managing ICT risk across the lifecycle:
+
+-   governance and accountability
+-   ICT asset identification
+-   risk assessment
+-   protection and prevention
+-   detection
+-   response
+-   recovery
+-   lessons learned
+-   continuous improvement
+
+## ICT-Related Incident Management
+
+Describe the incident lifecycle:
+
+-   event detection
+-   triage
+-   classification
+-   escalation
+-   containment
+-   eradication
+-   recovery
+-   root cause analysis
+-   lessons learned
+
+## Incident Classification and Reporting
+
+Document how the organisation handles:
+
+-   incident classification criteria
+-   major incident thresholds
+-   internal escalation
+-   competent authority notifications
+-   intermediate reporting
+-   final reporting
+-   post-incident review
+-   evidence retention
+
+## Digital Operational Resilience Testing
+
+Describe the testing model for:
+
+-   annual testing planning
+-   scenario-based testing
+-   vulnerability assessments
+-   penetration testing
+-   business continuity testing
+-   disaster recovery exercises
+-   crisis management exercises
+-   threat-led penetration testing where applicable
+-   remediation tracking
+
+## ICT Third-Party Risk Management
+
+Describe controls for:
+
+-   due diligence
+-   onboarding assessments
+-   contractual requirements
+-   criticality assessment
+-   concentration risk assessment
+-   ongoing monitoring
+-   exit planning
+-   substitution strategy
+-   assurance reviews
+
+## Register of Information
+
+Document how the organisation maintains a complete and accurate register of information for contractual arrangements with ICT third-party service providers.
+
+### Minimum content
+
+-   supplier identity
+-   service description
+-   supported business entity
+-   supported function
+-   critical or important function flag
+-   location and jurisdiction
+-   subcontracting arrangements
+-   contract dates
+-   renewal terms
+-   exit clauses
+-   resilience and security obligations
+
+## Information Sharing Arrangements
+
+Describe how the organisation governs participation in cyber threat intelligence or sectoral information-sharing arrangements, including:
+
+-   legal and compliance approval
+-   confidentiality controls
+-   participation criteria
+-   information handling requirements
+-   oversight and review
+
+# Control Framework
+
+## Control Domains
+
+Organise the DORA control environment into domains.
+
+### Example control domains
+
+-   governance and oversight
+-   ICT risk management
+-   asset and dependency management
+-   protection and prevention
+-   monitoring and detection
+-   ICT incident response
+-   resilience and recovery
+-   testing and validation
+-   ICT third-party risk
+-   concentration risk management
+-   regulatory reporting
+-   evidence and assurance
+
+## Sample Control Catalogue
+
+| Control ID | Control Name | Objective | Control Owner | Frequency | Evidence |
+|----|----|----|----|----|----|
+| DORA-01 | ICT risk framework approved | Ensure governance and accountability | CIO / CRO | Annual | Approved framework |
+| DORA-02 | Major incident process maintained | Ensure timely incident handling and escalation | CISO | Annual review | Incident procedure |
+| DORA-03 | Testing programme executed | Validate resilience capabilities | Resilience Lead | Annual / quarterly | Test reports |
+| DORA-04 | ICT third-party due diligence performed | Reduce supplier risk exposure | Third-Party Risk Manager | Onboarding / annual | Due diligence records |
+| DORA-05 | Register of information maintained | Ensure complete supplier transparency | Vendor Management Lead | Ongoing | Register of information |
+| DORA-06 | Recovery exercises completed | Validate restoration capability | Operations / Resilience Lead | Annual | Exercise evidence |
+
+# Artefacts and Evidence
+
+## Required Artefacts
+
+Document the key DORA artefacts.
+
+-   digital operational resilience strategy
+-   ICT risk management framework
+-   ICT asset inventory
+-   service dependency maps
+-   critical and important functions register
+-   ICT risk register
+-   incident management procedure
+-   major incident reporting procedure
+-   incident register
+-   testing policy and testing plan
+-   test scripts and exercise reports
+-   remediation tracker
+-   ICT third-party register
+-   register of information
+-   due diligence assessments
+-   contractual clause library
+-   exit plans
+-   business continuity plans
+-   disaster recovery plans
+-   crisis communication plans
+-   management information and dashboard packs
+-   audit reports
+
+## Evidence Model
+
+For each artefact define:
+
+-   owner
+-   purpose
+-   location
+-   frequency of update
+-   retention period
+-   assurance mechanism
+
+# Architecture and Technology Implications
+
+## Resilience by Design
+
+Describe how DORA requirements are embedded into:
+
+-   enterprise architecture
+-   solution design
+-   cloud adoption
+-   infrastructure engineering
+-   network design
+-   identity and access management
+-   observability and monitoring
+-   backup and recovery architecture
+-   high availability and failover design
+-   supplier integration patterns
+
+## Technology Landscape View
+
+Document the resilience-relevant technology landscape:
+
+-   critical business services
+-   applications and platforms
+-   infrastructure and cloud services
+-   networks and communications
+-   data stores and backup services
+-   cyber tooling
+-   service desk and operations tooling
+-   third-party technology dependencies
+
+## Dependency Mapping
+
+Include or reference:
+
+-   business service maps
+-   application dependency diagrams
+-   infrastructure dependency diagrams
+-   data flow diagrams
+-   third-party dependency maps
+-   concentration risk views
+-   recovery dependency maps
+
+# Risk Management
+
+## DORA Risk Model
+
+Describe how ICT and resilience risks are identified, assessed, treated, monitored, and escalated.
+
+## Example Risk Categories
+
+-   weak board oversight of ICT risk
+-   incomplete ICT asset visibility
+-   inadequate resilience controls
+-   insufficient monitoring and detection
+-   delayed incident escalation
+-   poor recovery capability
+-   excessive third-party concentration
+-   weak contractual control over suppliers
+-   inaccurate register of information
+-   lack of evidence of testing and remediation
+
+## Risk Register Template
+
+| Risk ID | Risk Description | Cause | Impact | Likelihood | Inherent Risk | Control Strength | Residual Risk | Owner |
+|----|----|----|----|----|----|----|----|----|
+| DR-01 | Example | Example | Example | Medium | High | Medium | Medium | Example |
+
+# Metrics and Reporting
+
+## Key Metrics
+
+Examples of DORA metrics:
+
+-   percentage of critical services with documented dependencies
+-   percentage of ICT assets covered by resilience controls
+-   number of major ICT incidents
+-   mean time to detect
+-   mean time to contain
+-   mean time to recover
+-   percentage of planned resilience tests completed
+-   percentage of severe findings remediated on time
+-   percentage of critical suppliers assessed
+-   concentration risk exposure by provider
+-   percentage completeness of register of information
+-   number of open audit or regulatory findings
+
+## Dashboard Structure
+
+Suggested dashboard views:
+
+-   executive resilience dashboard
+-   ICT risk dashboard
+-   incident and recovery dashboard
+-   testing and remediation dashboard
+-   third-party and concentration risk dashboard
+-   audit and compliance dashboard
+
+# Audit and Assurance
+
+## Assurance Model
+
+Document the assurance approach across:
+
+-   management self-assessment
+-   second-line compliance reviews
+-   control testing
+-   scenario and exercise validation
+-   internal audit
+-   supervisory review support
+
+## Testing Themes
+
+-   governance and accountability
+-   ICT risk framework effectiveness
+-   incident classification and escalation
+-   reporting timeliness and quality
+-   resilience testing coverage
+-   remediation effectiveness
+-   third-party governance
+-   register of information quality
+-   recovery readiness
+-   evidence completeness
+
+# Implementation Roadmap
+
+## Maturity Phases
+
+### Phase 1: Foundation
+
+-   establish governance and accountability
+-   define DORA policy framework
+-   identify critical and important functions
+-   establish asset and dependency baseline
+-   define incident classification and reporting model
+
+### Phase 2: Control Design
+
+-   strengthen ICT risk management controls
+-   implement resilience testing framework
+-   formalise third-party governance and register of information
+-   improve monitoring, response, and recovery controls
+
+### Phase 3: Integration
+
+-   integrate DORA with enterprise risk, architecture, and procurement
+-   improve dependency mapping and concentration risk management
+-   align service continuity, cyber resilience, and crisis management
+-   automate evidence collection and reporting workflows
+
+### Phase 4: Optimisation
+
+-   mature dashboards and management information
+-   strengthen scenario-based and threat-led exercises
+-   improve remediation governance
+-   enhance continuous monitoring and assurance
+
+## Roadmap Table
+
+| Initiative | Description | Owner   | Priority | Timeline | Dependency | Status  |
+|------------|-------------|---------|----------|----------|------------|---------|
+| Example    | Example     | Example | High     | Q1-Q2    | Example    | Planned |
+
+# Cross-Framework Integration
+
+## Relationship to Other Frameworks
+
+Describe how DORA integrates with:
+
+-   NIS2
+-   ISO/IEC 27001
+-   GDPR
+-   AI Act
+-   NIST Cybersecurity Framework
+-   COBIT
+-   ITIL
+-   TOGAF
+-   enterprise risk management
+-   business continuity and operational resilience frameworks
+
+## Example Mapping Themes
+
+| DORA Theme | Related Framework | Integration Point |
+|----|----|----|
+| ICT risk management | ISO 27001 / NIST CSF | Cybersecurity and control framework |
+| Incident reporting | NIS2 / GDPR | Regulatory notification and incident governance |
+| Third-party risk | COBIT / ISO 27001 | Supplier and outsourcing governance |
+| Resilience testing | NIST CSF / BCM | Validation of resilience capabilities |
+| Architecture resilience | TOGAF | Design authority and resilience by design |
+
+# Maturity Model
+
+## Suggested Maturity Levels
+
+### Level 1: Initial
+
+Resilience practices are reactive, fragmented, and poorly evidenced.
+
+### Level 2: Repeatable
+
+Basic ICT risk, continuity, and incident processes exist but are inconsistently applied.
+
+### Level 3: Defined
+
+Policies, roles, testing, and third-party controls are documented and implemented across key areas.
+
+### Level 4: Managed
+
+Resilience capabilities are measured, risk-based, tested, and governed through regular reporting.
+
+### Level 5: Optimised
+
+Digital operational resilience is embedded across governance, architecture, operations, and supply chain management with strong assurance and continuous improvement.
+
+## Assessment Dimensions
+
+-   governance
+-   ICT risk management
+-   incident handling and reporting
+-   resilience testing
+-   recovery capability
+-   third-party risk management
+-   concentration risk management
+-   evidence and reporting
+-   assurance
+-   improvement discipline
+
+# Practical Templates
+
+## Suggested Appendices
+
+-   Appendix A: ICT risk assessment template
+-   Appendix B: Major ICT incident classification template
+-   Appendix C: Incident reporting workflow
+-   Appendix D: Digital operational resilience testing plan
+-   Appendix E: Register of information template
+-   Appendix F: ICT third-party due diligence checklist
+-   Appendix G: DORA control catalogue
+-   Appendix H: DORA RACI matrix
+
+# Customisation Notes
+
+This template should be tailored to reflect:
+
+-   legal entity structure
+-   supervisory context
+-   financial sector segment
+-   business service model
+-   technology estate
+-   cloud and outsourcing profile
+-   critical and important functions
+-   operational resilience maturity
+-   assurance expectations
+
+# References
+
+Add authoritative references here, for example:
+
+-   Regulation (EU) 2022/2554
+-   DORA implementing and delegated acts
+-   ESA technical standards and guidance
+-   competent authority guidance
+-   internal ICT risk and resilience policies
+-   outsourcing and third-party risk standards
+-   enterprise risk framework

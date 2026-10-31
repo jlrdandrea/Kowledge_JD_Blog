@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="General Data Protection Regulation (GDPR)">
+
+<title>GDPR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">GDPR</h1>
+                  <div>
+        <div class="description">
+          General Data Protection Regulation (GDPR)
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">GDPR</div>
+                <div class="quarto-category">Regulation</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a>
+  <ul class="collapse">
+  <li><a href="#in-scope" id="toc-in-scope" class="nav-link" data-scroll-target="#in-scope">In scope</a></li>
+  <li><a href="#out-of-scope" id="toc-out-of-scope" class="nav-link" data-scroll-target="#out-of-scope">Out of scope</a></li>
+  </ul></li>
+  <li><a href="#intended-audience" id="toc-intended-audience" class="nav-link" data-scroll-target="#intended-audience">Intended Audience</a></li>
+  </ul></li>
+  <li><a href="#regulatory-foundation" id="toc-regulatory-foundation" class="nav-link" data-scroll-target="#regulatory-foundation">Regulatory Foundation</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles">Core Principles</a></li>
+  <li><a href="#legal-bases-for-processing" id="toc-legal-bases-for-processing" class="nav-link" data-scroll-target="#legal-bases-for-processing">Legal Bases for Processing</a>
+  <ul class="collapse">
+  <li><a href="#template-table" id="toc-template-table" class="nav-link" data-scroll-target="#template-table">Template table</a></li>
+  </ul></li>
+  <li><a href="#data-subject-rights" id="toc-data-subject-rights" class="nav-link" data-scroll-target="#data-subject-rights">Data Subject Rights</a></li>
+  </ul></li>
+  <li><a href="#governance-model" id="toc-governance-model" class="nav-link" data-scroll-target="#governance-model">Governance Model</a>
+  <ul class="collapse">
+  <li><a href="#governance-objectives" id="toc-governance-objectives" class="nav-link" data-scroll-target="#governance-objectives">Governance Objectives</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#example-governance-bodies" id="toc-example-governance-bodies" class="nav-link" data-scroll-target="#example-governance-bodies">Example governance bodies</a></li>
+  </ul></li>
+  <li><a href="#three-lines-model" id="toc-three-lines-model" class="nav-link" data-scroll-target="#three-lines-model">Three Lines Model</a>
+  <ul class="collapse">
+  <li><a href="#first-line" id="toc-first-line" class="nav-link" data-scroll-target="#first-line">First line</a></li>
+  <li><a href="#second-line" id="toc-second-line" class="nav-link" data-scroll-target="#second-line">Second line</a></li>
+  <li><a href="#third-line" id="toc-third-line" class="nav-link" data-scroll-target="#third-line">Third line</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities">Roles and Responsibilities</a>
+  <ul class="collapse">
+  <li><a href="#key-roles" id="toc-key-roles" class="nav-link" data-scroll-target="#key-roles">Key Roles</a></li>
+  <li><a href="#raci-matrix" id="toc-raci-matrix" class="nav-link" data-scroll-target="#raci-matrix">RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#policy-framework" id="toc-policy-framework" class="nav-link" data-scroll-target="#policy-framework">Policy Framework</a>
+  <ul class="collapse">
+  <li><a href="#core-policies" id="toc-core-policies" class="nav-link" data-scroll-target="#core-policies">Core Policies</a></li>
+  <li><a href="#standards-and-procedures" id="toc-standards-and-procedures" class="nav-link" data-scroll-target="#standards-and-procedures">Standards and Procedures</a></li>
+  </ul></li>
+  <li><a href="#core-processes" id="toc-core-processes" class="nav-link" data-scroll-target="#core-processes">Core Processes</a>
+  <ul class="collapse">
+  <li><a href="#records-of-processing-activities-ropa" id="toc-records-of-processing-activities-ropa" class="nav-link" data-scroll-target="#records-of-processing-activities-ropa">Records of Processing Activities (RoPA)</a>
+  <ul class="collapse">
+  <li><a href="#minimum-content" id="toc-minimum-content" class="nav-link" data-scroll-target="#minimum-content">Minimum content</a></li>
+  </ul></li>
+  <li><a href="#privacy-impact-assessment-dpia" id="toc-privacy-impact-assessment-dpia" class="nav-link" data-scroll-target="#privacy-impact-assessment-dpia">Privacy Impact Assessment / DPIA</a></li>
+  <li><a href="#data-subject-request-management" id="toc-data-subject-request-management" class="nav-link" data-scroll-target="#data-subject-request-management">Data Subject Request Management</a></li>
+  <li><a href="#consent-management" id="toc-consent-management" class="nav-link" data-scroll-target="#consent-management">Consent Management</a></li>
+  <li><a href="#data-retention-and-deletion" id="toc-data-retention-and-deletion" class="nav-link" data-scroll-target="#data-retention-and-deletion">Data Retention and Deletion</a></li>
+  <li><a href="#personal-data-breach-management" id="toc-personal-data-breach-management" class="nav-link" data-scroll-target="#personal-data-breach-management">Personal Data Breach Management</a></li>
+  <li><a href="#third-party-and-processor-management" id="toc-third-party-and-processor-management" class="nav-link" data-scroll-target="#third-party-and-processor-management">Third-Party and Processor Management</a></li>
+  <li><a href="#international-data-transfers" id="toc-international-data-transfers" class="nav-link" data-scroll-target="#international-data-transfers">International Data Transfers</a></li>
+  </ul></li>
+  <li><a href="#control-framework" id="toc-control-framework" class="nav-link" data-scroll-target="#control-framework">Control Framework</a>
+  <ul class="collapse">
+  <li><a href="#control-domains" id="toc-control-domains" class="nav-link" data-scroll-target="#control-domains">Control Domains</a>
+  <ul class="collapse">
+  <li><a href="#example-control-domains" id="toc-example-control-domains" class="nav-link" data-scroll-target="#example-control-domains">Example control domains</a></li>
+  </ul></li>
+  <li><a href="#sample-control-catalogue" id="toc-sample-control-catalogue" class="nav-link" data-scroll-target="#sample-control-catalogue">Sample Control Catalogue</a></li>
+  </ul></li>
+  <li><a href="#artefacts-and-evidence" id="toc-artefacts-and-evidence" class="nav-link" data-scroll-target="#artefacts-and-evidence">Artefacts and Evidence</a>
+  <ul class="collapse">
+  <li><a href="#required-artefacts" id="toc-required-artefacts" class="nav-link" data-scroll-target="#required-artefacts">Required Artefacts</a></li>
+  <li><a href="#evidence-model" id="toc-evidence-model" class="nav-link" data-scroll-target="#evidence-model">Evidence Model</a></li>
+  </ul></li>
+  <li><a href="#architecture-and-data-management-implications" id="toc-architecture-and-data-management-implications" class="nav-link" data-scroll-target="#architecture-and-data-management-implications">Architecture and Data Management Implications</a>
+  <ul class="collapse">
+  <li><a href="#privacy-by-design-and-by-default" id="toc-privacy-by-design-and-by-default" class="nav-link" data-scroll-target="#privacy-by-design-and-by-default">Privacy by Design and by Default</a></li>
+  <li><a href="#data-lifecycle-view" id="toc-data-lifecycle-view" class="nav-link" data-scroll-target="#data-lifecycle-view">Data Lifecycle View</a></li>
+  <li><a href="#data-flow-mapping" id="toc-data-flow-mapping" class="nav-link" data-scroll-target="#data-flow-mapping">Data Flow Mapping</a></li>
+  </ul></li>
+  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">Risk Management</a>
+  <ul class="collapse">
+  <li><a href="#privacy-risk-model" id="toc-privacy-risk-model" class="nav-link" data-scroll-target="#privacy-risk-model">Privacy Risk Model</a></li>
+  <li><a href="#example-risk-categories" id="toc-example-risk-categories" class="nav-link" data-scroll-target="#example-risk-categories">Example Risk Categories</a></li>
+  <li><a href="#risk-register-template" id="toc-risk-register-template" class="nav-link" data-scroll-target="#risk-register-template">Risk Register Template</a></li>
+  </ul></li>
+  <li><a href="#metrics-and-reporting" id="toc-metrics-and-reporting" class="nav-link" data-scroll-target="#metrics-and-reporting">Metrics and Reporting</a>
+  <ul class="collapse">
+  <li><a href="#key-metrics" id="toc-key-metrics" class="nav-link" data-scroll-target="#key-metrics">Key Metrics</a></li>
+  <li><a href="#dashboard-structure" id="toc-dashboard-structure" class="nav-link" data-scroll-target="#dashboard-structure">Dashboard Structure</a></li>
+  </ul></li>
+  <li><a href="#audit-and-assurance" id="toc-audit-and-assurance" class="nav-link" data-scroll-target="#audit-and-assurance">Audit and Assurance</a>
+  <ul class="collapse">
+  <li><a href="#assurance-model" id="toc-assurance-model" class="nav-link" data-scroll-target="#assurance-model">Assurance Model</a></li>
+  <li><a href="#testing-themes" id="toc-testing-themes" class="nav-link" data-scroll-target="#testing-themes">Testing Themes</a></li>
+  </ul></li>
+  <li><a href="#implementation-roadmap" id="toc-implementation-roadmap" class="nav-link" data-scroll-target="#implementation-roadmap">Implementation Roadmap</a>
+  <ul class="collapse">
+  <li><a href="#maturity-phases" id="toc-maturity-phases" class="nav-link" data-scroll-target="#maturity-phases">Maturity Phases</a>
+  <ul class="collapse">
+  <li><a href="#phase-1-foundation" id="toc-phase-1-foundation" class="nav-link" data-scroll-target="#phase-1-foundation">Phase 1: Foundation</a></li>
+  <li><a href="#phase-2-control-design" id="toc-phase-2-control-design" class="nav-link" data-scroll-target="#phase-2-control-design">Phase 2: Control Design</a></li>
+  <li><a href="#phase-3-integration" id="toc-phase-3-integration" class="nav-link" data-scroll-target="#phase-3-integration">Phase 3: Integration</a></li>
+  <li><a href="#phase-4-optimisation" id="toc-phase-4-optimisation" class="nav-link" data-scroll-target="#phase-4-optimisation">Phase 4: Optimisation</a></li>
+  </ul></li>
+  <li><a href="#roadmap-table" id="toc-roadmap-table" class="nav-link" data-scroll-target="#roadmap-table">Roadmap Table</a></li>
+  </ul></li>
+  <li><a href="#cross-framework-integration" id="toc-cross-framework-integration" class="nav-link" data-scroll-target="#cross-framework-integration">Cross-Framework Integration</a>
+  <ul class="collapse">
+  <li><a href="#relationship-to-other-frameworks" id="toc-relationship-to-other-frameworks" class="nav-link" data-scroll-target="#relationship-to-other-frameworks">Relationship to Other Frameworks</a></li>
+  <li><a href="#example-mapping-themes" id="toc-example-mapping-themes" class="nav-link" data-scroll-target="#example-mapping-themes">Example Mapping Themes</a></li>
+  </ul></li>
+  <li><a href="#maturity-model" id="toc-maturity-model" class="nav-link" data-scroll-target="#maturity-model">Maturity Model</a>
+  <ul class="collapse">
+  <li><a href="#suggested-maturity-levels" id="toc-suggested-maturity-levels" class="nav-link" data-scroll-target="#suggested-maturity-levels">Suggested Maturity Levels</a>
+  <ul class="collapse">
+  <li><a href="#level-1-initial" id="toc-level-1-initial" class="nav-link" data-scroll-target="#level-1-initial">Level 1: Initial</a></li>
+  <li><a href="#level-2-repeatable" id="toc-level-2-repeatable" class="nav-link" data-scroll-target="#level-2-repeatable">Level 2: Repeatable</a></li>
+  <li><a href="#level-3-defined" id="toc-level-3-defined" class="nav-link" data-scroll-target="#level-3-defined">Level 3: Defined</a></li>
+  <li><a href="#level-4-managed" id="toc-level-4-managed" class="nav-link" data-scroll-target="#level-4-managed">Level 4: Managed</a></li>
+  <li><a href="#level-5-optimised" id="toc-level-5-optimised" class="nav-link" data-scroll-target="#level-5-optimised">Level 5: Optimised</a></li>
+  </ul></li>
+  <li><a href="#assessment-dimensions" id="toc-assessment-dimensions" class="nav-link" data-scroll-target="#assessment-dimensions">Assessment Dimensions</a></li>
+  </ul></li>
+  <li><a href="#practical-templates" id="toc-practical-templates" class="nav-link" data-scroll-target="#practical-templates">Practical Templates</a>
+  <ul class="collapse">
+  <li><a href="#suggested-appendices" id="toc-suggested-appendices" class="nav-link" data-scroll-target="#suggested-appendices">Suggested Appendices</a></li>
+  </ul></li>
+  <li><a href="#customisation-notes" id="toc-customisation-notes" class="nav-link" data-scroll-target="#customisation-notes">Customisation Notes</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>The General Data Protection Regulation (GDPR) is a foundational privacy and data protection framework governing the processing of personal data in the European Union and the European Economic Area, with extra-territorial reach where organisations process the data of EU data subjects. This document provides a structured governance and implementation template to support compliance, assurance, and continuous improvement.</p>
+<p>This template can be used to document the organisation’s GDPR operating model, control environment, compliance roadmap, and integration with wider governance, cybersecurity, risk, and data management frameworks.</p>
+</section>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>This document provides a practical template for defining, implementing, operating, and assuring GDPR compliance across the enterprise.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>The main objectives of GDPR compliance are to:</p>
+<ul>
+<li>protect the rights and freedoms of natural persons</li>
+<li>ensure lawful, fair, and transparent processing of personal data</li>
+<li>establish accountability for personal data governance</li>
+<li>reduce legal, financial, operational, and reputational risks</li>
+<li>embed privacy by design and by default into business and technology processes</li>
+</ul>
+</section>
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
+<p>Describe the scope of GDPR applicability in the organisation.</p>
+<section id="in-scope" class="level3">
+<h3 class="anchored" data-anchor-id="in-scope">In scope</h3>
+<ul>
+<li>business units processing personal data</li>
+<li>customer, employee, supplier, and partner data</li>
+<li>systems, applications, databases, and data flows containing personal data</li>
+<li>internal and external processors</li>
+<li>cross-border data transfers</li>
+<li>digital services, websites, and platforms</li>
+</ul>
+</section>
+<section id="out-of-scope" class="level3">
+<h3 class="anchored" data-anchor-id="out-of-scope">Out of scope</h3>
+<p>Document justified exclusions, if any.</p>
+</section>
+</section>
+<section id="intended-audience" class="level2">
+<h2 class="anchored" data-anchor-id="intended-audience">Intended Audience</h2>
+<ul>
+<li>Board and executive leadership</li>
+<li>Data Protection Officer</li>
+<li>Legal and compliance teams</li>
+<li>Information security teams</li>
+<li>IT and architecture teams</li>
+<li>Data owners and process owners</li>
+<li>Internal audit and assurance teams</li>
+<li>PMO / transformation teams</li>
+</ul>
+</section>
+</section>
+<section id="regulatory-foundation" class="level1">
+<h1>Regulatory Foundation</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>GDPR establishes rules for the processing of personal data and strengthens the rights of individuals. It is built around accountability, lawful processing, risk-based controls, and enforceable rights.</p>
+</section>
+<section id="core-principles" class="level2">
+<h2 class="anchored" data-anchor-id="core-principles">Core Principles</h2>
+<p>Document how the organisation addresses the GDPR principles:</p>
+<ul>
+<li>lawfulness, fairness, and transparency</li>
+<li>purpose limitation</li>
+<li>data minimisation</li>
+<li>accuracy</li>
+<li>storage limitation</li>
+<li>integrity and confidentiality</li>
+<li>accountability</li>
+</ul>
+</section>
+<section id="legal-bases-for-processing" class="level2">
+<h2 class="anchored" data-anchor-id="legal-bases-for-processing">Legal Bases for Processing</h2>
+<p>Describe the legal bases used by the organisation, where applicable:</p>
+<ul>
+<li>consent</li>
+<li>contract</li>
+<li>legal obligation</li>
+<li>vital interests</li>
+<li>public task</li>
+<li>legitimate interests</li>
+</ul>
+<section id="template-table" class="level3">
+<h3 class="anchored" data-anchor-id="template-table">Template table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Processing Activity</th>
+<th>Purpose</th>
+<th>Data Category</th>
+<th>Legal Basis</th>
+<th>Special Category Data</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>Yes/No</td>
+<td>Example</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="data-subject-rights" class="level2">
+<h2 class="anchored" data-anchor-id="data-subject-rights">Data Subject Rights</h2>
+<p>Document how the organisation supports:</p>
+<ul>
+<li>right to be informed</li>
+<li>right of access</li>
+<li>right to rectification</li>
+<li>right to erasure</li>
+<li>right to restrict processing</li>
+<li>right to data portability</li>
+<li>right to object</li>
+<li>rights related to automated decision-making and profiling</li>
+</ul>
+</section>
+</section>
+<section id="governance-model" class="level1">
+<h1>Governance Model</h1>
+<section id="governance-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="governance-objectives">Governance Objectives</h2>
+<p>Define the governance objectives for GDPR:</p>
+<ul>
+<li>ensure executive accountability</li>
+<li>assign clear ownership for personal data</li>
+<li>integrate privacy into change, operations, procurement, and architecture</li>
+<li>maintain evidence of compliance</li>
+<li>monitor and improve control effectiveness</li>
+</ul>
+</section>
+<section id="governance-structure" class="level2">
+<h2 class="anchored" data-anchor-id="governance-structure">Governance Structure</h2>
+<p>Describe the governance bodies and their responsibilities.</p>
+<section id="example-governance-bodies" class="level3">
+<h3 class="anchored" data-anchor-id="example-governance-bodies">Example governance bodies</h3>
+<ul>
+<li>Board / Risk Committee</li>
+<li>Executive Compliance Committee</li>
+<li>Data Protection Steering Committee</li>
+<li>Information Security Forum</li>
+<li>Data Governance Council</li>
+<li>Architecture Review Board</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+</section>
+<section id="three-lines-model" class="level2">
+<h2 class="anchored" data-anchor-id="three-lines-model">Three Lines Model</h2>
+<p>Describe responsibilities across the three lines.</p>
+<section id="first-line" class="level3">
+<h3 class="anchored" data-anchor-id="first-line">First line</h3>
+<ul>
+<li>business ownership of data processing</li>
+<li>operational controls</li>
+<li>process execution</li>
+<li>evidence production</li>
+</ul>
+</section>
+<section id="second-line" class="level3">
+<h3 class="anchored" data-anchor-id="second-line">Second line</h3>
+<ul>
+<li>privacy oversight</li>
+<li>compliance monitoring</li>
+<li>policy definition</li>
+<li>risk framework</li>
+<li>advisory support</li>
+</ul>
+</section>
+<section id="third-line" class="level3">
+<h3 class="anchored" data-anchor-id="third-line">Third line</h3>
+<ul>
+<li>internal audit</li>
+<li>independent assurance</li>
+<li>effectiveness review</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="roles-and-responsibilities" class="level1">
+<h1>Roles and Responsibilities</h1>
+<section id="key-roles" class="level2">
+<h2 class="anchored" data-anchor-id="key-roles">Key Roles</h2>
+<p>Document the main GDPR roles.</p>
+<ul>
+<li>Board</li>
+<li>CEO / Executive Management</li>
+<li>Data Protection Officer</li>
+<li>Chief Information Security Officer</li>
+<li>Chief Information Officer</li>
+<li>Chief Data Officer</li>
+<li>Legal Counsel</li>
+<li>HR Lead</li>
+<li>Procurement Lead</li>
+<li>Business Process Owner</li>
+<li>System Owner</li>
+<li>Data Owner</li>
+<li>Records Manager</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+<section id="raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="raci-matrix">RACI Matrix</h2>
+<p>Use the following model and adapt it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Board</th>
+<th>Exec</th>
+<th>DPO</th>
+<th>Legal</th>
+<th>CISO</th>
+<th>CIO</th>
+<th>Business Owner</th>
+<th>Data Owner</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approve privacy policy</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Maintain records of processing</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>R</td>
+<td>R</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Conduct DPIA</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>R</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Manage data subject requests</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>R</td>
+<td>R</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Personal data breach response</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Third-party due diligence</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Compliance monitoring</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Independent assurance</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>R/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="policy-framework" class="level1">
+<h1>Policy Framework</h1>
+<section id="core-policies" class="level2">
+<h2 class="anchored" data-anchor-id="core-policies">Core Policies</h2>
+<p>List and describe the main GDPR-related policies.</p>
+<ul>
+<li>Data Protection Policy</li>
+<li>Privacy Policy</li>
+<li>Records Retention Policy</li>
+<li>Information Classification Policy</li>
+<li>Access Control Policy</li>
+<li>Incident Response Policy</li>
+<li>Third-Party Risk Management Policy</li>
+<li>Secure Development Policy</li>
+<li>Data Subject Rights Procedure</li>
+<li>Personal Data Breach Procedure</li>
+</ul>
+</section>
+<section id="standards-and-procedures" class="level2">
+<h2 class="anchored" data-anchor-id="standards-and-procedures">Standards and Procedures</h2>
+<p>Document the standards and operating procedures supporting compliance.</p>
+</section>
+</section>
+<section id="core-processes" class="level1">
+<h1>Core Processes</h1>
+<section id="records-of-processing-activities-ropa" class="level2">
+<h2 class="anchored" data-anchor-id="records-of-processing-activities-ropa">Records of Processing Activities (RoPA)</h2>
+<p>Describe how the organisation maintains a complete inventory of processing activities.</p>
+<section id="minimum-content" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-content">Minimum content</h3>
+<ul>
+<li>controller / processor details</li>
+<li>purpose of processing</li>
+<li>categories of data subjects</li>
+<li>categories of personal data</li>
+<li>recipients</li>
+<li>international transfers</li>
+<li>retention periods</li>
+<li>security measures</li>
+</ul>
+</section>
+</section>
+<section id="privacy-impact-assessment-dpia" class="level2">
+<h2 class="anchored" data-anchor-id="privacy-impact-assessment-dpia">Privacy Impact Assessment / DPIA</h2>
+<p>Describe the process for:</p>
+<ul>
+<li>identifying high-risk processing</li>
+<li>triggering a DPIA</li>
+<li>assessing necessity and proportionality</li>
+<li>identifying privacy risks</li>
+<li>defining controls and mitigations</li>
+<li>approving risk treatment</li>
+<li>consulting supervisory authorities where required</li>
+</ul>
+</section>
+<section id="data-subject-request-management" class="level2">
+<h2 class="anchored" data-anchor-id="data-subject-request-management">Data Subject Request Management</h2>
+<p>Document the lifecycle for requests:</p>
+<ul>
+<li>intake</li>
+<li>verification</li>
+<li>logging</li>
+<li>triage</li>
+<li>fulfilment</li>
+<li>exemptions review</li>
+<li>approval</li>
+<li>response</li>
+<li>evidence retention</li>
+</ul>
+</section>
+<section id="consent-management" class="level2">
+<h2 class="anchored" data-anchor-id="consent-management">Consent Management</h2>
+<p>Where consent is used, describe how the organisation manages:</p>
+<ul>
+<li>collection</li>
+<li>granularity</li>
+<li>proof of consent</li>
+<li>withdrawal</li>
+<li>preference changes</li>
+<li>renewal where applicable</li>
+</ul>
+</section>
+<section id="data-retention-and-deletion" class="level2">
+<h2 class="anchored" data-anchor-id="data-retention-and-deletion">Data Retention and Deletion</h2>
+<p>Describe how retention periods are defined and enforced.</p>
+</section>
+<section id="personal-data-breach-management" class="level2">
+<h2 class="anchored" data-anchor-id="personal-data-breach-management">Personal Data Breach Management</h2>
+<p>Document the breach workflow:</p>
+<ul>
+<li>detection</li>
+<li>triage</li>
+<li>containment</li>
+<li>assessment</li>
+<li>legal and privacy review</li>
+<li>notification decision</li>
+<li>supervisory authority notification</li>
+<li>data subject communication</li>
+<li>remediation</li>
+<li>lessons learned</li>
+</ul>
+</section>
+<section id="third-party-and-processor-management" class="level2">
+<h2 class="anchored" data-anchor-id="third-party-and-processor-management">Third-Party and Processor Management</h2>
+<p>Describe controls for:</p>
+<ul>
+<li>due diligence</li>
+<li>contract clauses</li>
+<li>data processing agreements</li>
+<li>monitoring</li>
+<li>international transfer controls</li>
+<li>assurance reviews</li>
+</ul>
+</section>
+<section id="international-data-transfers" class="level2">
+<h2 class="anchored" data-anchor-id="international-data-transfers">International Data Transfers</h2>
+<p>Document how transfers are governed, such as:</p>
+<ul>
+<li>adequacy decisions</li>
+<li>standard contractual clauses</li>
+<li>transfer risk assessments</li>
+<li>supplementary measures</li>
+</ul>
+</section>
+</section>
+<section id="control-framework" class="level1">
+<h1>Control Framework</h1>
+<section id="control-domains" class="level2">
+<h2 class="anchored" data-anchor-id="control-domains">Control Domains</h2>
+<p>Organise GDPR controls into domains.</p>
+<section id="example-control-domains" class="level3">
+<h3 class="anchored" data-anchor-id="example-control-domains">Example control domains</h3>
+<ul>
+<li>governance and accountability</li>
+<li>lawful basis management</li>
+<li>transparency and notices</li>
+<li>data subject rights</li>
+<li>data minimisation</li>
+<li>retention and disposal</li>
+<li>access control</li>
+<li>encryption and security</li>
+<li>breach management</li>
+<li>third-party governance</li>
+<li>transfer controls</li>
+<li>monitoring and assurance</li>
+</ul>
+</section>
+</section>
+<section id="sample-control-catalogue" class="level2">
+<h2 class="anchored" data-anchor-id="sample-control-catalogue">Sample Control Catalogue</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Control ID</th>
+<th>Control Name</th>
+<th>Objective</th>
+<th>Control Owner</th>
+<th>Frequency</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GDPR-01</td>
+<td>RoPA maintained</td>
+<td>Ensure processing visibility</td>
+<td>DPO</td>
+<td>Quarterly</td>
+<td>RoPA register</td>
+</tr>
+<tr class="even">
+<td>GDPR-02</td>
+<td>DPIA performed</td>
+<td>Assess high-risk processing</td>
+<td>Business Owner</td>
+<td>As needed</td>
+<td>Approved DPIA</td>
+</tr>
+<tr class="odd">
+<td>GDPR-03</td>
+<td>DSAR workflow monitored</td>
+<td>Protect data subject rights</td>
+<td>Privacy Manager</td>
+<td>Monthly</td>
+<td>DSAR log</td>
+</tr>
+<tr class="even">
+<td>GDPR-04</td>
+<td>Breach notification process</td>
+<td>Meet notification duties</td>
+<td>CISO / DPO</td>
+<td>As needed</td>
+<td>Incident records</td>
+</tr>
+<tr class="odd">
+<td>GDPR-05</td>
+<td>Processor due diligence</td>
+<td>Reduce third-party risk</td>
+<td>Procurement</td>
+<td>Annual / onboarding</td>
+<td>Due diligence file</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="artefacts-and-evidence" class="level1">
+<h1>Artefacts and Evidence</h1>
+<section id="required-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="required-artefacts">Required Artefacts</h2>
+<p>Document the key GDPR artefacts.</p>
+<ul>
+<li>privacy policy</li>
+<li>employee privacy notice</li>
+<li>customer privacy notice</li>
+<li>records of processing activities</li>
+<li>lawful basis register</li>
+<li>consent records</li>
+<li>DPIA register</li>
+<li>data transfer register</li>
+<li>retention schedule</li>
+<li>processor register</li>
+<li>data processing agreements</li>
+<li>breach register</li>
+<li>data subject request register</li>
+<li>training records</li>
+<li>monitoring reports</li>
+<li>audit reports</li>
+</ul>
+</section>
+<section id="evidence-model" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-model">Evidence Model</h2>
+<p>For each artefact define:</p>
+<ul>
+<li>owner</li>
+<li>purpose</li>
+<li>location</li>
+<li>frequency of update</li>
+<li>retention period</li>
+<li>assurance mechanism</li>
+</ul>
+</section>
+</section>
+<section id="architecture-and-data-management-implications" class="level1">
+<h1>Architecture and Data Management Implications</h1>
+<section id="privacy-by-design-and-by-default" class="level2">
+<h2 class="anchored" data-anchor-id="privacy-by-design-and-by-default">Privacy by Design and by Default</h2>
+<p>Describe how privacy requirements are embedded into:</p>
+<ul>
+<li>solution design</li>
+<li>data modelling</li>
+<li>application development</li>
+<li>procurement</li>
+<li>cloud adoption</li>
+<li>analytics and AI initiatives</li>
+<li>data sharing</li>
+<li>identity and access management</li>
+</ul>
+</section>
+<section id="data-lifecycle-view" class="level2">
+<h2 class="anchored" data-anchor-id="data-lifecycle-view">Data Lifecycle View</h2>
+<p>Document the lifecycle of personal data:</p>
+<ul>
+<li>collection</li>
+<li>storage</li>
+<li>use</li>
+<li>sharing</li>
+<li>archival</li>
+<li>deletion</li>
+</ul>
+</section>
+<section id="data-flow-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="data-flow-mapping">Data Flow Mapping</h2>
+<p>Include or reference:</p>
+<ul>
+<li>system landscape diagrams</li>
+<li>data flow diagrams</li>
+<li>processor ecosystem maps</li>
+<li>cross-border transfer maps</li>
+</ul>
+</section>
+</section>
+<section id="risk-management" class="level1">
+<h1>Risk Management</h1>
+<section id="privacy-risk-model" class="level2">
+<h2 class="anchored" data-anchor-id="privacy-risk-model">Privacy Risk Model</h2>
+<p>Describe how privacy risks are identified, assessed, treated, and monitored.</p>
+</section>
+<section id="example-risk-categories" class="level2">
+<h2 class="anchored" data-anchor-id="example-risk-categories">Example Risk Categories</h2>
+<ul>
+<li>unlawful processing</li>
+<li>excessive data collection</li>
+<li>inadequate transparency</li>
+<li>failure to fulfil data subject rights</li>
+<li>weak access controls</li>
+<li>excessive retention</li>
+<li>unauthorised disclosure</li>
+<li>processor non-compliance</li>
+<li>uncontrolled transfers</li>
+<li>poor evidence and accountability</li>
+</ul>
+</section>
+<section id="risk-register-template" class="level2">
+<h2 class="anchored" data-anchor-id="risk-register-template">Risk Register Template</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk ID</th>
+<th>Risk Description</th>
+<th>Cause</th>
+<th>Impact</th>
+<th>Likelihood</th>
+<th>Inherent Risk</th>
+<th>Control Strength</th>
+<th>Residual Risk</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PR-01</td>
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>Medium</td>
+<td>High</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Example</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metrics-and-reporting" class="level1">
+<h1>Metrics and Reporting</h1>
+<section id="key-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="key-metrics">Key Metrics</h2>
+<p>Examples of GDPR metrics:</p>
+<ul>
+<li>percentage of processing activities recorded in RoPA</li>
+<li>number of overdue DPIAs</li>
+<li>percentage of staff completing privacy training</li>
+<li>number of data subject requests received</li>
+<li>average fulfilment time for requests</li>
+<li>number of personal data breaches</li>
+<li>percentage of third parties with signed DPAs</li>
+<li>percentage of records with defined retention rules</li>
+<li>number of transfer assessments completed</li>
+<li>audit findings open vs closed</li>
+</ul>
+</section>
+<section id="dashboard-structure" class="level2">
+<h2 class="anchored" data-anchor-id="dashboard-structure">Dashboard Structure</h2>
+<p>Suggested dashboard views:</p>
+<ul>
+<li>executive dashboard</li>
+<li>compliance dashboard</li>
+<li>operational privacy dashboard</li>
+<li>incident and breach dashboard</li>
+<li>third-party privacy dashboard</li>
+</ul>
+</section>
+</section>
+<section id="audit-and-assurance" class="level1">
+<h1>Audit and Assurance</h1>
+<section id="assurance-model" class="level2">
+<h2 class="anchored" data-anchor-id="assurance-model">Assurance Model</h2>
+<p>Document the assurance approach across:</p>
+<ul>
+<li>management self-assessment</li>
+<li>second-line compliance reviews</li>
+<li>control testing</li>
+<li>internal audit</li>
+<li>external audit or certification support where relevant</li>
+</ul>
+</section>
+<section id="testing-themes" class="level2">
+<h2 class="anchored" data-anchor-id="testing-themes">Testing Themes</h2>
+<ul>
+<li>governance and accountability</li>
+<li>evidence of lawful basis</li>
+<li>privacy notice quality</li>
+<li>DSAR effectiveness</li>
+<li>DPIA completeness</li>
+<li>breach notification timeliness</li>
+<li>processor management</li>
+<li>retention enforcement</li>
+<li>transfer governance</li>
+</ul>
+</section>
+</section>
+<section id="implementation-roadmap" class="level1">
+<h1>Implementation Roadmap</h1>
+<section id="maturity-phases" class="level2">
+<h2 class="anchored" data-anchor-id="maturity-phases">Maturity Phases</h2>
+<section id="phase-1-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-1-foundation">Phase 1: Foundation</h3>
+<ul>
+<li>establish governance</li>
+<li>define policies</li>
+<li>identify roles</li>
+<li>create RoPA baseline</li>
+<li>launch awareness training</li>
+</ul>
+</section>
+<section id="phase-2-control-design" class="level3">
+<h3 class="anchored" data-anchor-id="phase-2-control-design">Phase 2: Control Design</h3>
+<ul>
+<li>implement DPIA process</li>
+<li>implement DSAR workflow</li>
+<li>define retention schedules</li>
+<li>implement breach procedures</li>
+<li>formalise processor management</li>
+</ul>
+</section>
+<section id="phase-3-integration" class="level3">
+<h3 class="anchored" data-anchor-id="phase-3-integration">Phase 3: Integration</h3>
+<ul>
+<li>embed privacy in projects and architecture</li>
+<li>integrate with risk and security processes</li>
+<li>automate evidence collection</li>
+<li>improve data discovery and mapping</li>
+</ul>
+</section>
+<section id="phase-4-optimisation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-4-optimisation">Phase 4: Optimisation</h3>
+<ul>
+<li>implement metrics and dashboards</li>
+<li>conduct deep assurance reviews</li>
+<li>strengthen automation</li>
+<li>improve continuous monitoring</li>
+</ul>
+</section>
+</section>
+<section id="roadmap-table" class="level2">
+<h2 class="anchored" data-anchor-id="roadmap-table">Roadmap Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Initiative</th>
+<th>Description</th>
+<th>Owner</th>
+<th>Priority</th>
+<th>Timeline</th>
+<th>Dependency</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>High</td>
+<td>Q1-Q2</td>
+<td>Example</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cross-framework-integration" class="level1">
+<h1>Cross-Framework Integration</h1>
+<section id="relationship-to-other-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-other-frameworks">Relationship to Other Frameworks</h2>
+<p>Describe how GDPR integrates with:</p>
+<ul>
+<li>ISO/IEC 27001</li>
+<li>NIS2</li>
+<li>DORA</li>
+<li>AI Act</li>
+<li>COBIT</li>
+<li>ITIL</li>
+<li>TOGAF</li>
+<li>enterprise risk management</li>
+<li>records management</li>
+<li>data governance</li>
+</ul>
+</section>
+<section id="example-mapping-themes" class="level2">
+<h2 class="anchored" data-anchor-id="example-mapping-themes">Example Mapping Themes</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>GDPR Theme</th>
+<th>Related Framework</th>
+<th>Integration Point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accountability</td>
+<td>COBIT</td>
+<td>Governance and management objectives</td>
+</tr>
+<tr class="even">
+<td>Security of processing</td>
+<td>ISO 27001</td>
+<td>ISMS controls</td>
+</tr>
+<tr class="odd">
+<td>Incident response</td>
+<td>NIS2 / DORA</td>
+<td>Cyber incident management</td>
+</tr>
+<tr class="even">
+<td>Privacy by design</td>
+<td>TOGAF</td>
+<td>Architecture governance</td>
+</tr>
+<tr class="odd">
+<td>AI data governance</td>
+<td>AI Act</td>
+<td>Data and model compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="maturity-model" class="level1">
+<h1>Maturity Model</h1>
+<section id="suggested-maturity-levels" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-maturity-levels">Suggested Maturity Levels</h2>
+<section id="level-1-initial" class="level3">
+<h3 class="anchored" data-anchor-id="level-1-initial">Level 1: Initial</h3>
+<p>Compliance is reactive and fragmented.</p>
+</section>
+<section id="level-2-repeatable" class="level3">
+<h3 class="anchored" data-anchor-id="level-2-repeatable">Level 2: Repeatable</h3>
+<p>Basic processes exist but are inconsistent.</p>
+</section>
+<section id="level-3-defined" class="level3">
+<h3 class="anchored" data-anchor-id="level-3-defined">Level 3: Defined</h3>
+<p>Policies, roles, and processes are documented and followed.</p>
+</section>
+<section id="level-4-managed" class="level3">
+<h3 class="anchored" data-anchor-id="level-4-managed">Level 4: Managed</h3>
+<p>Controls are measured, monitored, and regularly improved.</p>
+</section>
+<section id="level-5-optimised" class="level3">
+<h3 class="anchored" data-anchor-id="level-5-optimised">Level 5: Optimised</h3>
+<p>Privacy is embedded, automated, risk-driven, and fully integrated into enterprise governance.</p>
+</section>
+</section>
+<section id="assessment-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="assessment-dimensions">Assessment Dimensions</h2>
+<ul>
+<li>governance</li>
+<li>legal basis management</li>
+<li>transparency</li>
+<li>data subject rights</li>
+<li>breach management</li>
+<li>third-party governance</li>
+<li>retention</li>
+<li>data architecture</li>
+<li>assurance</li>
+<li>metrics</li>
+</ul>
+</section>
+</section>
+<section id="practical-templates" class="level1">
+<h1>Practical Templates</h1>
+<section id="suggested-appendices" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-appendices">Suggested Appendices</h2>
+<ul>
+<li>Appendix A: RoPA template</li>
+<li>Appendix B: DPIA template</li>
+<li>Appendix C: Data subject request register</li>
+<li>Appendix D: Breach register</li>
+<li>Appendix E: Processor due diligence checklist</li>
+<li>Appendix F: Data transfer assessment template</li>
+<li>Appendix G: GDPR control catalogue</li>
+<li>Appendix H: GDPR RACI matrix</li>
+</ul>
+</section>
+</section>
+<section id="customisation-notes" class="level1">
+<h1>Customisation Notes</h1>
+<p>This template should be tailored to reflect:</p>
+<ul>
+<li>organisational structure</li>
+<li>jurisdictions and supervisory authorities</li>
+<li>business model</li>
+<li>data categories processed</li>
+<li>outsourcing profile</li>
+<li>cloud estate</li>
+<li>sector-specific obligations</li>
+<li>assurance expectations</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Add authoritative references here, for example:</p>
+<ul>
+<li>GDPR legal text</li>
+<li>EDPB guidelines</li>
+<li>ICO guidance</li>
+<li>national supervisory authority guidance</li>
+<li>internal privacy policies</li>
+<li>enterprise risk framework</li>
+<li>security standards and control libraries</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

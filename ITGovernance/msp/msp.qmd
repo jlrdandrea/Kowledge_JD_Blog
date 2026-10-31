@@ -1,0 +1,455 @@
+---
+title: "MSP - Managing Successful Programmes"
+description: "Programme management framework used for coordinating related projects and change activities so that organisations can deliver strategic outcomes and realise benefits"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Management
+  - Project Management
+---
+
+# Overview
+
+## What is MSP
+
+MSP (Managing Successful Programmes) is a programme management framework used for coordinating related projects and change activities so that organisations can deliver strategic outcomes and realise benefits. It is designed for complex change that cannot be managed effectively through isolated projects alone.
+
+MSP sits above project management. It helps leaders shape a programme vision, organise governance, control delivery tranches, manage stakeholders, and ensure that change is embedded into business operations so expected benefits are actually achieved.
+
+## Purpose
+
+The purpose of MSP is to help organisations:
+
+-   translate strategy into coordinated transformational change;
+-   organise programmes around outcomes, capabilities, and benefits;
+-   align projects and business change activity under one governance structure;
+-   manage uncertainty, interdependencies, and stakeholder complexity;
+-   control progress through tranches and decision points;
+-   embed new ways of working into operational areas; and
+-   sustain benefits after delivery is complete.
+
+## When to Use It
+
+MSP is especially useful when change is broad, strategic, and cross-functional. Typical situations include:
+
+-   enterprise transformation programmes;
+-   digital modernisation across several business units;
+-   mergers, restructuring, or operating model redesign;
+-   large public sector reform or policy implementation;
+-   regulatory transformation requiring multiple coordinated initiatives;
+-   capability-building programmes such as ERP, CRM, cloud, cyber, or data transformation; and
+-   change portfolios where benefits realisation is as important as technical delivery.
+
+## Target Audience
+
+-   Board and sponsoring group
+-   Senior Responsible Owner (SRO)
+-   Programme Board members
+-   Programme Manager
+-   Business Change Managers
+-   PMO / Programme Office
+-   Portfolio Office
+-   Change, benefits, and transformation leaders
+-   Project managers working within programmes
+-   Enterprise architects, service owners, and operational leaders
+
+## MSP Programme Lifecycle
+
+```{mermaid}
+flowchart LR
+
+ID["Identify the Programme"]
+DES["Design the Outcomes"]
+DEL["Deliver the Capabilities"]
+REAL["Realise the Benefits"]
+CLO["Close the Programme"]
+
+ID --> DES
+DES --> DEL
+DEL --> REAL
+REAL --> CLO
+
+VG["Vision<br/>Blueprint<br/>Programme Mandate"]
+TR["Tranches<br/>Projects<br/>Business Change"]
+BEN["Benefits Profiles<br/>Benefit Reviews<br/>Outcome Measures"]
+GOV["SRO<br/>Programme Board<br/>Programme Office"]
+
+ID --> VG
+DES --> TR
+REAL --> BEN
+DEL --> GOV
+```
+
+MSP views programmes as vehicles for **transformational change**. The focus is not only on delivering outputs, but on enabling outcomes and long-term benefits through structured governance, leadership, and business adoption.
+
+------------------------------------------------------------------------
+
+# History and Evolution
+
+| Version | Year | Key Changes |
+|------------------------|------------------------|------------------------|
+| MSP 1st edition | 1999 | Initial guidance for managing large-scale change through programmes |
+| MSP 2nd edition | 2003 | More developed governance, roles, and lifecycle guidance |
+| MSP 3rd edition | 2007 | Stronger structure, principles, governance themes, and transformational flow |
+| MSP 4th edition | 2011 | Widely adopted model with principles, governance themes, and transformational flow |
+| MSP 5th edition | 2020s | Refreshed structure and modernised guidance with emphasis on agility, value, outcomes, and adaptability |
+
+MSP has evolved from a structured public-sector-oriented programme method into a broader framework for enterprise transformation. The central themes have stayed consistent: strong sponsorship, clear governance, a compelling vision, tranche-based control, stakeholder engagement, and benefits realisation.
+
+------------------------------------------------------------------------
+
+# Core Principles
+
+MSP is built around **seven principles**. These principles explain what must be true if programme management is to be effective.
+
+1.  **Lead with purpose**\
+    A programme must be anchored in a clear reason for change, with strong and visible leadership.
+
+2.  **Collaborate with purpose**\
+    Programmes rely on coordinated action across functions, suppliers, projects, and business units.
+
+3.  **Deal with ambiguity**\
+    Programmes operate in uncertainty. MSP expects leaders to manage ambiguity, emergent learning, and evolving stakeholder needs.
+
+4.  **Align with priorities**\
+    Programme decisions should stay aligned with strategic objectives and the organisation’s wider priorities.
+
+5.  **Deploy diverse skills**\
+    Successful programmes need leadership, governance, delivery, stakeholder, commercial, change, and benefits capabilities.
+
+6.  **Realise measurable benefits**\
+    A programme is justified by the value it enables, not simply by outputs delivered.
+
+7.  **Bring pace and value**\
+    Progress should be organised so that value is delivered in a controlled but practical rhythm, often through tranches.
+
+These principles keep MSP focused on enterprise change rather than on project administration alone.
+
+------------------------------------------------------------------------
+
+# Governance Structure
+
+## Governance vs Management in MSP
+
+MSP distinguishes between strategic sponsorship, programme governance, and programme management.
+
+-   **Governance** provides direction, decision authority, investment control, and assurance.
+-   **Programme management** coordinates the programme environment, plans the tranches, manages interdependencies, controls risks and issues, and supports benefit delivery.
+-   **Business leadership and operational management** ensure the organisation adopts new capabilities and changes behaviour so benefits can be realised.
+
+This distinction matters because many programmes fail not from weak projects, but from poor sponsorship, weak business ownership, or failure to embed change.
+
+## Key Roles
+
+| Role | Primary Accountability |
+|------------------------------------|------------------------------------|
+| Sponsoring Group | Provides strategic oversight, investment direction, and key decisions |
+| Senior Responsible Owner (SRO) | Owns the programme, remains accountable for success, and champions the vision |
+| Programme Board | Supports direction, governance, challenge, and coordination |
+| Programme Manager | Leads programme coordination, control, planning, reporting, and integration |
+| Business Change Manager | Ensures business readiness, adoption, transition, and benefits realisation |
+| Programme Office | Provides governance support, controls, reporting, standards, and information management |
+| Project Executive / Project Manager | Delivers project outputs aligned to programme needs |
+
+## Governance Themes
+
+MSP is commonly structured around **themes** that guide how the programme is run. A practical enterprise interpretation includes:
+
+-   organisation;
+-   design;
+-   justification;
+-   structure;
+-   knowledge;
+-   assurance;
+-   decisions; and
+-   alignment.
+
+These themes ensure that the programme is not treated as only a delivery plan, but as a governed transformation system.
+
+------------------------------------------------------------------------
+
+# Processes
+
+MSP is typically described through a **programme lifecycle** supported by key activities and control points.
+
+| Process / Activity | Purpose | Typical Outputs |
+|------------------------|------------------------|------------------------|
+| Identify the Programme | Confirm the strategic need and define the case for coordinated change | Programme mandate, outline vision, initial governance view |
+| Design the Outcomes | Define target operating model, blueprint, outcomes, and benefits logic | Blueprint, target outcomes, benefits map, stakeholder strategy |
+| Plan Progressive Delivery | Structure the programme into tranches and coordinated delivery components | Programme plan, tranche plans, dependency map |
+| Deliver the Capabilities | Coordinate projects and change activity to create required capabilities | Capability releases, project outputs, readiness plans |
+| Embed the Outcomes | Move delivered capabilities into business use and operational adoption | Transition plans, adoption actions, operating procedures |
+| Realise the Benefits | Measure, track, and sustain value over time | Benefits profiles, benefit reviews, performance reports |
+| Close the Programme | Confirm closure and transfer any remaining governance to business-as-usual | Closure report, lessons learned, outstanding benefits actions |
+
+## Tranche-Based Control
+
+One of MSP’s major strengths is **tranche-based delivery**. A tranche is a controlled segment of the programme that groups delivery and change activity into manageable stages. Each tranche provides an opportunity to:
+
+-   confirm continued business justification;
+-   review benefit progress;
+-   re-evaluate risks and dependencies;
+-   adjust priorities; and
+-   authorise the next wave of delivery.
+
+This makes MSP well suited to long-running transformation where certainty is limited and strategic direction may evolve.
+
+------------------------------------------------------------------------
+
+# Management Products and Documentation
+
+MSP uses a set of management products to define, control, and communicate the programme.
+
+## Core Management Products
+
+| Management Product | Purpose |
+|------------------------------------|------------------------------------|
+| Programme Mandate | High-level trigger for the programme |
+| Programme Brief | Initial description of scope, rationale, governance, and change context |
+| Vision Statement | Defines the desired future state and why it matters |
+| Blueprint | Describes the target operating model or future capability state |
+| Business Case | Justifies investment and expected value |
+| Benefits Management Approach | Explains how benefits will be defined, measured, owned, and reviewed |
+| Benefits Profiles | Defines each expected benefit, owner, measure, baseline, and timing |
+| Stakeholder Engagement Strategy | Organises communication, involvement, and change alignment |
+| Programme Plan | Overall roadmap across tranches |
+| Tranche Plan | Detailed plan for a specific controlled stage of the programme |
+| Risk Management Strategy / Register | Defines risk method and tracks key programme risks |
+| Issue / Dependency Log | Tracks major issues, assumptions, and interdependencies |
+| Transition Plan | Guides movement from delivery into business adoption |
+| Closure Report | Confirms completion, lessons, and any remaining actions |
+
+## Documentation Approach
+
+The strength of MSP documentation is not volume, but integration. The most important products connect strategy, governance, delivery, and adoption:
+
+-   the **vision** explains why the programme exists;
+-   the **blueprint** explains the target future state;
+-   the **business case** explains why investment is justified;
+-   the **benefits approach and profiles** explain how value will be measured;
+-   the **plans** explain how delivery will progress; and
+-   the **transition and stakeholder products** explain how change will land in the business.
+
+# RACI Matrix for Typical MSP Management Products
+
+| Document / Product | SRO | Programme Manager | Business Change Manager | Programme Office | Sponsoring Group | Project Manager |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| Programme Mandate | A | R | C | C | A | I |
+| Programme Brief | A | R | C | R | C | I |
+| Vision Statement | A | R | C | C | C | I |
+| Blueprint | A | R | C | C | C | C |
+| Business Case | A | R | C | C | C | I |
+| Benefits Management Approach | A | R | R | C | C | I |
+| Benefits Profiles | A | C | R | C | I | I |
+| Stakeholder Engagement Strategy | A | R | R | C | C | I |
+| Programme Plan | A | R | C | C | C | C |
+| Tranche Plan | A | R | C | C | C | R |
+| Risk Register | A | R | C | R | I | C |
+| Dependency Log | I | A | C | R | I | R |
+| Transition Plan | A | C | R | C | I | C |
+| Closure Report | A | R | C | C | C | I |
+
+RACI Legend
+
+-   **R** = Responsible for preparing or doing the work
+-   **A** = Accountable for approval and ownership
+-   **C** = Consulted before decisions or completion
+-   **I** = Informed of progress or outcome
+
+------------------------------------------------------------------------
+
+# Tailoring MSP
+
+MSP should be tailored to fit organisational scale, governance maturity, and change context.
+
+## Typical Tailoring Decisions
+
+-   how formal the programme board and sponsoring group should be;
+-   the level of detail in blueprint and business case documentation;
+-   whether tranches are large strategic waves or smaller incremental releases;
+-   how benefits will be measured and reported;
+-   the balance between central control and delegated delivery;
+-   how the programme office integrates with PMO, P3O, or portfolio governance;
+-   whether delivery uses PRINCE2, Agile, hybrid, or supplier-led methods; and
+-   how heavily regulated or assured the programme environment is.
+
+## What Must Not Be Lost in Tailoring
+
+MSP can be simplified, but it should not lose its essential disciplines:
+
+-   clear strategic sponsorship;
+-   explicit programme governance;
+-   a coherent blueprint or target state;
+-   business justification linked to benefits;
+-   tranche-based decision points;
+-   business change ownership; and
+-   structured transition into operations.
+
+------------------------------------------------------------------------
+
+# Integration with Other Frameworks
+
+## MSP and COBIT
+
+COBIT provides the enterprise governance layer. MSP can be used as the transformation execution model for large change initiatives authorised by COBIT governance structures. COBIT defines value, control, and oversight; MSP organises coordinated delivery of strategic change.
+
+## MSP and TOGAF
+
+TOGAF helps define the target architecture and roadmap. MSP provides the programme governance, change coordination, and benefits management to implement that architecture across the enterprise.
+
+## MSP and ITIL 4
+
+ITIL 4 supports service design, transition, operation, and value co-creation. MSP can govern major service transformation programmes, while ITIL practices support operational readiness and live service management.
+
+## MSP and PRINCE2
+
+This is one of the strongest natural pairings. MSP governs the programme, benefits, and business change. PRINCE2 manages the component projects delivering specific outputs within each tranche.
+
+## MSP and MoP / P3O
+
+MoP helps decide which programmes and projects should be prioritised across the enterprise. P3O defines the office structures and support services that can underpin MSP governance and control.
+
+------------------------------------------------------------------------
+
+# Implementation Approach
+
+## 1. Confirm the Strategic Need
+
+Define why the programme is needed, what enterprise outcomes it should enable, and who owns the case for change.
+
+## 2. Establish Sponsorship and Governance
+
+Appoint the SRO, form the governance structure, define reporting routes, and set decision authorities.
+
+## 3. Create the Vision, Blueprint, and Business Case
+
+Describe the future state, the rationale for change, expected value, and major constraints.
+
+## 4. Organise the Programme into Tranches
+
+Create an overall roadmap and break the programme into manageable tranches with clear review points.
+
+## 5. Mobilise Projects and Business Change Activity
+
+Coordinate delivery teams, transition planning, stakeholder engagement, and operational readiness.
+
+## 6. Measure Benefits and Adjust Direction
+
+Review benefit progress, learn from delivery, and refine priorities or sequencing before each new tranche.
+
+## 7. Close in a Controlled Way
+
+Formally close the programme when governance objectives are met, while ensuring remaining benefit ownership is handed over to the business.
+
+------------------------------------------------------------------------
+
+# KPIs and Management Metrics
+
+Common MSP-style indicators include:
+
+-   percentage of planned benefits realised;
+-   benefit realisation by category (financial, service, compliance, risk, customer, capability);
+-   on-time completion of tranche milestones;
+-   dependency risk exposure;
+-   stakeholder engagement or readiness score;
+-   adoption rate of new capabilities;
+-   number of unresolved cross-project issues;
+-   forecast versus actual programme cost;
+-   business case variance;
+-   transition readiness status; and
+-   post-transition performance improvement against baseline.
+
+The most important point is that MSP metrics should not be limited to delivery. A programme may deliver projects successfully yet still fail if outcomes are not adopted and benefits are not realised.
+
+------------------------------------------------------------------------
+
+# Benefits
+
+MSP offers several strengths:
+
+-   strong alignment between strategy and coordinated change;
+-   clearer sponsorship and governance for complex transformation;
+-   better handling of interdependencies across projects and business areas;
+-   greater focus on outcomes and benefits rather than outputs alone;
+-   structured control through tranches and decision points;
+-   improved stakeholder and business change management; and
+-   stronger linkage between delivery and operational adoption.
+
+------------------------------------------------------------------------
+
+# Limitations and Common Misuse
+
+MSP can be misused when organisations:
+
+-   treat it as only a large project method;
+-   create excessive documentation without real decision-making discipline;
+-   appoint an SRO in name but without authority or active sponsorship;
+-   focus on project delivery and neglect benefits realisation;
+-   ignore business change management and operational adoption;
+-   define a weak or unrealistic blueprint; or
+-   run tranches as administrative gates rather than meaningful strategic reviews.
+
+It is also important to recognise that MSP does not replace portfolio management, architecture management, service management, or project control. It works best when integrated with them.
+
+------------------------------------------------------------------------
+
+# Practical Example
+
+## Scenario: Enterprise Digital Transformation Programme
+
+A large organisation wants to modernise customer channels, replace legacy core systems, improve data quality, strengthen cybersecurity, and simplify internal operations.
+
+Running each initiative independently would create conflicts, duplicated change, and fragmented benefits. Instead, the organisation establishes an MSP programme with:
+
+-   a single strategic vision;
+-   a future-state operating blueprint;
+-   several tranches over multiple years;
+-   coordinated projects for ERP, CRM, cloud migration, cyber uplift, and data;
+-   business change managers in major departments; and
+-   benefit reviews linked to service quality, cost, resilience, and user experience.
+
+### How MSP Helps
+
+MSP gives the organisation:
+
+-   one governance structure for a complex transformation;
+-   one integrated roadmap instead of disconnected projects;
+-   explicit sponsorship and escalation routes;
+-   clearer dependency management;
+-   controlled tranche decisions;
+-   structured transition into operations; and
+-   measurable benefit tracking over time.
+
+### Combined Framework View
+
+In a mature governance model:
+
+-   **COBIT** provides governance, control, and decision rights;
+-   **TOGAF** defines the target architecture and transition roadmap;
+-   **MSP** governs the transformation programme;
+-   **PRINCE2** controls the component projects; and
+-   **ITIL 4** supports service transition and steady-state operation.
+
+------------------------------------------------------------------------
+
+# Summary
+
+MSP is a powerful framework for governing and coordinating transformational change. Its real value is not in formal programme paperwork, but in the way it links strategy, governance, delivery, transition, and benefits into one coherent management system.
+
+For organisations running large-scale transformation, MSP helps answer the key questions that projects alone cannot solve:
+
+-   Why are we changing?
+-   What future state are we aiming for?
+-   How do we coordinate many related initiatives?
+-   How do we embed change in the business?
+-   How do we know the promised value is actually being realised?
+
+------------------------------------------------------------------------
+
+# References
+
+-   AXELOS. *Managing Successful Programmes (MSP)*. AXELOS.
+-   AXELOS. *MSP Practitioner, 5th edition*. AXELOS.
+-   PeopleCert. *PRINCE2 Programme Management Framework*. PeopleCert.
+-   PeopleCert. *MSP Certifications \| Programme Management*. PeopleCert.
+-   PeopleCert. *MSP Foundation, 5th edition*. PeopleCert.

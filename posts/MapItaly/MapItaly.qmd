@@ -1,0 +1,503 @@
+---
+title: "Maps of Italy with sf and ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, sf, ggplot2, Data Visualization, Tutorial, Maps]
+description: "A step-by-step guide to evolving a basic Italy map into an advanced, publication-ready visualization"
+image: "chart-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated maps of Italy using the `sf` (simple features) package and `ggplot2`. We'll start with a basic map and progressively add elements to make it more informative and visually appealing.
+
+Maps are excellent for visualizing spatial data, showing regional patterns, and communicating geographic information effectively.
+
+We'll use spatial data from the `rnaturalearth` package and create a choropleth map showing regional statistics across Italy.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # For data manipulation
+library(sf)             # For spatial data handling
+library(rnaturalearth)  # For geographic data
+library(rnaturalearthdata) # Additional geographic data
+library(ggspatial)      # For scale bars and north arrows
+library(scales)         # For formatting
+
+# Get Italy map data at country level
+italy_country <- ne_countries(scale = "medium", country = "Italy", returnclass = "sf")
+
+# Get Italy regions (admin level 1)
+italy_regions <- ne_states(country = "Italy", returnclass = "sf")
+
+# Create sample data: GDP per capita by region (fictional)
+set.seed(42)
+regional_data <- tibble(
+  region = italy_regions$name,
+  gdp_per_capita = round(rnorm(nrow(italy_regions), mean = 32000, sd = 8000)),
+  population = round(rnorm(nrow(italy_regions), mean = 3000000, sd = 2000000))
+) %>%
+  mutate(
+    gdp_per_capita = pmax(gdp_per_capita, 20000),  # Minimum value
+    population = pmax(population, 500000)           # Minimum value
+  )
+
+# Join spatial data with statistics
+italy_map_data <- italy_regions %>%
+  left_join(regional_data, by = c("name" = "region"))
+
+# Preview the data
+head(italy_map_data)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Map of Italy
+
+Let's start with a simple map showing the outline and regions of Italy.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(italy_map_data) +
+  geom_sf()  # Draw the map
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(italy_map_data)` - Initializes the plot with our spatial data
+
+**Line 2:** `geom_sf()` - Draws the map using the simple features geometry, automatically handling the spatial coordinates
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic map of Italy. The regional boundaries are visible but the chart lacks color, labels, context, and visual refinement.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the map by adding a choropleth layer, color scale, labels, and better styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Choropleth coloring** based on GDP per capita
+-   **Color scale** with meaningful breaks
+-   **Region boundaries** with white lines
+-   **Improved projection** for better appearance
+-   **Title and legend** for context
+-   **Clean theme** removing default elements
+-   **Scale bar and north arrow** for orientation
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 7
+#| fig-height: 9
+
+ggplot(italy_map_data) +
+  # Fill regions by GDP per capita
+  geom_sf(aes(fill = gdp_per_capita), 
+          color = "white", 
+          linewidth = 0.3) +
+  # Apply color gradient
+  scale_fill_gradient(low = "#fee5d9", 
+                      high = "#a50f15",
+                      name = "GDP per Capita\n(EUR)",
+                      labels = comma_format()) +
+  labs(
+    title = "Italy: Regional Economic Performance",
+    subtitle = "GDP per capita by region (simulated data)",
+    caption = "Data source: Simulated regional statistics"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+### Code Explanation
+
+**Lines 2-4:** `geom_sf(aes(fill = gdp_per_capita))` - Creates a choropleth map with regions colored by GDP per capita, white boundaries, and thin line width
+
+**Lines 6-9:** `scale_fill_gradient()` - Applies a sequential color scale from light orange to dark red, with formatted labels
+
+**Lines 10-14:** `labs()` - Adds title, subtitle, and caption for context
+
+**Line 15:** `theme_minimal()` - Applies a clean base theme
+
+**Lines 16-21:** `theme()` - Removes grid lines and axis elements that are unnecessary for maps
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative map with regional color coding showing economic differences. The clean styling and proper legend make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with enhanced styling, city markers, annotations, inset maps, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color palette** with better breaks
+-   **Major city markers** showing key locations
+-   **City labels** for important places
+-   **Enhanced borders** with Italy outline
+-   **Regional labels** for largest regions
+-   **Statistical categories** instead of continuous scale
+-   **North arrow and scale bar** for orientation
+-   **Professional typography** and spacing
+-   **Neighboring countries** for context
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 12
+
+# Get neighboring countries for context
+neighbors <- ne_countries(scale = "medium", 
+                         country = c("France", "Switzerland", "Austria", 
+                                   "Slovenia", "Croatia"),
+                         returnclass = "sf")
+
+# Create GDP categories
+italy_map_data <- italy_map_data %>%
+  mutate(
+    gdp_category = cut(gdp_per_capita,
+                      breaks = c(0, 25000, 30000, 35000, 40000, 50000),
+                      labels = c("< 25k", "25-30k", "30-35k", "35-40k", "> 40k"),
+                      include.lowest = TRUE)
+  )
+
+# Major Italian cities (approximate coordinates)
+major_cities <- tibble(
+  city = c("Rome", "Milan", "Naples", "Turin", "Florence", "Venice", "Bologna"),
+  lon = c(12.4964, 9.1900, 14.2681, 7.6869, 11.2558, 12.3155, 11.3426),
+  lat = c(41.9028, 45.4642, 40.8518, 45.0703, 43.7696, 45.4408, 44.4949),
+  population_millions = c(2.9, 3.1, 3.1, 1.7, 1.0, 0.9, 0.4)
+) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+# Define custom color palette
+gdp_colors <- c(
+  "< 25k" = "#fee5d9",
+  "25-30k" = "#fcae91",
+  "30-35k" = "#fb6a4a",
+  "35-40k" = "#de2d26",
+  "> 40k" = "#a50f15"
+)
+
+# Create the main map
+ggplot() +
+  # Add neighboring countries (in gray)
+  geom_sf(data = neighbors, 
+          fill = "gray95", 
+          color = "gray70",
+          linewidth = 0.3) +
+  # Add Italy regions with GDP categories
+  geom_sf(data = italy_map_data,
+          aes(fill = gdp_category),
+          color = "white",
+          linewidth = 0.5) +
+  # Add Italy country outline
+  geom_sf(data = italy_country,
+          fill = NA,
+          color = "gray20",
+          linewidth = 1.2) +
+  # Add major cities
+  geom_sf(data = major_cities,
+          aes(size = population_millions),
+          shape = 21,
+          fill = "yellow",
+          color = "gray20",
+          stroke = 0.8,
+          alpha = 0.8) +
+  # Add city labels
+  geom_sf_text(data = major_cities,
+               aes(label = city),
+               size = 3,
+               fontface = "bold",
+               nudge_y = 0.3,
+               color = "gray20") +
+  # Apply custom color palette
+  scale_fill_manual(values = gdp_colors,
+                    name = "GDP per Capita (EUR)",
+                    na.value = "gray90") +
+  # Size scale for cities
+  scale_size_continuous(name = "City Population\n(millions)",
+                       range = c(2, 8),
+                       breaks = c(1, 2, 3)) +
+  # Set coordinate system
+  coord_sf(xlim = c(6.5, 18.5), 
+           ylim = c(36.5, 47.5),
+           expand = FALSE) +
+  # Add comprehensive labels
+  labs(
+    title = "Italy: Regional Economic Landscape and Major Urban Centers",
+    subtitle = "GDP per capita varies significantly from north to south | Major cities marked by population size",
+    caption = "Data source: Simulated regional statistics | Map data: Natural Earth | Visualization: Your Name"
+  ) +
+  # Add north arrow
+  annotation_north_arrow(
+    location = "tl",
+    which_north = "true",
+    pad_x = unit(0.2, "in"),
+    pad_y = unit(0.3, "in"),
+    style = north_arrow_fancy_orienteering
+  ) +
+  # Add scale bar
+  annotation_scale(
+    location = "bl",
+    width_hint = 0.25,
+    pad_x = unit(0.2, "in"),
+    pad_y = unit(0.2, "in")
+  ) +
+  theme_void(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16,
+                              hjust = 0.5,
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 10, color = "#5A6C7D",
+                                  hjust = 0.5,
+                                  lineheight = 1.3,
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D",
+                                hjust = 0.5,
+                                margin = margin(t = 15)),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    legend.background = element_rect(fill = "white", color = "gray80"),
+    legend.margin = margin(10, 10, 10, 10),
+    
+    # Panel styling
+    panel.background = element_rect(fill = "aliceblue", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-5:** Retrieves neighboring countries' boundaries using `ne_countries()` for geographic context
+
+**Lines 8-14:** Creates GDP categories using `cut()` to convert continuous values into meaningful brackets
+
+**Lines 17-25:** Creates a tibble of major Italian cities with coordinates and converts to spatial format using `st_as_sf()`
+
+**Lines 28-34:** Defines custom color palette for GDP categories, progressing from light to dark
+
+**Line 37:** `ggplot()` initializes the plot
+
+**Lines 39-42:** `geom_sf()` adds neighboring countries in light gray for context
+
+**Lines 44-47:** `geom_sf()` adds Italy regions colored by GDP category with white boundaries
+
+**Lines 49-52:** `geom_sf()` adds Italy's country outline with thick dark border
+
+**Lines 54-60:** `geom_sf()` adds major cities as circles sized by population
+
+**Lines 62-67:** `geom_sf_text()` adds city name labels above the markers
+
+**Lines 69-71:** `scale_fill_manual()` applies custom color palette
+
+**Lines 73-75:** `scale_size_continuous()` controls city marker sizes
+
+**Lines 77-79:** `coord_sf()` sets the bounding box and removes padding
+
+**Lines 81-85:** `labs()` adds comprehensive title, subtitle, and caption
+
+**Lines 87-93:** `annotation_north_arrow()` adds a decorative north arrow in top left
+
+**Lines 95-100:** `annotation_scale()` adds a scale bar in bottom left
+
+**Line 101:** `theme_void()` starts with blank canvas (appropriate for maps)
+
+**Lines 102-125:** Comprehensive theme customization including: - Centered titles and caption - Legend styling with background box - Light blue panel background (representing water) - Proper margins for professional appearance
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready map of Italy that clearly communicates regional economic patterns with major cities marked. The combination of choropleth coloring, city markers, neighboring countries for context, north arrow, and scale bar creates a comprehensive and professional visualization suitable for reports, presentations, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no data, just outlines) | Good (choropleth, legend) | Excellent (categories + cities + context) |
+| **Context** | None | Title & subtitle | Full context with neighbors & scale |
+| **Visual Appeal** | Plain outlines | Color gradient | Custom palette + city markers |
+| **Data Layers** | Borders only | Choropleth | Choropleth + cities + countries |
+| **Geographic Info** | Regions visible | GDP values | Categories, population, orientation |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better sf Maps in R:**
+
+1.  **Use appropriate projections** - Consider using `st_transform()` to convert to appropriate coordinate systems (e.g., EPSG:3857 for web maps)
+
+2.  **Choose color scales wisely** - Use sequential scales for continuous data, diverging for data with meaningful midpoint, categorical for discrete groups
+
+3.  **Add geographic context** - Include neighboring regions, bodies of water, or landmarks to help viewers orient themselves
+
+4.  **Label strategically** - Add labels for major features but avoid cluttering; use `geom_sf_text()` or `geom_sf_label()`
+
+5.  **Include scale and orientation** - Always add north arrow and scale bar for maps showing unfamiliar areas
+
+6.  **Mind the aspect ratio** - Use `coord_sf()` with appropriate xlim/ylim to avoid distortion
+
+7.  **Layer thoughtfully** - Order layers from background to foreground: context → main data → annotations → labels
+
+8.  **Use theme_void() for clean maps** - Remove axes and grid lines that are unnecessary for geographic visualization
+
+9.  **Consider accessibility** - Use colorblind-friendly palettes and ensure sufficient contrast
+
+10. **Export at high resolution** - Use `ggsave("map.png", width = 10, height = 12, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other map visualizations:
+
+-   **Point maps** showing locations of events or facilities
+-   **Flow maps** showing migration or trade patterns
+-   **Interactive maps** using `leaflet` or `mapview`
+-   **Animated maps** showing changes over time with `gganimate`
+
+::: {.highlight-box .info}
+**Want to create interactive maps?**
+
+You can make your maps interactive using `leaflet`:
+
+``` r
+library(leaflet)
+
+# Create color palette
+pal <- colorNumeric(palette = "YlOrRd", 
+                   domain = italy_map_data$gdp_per_capita)
+
+# Create interactive map
+leaflet(italy_map_data) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(
+    fillColor = ~pal(gdp_per_capita),
+    fillOpacity = 0.7,
+    color = "white",
+    weight = 1,
+    popup = ~paste0("<strong>", name, "</strong><br>",
+                   "GDP per capita: €", 
+                   format(gdp_per_capita, big.mark = ","))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~gdp_per_capita,
+    title = "GDP per Capita",
+    position = "bottomright"
+  )
+```
+
+This creates an interactive map where users can zoom, pan, and click regions for detailed information.
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: Bubble Map
+
+Here's a bonus approach showing population as proportional circles:
+
+```{r}
+#| label: bonus-bubble
+#| fig-width: 9
+#| fig-height: 11
+
+# Get region centroids for bubble placement
+italy_centroids <- italy_map_data %>%
+  st_centroid() %>%
+  cbind(st_coordinates(.))
+
+ggplot() +
+  # Base map with light fill
+  geom_sf(data = italy_map_data,
+          fill = "gray98",
+          color = "gray60",
+          linewidth = 0.3) +
+  # Add country outline
+  geom_sf(data = italy_country,
+          fill = NA,
+          color = "gray20",
+          linewidth = 1) +
+  # Add population bubbles
+  geom_point(data = italy_centroids,
+             aes(x = X, y = Y, size = population, fill = gdp_per_capita),
+             shape = 21,
+             color = "white",
+             stroke = 0.5,
+             alpha = 0.7) +
+  scale_size_continuous(name = "Population",
+                       range = c(2, 20),
+                       labels = comma_format()) +
+  scale_fill_gradient(low = "#fee5d9",
+                     high = "#a50f15",
+                     name = "GDP per Capita",
+                     labels = comma_format()) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title = "Italy: Regional Population and Economic Output",
+    subtitle = "Bubble size represents population, color shows GDP per capita"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, margin = margin(b = 10)),
+    legend.position = "right"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [sf Package Documentation](https://r-spatial.github.io/sf/)
+-   [rnaturalearth Package](https://docs.ropensci.org/rnaturalearth/)
+-   [Geocomputation with R](https://geocompr.robinlovelace.net/)
+-   [ggplot2 Maps](https://ggplot2.tidyverse.org/reference/ggsf.html)
+-   [Tidy Spatial Data](https://keen-swartz-3146c4.netlify.app/)
+
+Happy plotting! 📊🗺️

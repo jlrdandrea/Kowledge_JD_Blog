@@ -1,0 +1,716 @@
+---
+title: "Heatmaps with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-12"
+categories: [R, ggplot2, Data Visualization, Heatmap, Tutorial]
+description: "A step-by-step guide to building heatmaps from basic to advanced, perfect for visualizing patterns in matrix data"
+image: "heatmap-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+Heatmaps are powerful visualizations for displaying matrix data where values are represented as colors. They excel at revealing patterns, correlations, and clusters in large datasets. In this tutorial, we'll create increasingly sophisticated heatmaps using `ggplot2`.
+
+We'll explore correlations between vehicle characteristics and visualize temporal patterns in fuel efficiency using the `mpg` dataset.
+
+::: {.callout .info}
+**What Makes Heatmaps Powerful:**
+
+Heatmaps excel at: - Visualizing correlation matrices - Showing patterns across two categorical dimensions - Revealing clusters and groupings in data - Displaying temporal patterns (time × category) - Comparing many variables simultaneously - Identifying hot spots and cold spots in data
+:::
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # Includes ggplot2, dplyr, and other essential packages
+library(scales)         # For formatting
+library(viridis)        # For color scales
+
+# Prepare correlation data
+# Select numeric variables for correlation
+numeric_vars <- mpg %>%
+  select(displ, cyl, cty, hwy, year) %>%
+  na.omit()
+
+# Calculate correlation matrix
+cor_matrix <- cor(numeric_vars)
+
+# Convert to long format for ggplot
+cor_data <- cor_matrix %>%
+  as.data.frame() %>%
+  rownames_to_column("var1") %>%
+  pivot_longer(
+    cols = -var1,
+    names_to = "var2",
+    values_to = "correlation"
+  )
+
+# Preview the data
+head(cor_data)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Heatmap
+
+Let's start with a simple heatmap showing correlations between variables.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +
+  geom_tile()                                       # Create heatmap tiles
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(cor_data, aes(x = var1, y = var2, fill = correlation))` - Maps first variable to x-axis, second variable to y-axis, and correlation values to fill color
+
+**Line 2:** `geom_tile()` - Creates rectangular tiles colored by the correlation values
+
+::: {.highlight-box .info}
+**What we have so far:** A functional heatmap showing correlation patterns, but it uses a default color scale (blue gradient), lacks proper labeling, has no value annotations, and needs better formatting to be interpretable.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll add better colors, value labels, improved styling, and meaningful axis labels.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Diverging color scale** (red-white-blue) for positive/negative correlations
+-   **Value labels** showing exact correlation coefficients
+-   **White borders** between tiles for clarity
+-   **Better variable names** replacing technical labels
+-   **Correlation strength interpretation** in colors
+-   **Title and context** explaining the visualization
+-   **Legend improvements** with better formatting
+-   **Axis text rotation** for readability
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 9
+#| fig-height: 8
+
+# Create better variable labels
+var_labels <- c(
+  "displ" = "Engine Size",
+  "cyl" = "Cylinders",
+  "cty" = "City MPG",
+  "hwy" = "Highway MPG",
+  "year" = "Model Year"
+)
+
+# Update data with better labels
+cor_data_labeled <- cor_data %>%
+  mutate(
+    var1_label = var_labels[var1],
+    var2_label = var_labels[var2]
+  )
+
+ggplot(cor_data_labeled, aes(x = var1_label, y = var2_label, fill = correlation)) +
+  geom_tile(color = "white", linewidth = 1.5) +    # White borders between tiles
+  geom_text(
+    aes(label = round(correlation, 2)),             # Add correlation values
+    color = "black",
+    size = 4,
+    fontface = "bold"
+  ) +
+  scale_fill_gradient2(
+    low = "#E76F51",                                # Red for negative
+    mid = "white",                                  # White for zero
+    high = "#2C5F8D",                               # Blue for positive
+    midpoint = 0,
+    limits = c(-1, 1),
+    name = "Correlation\nCoefficient",
+    breaks = c(-1, -0.5, 0, 0.5, 1),
+    labels = c("-1.0\n(Strong Negative)", "-0.5", "0.0\n(No Correlation)", 
+               "0.5", "1.0\n(Strong Positive)")
+  ) +
+  labs(
+    title = "Correlation Matrix: Vehicle Characteristics",
+    subtitle = "Exploring relationships between engine specs and fuel efficiency",
+    x = NULL,
+    y = NULL,
+    caption = "Data: EPA fuel economy dataset | Values show Pearson correlation coefficients"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", hjust = 0.5, margin = margin(b = 15)),
+    plot.caption = element_text(size = 9, color = "#6C757D", hjust = 1, margin = margin(t = 10)),
+    axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
+    axis.text.y = element_text(face = "bold"),
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 9),
+    panel.grid = element_blank(),
+    axis.ticks = element_blank()
+  ) +
+  coord_fixed()                                     # Square tiles
+```
+
+### Code Explanation
+
+**Lines 2-8:** Creates a named vector mapping technical variable names to human-readable labels
+
+**Lines 10-15:** Adds new columns with readable labels for both variables
+
+**Line 17:** Maps data with readable labels to axes
+
+**Line 18:** `geom_tile()` with white borders (1.5px width) separating each cell for clarity
+
+**Lines 19-24:** `geom_text()` overlays correlation values (rounded to 2 decimals) as bold black text on each tile
+
+**Lines 25-34:** `scale_fill_gradient2()` creates a diverging color scale: - Red for negative correlations - White for zero correlation - Blue for positive correlations - Custom labels explaining correlation strength
+
+**Lines 35-40:** Comprehensive labeling explaining what the heatmap shows
+
+**Lines 41-52:** Theme customization with angled x-axis labels, bold text, no gridlines, and centered titles
+
+**Line 53:** `coord_fixed()` ensures tiles are square (equal width and height)
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative correlation heatmap with clear value labels, meaningful colors (red=negative, blue=positive), and readable variable names. The diverging color scale makes it immediately obvious which variables are positively or negatively correlated. The white borders and square tiles create a clean, professional appearance.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's create a publication-ready heatmap with clustering, dendrograms, and enhanced annotations.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Hierarchical clustering** to reorder variables
+-   **Significance indicators** showing which correlations are statistically significant
+-   **Annotated insights** highlighting key patterns
+-   **Lower triangular display** avoiding redundancy
+-   **Enhanced color scheme** with better discrimination
+-   **Correlation strength categories** in annotations
+-   **Professional typography** and spacing
+-   **Statistical context** with p-values
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 11
+#| fig-height: 10
+
+# Perform hierarchical clustering to reorder variables
+dist_matrix <- as.dist(1 - abs(cor_matrix))
+hc <- hclust(dist_matrix)
+var_order <- rownames(cor_matrix)[hc$order]
+
+# Calculate p-values for correlations
+library(Hmisc)
+cor_test <- rcorr(as.matrix(numeric_vars))
+p_values <- cor_test$P
+
+# Convert p-values to long format
+p_data <- p_values %>%
+  as.data.frame() %>%
+  rownames_to_column("var1") %>%
+  pivot_longer(
+    cols = -var1,
+    names_to = "var2",
+    values_to = "p_value"
+  )
+
+# Combine correlation and p-value data
+cor_data_full <- cor_data %>%
+  left_join(p_data, by = c("var1", "var2")) %>%
+  mutate(
+    # Reorder by clustering
+    var1 = factor(var1, levels = var_order),
+    var2 = factor(var2, levels = var_order),
+    # Add readable labels
+    var1_label = var_labels[as.character(var1)],
+    var2_label = var_labels[as.character(var2)],
+    # Determine significance
+    significant = p_value < 0.05,
+    sig_label = case_when(
+      p_value < 0.001 ~ "***",
+      p_value < 0.01 ~ "**",
+      p_value < 0.05 ~ "*",
+      TRUE ~ ""
+    ),
+    # Only show lower triangle (avoid redundancy)
+    show_tile = as.numeric(var1) >= as.numeric(var2)
+  )
+
+# Filter to lower triangle only
+cor_data_lower <- cor_data_full %>%
+  filter(show_tile)
+
+# Identify strong correlations for annotation
+strong_cor <- cor_data_lower %>%
+  filter(abs(correlation) > 0.8, var1 != var2) %>%
+  arrange(desc(abs(correlation)))
+
+ggplot(cor_data_lower, aes(x = var1_label, y = var2_label, fill = correlation)) +
+  
+  # Add tiles with borders
+  geom_tile(color = "white", linewidth = 2) +
+  
+  # Add correlation values with significance stars
+  geom_text(
+    aes(label = paste0(round(correlation, 2), "\n", sig_label)),
+    color = ifelse(abs(cor_data_lower$correlation) > 0.6, "white", "black"),
+    size = 3.5,
+    fontface = "bold",
+    lineheight = 0.9
+  ) +
+  
+  # Highlight diagonal
+  geom_tile(
+    data = cor_data_lower %>% filter(var1 == var2),
+    color = "#2C3E50",
+    linewidth = 3,
+    fill = NA
+  ) +
+  
+  # Add annotation for strongest correlation
+  annotate(
+    "segment",
+    x = which(var_order == strong_cor$var1[1]),
+    xend = which(var_order == strong_cor$var1[1]) + 0.5,
+    y = which(var_order == strong_cor$var2[1]),
+    yend = which(var_order == strong_cor$var2[1]),
+    arrow = arrow(length = unit(0.3, "cm")),
+    color = "#52A675",
+    linewidth = 1.5
+  ) +
+  
+  annotate(
+    "text",
+    x = which(var_order == strong_cor$var1[1]) + 0.6,
+    y = which(var_order == strong_cor$var2[1]),
+    label = paste0("Strongest: ", round(strong_cor$correlation[1], 3)),
+    hjust = 0,
+    size = 3.5,
+    fontface = "bold",
+    color = "#52A675"
+  ) +
+  
+  scale_fill_gradient2(
+    low = "#D32F2F",                                # Darker red
+    mid = "#FFFFFF",
+    high = "#1976D2",                               # Darker blue
+    midpoint = 0,
+    limits = c(-1, 1),
+    name = "Pearson\nCorrelation",
+    breaks = seq(-1, 1, by = 0.5),
+    labels = function(x) sprintf("%.1f", x)
+  ) +
+  
+  labs(
+    title = "Correlation Matrix with Hierarchical Clustering and Significance Testing",
+    subtitle = paste0(
+      "Variables reordered by similarity | Highway and City MPG are perfectly correlated (r = ",
+      round(strong_cor$correlation[1], 3), ", p < 0.001)\n",
+      "Engine size strongly correlates with cylinders | Significance: *** p < 0.001, ** p < 0.01, * p < 0.05"
+    ),
+    x = NULL,
+    y = NULL,
+    caption = "Data source: EPA fuel economy data | Lower triangle shown to avoid redundancy | Dark borders highlight diagonal\nVariables clustered using hierarchical clustering (1 - |correlation|) | White text indicates |r| > 0.6 | Visualization: Your Name"
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    # Title styling
+    plot.title = element_text(
+      face = "bold",
+      size = 15,
+      hjust = 0,
+      margin = margin(b = 10),
+      color = "#2C3E50",
+      lineheight = 1.2
+    ),
+    
+    # Subtitle with insights
+    plot.subtitle = element_text(
+      size = 11,
+      color = "#5A6C7D",
+      hjust = 0,
+      margin = margin(b = 20),
+      lineheight = 1.3
+    ),
+    
+    # Caption
+    plot.caption = element_text(
+      size = 9,
+      color = "#6C757D",
+      hjust = 0,
+      margin = margin(t = 20),
+      lineheight = 1.2
+    ),
+    
+    # Axis styling
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1,
+      face = "bold",
+      size = 11
+    ),
+    axis.text.y = element_text(face = "bold", size = 11),
+    
+    # Legend styling
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 11),
+    legend.text = element_text(size = 10),
+    
+    # Remove grid and ticks
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    
+    # Overall plot styling
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.margin = margin(20, 20, 20, 20)
+  ) +
+  
+  coord_fixed()                                     # Square tiles
+```
+
+### Code Explanation
+
+**Lines 2-4:** Performs hierarchical clustering on variables using `1 - |correlation|` as distance, grouping similar variables together
+
+**Lines 6-8:** Uses `Hmisc::rcorr()` to calculate p-values for all correlations, testing statistical significance
+
+**Lines 10-19:** Converts p-value matrix to long format for merging with correlation data
+
+**Lines 21-41:** Combines correlation and p-value data, then: - Reorders variables by clustering - Adds readable labels - Creates significance indicators (*, **,*** ) - Filters to show only lower triangle (avoiding redundant upper triangle)
+
+**Lines 43-45:** Filters to show only the lower triangular portion
+
+**Lines 47-50:** Identifies the strongest correlations (\|r\| \> 0.8) for annotation
+
+**Lines 54-56:** Creates tiles with thick white borders
+
+**Lines 58-65:** Adds text labels showing correlation values and significance stars; uses white text for strong correlations (\|r\| \> 0.6) for better contrast
+
+**Lines 67-72:** Highlights the diagonal with thick dark borders
+
+**Lines 74-92:** Annotates the strongest correlation with an arrow and label
+
+**Lines 94-103:** Enhanced diverging color scale with darker red and blue for better contrast
+
+**Lines 105-113:** Data-driven title and subtitle with specific findings and significance legend
+
+**Lines 115-166:** Comprehensive theme with professional typography, left-aligned text, and detailed caption
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready correlation heatmap with hierarchical clustering, statistical significance indicators, and only the lower triangle displayed (avoiding redundancy). The clustering reveals that related variables (like city and highway MPG) group together. Significance stars show which correlations are statistically reliable. The annotation highlights the strongest relationship. Perfect for research papers, technical reports, or data analysis presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's how our heatmaps evolved:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Information Density** | Low (colors only) | Medium (+ values) | High (+ significance + clustering) |
+| **Color Scale** | Generic blue | Diverging (red-white-blue) | Enhanced diverging |
+| **Redundancy** | Full matrix | Full matrix | Lower triangle only |
+| **Statistical Info** | None | Correlation values | \+ P-values + significance |
+| **Organization** | Alphabetical | Alphabetical | Hierarchically clustered |
+| **Professional Use** | Not recommended | Acceptable | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Heatmap Variations
+
+Different types of heatmaps for different data:
+
+```{r}
+#| label: variations
+#| fig-width: 14
+#| fig-height: 10
+
+library(patchwork)
+
+# 1. Calendar heatmap (temporal patterns)
+# Simulate daily data
+set.seed(42)
+calendar_data <- tibble(
+  date = seq(as.Date("2024-01-01"), as.Date("2024-12-31"), by = "day"),
+  value = rnorm(366, mean = 100, sd = 20)
+) %>%
+  mutate(
+    month = month(date, label = TRUE),
+    week = week(date),
+    wday = wday(date, label = TRUE, week_start = 1)
+  )
+
+v1 <- ggplot(calendar_data, aes(x = week, y = wday, fill = value)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  scale_fill_viridis_c(option = "plasma", name = "Value") +
+  facet_wrap(~ month, ncol = 4) +
+  labs(title = "Calendar Heatmap", subtitle = "Daily patterns across the year") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 11),
+    axis.text.x = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+
+# 2. Categorical heatmap (class vs. manufacturer)
+cat_data <- mpg %>%
+  count(class, manufacturer) %>%
+  mutate(class = str_to_title(class))
+
+v2 <- ggplot(cat_data, aes(x = manufacturer, y = class, fill = n)) +
+  geom_tile(color = "white", linewidth = 1) +
+  geom_text(aes(label = n), color = "white", fontface = "bold") +
+  scale_fill_viridis_c(option = "magma", name = "Count") +
+  labs(title = "Categorical Heatmap", subtitle = "Model count by class and manufacturer") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 11),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid = element_blank()
+  )
+
+# 3. Binned heatmap (2D density)
+v3 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_bin2d(bins = 10) +
+  scale_fill_viridis_c(option = "inferno", name = "Count") +
+  labs(title = "Binned Heatmap (2D Histogram)", subtitle = "Density of observations") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 11)
+  )
+
+# 4. Annotated heatmap with rankings
+rank_data <- mpg %>%
+  group_by(class, year) %>%
+  summarise(avg_hwy = mean(hwy), .groups = "drop") %>%
+  mutate(class = str_to_title(class))
+
+v4 <- ggplot(rank_data, aes(x = as.factor(year), y = class, fill = avg_hwy)) +
+  geom_tile(color = "white", linewidth = 1.5) +
+  geom_text(aes(label = round(avg_hwy, 1)), fontface = "bold", size = 3) +
+  scale_fill_gradient2(
+    low = "#E76F51",
+    mid = "#F4A261",
+    high = "#52A675",
+    midpoint = 25,
+    name = "Avg MPG"
+  ) +
+  labs(title = "Time Series Heatmap", subtitle = "Average highway MPG by class over time") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 11),
+    panel.grid = element_blank()
+  )
+
+(v1 | v2) / (v3 | v4) +
+  plot_annotation(
+    title = "Heatmap Variations for Different Data Types",
+    theme = theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5))
+  )
+```
+
+::: {.callout .note}
+**Variation Descriptions:**
+
+-   **Calendar Heatmap**: Shows daily patterns across months; good for time-based data
+-   **Categorical Heatmap**: Counts or values across two categorical dimensions
+-   **Binned Heatmap**: 2D histogram showing density of continuous data
+-   **Time Series Heatmap**: Shows how values change over time across categories
+:::
+
+------------------------------------------------------------------------
+
+## When to Use Heatmaps
+
+::: {.callout .info}
+**Heatmaps Work Well When:**
+
+✅ **Visualizing correlation matrices** - Perfect for showing relationships between many variables
+
+✅ **Comparing across two dimensions** - Category × category or time × category
+
+✅ **Showing patterns in large datasets** - Colors reveal trends quickly
+
+✅ **Displaying matrix data** - Any data that fits in a grid format
+
+✅ **Identifying clusters** - Similar values group together visually
+
+✅ **Time-based patterns** - Calendar heatmaps for daily/weekly/monthly trends
+
+**Avoid Heatmaps When:**
+
+❌ **Precise values matter** - Hard to distinguish similar colors accurately
+
+❌ **Too many categories** - More than 20×20 becomes cluttered
+
+❌ **Relationships aren't gridded** - Use scatter plots or networks instead
+
+❌ **Only a few data points** - Use tables or bar charts
+
+❌ **Color perception issues** - Ensure accessible color scales
+
+❌ **3+ dimensions** - Heatmaps are fundamentally 2D
+:::
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: {.callout .tip}
+**Tips for Creating Better Heatmaps:**
+
+1.  **Use diverging scales for correlations** - Red-white-blue makes positive/negative immediately obvious
+
+2.  **Add value labels** - Use `geom_text()` to show exact numbers on tiles
+
+3.  **Include white borders** - Set `color = "white"` in `geom_tile()` to separate cells
+
+4.  **Make tiles square** - Use `coord_fixed()` for equal width and height
+
+5.  **Consider clustering** - Hierarchical clustering reveals natural groupings
+
+6.  **Show only lower triangle** - For symmetric matrices, avoid redundancy
+
+7.  **Add significance indicators** - Stars (*, **,*** ) show statistical reliability
+
+8.  **Choose colors wisely**:
+
+    -   Diverging (red-white-blue) for data with meaningful zero/midpoint
+    -   Sequential (light-to-dark) for data ranging from low to high
+    -   Viridis for perceptually uniform, colorblind-friendly scales
+
+9.  **Label axes clearly** - Replace technical names with readable labels
+
+10. **Remove gridlines** - Set `panel.grid = element_blank()` for clean appearance
+
+11. **Adjust text color** - Use white text on dark tiles, black on light tiles
+
+12. **Consider ordering** - Sort by values, clusters, or meaningfully
+
+13. **Add context** - Explain what colors represent in title/caption
+
+14. **Test accessibility** - Verify colors work for colorblind viewers
+
+15. **Limit categories** - More than 15-20 per dimension becomes unreadable
+
+16. **Annotate patterns** - Highlight interesting findings with arrows/text
+
+17. **Use appropriate scales** - Match color range to data range
+
+18. **Include sample sizes** - For aggregated data, show n counts
+:::
+
+------------------------------------------------------------------------
+
+## Common Mistakes to Avoid
+
+::: {.callout .warning}
+**Heatmap Pitfalls:**
+
+1.  **Rainbow colors** - Avoid "jet" colormap; use perceptually uniform scales
+
+2.  **No value labels** - Readers can't tell 0.7 from 0.8 by color alone
+
+3.  **Wrong color scale** - Sequential vs. diverging matters
+
+4.  **Too many cells** - 50×50 grid is unreadable
+
+5.  **No clustering** - Random order hides patterns
+
+6.  **Missing zero** - Diverging scales need midpoint at meaningful zero
+
+7.  **Inconsistent scales** - Different heatmaps should use same color mapping
+
+8.  **No borders** - Tiles blend together without separation
+
+9.  **Poor aspect ratio** - Non-square tiles distort perception
+
+10. **Ignoring redundancy** - Full correlation matrix shows each value twice
+
+11. **No statistical context** - Show significance for correlations
+
+12. **Inaccessible colors** - Test with colorblind simulators
+:::
+
+------------------------------------------------------------------------
+
+## Advanced: Interactive Heatmap
+
+For exploration, create an interactive version:
+
+```{r}
+#| label: interactive-heatmap
+#| fig-width: 9
+#| fig-height: 8
+#| eval: true
+
+library(plotly)
+
+# Create ggplot heatmap
+p <- ggplot(cor_data_labeled, aes(
+  x = var1_label, 
+  y = var2_label, 
+  fill = correlation,
+  text = paste0(
+    var1_label, " vs ", var2_label, "\n",
+    "Correlation: ", round(correlation, 3)
+  )
+)) +
+  geom_tile(color = "white", linewidth = 1) +
+  scale_fill_gradient2(
+    low = "#E76F51",
+    mid = "white",
+    high = "#2C5F8D",
+    midpoint = 0,
+    limits = c(-1, 1)
+  ) +
+  labs(title = "Interactive Correlation Heatmap") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  coord_fixed()
+
+# Convert to interactive
+ggplotly(p, tooltip = "text")
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 geom_tile Documentation](https://ggplot2.tidyverse.org/reference/geom_tile.html)
+-   [viridis Color Scales](https://cran.r-project.org/web/packages/viridis/)
+-   [Hmisc Package for Correlation Tests](https://cran.r-project.org/web/packages/Hmisc/)
+-   [When to Use Heatmaps](https://www.data-to-viz.com/graph/heatmap.html)
+-   [ColorBrewer for Palettes](https://colorbrewer2.org/)
+-   [Hierarchical Clustering in R](https://www.datanovia.com/en/lessons/hclust-hierarchical-clustering-essentials/)
+
+Happy heatmap plotting! 🔥📊

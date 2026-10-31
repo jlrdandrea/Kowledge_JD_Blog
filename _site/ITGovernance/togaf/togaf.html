@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Enterprise Architecture Method and Governance Framework">
+
+<title>TOGAF</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">TOGAF</h1>
+                  <div>
+        <div class="description">
+          Enterprise Architecture Method and Governance Framework
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">TOGAF</div>
+                <div class="quarto-category">Governance</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#what-is-togaf" id="toc-what-is-togaf" class="nav-link" data-scroll-target="#what-is-togaf">What is TOGAF</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it">When to Use It</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
+  <li><a href="#togaf-architecture-development-cycle" id="toc-togaf-architecture-development-cycle" class="nav-link" data-scroll-target="#togaf-architecture-development-cycle">TOGAF Architecture Development Cycle</a></li>
+  </ul></li>
+  <li><a href="#history-and-evolution" id="toc-history-and-evolution" class="nav-link" data-scroll-target="#history-and-evolution">History and Evolution</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles">Core Principles</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#architecture-governance-vs-delivery-governance" id="toc-architecture-governance-vs-delivery-governance" class="nav-link" data-scroll-target="#architecture-governance-vs-delivery-governance">Architecture Governance vs Delivery Governance</a></li>
+  <li><a href="#core-architecture-domains" id="toc-core-architecture-domains" class="nav-link" data-scroll-target="#core-architecture-domains">Core Architecture Domains</a></li>
+  <li><a href="#architecture-capability-and-decision-bodies" id="toc-architecture-capability-and-decision-bodies" class="nav-link" data-scroll-target="#architecture-capability-and-decision-bodies">Architecture Capability and Decision Bodies</a></li>
+  <li><a href="#togaf-content-structure" id="toc-togaf-content-structure" class="nav-link" data-scroll-target="#togaf-content-structure">TOGAF Content Structure</a></li>
+  </ul></li>
+  <li><a href="#processes" id="toc-processes" class="nav-link" data-scroll-target="#processes">Processes</a>
+  <ul class="collapse">
+  <li><a href="#preliminary-phase" id="toc-preliminary-phase" class="nav-link" data-scroll-target="#preliminary-phase">Preliminary Phase</a></li>
+  <li><a href="#adm-phases" id="toc-adm-phases" class="nav-link" data-scroll-target="#adm-phases">ADM Phases</a></li>
+  <li><a href="#central-adm-function" id="toc-central-adm-function" class="nav-link" data-scroll-target="#central-adm-function">Central ADM Function</a></li>
+  <li><a href="#supporting-togaf-concepts" id="toc-supporting-togaf-concepts" class="nav-link" data-scroll-target="#supporting-togaf-concepts">Supporting TOGAF Concepts</a></li>
+  </ul></li>
+  <li><a href="#documentation-and-artefacts" id="toc-documentation-and-artefacts" class="nav-link" data-scroll-target="#documentation-and-artefacts">Documentation and Artefacts</a>
+  <ul class="collapse">
+  <li><a href="#togaf-documentation-raci-matrix" id="toc-togaf-documentation-raci-matrix" class="nav-link" data-scroll-target="#togaf-documentation-raci-matrix">TOGAF Documentation RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks" class="nav-link" data-scroll-target="#integration-with-other-frameworks">Integration with Other Frameworks</a></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">Implementation Approach</a></li>
+  <li><a href="#kpis-and-metrics" id="toc-kpis-and-metrics" class="nav-link" data-scroll-target="#kpis-and-metrics">KPIs and Metrics</a></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits">Benefits</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#example-use-case" id="toc-example-use-case" class="nav-link" data-scroll-target="#example-use-case">Example Use Case</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="what-is-togaf" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-togaf">What is TOGAF</h2>
+<p>TOGAF is an enterprise architecture standard from The Open Group. It provides a structured method, content framework, and governance approach for designing, planning, implementing, and governing enterprise architecture.</p>
+<p>TOGAF is not only a way to draw architecture diagrams. It is a complete approach for moving from business strategy to target architecture, transition roadmaps, implementation governance, and architecture capability development. It helps organisations align business, data, application, and technology change in a controlled and repeatable way.</p>
+</section>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>The purpose of TOGAF is to help enterprises:</p>
+<ul>
+<li>translate business strategy into architecture direction;</li>
+<li>design current-state and target-state enterprise architecture;</li>
+<li>govern change through a repeatable architecture development method;</li>
+<li>create transition roadmaps from baseline to target states;</li>
+<li>establish architecture principles, standards, and decision rights; and</li>
+<li>improve alignment across strategy, delivery, operations, risk, and technology platforms.</li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-it">When to Use It</h2>
+<p>TOGAF is especially useful when an organisation needs a disciplined architecture method across business and technology change. Typical situations include:</p>
+<ul>
+<li>enterprise transformation and operating model redesign;</li>
+<li>modernisation of applications, data platforms, or infrastructure;</li>
+<li>digital strategy execution and capability-based planning;</li>
+<li>mergers, acquisitions, or organisational restructuring;</li>
+<li>cloud migration and platform rationalisation;</li>
+<li>development of enterprise standards and architecture governance; and</li>
+<li>integration of multiple delivery programmes under one target-state design.</li>
+</ul>
+</section>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
+<ul>
+<li>CIO</li>
+<li>Chief Architect / Head of Architecture</li>
+<li>Enterprise Architects</li>
+<li>Solution Architects</li>
+<li>Business Architects</li>
+<li>Data and Application Architects</li>
+<li>PMO / Transformation Office</li>
+<li>Portfolio and Strategy teams</li>
+<li>Risk, security, and governance leaders</li>
+<li>Senior business stakeholders and design authorities</li>
+</ul>
+</section>
+<section id="togaf-architecture-development-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="togaf-architecture-development-cycle">TOGAF Architecture Development Cycle</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+PREL["Preliminary&lt;br/&gt;Architecture Capability"]
+A["Phase A&lt;br/&gt;Architecture Vision"]
+B["Phase B&lt;br/&gt;Business Architecture"]
+C["Phase C&lt;br/&gt;Information Systems Architectures"]
+D["Phase D&lt;br/&gt;Technology Architecture"]
+E["Phase E&lt;br/&gt;Opportunities and Solutions"]
+F["Phase F&lt;br/&gt;Migration Planning"]
+G["Phase G&lt;br/&gt;Implementation Governance"]
+H["Phase H&lt;br/&gt;Architecture Change Management"]
+REQ["Requirements Management"]
+
+PREL --&gt; A
+A --&gt; B
+B --&gt; C
+C --&gt; D
+D --&gt; E
+E --&gt; F
+F --&gt; G
+G --&gt; H
+H --&gt; A
+
+REQ --&gt; A
+REQ --&gt; B
+REQ --&gt; C
+REQ --&gt; D
+REQ --&gt; E
+REQ --&gt; F
+REQ --&gt; G
+REQ --&gt; H
+
+A_DOC["Vision, scope,&lt;br/&gt;stakeholders, business case"]
+B_DOC["Capabilities, processes,&lt;br/&gt;organisation, value streams"]
+C_DOC["Data and application models,&lt;br/&gt;integration and information flows"]
+D_DOC["Platforms, infrastructure,&lt;br/&gt;technology standards"]
+E_DOC["Work packages,&lt;br/&gt;solution building blocks"]
+F_DOC["Roadmap,&lt;br/&gt;transition architectures"]
+G_DOC["Compliance reviews,&lt;br/&gt;architecture contracts"]
+H_DOC["Change requests,&lt;br/&gt;architecture backlog"]
+
+A --&gt; A_DOC
+B --&gt; B_DOC
+C --&gt; C_DOC
+D --&gt; D_DOC
+E --&gt; E_DOC
+F --&gt; F_DOC
+G --&gt; G_DOC
+H --&gt; H_DOC
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>TOGAF is centred on the <strong>Architecture Development Method (ADM)</strong>. The ADM is iterative rather than strictly linear. Requirements are managed continuously, and architecture is refined over multiple cycles as the organisation learns, changes direction, or responds to constraints.</p>
+<hr>
+</section>
+</section>
+<section id="history-and-evolution" class="level1">
+<h1>History and Evolution</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th>Year</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TOGAF 1</td>
+<td>1995</td>
+<td>Early framework focused on technical architecture</td>
+</tr>
+<tr class="even">
+<td>TOGAF 7</td>
+<td>2001</td>
+<td>Broader enterprise architecture scope and method development</td>
+</tr>
+<tr class="odd">
+<td>TOGAF 8</td>
+<td>2002–2003</td>
+<td>Enterprise Edition with stronger business alignment</td>
+</tr>
+<tr class="even">
+<td>TOGAF 8.1.1</td>
+<td>2006</td>
+<td>Improved guidance and practical use</td>
+</tr>
+<tr class="odd">
+<td>TOGAF 9</td>
+<td>2009</td>
+<td>Major expansion of ADM, content framework, governance, and repository</td>
+</tr>
+<tr class="even">
+<td>TOGAF 9.1</td>
+<td>2011</td>
+<td>Clarifications, better structure, and usability improvements</td>
+</tr>
+<tr class="odd">
+<td>TOGAF 9.2</td>
+<td>2018</td>
+<td>Streamlining and content updates</td>
+</tr>
+<tr class="even">
+<td>TOGAF Standard, 10th Edition</td>
+<td>2022</td>
+<td>Modular structure with Fundamental Content and Series Guides for tailoring and practical guidance</td>
+</tr>
+</tbody>
+</table>
+<p>TOGAF has evolved from a technical architecture method into a broad enterprise architecture standard. The major shift came with TOGAF 9, which established the modern ADM, content framework, enterprise continuum, repository, and governance approach. The 10th Edition made the standard more modular by separating stable core content from a growing set of detailed guidance documents.</p>
+<hr>
+</section>
+<section id="core-principles" class="level1">
+<h1>Core Principles</h1>
+<p>TOGAF does not prescribe one universal list of architecture principles for all organisations. Instead, it helps organisations define their own architecture principles and apply them consistently through governance. In practice, TOGAF is built around several enduring ideas:</p>
+<ol type="1">
+<li><p><strong>Business-driven architecture</strong><br>
+Architecture should be anchored in business goals, stakeholder concerns, and strategic outcomes.</p></li>
+<li><p><strong>Whole-enterprise perspective</strong><br>
+Architecture should cover business, data, applications, and technology, not isolated technical components.</p></li>
+<li><p><strong>Standardisation with controlled flexibility</strong><br>
+Common principles, standards, and reusable building blocks reduce complexity while allowing local variation where justified.</p></li>
+<li><p><strong>Iterative development</strong><br>
+Architecture evolves through cycles, transition states, and managed change rather than one-time design exercises.</p></li>
+<li><p><strong>Governed decision-making</strong><br>
+Architecture must be supported by clear authority, review mechanisms, compliance processes, and escalation paths.</p></li>
+<li><p><strong>Reuse and building blocks</strong><br>
+Reusable architecture building blocks and solution building blocks accelerate delivery and improve consistency.</p></li>
+<li><p><strong>Traceability from strategy to implementation</strong><br>
+Decisions should connect stakeholder needs, architecture models, roadmaps, implementation work packages, and realised outcomes.</p></li>
+</ol>
+<p>These principles matter because TOGAF works best when architecture is treated as an enterprise management capability rather than a documentation exercise.</p>
+<hr>
+</section>
+<section id="governance-structure" class="level1">
+<h1>Governance Structure</h1>
+<section id="architecture-governance-vs-delivery-governance" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-governance-vs-delivery-governance">Architecture Governance vs Delivery Governance</h2>
+<p>TOGAF distinguishes architecture governance from general project or operational governance:</p>
+<ul>
+<li><strong>Architecture governance</strong> ensures that architecture principles, standards, target states, and design decisions are defined, reviewed, approved, and followed.</li>
+<li><strong>Delivery governance</strong> ensures that projects and programmes are managed well, on time, and within scope.</li>
+</ul>
+<p>This distinction is important because a project can be well-managed yet still produce a solution that increases technical debt, duplicates platforms, or conflicts with enterprise direction. TOGAF adds the architecture control layer.</p>
+</section>
+<section id="core-architecture-domains" class="level2">
+<h2 class="anchored" data-anchor-id="core-architecture-domains">Core Architecture Domains</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Business Architecture</td>
+<td>Business strategy, capabilities, organisation, value streams, processes, services, and operating model design.</td>
+</tr>
+<tr class="even">
+<td>Data Architecture</td>
+<td>Data entities, information flows, ownership, data lifecycle, quality, and data governance structures.</td>
+</tr>
+<tr class="odd">
+<td>Application Architecture</td>
+<td>Application services, integration, interfaces, interoperability, and application portfolio structure.</td>
+</tr>
+<tr class="even">
+<td>Technology Architecture</td>
+<td>Infrastructure, platforms, cloud, networks, middleware, hosting, and technical standards.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="architecture-capability-and-decision-bodies" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-capability-and-decision-bodies">Architecture Capability and Decision Bodies</h2>
+<p>A TOGAF-based architecture capability commonly includes:</p>
+<ul>
+<li>architecture board or design authority;</li>
+<li>chief architect and architecture practice;</li>
+<li>domain architects and solution architects;</li>
+<li>architecture repository and standards library;</li>
+<li>architecture principles and policies;</li>
+<li>review, waiver, and compliance processes; and</li>
+<li>linkage to portfolio, PMO, risk, security, data, and service management.</li>
+</ul>
+</section>
+<section id="togaf-content-structure" class="level2">
+<h2 class="anchored" data-anchor-id="togaf-content-structure">TOGAF Content Structure</h2>
+<p>The TOGAF Standard, 10th Edition is organised around two major content layers:</p>
+<ul>
+<li><strong>Fundamental Content</strong>, which provides the essential framework and ADM structure; and</li>
+<li><strong>Series Guides</strong>, which provide more specific guidance for applying TOGAF in different contexts.</li>
+</ul>
+<p>This makes TOGAF more adaptable than earlier editions because organisations can keep a stable core while using more targeted guidance where needed.</p>
+<hr>
+</section>
+</section>
+<section id="processes" class="level1">
+<h1>Processes</h1>
+<p>TOGAF is built around the Architecture Development Method (ADM).</p>
+<section id="preliminary-phase" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-phase">Preliminary Phase</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Preliminary</td>
+<td>Establish architecture capability, governance, principles, scope, and organisational readiness.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="adm-phases" class="level2">
+<h2 class="anchored" data-anchor-id="adm-phases">ADM Phases</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Name</th>
+<th>Typical Outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>Architecture Vision</td>
+<td>Statement of architecture work, stakeholders, scope, high-level target, and business case</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>Business Architecture</td>
+<td>Capability maps, process models, organisational views, business services, value streams</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Information Systems Architectures</td>
+<td>Data architecture and application architecture models, integration views, information requirements</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>Technology Architecture</td>
+<td>Platform standards, infrastructure landscape, environments, technical services</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>Opportunities and Solutions</td>
+<td>Work packages, solution concepts, transition options, dependencies</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>Migration Planning</td>
+<td>Architecture roadmap, transition architectures, implementation sequencing</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>Implementation Governance</td>
+<td>Architecture contracts, design reviews, compliance assessments, change controls</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>Architecture Change Management</td>
+<td>Change requests, lifecycle monitoring, triggers for new ADM cycles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="central-adm-function" class="level2">
+<h2 class="anchored" data-anchor-id="central-adm-function">Central ADM Function</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Requirements Management</td>
+<td>Captures, assesses, prioritises, and manages requirements across all ADM phases.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supporting-togaf-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-togaf-concepts">Supporting TOGAF Concepts</h2>
+<p>TOGAF also includes several important supporting concepts that strengthen the ADM:</p>
+<ul>
+<li><strong>Architecture Principles</strong> to guide consistent decisions;</li>
+<li><strong>Stakeholder Management</strong> to align concerns and viewpoints;</li>
+<li><strong>Architecture Repository</strong> to store standards, models, building blocks, and governance records;</li>
+<li><strong>Enterprise Continuum</strong> to classify reusable assets from generic to organisation-specific;</li>
+<li><strong>Architecture Building Blocks (ABBs)</strong> and <strong>Solution Building Blocks (SBBs)</strong>;</li>
+<li><strong>Capability-Based Planning</strong> to connect transformation to business outcomes;</li>
+<li><strong>Gap Analysis</strong> between baseline and target states; and</li>
+<li><strong>Architecture Compliance Reviews</strong> during implementation.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="documentation-and-artefacts" class="level1">
+<h1>Documentation and Artefacts</h1>
+<p>This section defines the key documents produced within the framework and the roles responsible for creating, approving, and maintaining them.</p>
+<section id="togaf-documentation-raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="togaf-documentation-raci-matrix">TOGAF Documentation RACI Matrix</h2>
+<p><strong>Legend:</strong> R = Responsible, A = Accountable, C = Consulted, I = Informed</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Document / Artefact</th>
+<th>Board / Executive Sponsor</th>
+<th style="text-align: right;">CIO</th>
+<th style="text-align: right;">Chief / Enterprise Architect</th>
+<th style="text-align: right;">Domain / Solution Architect</th>
+<th style="text-align: right;">PMO / Transformation Office</th>
+<th style="text-align: right;">Security / Risk / Data Governance</th>
+<th style="text-align: right;">Product / Service / Business Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Architecture Charter / Mandate</td>
+<td>A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Architecture Principles</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Architecture Governance Framework</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Architecture Repository Structure</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Architecture Vision</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Stakeholder Map and Concerns Matrix</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Baseline Business Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Target Business Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Capability Map</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Value Stream / Process Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Baseline Data Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Target Data Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Information Model / Data Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Baseline Application Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Target Application Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Integration Architecture / Interface Map</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Baseline Technology Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Target Technology Architecture</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Technology Standards Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Architecture Building Blocks Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Solution Building Blocks Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Gap Analysis</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Opportunities and Solutions Assessment</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Transition Architecture Definition</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Architecture Roadmap</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Migration Plan</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Architecture Contract</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Architecture Compliance Assessment</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Waiver / Dispensation Record</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Architecture Decision Log</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Architecture Change Request</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Implementation Review Report</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Lessons Learned Repository</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="integration-with-other-frameworks" class="level1">
+<h1>Integration with Other Frameworks</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>COBIT</td>
+<td>Provides the enterprise governance layer, decision rights, controls, and performance oversight above architecture practice.</td>
+</tr>
+<tr class="even">
+<td>ITIL</td>
+<td>Uses architecture outputs to shape service design, service transition, platform standards, and operational service models.</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2</td>
+<td>Consumes architecture constraints, standards, and target-state guidance within project governance and stage delivery.</td>
+</tr>
+<tr class="even">
+<td>MSP</td>
+<td>Uses target architectures and transition states to shape programme blueprints and transformation roadmaps.</td>
+</tr>
+<tr class="odd">
+<td>PMBOK / Agile / DevOps</td>
+<td>Delivery methods implement the solutions that architecture defines and governs.</td>
+</tr>
+<tr class="even">
+<td>ISO 27001 / NIST / security frameworks</td>
+<td>Security requirements and controls should be embedded into business, data, application, and technology architecture decisions.</td>
+</tr>
+<tr class="odd">
+<td>Data governance frameworks</td>
+<td>Data ownership, metadata, quality, lifecycle, and information architecture align strongly with TOGAF data architecture work.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="implementation-approach" class="level1">
+<h1>Implementation Approach</h1>
+<p>A practical TOGAF implementation usually works best when introduced as an architecture capability rather than only as a modelling method.</p>
+<ol type="1">
+<li>Assess current architecture maturity, governance gaps, and delivery pain points.</li>
+<li>Define the architecture mandate, principles, scope, and decision rights.</li>
+<li>Establish an architecture board, repository, standards catalogue, and review process.</li>
+<li>Run ADM on one priority transformation area to prove value.</li>
+<li>Build baseline and target architectures across the relevant domains.</li>
+<li>Perform gap analysis and define work packages, transition architectures, and roadmap.</li>
+<li>Integrate architecture governance into portfolio, project, product, and change forums.</li>
+<li>Measure compliance, reuse, simplification, and business outcome contribution.</li>
+</ol>
+<p>Organisations often fail when they start with excessive modelling. TOGAF tends to succeed when it is focused on concrete business change, supported by senior sponsorship, and linked directly to investment and delivery decisions.</p>
+<hr>
+</section>
+<section id="kpis-and-metrics" class="level1">
+<h1>KPIs and Metrics</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standards Compliance</td>
+<td>% of solution designs compliant with approved architecture standards</td>
+</tr>
+<tr class="even">
+<td>Application Rationalisation</td>
+<td>Reduction in duplicate or redundant applications</td>
+</tr>
+<tr class="odd">
+<td>Technology Standardisation</td>
+<td>% of platforms aligned to approved technology stack</td>
+</tr>
+<tr class="even">
+<td>Architecture Review Throughput</td>
+<td>Number of architecture reviews completed per period</td>
+</tr>
+<tr class="odd">
+<td>Waiver Volume</td>
+<td>Number of exceptions granted and their risk profile</td>
+</tr>
+<tr class="even">
+<td>Reuse Rate</td>
+<td>% of solutions using approved building blocks or reference architectures</td>
+</tr>
+<tr class="odd">
+<td>Roadmap Delivery Alignment</td>
+<td>% of change initiatives aligned to target architecture roadmap</td>
+</tr>
+<tr class="even">
+<td>Time to Approve Architecture Decisions</td>
+<td>Average time from submission to architecture decision</td>
+</tr>
+<tr class="odd">
+<td>Technical Debt Reduction</td>
+<td>Measured reduction in unsupported, duplicated, or non-standard components</td>
+</tr>
+<tr class="even">
+<td>Business Capability Coverage</td>
+<td>% of priority capabilities mapped to target-state architecture</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="benefits" class="level1">
+<h1>Benefits</h1>
+<ul>
+<li>Stronger alignment between strategy, operating model, and technology change</li>
+<li>Better decision-making through principles, standards, and governance</li>
+<li>Clearer target states and transition roadmaps for transformation</li>
+<li>Reduced duplication and technical debt through reuse and rationalisation</li>
+<li>Improved traceability from stakeholder needs to implemented solutions</li>
+<li>Greater consistency across business, data, application, and technology design</li>
+<li>Better collaboration between architects, delivery teams, PMO, risk, and operations</li>
+</ul>
+<hr>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<ul>
+<li>Can become documentation-heavy if not tied to real transformation priorities</li>
+<li>Requires sustained executive backing and architecture authority</li>
+<li>Needs skilled architects and stakeholder engagement to be effective</li>
+<li>May be perceived as bureaucratic if reviews are slow or disconnected from delivery</li>
+<li>Does not replace delivery, service management, or governance frameworks; it complements them</li>
+</ul>
+<hr>
+</section>
+<section id="example-use-case" class="level1">
+<h1>Example Use Case</h1>
+<p>A large enterprise is modernising its customer platforms, data estate, and core infrastructure while also moving toward a product operating model. Using TOGAF, it defines architecture principles, maps current capabilities, documents the baseline landscape, designs target business, data, application, and technology architectures, and creates phased transition architectures. The roadmap then feeds portfolio prioritisation and project initiation, while architecture review boards ensure new solutions align with the target state and approved standards.</p>
+<hr>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>The Open Group, <em>TOGAF Standard</em></li>
+<li>The Open Group, <em>TOGAF Standard, 10th Edition</em></li>
+<li>The Open Group, TOGAF Series Guides</li>
+<li>Enterprise architecture governance and architecture practice guidance</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

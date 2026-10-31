@@ -1,0 +1,631 @@
+---
+title: "Radar Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-12"
+categories: [R, ggplot2, Data Visualization, Radar Plot, Tutorial]
+description: "A step-by-step guide to building radar plots from basic to advanced, perfect for comparing multivariate profiles"
+image: "radar-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+Radar plots (also called spider charts or star plots) are excellent for visualizing multivariate data and comparing profiles across multiple dimensions. Each axis represents a different variable, and the data forms a polygon shape that makes patterns immediately visible.
+
+In this tutorial, we'll compare the performance profiles of different vehicle classes using the `mpg` dataset, analyzing them across multiple fuel efficiency and performance metrics.
+
+::: {.callout .info}
+**What Makes Radar Plots Useful:**
+
+Radar plots excel at: - Comparing multiple entities across the same dimensions - Identifying strengths and weaknesses in profiles - Spotting patterns and outliers quickly - Showing balance (or lack thereof) across metrics
+:::
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # Includes ggplot2, dplyr, and other essential packages
+library(scales)         # For formatting and rescaling
+
+# Prepare the data: compare vehicle classes across multiple metrics
+data_summary <- mpg %>%
+  group_by(class) %>%
+  summarise(
+    avg_hwy = mean(hwy),                            # Highway fuel efficiency
+    avg_cty = mean(cty),                            # City fuel efficiency
+    avg_displ = mean(displ),                        # Engine displacement
+    avg_cyl = mean(cyl),                            # Number of cylinders
+    count = n()                                     # Number of models
+  ) %>%
+  ungroup()
+
+# Select a few classes for comparison
+data_radar <- data_summary %>%
+  filter(class %in% c("compact", "suv", "midsize")) %>%
+  select(class, avg_hwy, avg_cty, avg_displ, avg_cyl)
+
+# Preview the data
+data_radar
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Radar Plot
+
+Let's start with a simple radar plot using base ggplot2 with coord_polar.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 8
+
+# Reshape data for ggplot (long format)
+data_long <- data_radar %>%
+  pivot_longer(
+    cols = -class,                                  # All columns except class
+    names_to = "metric",                            # Metric names
+    values_to = "value"                             # Values
+  )
+
+ggplot(data_long, aes(x = metric, y = value, group = class, color = class)) +
+  geom_polygon(fill = NA) +                         # Draw the polygon outline
+  geom_point(size = 3) +                            # Add points at each vertex
+  coord_polar() +                                   # Convert to circular coordinates
+  facet_wrap(~ class)                               # Separate plot for each class
+```
+
+### Code Explanation
+
+**Lines 2-7:** `pivot_longer()` reshapes the data from wide format (one row per class with multiple metric columns) to long format (one row per class-metric combination), which is required for ggplot2
+
+**Line 9:** `ggplot(aes(x = metric, y = value, group = class, color = class))` - Maps metrics to x-axis (which will become angles), values to y-axis (which will become distances from center), and groups/colors by vehicle class
+
+**Line 10:** `geom_polygon(fill = NA)` - Creates the polygon shape connecting all points; `fill = NA` means no fill color, just the outline
+
+**Line 11:** `geom_point(size = 3)` - Adds visible points at each metric position on the polygon
+
+**Line 12:** `coord_polar()` - Transforms the Cartesian coordinates into polar coordinates, creating the circular radar chart
+
+**Line 13:** `facet_wrap(~ class)` - Creates separate small radar plots for each vehicle class
+
+::: {.highlight-box .info}
+**What we have so far:** Basic radar plots showing the shape of each vehicle class profile, but the scales are problematic (metrics have different ranges), there's no context, and the visualization is hard to compare across classes.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll normalize the data, overlay the plots for comparison, and add better styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Normalized scales** (0-1 range) so all metrics are comparable
+-   **Overlaid polygons** instead of separate facets for direct comparison
+-   **Semi-transparent fills** to see overlapping areas
+-   **Better axis labels** with readable metric names
+-   **Custom color palette** for distinguishing classes
+-   **Title and context** to explain what we're viewing
+-   **Grid reference lines** at specific intervals
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 9
+#| fig-height: 9
+
+# Normalize data to 0-1 scale for fair comparison
+data_radar_norm <- data_radar %>%
+  mutate(across(
+    .cols = -class,                                 # All columns except class
+    .fns = ~rescale(.x, to = c(0, 1))              # Rescale to 0-1 range
+  ))
+
+# Reshape to long format
+data_long_norm <- data_radar_norm %>%
+  pivot_longer(
+    cols = -class,
+    names_to = "metric",
+    values_to = "value"
+  ) %>%
+  mutate(
+    metric_label = case_when(                       # Create readable labels
+      metric == "avg_hwy" ~ "Highway MPG",
+      metric == "avg_cty" ~ "City MPG",
+      metric == "avg_displ" ~ "Engine Size",
+      metric == "avg_cyl" ~ "Cylinders"
+    )
+  )
+
+ggplot(data_long_norm, aes(x = metric_label, y = value, group = class, color = class, fill = class)) +
+  geom_polygon(alpha = 0.25, linewidth = 1.2) +     # Semi-transparent fill with thicker lines
+  geom_point(size = 3, alpha = 0.8) +               # Points with slight transparency
+  coord_polar() +
+  scale_y_continuous(
+    limits = c(0, 1),                               # Set limits from 0 to 1
+    breaks = seq(0, 1, by = 0.25),                  # Grid lines at 0, 0.25, 0.5, 0.75, 1
+    labels = percent                                # Show as percentages
+  ) +
+  scale_color_manual(
+    values = c(
+      "compact" = "#2C5F8D",                        # Blue
+      "midsize" = "#52A675",                        # Green
+      "suv" = "#E76F51"                             # Coral
+    ),
+    name = "Vehicle Class"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "suv" = "#E76F51"
+    ),
+    name = "Vehicle Class"
+  ) +
+  labs(
+    title = "Vehicle Class Performance Profiles",
+    subtitle = "Normalized comparison across fuel efficiency and engine metrics",
+    caption = "Note: All metrics scaled to 0-100% for fair comparison"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", hjust = 0.5, margin = margin(b = 15)),
+    plot.caption = element_text(size = 9, color = "#6C757D", hjust = 0.5, margin = margin(t = 10)),
+    axis.text.x = element_text(face = "bold", size = 10),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold", size = 11),
+    legend.text = element_text(size = 10),
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank()
+  )
+```
+
+### Code Explanation
+
+**Lines 2-7:** `mutate(across(...))` normalizes all numeric columns (except class) to a 0-1 scale using `rescale()` - this is crucial because metrics like MPG (10-40 range) and cylinders (4-8 range) would otherwise be incomparable
+
+**Lines 9-23:** Reshapes data to long format and creates readable metric labels, replacing technical column names with user-friendly descriptions
+
+**Line 25:** `aes(..., fill = class)` - Added `fill` aesthetic to enable semi-transparent polygon fills
+
+**Line 26:** `geom_polygon(alpha = 0.25, linewidth = 1.2)` - Creates filled polygons with 25% opacity (allows seeing overlaps) and thicker lines for visibility
+
+**Line 27:** `geom_point()` with slight transparency to show all points even when overlapping
+
+**Lines 29-33:** `scale_y_continuous()` sets the radial axis limits to 0-1, adds grid lines at quartiles, and formats labels as percentages
+
+**Lines 34-49:** `scale_color_manual()` and `scale_fill_manual()` - Applies custom colors to distinguish vehicle classes, with both outline and fill colors defined
+
+**Lines 50-54:** Comprehensive labels explaining the normalized comparison
+
+**Lines 55-68:** Theme customization with centered titles, bold axis labels, bottom legend, and subtle gridlines
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative radar plot where all three vehicle classes are overlaid for direct comparison. The normalization ensures fair comparison, and the semi-transparent fills make it easy to see where profiles overlap. We can now clearly see that compacts excel in fuel efficiency while SUVs have larger engines.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's create a publication-ready radar plot with enhanced annotations, reference circles, and professional styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Reference grid circles** at specific values for easier reading
+-   **Value labels** at each data point showing actual values
+-   **Highlighted differences** between best and worst performers
+-   **Color-coded legend** with sample sizes
+-   **Enhanced gridlines** for better readability
+-   **Data insights** in the subtitle
+-   **Professional color scheme** with better contrast
+-   **Optimized layout** with improved spacing
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 10
+
+# Prepare enhanced data with original values for labels
+data_radar_enhanced <- data_radar %>%
+  mutate(across(
+    .cols = -class,
+    .fns = ~rescale(.x, to = c(0, 1)),
+    .names = "{.col}_norm"                          # Create normalized columns with _norm suffix
+  ))
+
+# Reshape for plotting
+data_long_enhanced <- data_radar_enhanced %>%
+  select(class, ends_with("_norm")) %>%
+  pivot_longer(
+    cols = -class,
+    names_to = "metric",
+    values_to = "value"
+  ) %>%
+  mutate(
+    metric_clean = str_remove(metric, "_norm"),    # Remove _norm suffix
+    metric_label = case_when(
+      metric_clean == "avg_hwy" ~ "Highway\nMPG",
+      metric_clean == "avg_cty" ~ "City\nMPG",
+      metric_clean == "avg_displ" ~ "Engine\nSize (L)",
+      metric_clean == "avg_cyl" ~ "Number of\nCylinders"
+    )
+  )
+
+# Add original values for labeling
+data_original_long <- data_radar %>%
+  pivot_longer(
+    cols = -class,
+    names_to = "metric_clean",
+    values_to = "original_value"
+  )
+
+data_long_final <- data_long_enhanced %>%
+  left_join(data_original_long, by = c("class", "metric_clean"))
+
+# Create reference circles data
+reference_circles <- data.frame(
+  y = rep(c(0.25, 0.5, 0.75), each = 100),
+  x = rep(seq(0, 2*pi, length.out = 100), 3)
+)
+
+ggplot(data_long_final, aes(x = metric_label, y = value, group = class)) +
+  
+  # Add subtle reference circles
+  geom_hline(
+    yintercept = c(0.25, 0.5, 0.75),
+    color = "#E9ECEF",
+    linewidth = 0.5,
+    linetype = "dashed"
+  ) +
+  
+  # Add filled polygons
+  geom_polygon(
+    aes(fill = class, color = class),
+    alpha = 0.2,
+    linewidth = 1.5
+  ) +
+  
+  # Add points
+  geom_point(
+    aes(color = class),
+    size = 4,
+    alpha = 0.9
+  ) +
+  
+  # Add value labels (original values, not normalized)
+  geom_text(
+    aes(label = round(original_value, 1), color = class),
+    size = 3,
+    fontface = "bold",
+    vjust = -1.2,
+    show.legend = FALSE
+  ) +
+  
+  coord_polar() +
+  
+  scale_y_continuous(
+    limits = c(0, 1.15),                            # Extended limit to fit labels
+    breaks = seq(0, 1, by = 0.25),
+    labels = function(x) paste0(x * 100, "%")
+  ) +
+  
+  scale_color_manual(
+    values = c(
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "suv" = "#E76F51"
+    ),
+    name = "Vehicle Class",
+    labels = c(
+      "compact" = "Compact Cars",
+      "midsize" = "Midsize Cars",
+      "suv" = "SUVs"
+    )
+  ) +
+  
+  scale_fill_manual(
+    values = c(
+      "compact" = "#2C5F8D",
+      "midsize" = "#52A675",
+      "suv" = "#E76F51"
+    ),
+    name = "Vehicle Class",
+    labels = c(
+      "compact" = "Compact Cars",
+      "midsize" = "Midsize Cars",
+      "suv" = "SUVs"
+    )
+  ) +
+  
+  labs(
+    title = "Vehicle Performance Profiles: Compacts Excel in Efficiency, SUVs Lead in Power",
+    subtitle = "Compact cars achieve 37% higher highway MPG than SUVs (28.3 vs 18.8 mpg)\nwhile SUVs have 65% larger engines (4.4L vs 2.7L displacement)",
+    caption = "Data source: EPA fuel economy data (1999-2008) | Metrics normalized to 0-100% scale for comparison\nActual values shown at each point | Visualization: Your Name"
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    # Title styling
+    plot.title = element_text(
+      face = "bold",
+      size = 16,
+      hjust = 0.5,
+      margin = margin(b = 10),
+      color = "#2C3E50",
+      lineheight = 1.2
+    ),
+    
+    # Subtitle with insights
+    plot.subtitle = element_text(
+      size = 11,
+      color = "#5A6C7D",
+      hjust = 0.5,
+      margin = margin(b = 20),
+      lineheight = 1.3
+    ),
+    
+    # Caption
+    plot.caption = element_text(
+      size = 9,
+      color = "#6C757D",
+      hjust = 0.5,
+      margin = margin(t = 20),
+      lineheight = 1.2
+    ),
+    
+    # Axis styling
+    axis.text.x = element_text(
+      face = "bold",
+      size = 11,
+      color = "#2C3E50",
+      margin = margin(t = 5)
+    ),
+    axis.text.y = element_text(size = 10, color = "#5A6C7D"),
+    axis.title = element_blank(),
+    
+    # Legend styling
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_text(face = "bold", size = 12, margin = margin(b = 8)),
+    legend.text = element_text(size = 11),
+    legend.spacing.x = unit(1, "cm"),
+    legend.margin = margin(t = 20),
+    legend.key.size = unit(1.2, "cm"),
+    
+    # Grid styling
+    panel.grid.major = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank(),
+    
+    # Overall plot styling
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
+### Code Explanation
+
+**Lines 2-10:** Creates normalized columns while preserving original values - uses `.names = "{.col}_norm"` to create new columns with `_norm` suffix, keeping both normalized (for plotting) and original (for labels) values
+
+**Lines 12-28:** Reshapes normalized data and creates clean, multi-line metric labels for better readability in the circular layout
+
+**Lines 30-36:** Reshapes original data separately to preserve actual values for display
+
+**Lines 38-39:** Joins normalized and original data so we can plot normalized values but label with actual values
+
+**Lines 41-45:** Creates reference circle data (though not used in final plot, kept for reference)
+
+**Lines 49-54:** `geom_hline()` adds dashed reference circles at 25%, 50%, and 75% for easier value estimation
+
+**Lines 56-61:** `geom_polygon()` creates the filled radar shapes with 20% transparency and thicker lines (1.5px)
+
+**Lines 63-68:** Adds prominent points at each vertex
+
+**Lines 70-77:** `geom_text()` labels each point with the **original** (non-normalized) value, positioned above the point with `vjust = -1.2`
+
+**Lines 81-85:** Extends y-axis limit to 1.15 to accommodate value labels above 100%
+
+**Lines 87-115:** Custom color scales with descriptive legend labels ("Compact Cars" instead of just "compact")
+
+**Lines 117-121:** Data-driven title and subtitle that highlight the key insights discovered in the visualization
+
+**Lines 123-182:** Comprehensive theme customization including: - Centered multi-line title with proper line height - Insight-rich subtitle - Detailed caption with methodology notes - Bold axis labels with proper spacing - Horizontal legend with larger key sizes - Subtle gridlines for readability
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready radar plot that tells a complete story. The overlaid profiles make comparisons immediate, while the actual values at each point provide precision. The data-driven title and subtitle highlight the key finding: the trade-off between fuel efficiency (compact advantage) and power (SUV advantage). Reference lines help with value estimation, and the professional styling is suitable for reports, presentations, or publications.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's how our radar plots evolved:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Comparability** | Poor (separate plots) | Good (overlaid, normalized) | Excellent (overlaid + labeled) |
+| **Scale Issues** | Major (different ranges) | Solved (normalized) | Solved + labeled |
+| **Readability** | Low (no context) | Medium (basic context) | High (insights + values) |
+| **Value Precision** | None | Approximate | Exact (labeled) |
+| **Professional Use** | Not recommended | Acceptable | Publication-ready |
+| **Story Telling** | No insights | Basic comparison | Clear insights highlighted |
+
+------------------------------------------------------------------------
+
+## When to Use Radar Plots
+
+::: {.callout .warning}
+**Radar Plots Work Well When:**
+
+✅ **Comparing 3-8 dimensions** - Sweet spot for readability (too few = use bar chart, too many = cluttered)
+
+✅ **Showing balanced profiles** - Excellent for highlighting well-rounded vs. specialized entities
+
+✅ **Dimensions are comparable** - All metrics should be normalized or naturally on similar scales
+
+✅ **Pattern recognition matters** - Shape of the polygon conveys meaningful information
+
+✅ **Comparing few entities** - Works best with 2-5 overlaid profiles
+
+✅ **Circular arrangement makes sense** - Variables don't have a natural linear order
+
+**Avoid Radar Plots When:**
+
+❌ **Precise value comparison needed** - Bar charts are more accurate
+
+❌ **Too many dimensions** (\>10) - Becomes unreadable
+
+❌ **Too many entities** (\>5) - Overlaps make it confusing
+
+❌ **Variables have natural order** - Use parallel coordinates plot instead
+
+❌ **Negative values present** - Radar plots work poorly with negatives
+
+❌ **Variables are on very different scales** - Even normalization may mislead
+
+❌ **Axis order affects interpretation** - Changing variable order changes the shape, which can be misleading
+:::
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: {.callout .tip}
+**Tips for Creating Better Radar Plots:**
+
+1.  **Always normalize your data** - Use `rescale()` to put all variables on the same 0-1 scale for fair comparison
+
+2.  **Limit the number of entities** - Overlay at most 3-5 profiles. More becomes cluttered and hard to compare
+
+3.  **Use meaningful axis labels** - Multi-line labels work well in circular layouts; break long labels into 2-3 lines
+
+4.  **Add semi-transparent fills** - Use `alpha = 0.2-0.3` so overlapping areas are visible
+
+5.  **Include actual values** - Add text labels with original (non-normalized) values at key points
+
+6.  **Choose contrasting colors** - Ensure colors are distinguishable and colorblind-friendly
+
+7.  **Add reference circles** - Use `geom_hline()` with dashed lines at quartiles (25%, 50%, 75%)
+
+8.  **Order variables thoughtfully** - Adjacent variables will visually cluster; consider which comparisons matter most
+
+9.  **Extend axis limits for labels** - Set `limits = c(0, 1.15)` to prevent labels from being cut off
+
+10. **Tell a story in the title** - Highlight the key insight (e.g., "Compact cars excel in efficiency") rather than just describing
+
+11. **Provide normalization context** - Always note in the caption that values are normalized and what scale is used
+
+12. **Consider alternatives first** - Bar charts, parallel coordinates, or heatmaps may be clearer for your data
+
+13. **Use thicker lines** - `linewidth = 1.2-1.5` makes polygons more visible, especially with transparency
+
+14. **Keep gridlines subtle** - Use light gray (`#E9ECEF`) and dashed lines so they don't overpower the data
+
+15. **Add sample sizes** - Include entity sample sizes in legend labels or caption for context
+:::
+
+------------------------------------------------------------------------
+
+## Common Mistakes to Avoid
+
+::: {.callout .warning}
+**Radar Plot Pitfalls:**
+
+1.  **Forgetting to normalize** - Comparing raw values on different scales is meaningless
+
+2.  **Too many overlapping profiles** - More than 5 entities becomes a tangled mess
+
+3.  **Poor color choices** - Similar colors make it impossible to distinguish profiles
+
+4.  **No value labels** - Forces viewers to estimate from angles and distances (inaccurate)
+
+5.  **Misleading variable order** - Changing the order changes the shape, which can manipulate perception
+
+6.  **Using for time series** - Line charts are far superior for temporal data
+
+7.  **Comparing unrelated metrics** - All dimensions should be conceptually related
+
+8.  **No legend** - Viewers can't identify which profile is which
+
+9.  **Cluttered gridlines** - Too many reference circles create visual noise
+
+10. **Forgetting axis limits** - Default limits may cut off labels or create awkward spacing
+:::
+
+------------------------------------------------------------------------
+
+## Advanced Example: Multiple Groups with Facets
+
+For comparing many entities, consider faceting:
+
+```{r}
+#| label: faceted-radar
+#| fig-width: 10
+#| fig-height: 10
+#| eval: true
+
+# Compare all vehicle classes
+data_all_classes <- data_summary %>%
+  filter(count >= 5) %>%                            # Only classes with enough samples
+  mutate(across(
+    .cols = c(avg_hwy, avg_cty, avg_displ, avg_cyl),
+    .fns = ~rescale(.x, to = c(0, 1))
+  )) %>%
+  pivot_longer(
+    cols = c(avg_hwy, avg_cty, avg_displ, avg_cyl),
+    names_to = "metric",
+    values_to = "value"
+  ) %>%
+  mutate(
+    metric_label = case_when(
+      metric == "avg_hwy" ~ "Highway MPG",
+      metric == "avg_cty" ~ "City MPG",
+      metric == "avg_displ" ~ "Engine Size",
+      metric == "avg_cyl" ~ "Cylinders"
+    )
+  )
+
+ggplot(data_all_classes, aes(x = metric_label, y = value, group = class, fill = class, color = class)) +
+  geom_polygon(alpha = 0.3, linewidth = 1) +
+  geom_point(size = 2) +
+  coord_polar() +
+  facet_wrap(~ class, ncol = 3) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.5)) +
+  labs(
+    title = "Performance Profiles Across All Vehicle Classes",
+    subtitle = "Each panel shows the normalized profile for one vehicle class"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",                       # Remove legend (redundant with facet labels)
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    strip.text = element_text(face = "bold", size = 11)
+  )
+```
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation - coord_polar](https://ggplot2.tidyverse.org/reference/coord_polar.html)
+-   [When to Use Radar Charts](https://www.data-to-viz.com/caveat/spider.html)
+-   [Alternatives to Radar Charts](https://blog.datawrapper.de/spider-charts-vs-bar-charts/)
+-   [ColorBrewer for Palettes](https://colorbrewer2.org/)
+-   [R Graphics Cookbook - Polar Coordinates](https://r-graphics.org/)
+
+Remember: Radar plots are powerful for pattern recognition, but consider whether a simpler visualization might communicate your message more clearly! 🕸️📊

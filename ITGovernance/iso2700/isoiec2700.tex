@@ -1,0 +1,1465 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ISO/IEC 27001},
+  pdfauthor={Joao Luiz D'Andrea},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{ISO/IEC 27001}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Information Security Management System --- Governance, Risk,
+Controls, and Implementation Template}
+\author{Joao Luiz D'Andrea}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Executive Summary}\label{executive-summary}
+
+ISO/IEC 27001 provides the requirements for establishing, implementing,
+maintaining, and continually improving an information security
+management system (ISMS). It enables organisations to manage information
+security risks systematically and to demonstrate that information
+security is governed through a structured management system.
+
+This document provides a practical template for defining the
+organisation's ISO/IEC 27001 governance model, ISMS scope, risk
+management approach, control structure, implementation roadmap, and
+assurance model. It can be used to document how the organisation aligns
+information security governance, risk treatment, controls, and continual
+improvement into a coherent operating model.
+
+\section{Overview}\label{overview}
+
+\subsection{Purpose}\label{purpose}
+
+This document provides a practical template for defining, implementing,
+operating, and assuring an information security management system
+aligned to ISO/IEC 27001.
+
+\subsection{Objectives}\label{objectives}
+
+The main objectives of applying ISO/IEC 27001 are to:
+
+\begin{itemize}
+\tightlist
+\item
+  establish a formal and auditable information security management
+  system
+\item
+  protect confidentiality, integrity, and availability of information
+\item
+  align information security with business objectives and enterprise
+  risk
+\item
+  apply systematic risk assessment and risk treatment
+\item
+  define and maintain appropriate information security controls
+\item
+  provide evidence of governance, monitoring, and continual improvement
+\item
+  support internal assurance and external certification where required
+\end{itemize}
+
+\subsection{Scope}\label{scope}
+
+Describe the scope of ISO/IEC 27001 applicability in the organisation.
+
+\subsubsection{In scope}\label{in-scope}
+
+\begin{itemize}
+\tightlist
+\item
+  the defined ISMS boundary
+\item
+  business units, processes, and services within scope
+\item
+  information assets and supporting technology
+\item
+  applications, infrastructure, platforms, and cloud services
+\item
+  people, facilities, and third parties relevant to the ISMS
+\item
+  security governance, risk treatment, and control monitoring activities
+\item
+  incident management, resilience, and continual improvement activities
+  within the ISMS scope
+\end{itemize}
+
+\subsubsection{Out of scope}\label{out-of-scope}
+
+Document justified exclusions, if any.
+
+\subsection{Intended Audience}\label{intended-audience}
+
+\begin{itemize}
+\tightlist
+\item
+  Board and executive leadership
+\item
+  Chief Information Security Officer
+\item
+  Chief Information Officer
+\item
+  Enterprise Risk Management teams
+\item
+  Security governance, architecture, and operations teams
+\item
+  IT operations and service management teams
+\item
+  Business owners and control owners
+\item
+  Compliance and legal teams
+\item
+  Internal audit and assurance teams
+\item
+  PMO / transformation teams
+\end{itemize}
+
+\section{Standard Foundation}\label{standard-foundation}
+
+\subsection{Background}\label{background}
+
+ISO/IEC 27001 is the world's best-known standard for information
+security management systems and specifies the requirements for
+establishing, implementing, maintaining, and continually improving an
+ISMS. It is designed to support a risk-based approach that can be scaled
+to organisations of different sizes and sectors.
+:contentReference{oaicite:1}
+
+\subsection{ISMS Principles}\label{isms-principles}
+
+Document how the organisation applies the core principles of the ISMS:
+
+\begin{itemize}
+\tightlist
+\item
+  risk-based thinking
+\item
+  leadership and accountability
+\item
+  information protection based on business needs
+\item
+  systematic control selection
+\item
+  evidence-based management
+\item
+  continual improvement
+\item
+  integration with organisational processes and governance
+\end{itemize}
+
+\subsection{Core Components}\label{core-components}
+
+Describe the core components of the ISO/IEC 27001 model:
+
+\begin{itemize}
+\tightlist
+\item
+  organisational context
+\item
+  leadership and policy
+\item
+  planning
+\item
+  support
+\item
+  operation
+\item
+  performance evaluation
+\item
+  improvement
+\item
+  information security risk assessment
+\item
+  information security risk treatment
+\item
+  Statement of Applicability
+\end{itemize}
+
+\subsection{Relationship to ISO/IEC 27002 and Annex
+A}\label{relationship-to-isoiec-27002-and-annex-a}
+
+Describe how the organisation uses:
+
+\begin{itemize}
+\tightlist
+\item
+  ISO/IEC 27001 for management system requirements
+\item
+  Annex A as the information security controls reference
+\item
+  ISO/IEC 27002:2022 for guidance on information security controls
+\end{itemize}
+
+ISO states that ISO/IEC 27001 contains the ISMS requirements, while
+ISO/IEC 27002 provides detailed control guidance. ISO material and SC 27
+guidance also explain that Annex A is a normative reference set of
+controls that must be considered as part of risk treatment and
+comparison for completeness. :contentReference{oaicite:2}
+
+\subsubsection{Example standards table}\label{example-standards-table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Standard / Component
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ISO/IEC 27001 & Defines ISMS requirements \\
+Annex A & Reference set of information security controls \\
+ISO/IEC 27002 & Guidance on the implementation and management of
+controls \\
+Statement of Applicability & Documents selected, excluded, and justified
+controls \\
+\end{longtable}
+
+\section{Governance Model}\label{governance-model}
+
+\subsection{Governance Objectives}\label{governance-objectives}
+
+Define the governance objectives for ISO/IEC 27001 adoption:
+
+\begin{itemize}
+\tightlist
+\item
+  establish executive accountability for information security
+\item
+  define the ISMS scope and governance boundary
+\item
+  align security priorities with enterprise strategy and risk appetite
+\item
+  assign ownership for risk treatment and control performance
+\item
+  embed information security into operations, change, architecture, and
+  supplier management
+\item
+  maintain evidence of implementation and operating effectiveness
+\item
+  support continual improvement through monitoring, review, corrective
+  action, and audit
+\end{itemize}
+
+\subsection{Governance Structure}\label{governance-structure}
+
+Describe the governance bodies and their responsibilities.
+
+\subsubsection{Example governance
+bodies}\label{example-governance-bodies}
+
+\begin{itemize}
+\tightlist
+\item
+  Board / Risk Committee
+\item
+  Executive Information Security Steering Committee
+\item
+  Information Security Forum
+\item
+  Enterprise Risk Committee
+\item
+  Architecture Review Board
+\item
+  Change Advisory Board
+\item
+  Internal Audit
+\end{itemize}
+
+\subsection{Three Lines Model}\label{three-lines-model}
+
+Describe responsibilities across the three lines.
+
+\subsubsection{First line}\label{first-line}
+
+\begin{itemize}
+\tightlist
+\item
+  ownership of business processes, assets, and operational controls
+\item
+  execution of security controls
+\item
+  risk treatment implementation
+\item
+  evidence production and remediation execution
+\end{itemize}
+
+\subsubsection{Second line}\label{second-line}
+
+\begin{itemize}
+\tightlist
+\item
+  information security governance
+\item
+  policy and standard setting
+\item
+  risk oversight
+\item
+  compliance monitoring
+\item
+  challenge and advisory support
+\end{itemize}
+
+\subsubsection{Third line}\label{third-line}
+
+\begin{itemize}
+\tightlist
+\item
+  internal audit
+\item
+  independent assurance
+\item
+  control effectiveness review
+\end{itemize}
+
+\section{Roles and Responsibilities}\label{roles-and-responsibilities}
+
+\subsection{Key Roles}\label{key-roles}
+
+Document the main ISO/IEC 27001-related roles.
+
+\begin{itemize}
+\tightlist
+\item
+  Board
+\item
+  CEO / Executive Management
+\item
+  Chief Information Security Officer
+\item
+  Chief Information Officer
+\item
+  Chief Risk Officer
+\item
+  Business Service Owner
+\item
+  Information Asset Owner
+\item
+  Security Governance Lead
+\item
+  Security Architect
+\item
+  Security Operations Lead
+\item
+  IT Operations Lead
+\item
+  Risk Manager
+\item
+  Supplier / Third-Party Risk Manager
+\item
+  Internal Audit
+\end{itemize}
+
+\subsection{RACI Matrix}\label{raci-matrix}
+
+Use the following model and adapt it.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Activity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Board
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exec
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CISO
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CIO
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Business Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Security Ops
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Architecture
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Audit
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Approve ISMS policy and scope & A & R & C & C & C & I & I & I & I \\
+Maintain risk assessment methodology & I & A & R & C & C & I & I & I &
+I \\
+Approve Statement of Applicability & I & A & R & C & C & C & C & C &
+I \\
+Implement security controls & I & I & A & C & I & C & R & C & I \\
+Conduct internal ISMS review & I & A & R & C & C & C & C & I & I \\
+Manage security incidents & I & A & R & C & C & C & R & I & I \\
+Track corrective actions & I & A & R & C & C & C & C & I & I \\
+Perform independent assurance & I & I & I & I & I & I & I & I & R/A \\
+\end{longtable}
+
+\section{Policy Framework}\label{policy-framework}
+
+\subsection{Core Policies}\label{core-policies}
+
+List and describe the main ISMS-related policies.
+
+\begin{itemize}
+\tightlist
+\item
+  Information Security Policy
+\item
+  Risk Assessment and Risk Treatment Methodology
+\item
+  Access Control Policy
+\item
+  Information Classification and Handling Policy
+\item
+  Asset Management Standard
+\item
+  Cryptography Policy
+\item
+  Logging and Monitoring Standard
+\item
+  Vulnerability Management Standard
+\item
+  Incident Management Policy
+\item
+  Business Continuity / Disaster Recovery Policy
+\item
+  Supplier Security Policy
+\item
+  Secure Development Policy
+\item
+  Human Resources Security Policy
+\end{itemize}
+
+\subsection{Standards and Procedures}\label{standards-and-procedures}
+
+Document the standards, procedures, control baselines, and operational
+guidance supporting the ISMS.
+
+\section{Core Processes}\label{core-processes}
+
+\subsection{Context and Scope
+Management}\label{context-and-scope-management}
+
+Describe how the organisation determines and maintains:
+
+\begin{itemize}
+\tightlist
+\item
+  internal and external issues
+\item
+  interested parties and their requirements
+\item
+  the ISMS scope statement
+\item
+  interfaces and dependencies
+\item
+  applicability boundaries
+\end{itemize}
+
+\subsection{Risk Assessment}\label{risk-assessment}
+
+Describe the process for:
+
+\begin{itemize}
+\tightlist
+\item
+  defining risk criteria
+\item
+  identifying information security risks
+\item
+  assessing likelihood and impact
+\item
+  evaluating risks against criteria
+\item
+  prioritising treatment actions
+\item
+  documenting results
+\end{itemize}
+
+\subsection{Risk Treatment}\label{risk-treatment}
+
+Describe the process for:
+
+\begin{itemize}
+\tightlist
+\item
+  selecting treatment options
+\item
+  determining necessary controls
+\item
+  comparing selected controls with Annex A
+\item
+  documenting inclusions and exclusions
+\item
+  assigning owners and due dates
+\item
+  approving residual risk
+\item
+  tracking treatment implementation
+\end{itemize}
+
+\subsection{Statement of
+Applicability}\label{statement-of-applicability}
+
+Document how the organisation maintains the Statement of Applicability,
+including:
+
+\begin{itemize}
+\tightlist
+\item
+  selected controls
+\item
+  excluded controls
+\item
+  reasons for inclusion or exclusion
+\item
+  implementation status
+\item
+  associated policies or procedures
+\item
+  accountable owners
+\end{itemize}
+
+\subsection{Operational Control
+Management}\label{operational-control-management}
+
+Describe the processes for:
+
+\begin{itemize}
+\tightlist
+\item
+  access management
+\item
+  change control
+\item
+  vulnerability management
+\item
+  logging and monitoring
+\item
+  supplier oversight
+\item
+  backup and recovery
+\item
+  incident handling
+\item
+  exception management
+\end{itemize}
+
+\subsection{Incident Management}\label{incident-management}
+
+Describe the lifecycle for:
+
+\begin{itemize}
+\tightlist
+\item
+  event detection
+\item
+  triage
+\item
+  escalation
+\item
+  containment
+\item
+  eradication
+\item
+  recovery
+\item
+  evidence handling
+\item
+  lessons learned
+\item
+  corrective action tracking
+\end{itemize}
+
+\subsection{Performance Evaluation and
+Improvement}\label{performance-evaluation-and-improvement}
+
+Describe the process for:
+
+\begin{itemize}
+\tightlist
+\item
+  monitoring and measurement
+\item
+  internal audit
+\item
+  management review
+\item
+  nonconformity handling
+\item
+  corrective action
+\item
+  continual improvement
+\end{itemize}
+
+\section{Control Framework}\label{control-framework}
+
+\subsection{Control Domains}\label{control-domains}
+
+Organise the control environment using the Annex A themes.
+
+\subsubsection{Example control domains}\label{example-control-domains}
+
+\begin{itemize}
+\tightlist
+\item
+  organisational controls
+\item
+  people controls
+\item
+  physical controls
+\item
+  technological controls
+\item
+  governance and oversight
+\item
+  risk management
+\item
+  operational security
+\item
+  supplier security
+\item
+  incident management
+\item
+  resilience and recovery
+\item
+  monitoring and assurance
+\item
+  continual improvement
+\end{itemize}
+
+\subsection{Sample Control Catalogue}\label{sample-control-catalogue}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Control ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Objective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Frequency
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ISO-01 & ISMS policy approved & Ensure formal leadership direction &
+CISO & Annual & Approved policy \\
+ISO-02 & Risk assessment performed & Identify and evaluate security
+risks & Risk Manager & Annual / change-driven & Risk assessment
+records \\
+ISO-03 & Statement of Applicability maintained & Document selected and
+excluded controls & Security Governance Lead & Annual / change-driven &
+SoA \\
+ISO-04 & Internal audit completed & Validate ISMS conformance and
+effectiveness & Audit Lead & Annual & Audit reports \\
+ISO-05 & Management review performed & Ensure leadership oversight and
+decisions & Executive Sponsor & Annual & Management review minutes \\
+ISO-06 & Corrective actions tracked & Improve nonconformity resolution &
+ISMS Manager & Ongoing & Action tracker \\
+\end{longtable}
+
+\section{Artefacts and Evidence}\label{artefacts-and-evidence}
+
+\subsection{Required Artefacts}\label{required-artefacts}
+
+Document the key ISO/IEC 27001 artefacts.
+
+\begin{itemize}
+\tightlist
+\item
+  ISMS scope statement
+\item
+  information security policy
+\item
+  risk assessment methodology
+\item
+  risk treatment methodology
+\item
+  risk register
+\item
+  risk treatment plan
+\item
+  Statement of Applicability
+\item
+  asset inventory
+\item
+  control standards and procedures
+\item
+  supplier security assessments
+\item
+  vulnerability and patch records
+\item
+  access review records
+\item
+  incident register
+\item
+  internal audit plan
+\item
+  internal audit reports
+\item
+  management review outputs
+\item
+  corrective action register
+\item
+  competency and awareness records
+\item
+  metrics and dashboard packs
+\item
+  certification audit materials where applicable
+\end{itemize}
+
+\subsection{Evidence Model}\label{evidence-model}
+
+For each artefact define:
+
+\begin{itemize}
+\tightlist
+\item
+  owner
+\item
+  purpose
+\item
+  location
+\item
+  frequency of update
+\item
+  retention period
+\item
+  assurance mechanism
+\end{itemize}
+
+\section{Architecture and Technology
+Implications}\label{architecture-and-technology-implications}
+
+\subsection{Security by Design}\label{security-by-design}
+
+Describe how ISMS requirements are embedded into:
+
+\begin{itemize}
+\tightlist
+\item
+  enterprise architecture
+\item
+  solution design
+\item
+  cloud architecture
+\item
+  network and infrastructure design
+\item
+  identity and access management
+\item
+  data protection architecture
+\item
+  software delivery pipelines
+\item
+  supplier integration patterns
+\item
+  operational monitoring design
+\end{itemize}
+
+\subsection{Technology Landscape View}\label{technology-landscape-view}
+
+Document the security-relevant technology landscape:
+
+\begin{itemize}
+\tightlist
+\item
+  business services and critical processes
+\item
+  application and data estate
+\item
+  infrastructure and cloud services
+\item
+  identity and access ecosystem
+\item
+  security tooling landscape
+\item
+  logging and monitoring architecture
+\item
+  backup and recovery architecture
+\item
+  third-party technology dependencies
+\end{itemize}
+
+\subsection{Asset and Dependency
+Mapping}\label{asset-and-dependency-mapping}
+
+Include or reference:
+
+\begin{itemize}
+\tightlist
+\item
+  asset inventories
+\item
+  application dependency diagrams
+\item
+  network and trust zone diagrams
+\item
+  data flow diagrams
+\item
+  supplier dependency maps
+\item
+  resilience and recovery dependency maps
+\end{itemize}
+
+\section{Risk Management}\label{risk-management}
+
+\subsection{Information Security Risk
+Model}\label{information-security-risk-model}
+
+Describe how information security risks are identified, assessed,
+treated, accepted, escalated, and monitored within the ISMS.
+
+\subsection{Example Risk Categories}\label{example-risk-categories}
+
+\begin{itemize}
+\tightlist
+\item
+  unclear ISMS scope or governance
+\item
+  incomplete asset visibility
+\item
+  weak identity and access management
+\item
+  poor control implementation
+\item
+  insecure change and development practices
+\item
+  inadequate monitoring and logging
+\item
+  supplier security exposure
+\item
+  insufficient incident response capability
+\item
+  weak recovery arrangements
+\item
+  poor evidence and assurance discipline
+\end{itemize}
+
+\subsection{Risk Register Template}\label{risk-register-template}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Risk ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Risk Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cause
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Impact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Likelihood
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Inherent Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control Strength
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Residual Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Owner
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+IS-01 & Example & Example & Example & Medium & High & Medium & Medium &
+Example \\
+\end{longtable}
+
+\section{Metrics and Reporting}\label{metrics-and-reporting}
+
+\subsection{Key Metrics}\label{key-metrics}
+
+Examples of ISMS metrics:
+
+\begin{itemize}
+\tightlist
+\item
+  percentage of assets classified
+\item
+  percentage of risks assessed on schedule
+\item
+  percentage of treatment actions completed on time
+\item
+  percentage of controls implemented as planned
+\item
+  number of significant incidents
+\item
+  vulnerability remediation performance
+\item
+  access review completion rate
+\item
+  supplier assessment coverage
+\item
+  number of audit findings open vs closed
+\item
+  percentage of corrective actions closed on time
+\item
+  percentage of management review actions completed
+\item
+  percentage of ISMS objectives achieved
+\end{itemize}
+
+\subsection{Dashboard Structure}\label{dashboard-structure}
+
+Suggested dashboard views:
+
+\begin{itemize}
+\tightlist
+\item
+  executive information security dashboard
+\item
+  ISMS performance dashboard
+\item
+  risk and treatment dashboard
+\item
+  incident and vulnerability dashboard
+\item
+  supplier security dashboard
+\item
+  audit and corrective action dashboard
+\end{itemize}
+
+\section{Audit and Assurance}\label{audit-and-assurance}
+
+\subsection{Assurance Model}\label{assurance-model}
+
+Document the assurance approach across:
+
+\begin{itemize}
+\tightlist
+\item
+  management self-assessment
+\item
+  control owner attestations
+\item
+  second-line compliance reviews
+\item
+  internal audit
+\item
+  certification audit support where applicable
+\item
+  corrective action verification
+\end{itemize}
+
+\subsection{Testing Themes}\label{testing-themes}
+
+\begin{itemize}
+\tightlist
+\item
+  scope and governance effectiveness
+\item
+  risk assessment and treatment quality
+\item
+  Statement of Applicability quality
+\item
+  control implementation and operating effectiveness
+\item
+  incident handling
+\item
+  supplier control coverage
+\item
+  management review effectiveness
+\item
+  corrective action discipline
+\item
+  evidence completeness and traceability
+\end{itemize}
+
+\section{Implementation Roadmap}\label{implementation-roadmap}
+
+\subsection{Maturity Phases}\label{maturity-phases}
+
+\subsubsection{Phase 1: Foundation}\label{phase-1-foundation}
+
+\begin{itemize}
+\tightlist
+\item
+  define organisational context and ISMS scope
+\item
+  establish governance and executive sponsorship
+\item
+  approve core policy framework
+\item
+  define risk assessment and treatment methods
+\item
+  build initial asset inventory and baseline controls
+\end{itemize}
+
+\subsubsection{Phase 2: Control Design}\label{phase-2-control-design}
+
+\begin{itemize}
+\tightlist
+\item
+  perform risk assessment
+\item
+  create risk treatment plan
+\item
+  develop Statement of Applicability
+\item
+  implement priority control improvements
+\item
+  establish incident, supplier, and monitoring processes
+\end{itemize}
+
+\subsubsection{Phase 3: Integration}\label{phase-3-integration}
+
+\begin{itemize}
+\tightlist
+\item
+  embed ISMS into change, architecture, procurement, and operations
+\item
+  improve evidence collection and monitoring
+\item
+  establish internal audit and management review cycle
+\item
+  align corrective action tracking with enterprise governance
+\end{itemize}
+
+\subsubsection{Phase 4: Optimisation}\label{phase-4-optimisation}
+
+\begin{itemize}
+\tightlist
+\item
+  refine metrics and dashboards
+\item
+  strengthen automation and control monitoring
+\item
+  improve management review quality
+\item
+  enhance assurance readiness and continual improvement
+\item
+  support certification maintenance where applicable
+\end{itemize}
+
+\subsection{Roadmap Table}\label{roadmap-table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initiative
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Owner
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Priority
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Timeline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dependency
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Example & Example & Example & High & Q1-Q2 & Example & Planned \\
+\end{longtable}
+
+\section{Cross-Framework Integration}\label{cross-framework-integration}
+
+\subsection{Relationship to Other
+Frameworks}\label{relationship-to-other-frameworks}
+
+Describe how ISO/IEC 27001 integrates with:
+
+\begin{itemize}
+\tightlist
+\item
+  NIST Cybersecurity Framework
+\item
+  NIS2
+\item
+  DORA
+\item
+  GDPR
+\item
+  AI Act
+\item
+  COBIT
+\item
+  ITIL
+\item
+  TOGAF
+\item
+  enterprise risk management
+\item
+  business continuity and operational resilience frameworks
+\end{itemize}
+
+\subsection{Example Mapping Themes}\label{example-mapping-themes}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ISO/IEC 27001 Theme
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Related Framework
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Integration Point
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ISMS governance & COBIT & Governance objectives and accountability \\
+Risk treatment & NIST CSF & Cyber risk management and capability
+improvement \\
+Incident management & NIS2 / DORA & Cyber incident governance and
+reporting \\
+Security architecture & TOGAF & Architecture governance and security
+viewpoints \\
+Privacy-related controls & GDPR & Data protection and processing
+safeguards \\
+\end{longtable}
+
+\section{Maturity Model}\label{maturity-model}
+
+\subsection{Suggested Maturity Levels}\label{suggested-maturity-levels}
+
+\subsubsection{Level 1: Initial}\label{level-1-initial}
+
+Security activities are reactive, fragmented, and poorly governed.
+
+\subsubsection{Level 2: Repeatable}\label{level-2-repeatable}
+
+Basic ISMS components exist but are inconsistently applied and weakly
+evidenced.
+
+\subsubsection{Level 3: Defined}\label{level-3-defined}
+
+The ISMS scope, policies, risk treatment, and controls are documented
+and broadly implemented.
+
+\subsubsection{Level 4: Managed}\label{level-4-managed}
+
+The ISMS is measured, reviewed, audited, and actively improved through
+leadership oversight.
+
+\subsubsection{Level 5: Optimised}\label{level-5-optimised}
+
+Information security is fully integrated into enterprise governance,
+architecture, operations, and supplier management with strong evidence
+and continual improvement.
+
+\subsection{Assessment Dimensions}\label{assessment-dimensions}
+
+\begin{itemize}
+\tightlist
+\item
+  governance
+\item
+  scope and context management
+\item
+  risk assessment
+\item
+  risk treatment
+\item
+  control implementation
+\item
+  incident management
+\item
+  supplier security
+\item
+  metrics and reporting
+\item
+  audit and management review
+\item
+  continual improvement
+\end{itemize}
+
+\section{Practical Templates}\label{practical-templates}
+
+\subsection{Suggested Appendices}\label{suggested-appendices}
+
+\begin{itemize}
+\tightlist
+\item
+  Appendix A: ISMS scope statement template
+\item
+  Appendix B: Risk assessment template
+\item
+  Appendix C: Risk treatment plan template
+\item
+  Appendix D: Statement of Applicability template
+\item
+  Appendix E: Information security control catalogue
+\item
+  Appendix F: Internal audit checklist
+\item
+  Appendix G: Management review agenda template
+\item
+  Appendix H: ISO/IEC 27001 RACI matrix
+\end{itemize}
+
+\section{Customisation Notes}\label{customisation-notes}
+
+This template should be tailored to reflect:
+
+\begin{itemize}
+\tightlist
+\item
+  organisational structure
+\item
+  business and regulatory context
+\item
+  ISMS scope boundary
+\item
+  critical services and information assets
+\item
+  sourcing and third-party model
+\item
+  cloud and technology estate
+\item
+  maturity level
+\item
+  assurance and certification expectations
+\item
+  operating model and budget constraints
+\end{itemize}
+
+\section{References}\label{references}
+
+Add authoritative references here, for example:
+
+\begin{itemize}
+\tightlist
+\item
+  ISO/IEC 27001:2022
+\item
+  ISO/IEC 27001:2022/Amd 1:2024
+\item
+  ISO/IEC 27002:2022
+\item
+  ISO/IEC 27000 family guidance
+\item
+  internal information security policies and standards
+\item
+  enterprise risk framework
+\item
+  architecture and resilience standards
+\end{itemize}
+
+
+
+
+\end{document}

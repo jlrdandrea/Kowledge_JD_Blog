@@ -1,0 +1,122 @@
+---
+title: "Framework Integration"
+description: "Cross-Framework Integration Master Table"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: [Framework, Integration]
+
+---
+
+# Cross-Framework Integration Master Table
+
+| Origin Framework | Origin Artefact / Trigger | Receiving Process | Produced Output | Destination Framework | Destination Artefact / Use |
+|------------|------------|------------|------------|------------|------------|
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | Compliance planning and governance alignment | Compliance scope and priorities | GDPR | Privacy compliance roadmap |
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | Cyber governance planning | Cybersecurity objectives and oversight expectations | NIS2 | Cyber governance model |
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | Operational resilience planning | Resilience priorities and accountability model | DORA | Digital operational resilience strategy |
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | ISMS planning | Security objectives and governance mandate | ISO/IEC 27001 | ISMS scope and policy direction |
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | Cyber capability planning | Current/target capability priorities | NIST CSF | Target profile and roadmap |
+| Board / Enterprise Governance | Strategy, risk appetite, regulatory obligations | AI governance planning | AI risk appetite and governance expectations | AI Act | AI governance framework |
+| GDPR | Record of processing activities | Security risk assessment | Identification of systems processing personal data | ISO/IEC 27001 | Asset inventory and risk register |
+| GDPR | Record of processing activities | Architecture review | Mapping of personal data flows | TOGAF | Data flow and solution architecture views |
+| GDPR | Legal basis register | AI use case review | Data-use constraints and lawful processing criteria | AI Act | AI data governance controls |
+| GDPR | DPIA trigger | AI governance intake | Privacy risk assessment requirement for AI use case | AI Act | High-risk AI review input |
+| GDPR | DPIA findings | Security control design | Privacy-related security requirements | ISO/IEC 27001 | Risk treatment plan |
+| GDPR | DPIA findings | Cyber capability assessment | Required protection and monitoring outcomes | NIST CSF | Protect / Detect outcomes |
+| GDPR | Data retention schedule | Information lifecycle control process | Retention and deletion requirements | ISO/IEC 27001 | Information lifecycle controls |
+| GDPR | Data subject rights requirements | Service process design | Operational handling requirements | ITIL | Service request workflow |
+| GDPR | Personal data breach criteria | Incident management | Personal data breach assessment rules | NIS2 | Incident triage criteria |
+| GDPR | Personal data breach criteria | Incident management | Privacy-related notification triggers | DORA | ICT incident reporting assessment |
+| GDPR | Processor contract clauses | Supplier risk review | Privacy control requirements for vendors | ISO/IEC 27001 | Supplier security clauses |
+| GDPR | Transfer impact assessment | Third-party review | Cross-border data control requirements | AI Act | External model/provider restrictions |
+| NIS2 | Essential/important entity classification | Governance assessment | Regulatory criticality context | DORA | Critical function resilience context |
+| NIS2 | Cybersecurity risk management obligations | ISMS design | Baseline cyber control requirements | ISO/IEC 27001 | Control framework inputs |
+| NIS2 | Cybersecurity risk measures | Capability assessment | Desired cyber outcomes | NIST CSF | Current/target profile criteria |
+| NIS2 | Incident reporting rules | Incident procedure design | Escalation and reporting thresholds | DORA | Major ICT incident workflow |
+| NIS2 | Supply chain security requirements | Supplier governance | Security due diligence expectations | ISO/IEC 27001 | Supplier assurance controls |
+| NIS2 | Business service criticality | Resilience planning | Service prioritisation inputs | DORA | Critical/important function register |
+| NIS2 | Governance accountability requirements | Executive reporting design | Oversight and board reporting needs | COBIT | Governance reporting model |
+| NIS2 | Technical and organisational measures | Architecture review | Security-by-design requirements | TOGAF | Security architecture principles |
+| NIS2 | Monitoring and detection obligations | Security operations design | Detection and response capability needs | NIST CSF | Detect / Respond capability design |
+| NIS2 | Crisis communication expectations | Continuity planning | Cyber crisis communication requirements | DORA | Crisis management process |
+| DORA | Critical or important functions register | Asset and service scoping | ICT dependency prioritisation | ISO/IEC 27001 | Scope and critical asset treatment |
+| DORA | ICT risk management framework | Security governance alignment | Risk treatment and control expectations | ISO/IEC 27001 | Risk treatment plan |
+| DORA | ICT risk management framework | Capability mapping | Resilience-related cyber outcomes | NIST CSF | Govern / Recover profile inputs |
+| DORA | Major ICT incident classification rules | Incident management workflow | Incident severity and escalation model | NIS2 | Incident assessment harmonisation |
+| DORA | Major ICT incident reporting process | Service operations process | Regulatory reporting operational steps | ITIL | Major incident workflow |
+| DORA | Digital operational resilience testing plan | Control testing | Scenario and resilience validation inputs | ISO/IEC 27001 | Test and assurance evidence |
+| DORA | Threat-led penetration testing requirement | Detection and response improvement | Control gap identification | NIST CSF | Detect / Respond improvement roadmap |
+| DORA | Register of information | Supplier governance | ICT third-party dependency evidence | ISO/IEC 27001 | Supplier risk register |
+| DORA | Concentration risk assessment | Enterprise architecture review | Dependency and concentration visibility | TOGAF | Dependency maps |
+| DORA | Exit strategy requirements | Continuity and sourcing planning | Supplier substitution and recovery requirements | ITIL | Service continuity and supplier transition planning |
+| DORA | Recovery exercise results | Management review | Corrective actions and investment priorities | COBIT | Governance action tracking |
+| DORA | ICT third-party contractual requirements | Procurement process | Contractual control clauses | GDPR | Processor/third-party control alignment |
+| ISO/IEC 27001 | ISMS scope statement | Cyber capability review | Scope boundary for capability assessment | NIST CSF | Current profile boundary |
+| ISO/IEC 27001 | Asset inventory | Privacy review | Identification of personal-data-supporting assets | GDPR | RoPA / security of processing support |
+| ISO/IEC 27001 | Risk assessment results | Cyber capability prioritisation | Prioritised cyber gaps | NIST CSF | Target profile roadmap |
+| ISO/IEC 27001 | Risk assessment results | Resilience planning | ICT and security risk inputs | DORA | ICT risk treatment alignment |
+| ISO/IEC 27001 | Risk assessment results | AI governance review | Security and model risk context | AI Act | AI control design |
+| ISO/IEC 27001 | Risk treatment plan | Privacy control implementation | Security measures supporting personal data protection | GDPR | Security of processing evidence |
+| ISO/IEC 27001 | Risk treatment plan | Resilience control design | Protective and recovery measures | DORA | ICT resilience controls |
+| ISO/IEC 27001 | Statement of Applicability | Compliance mapping | Formal control baseline | NIS2 | Evidence of technical and organisational measures |
+| ISO/IEC 27001 | Statement of Applicability | AI security review | Baseline security controls for AI systems | AI Act | Robustness and cybersecurity controls |
+| ISO/IEC 27001 | Supplier security controls | Third-party governance | Security due diligence requirements | DORA | ICT third-party risk controls |
+| ISO/IEC 27001 | Incident register | Regulatory incident assessment | Security incident evidence | GDPR | Personal data breach review |
+| ISO/IEC 27001 | Incident register | Regulatory incident assessment | Security incident evidence | NIS2 | Significant incident review |
+| ISO/IEC 27001 | Internal audit findings | Executive governance review | Assurance issues and remediation needs | COBIT | Governance improvement actions |
+| ISO/IEC 27001 | Management review outputs | Enterprise improvement planning | Strategic security improvement decisions | NIST CSF | Target state reprioritisation |
+| NIST CSF | Current profile | ISMS planning | Baseline maturity and control coverage view | ISO/IEC 27001 | ISMS gap analysis |
+| NIST CSF | Target profile | Security roadmap planning | Prioritised target-state outcomes | ISO/IEC 27001 | Risk treatment initiatives |
+| NIST CSF | Govern outcomes | Executive governance design | Cyber governance expectations | NIS2 | Governance model refinement |
+| NIST CSF | Govern outcomes | Resilience governance design | Accountability and oversight expectations | DORA | Governance model refinement |
+| NIST CSF | Identify outcomes | Privacy and data review | Asset and data dependency understanding | GDPR | Processing and data flow visibility |
+| NIST CSF | Identify outcomes | AI use case review | AI system dependency and asset mapping | AI Act | AI inventory enrichment |
+| NIST CSF | Protect outcomes | Security architecture process | Required security patterns | TOGAF | Security architecture standards |
+| NIST CSF | Detect outcomes | Service monitoring design | Monitoring and alerting requirements | ITIL | Event and incident monitoring design |
+| NIST CSF | Respond outcomes | Crisis and incident process | Coordinated response playbooks | DORA | ICT incident response model |
+| NIST CSF | Recover outcomes | Continuity and recovery planning | Resilience and restoration outcomes | DORA | Recovery testing priorities |
+| NIST CSF | Gap analysis | Investment governance | Prioritised remediation actions | COBIT | Portfolio and control investments |
+| NIST CSF | Improvement roadmap | PMO delivery planning | Security transformation initiatives | P3O / PMO | Change portfolio planning |
+| AI Act | AI use case register | Privacy review | Personal data and rights impact screening | GDPR | DPIA trigger assessment |
+| AI Act | AI use case register | Security review | Security baseline requirements for AI systems | ISO/IEC 27001 | Asset and control scoping |
+| AI Act | AI system classification | Governance review | Identification of high-risk systems | COBIT | Governance oversight and prioritisation |
+| AI Act | Prohibited-practice screening | Legal and compliance escalation | Use-case prohibition decision | GDPR | Rights and lawful processing alignment |
+| AI Act | High-risk AI classification | Risk treatment design | Enhanced control requirements | ISO/IEC 27001 | Risk treatment and SoA review |
+| AI Act | High-risk AI classification | Cyber capability mapping | AI-related security and monitoring outcomes | NIST CSF | Protect / Detect / Govern enhancements |
+| AI Act | Technical documentation obligations | Architecture and delivery process | Documentation-by-design requirements | TOGAF | Solution delivery standards |
+| AI Act | Human oversight requirements | Operating model design | Human review and intervention workflow | ITIL | Operational approval/escalation paths |
+| AI Act | Data governance requirements | Privacy and data governance process | Data quality, minimisation, and provenance expectations | GDPR | Data governance controls |
+| AI Act | Transparency obligations | User interaction and content process | Disclosure and notification requirements | ITIL | Service/process communication design |
+| AI Act | Logging and recordkeeping requirements | Monitoring and evidence management | Model activity evidence requirements | ISO/IEC 27001 | Logging and audit trail controls |
+| AI Act | Serious incident handling | Incident management | AI incident escalation and remediation workflow | DORA | Incident governance alignment |
+| AI Act | GPAI dependency register | Supplier governance | External model/provider control requirements | DORA | ICT third-party oversight |
+| AI Act | AI literacy requirements | Training governance | Role-based awareness expectations | ISO/IEC 27001 | Competence and awareness evidence |
+| TOGAF | Business capability map | Compliance scoping | Mapping of regulated business capabilities | GDPR | Scope of processing activities |
+| TOGAF | Application portfolio | Security scoping | Identification of systems in control scope | ISO/IEC 27001 | ISMS asset and system scope |
+| TOGAF | Data flow diagrams | Privacy review | Mapping of personal data flows | GDPR | RoPA and DPIA support |
+| TOGAF | Dependency architecture | Resilience review | Critical ICT dependency visibility | DORA | Dependency and concentration analysis |
+| TOGAF | Solution architecture standards | Secure design process | Required security and control patterns | NIST CSF | Protect outcomes implementation |
+| TOGAF | Architecture review decisions | AI design governance | Approved architecture constraints for AI solutions | AI Act | AI solution compliance by design |
+| ITIL | Incident records | Security incident review | Incident evidence and trend data | ISO/IEC 27001 | Incident management evidence |
+| ITIL | Major incident workflow | Regulatory reporting | Structured incident escalation path | DORA | Major ICT incident reporting process |
+| ITIL | Service request workflow | Data rights handling | Operational fulfilment process | GDPR | Data subject rights process |
+| ITIL | CMDB / configuration data | Risk and asset review | Asset and service relationship evidence | ISO/IEC 27001 | Asset inventory enrichment |
+| ITIL | Problem management outputs | Continual improvement | Root cause and remediation actions | NIST CSF | Improvement roadmap |
+| ITIL | Change management records | Control assurance | Evidence of controlled implementation | ISO/IEC 27001 | Operational control evidence |
+| ITIL | Service continuity arrangements | Resilience planning | Recovery process evidence | DORA | Recovery capability validation |
+| Procurement / Third-Party Management | Supplier inventory | Security review | Supplier scope for control assessment | ISO/IEC 27001 | Supplier risk register |
+| Procurement / Third-Party Management | Supplier inventory | Privacy review | Processor and sub-processor identification | GDPR | Processor register |
+| Procurement / Third-Party Management | Supplier inventory | ICT dependency analysis | External ICT dependency visibility | DORA | Register of information |
+| Procurement / Third-Party Management | Due diligence questionnaire | AI supplier review | AI provider risk and assurance status | AI Act | Third-party AI governance |
+| Procurement / Third-Party Management | Contract clauses | Compliance review | Control obligations mapped to vendor | NIS2 | Supply chain security evidence |
+| Procurement / Third-Party Management | Exit clauses | Resilience planning | Substitution and continuity options | DORA | Exit planning |
+| Internal Audit | Audit plan | Multi-framework assurance | Coordinated assurance coverage | GDPR | Audit evidence and findings |
+| Internal Audit | Audit plan | Multi-framework assurance | Coordinated assurance coverage | NIS2 | Audit evidence and findings |
+| Internal Audit | Audit plan | Multi-framework assurance | Coordinated assurance coverage | DORA | Audit evidence and findings |
+| Internal Audit | Audit plan | Multi-framework assurance | Coordinated assurance coverage | ISO/IEC 27001 | Internal audit programme |
+| Internal Audit | Audit findings | Governance escalation | Remediation priorities and risk decisions | Board / Risk Committee | Action plan and oversight |
+| Internal Audit | Maturity assessment | Capability improvement planning | Improvement recommendations | NIST CSF | Roadmap reprioritisation |
+| Internal Audit | Model governance review | Compliance remediation | AI control improvement actions | AI Act | Remediation tracker |
+| Board / Risk Committee | Dashboard packs, incidents, findings, regulatory change | Strategic oversight | Investment decisions and remediation priorities | All Frameworks | Updated plans, policies, and roadmaps |
+| Enterprise Risk Management | Risk taxonomy and scoring model | Framework-specific risk assessment | Common risk language and scoring | GDPR / NIS2 / DORA / ISO/IEC 27001 / AI Act / NIST CSF | Aligned risk registers |
+| PMO / Transformation | Regulatory change portfolio | Delivery planning | Sequenced implementation initiatives | All Frameworks | Compliance programme roadmap |

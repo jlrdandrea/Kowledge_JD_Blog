@@ -1,0 +1,304 @@
+---
+title: "Specialist Systems - Providers"
+description: "Specialist Systems by Industry and Provider"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: 
+  - Specialist Systems
+  - Project Management
+---
+
+# Introduction
+
+This document provides a practical catalogue of specialist systems by industry, with representative providers. It is intended as a reference for enterprise architecture, IT strategy, operating model design, digital transformation, and industry capability mapping.
+
+The catalogue is structured using the following fields:
+
+-   **Industry**
+-   **Specialist Capability**
+-   **System Type**
+-   **Purpose**
+-   **Typical Providers**
+
+This is not an exhaustive market analysis. Provider names are illustrative and represent common or well-known vendors in each category.
+
+# How to Use This Catalogue
+
+This reference can support several use cases:
+
+-   enterprise architecture inventories
+-   target operating model design
+-   application portfolio assessments
+-   industry capability mapping
+-   vendor landscape overviews
+-   digital transformation discovery work
+-   PMO and IT governance documentation
+
+A useful extension is to add fields such as:
+
+-   business owner
+-   technical owner
+-   deployment model
+-   integration points
+-   criticality
+-   regulatory relevance
+-   data classification
+-   lifecycle status
+
+# Catalogue of Specialist Systems by Industry
+
+| Industry | Specialist Capability | System Type | Purpose | Typical Providers |
+|---------------|---------------|---------------|---------------|---------------|
+| Industrial / Manufacturing | Plant supervision and control | SCADA | Supervisory monitoring and control of industrial processes and equipment | Siemens, Schneider Electric / AVEVA, Rockwell Automation, Inductive Automation |
+| Industrial / Manufacturing | Continuous process control | DCS | Distributed control of continuous and batch industrial processes | Siemens, Emerson, Honeywell, Yokogawa |
+| Industrial / Manufacturing | Manufacturing operations execution | MES / MOM | Manage production execution, quality, scheduling, and shop-floor visibility | Siemens, Rockwell Automation, AVEVA, Dassault Systèmes |
+| Industrial / Manufacturing | Product engineering lifecycle | PLM | Manage product design, engineering changes, and lifecycle data | Siemens, PTC, Dassault Systèmes, Autodesk |
+| Industrial / Manufacturing | Industrial asset maintenance | APM / EAM | Manage reliability, predictive maintenance, and asset performance | IBM Maximo, Hexagon, ABB, GE Digital |
+| Utilities / Energy | Grid operations management | ADMS / EMS / OMS | Operate energy distribution, outages, and grid control | GE Vernova, Schneider Electric, Oracle, Siemens |
+| Utilities / Water | Customer and billing operations | CIS / Utility Billing | Manage customer records, billing, meter-to-cash, and service orders | Oracle Utilities, SAP, Hansen, Gentrack |
+| Utilities / Water | Meter data operations | MDM | Collect, validate, and process smart meter data | Oracle Utilities, Itron, Siemens, Landis+Gyr |
+| Oil and Gas | Reservoir and production management | E&P / Reservoir Systems | Model reservoirs and manage exploration and production data | SLB, Halliburton, Baker Hughes, Landmark |
+| Oil and Gas | Production operations | Production Management Systems | Monitor wells, production flows, and optimisation | SLB, AVEVA, Baker Hughes, Emerson |
+| Mining | Mine planning | Mine Planning Systems | Plan pit design, extraction, and geological modelling | Hexagon, Micromine, Dassault GEOVIA, Maptek |
+| Mining | Fleet and dispatch | Fleet Management Systems | Control mobile equipment dispatch, haulage, and productivity | Hexagon, Modular Mining, Epiroc, Caterpillar |
+| Healthcare | Clinical patient record | EHR / EMR | Maintain longitudinal electronic health records and clinical workflows | Epic, Oracle Health, MEDITECH, Altera Digital Health |
+| Healthcare | Medical imaging management | PACS / RIS / Enterprise Imaging | Manage radiology workflows and image storage/retrieval | GE HealthCare, Philips, Sectra, Fujifilm |
+| Healthcare | Laboratory operations | LIS / LIMS | Manage samples, test workflows, and laboratory reporting | Thermo Fisher, LabVantage, Clinisys, Abbott |
+| Healthcare | Hospital operations | PAS / Hospital Information System | Manage admissions, discharges, transfers, scheduling, and administration | Dedalus, Oracle Health, InterSystems, System C |
+| Pharmaceuticals / Life Sciences | Quality and compliance | QMS | Manage deviations, CAPA, training, and regulated quality records | MasterControl, Veeva, Sparta Systems, ETQ |
+| Pharmaceuticals / Life Sciences | Laboratory management | LIMS | Manage scientific lab processes and regulated sample workflows | LabWare, Thermo Fisher, LabVantage, STARLIMS |
+| Pharmaceuticals / Life Sciences | Clinical trial operations | CTMS / eClinical | Manage study planning, monitoring, and clinical trial execution | Medidata, Veeva, Oracle Health Sciences, IQVIA |
+| Pharmaceuticals / Life Sciences | Regulated manufacturing execution | MES | Manage batch production, genealogy, and electronic batch records | Körber Pharma, Siemens, Rockwell Automation, Werum |
+| Banking | Core account processing | Core Banking System | Manage deposits, lending, accounts, and core banking transactions | FIS, Fiserv, Finastra, Temenos, Oracle |
+| Banking | Payments processing | Payments Hub / Payments Engine | Process domestic and international payments and clearing | FIS, ACI Worldwide, Volante Technologies, Temenos |
+| Banking | Treasury and trading | Treasury / Front-to-Back Systems | Support trading, treasury, settlements, and risk operations | Murex, Calypso, Finastra, FIS |
+| Banking | Loan origination and servicing | Lending Platforms | Manage credit applications, approvals, servicing, and collections | nCino, Temenos, Finastra, Fiserv |
+| Insurance | Policy lifecycle management | Policy Administration System | Manage underwriting, policies, endorsements, and renewals | Guidewire, Duck Creek, Sapiens, TIA Technology |
+| Insurance | Claims handling | Claims Management System | Manage claims intake, workflow, settlement, and reserves | Guidewire, Duck Creek, Sapiens, Origami Risk |
+| Insurance | Billing and collections | Billing System | Manage premium invoicing, collections, and commission handling | Guidewire, Duck Creek, Sapiens, Insurity |
+| Telecoms | Business support | BSS | Support billing, CRM, order management, and revenue operations | Amdocs, Netcracker, Ericsson, Oracle |
+| Telecoms | Network and service operations | OSS | Support provisioning, fault, inventory, and service assurance | Amdocs, Netcracker, Nokia, Ericsson |
+| Telecoms | Mediation and charging | Charging / Mediation Platforms | Process usage records and charging events | Amdocs, Netcracker, Nokia, Ericsson |
+| Airlines | Airline commercial operations | PSS | Manage reservations, ticketing, inventory, and departure control | Amadeus, Sabre, Navitaire |
+| Airlines | Airline operational control | OCC Systems | Support flight operations, crew coordination, and disruption management | Lufthansa Systems, Sabre, Jeppesen, IBS Software |
+| Aviation Maintenance | Aircraft maintenance and engineering | MRO Systems | Manage maintenance planning, compliance, parts, and records | AMOS, Ramco, IFS, Lufthansa Technik |
+| Airports | Airport operations | AODB / Airport Operations Systems | Manage gates, stands, turnaround, and airport resource allocation | Amadeus, SITA, INFORM, ADB SAFEGATE |
+| Travel Distribution | Travel inventory distribution | GDS | Distribute flights, hotels, and travel bookings | Amadeus, Sabre, Travelport |
+| Rail | Rail traffic control | Traffic Management / Signalling Support | Support dispatching, train movement, and operational control | Siemens Mobility, Hitachi Rail, Alstom, Thales |
+| Rail | Timetabling and rostering | Rail Planning Systems | Manage timetable planning, resources, and crew allocations | Trapeze, Hitachi Rail, Siemens Mobility, IVU |
+| Maritime / Shipping | Terminal operations | TOS | Manage container yard, vessel planning, and terminal execution | Kaleris Navis, Tideworks, CyberLogitec |
+| Maritime / Shipping | Fleet and voyage operations | Maritime Operations Systems | Manage fleet performance, voyage planning, and compliance | DNV, ABS, Veson Nautical, Kongsberg |
+| Logistics / Warehousing | Warehouse execution | WMS | Manage storage, picking, packing, and warehouse control | Manhattan Associates, Blue Yonder, SAP, Oracle |
+| Logistics / Transport | Transportation planning | TMS | Manage route planning, freight execution, and shipment visibility | Blue Yonder, Manhattan Associates, Oracle, SAP |
+| Logistics / Parcel | Parcel and last-mile operations | Parcel Management Systems | Manage sortation, dispatch, tracking, and delivery operations | Descartes, Metapack, Bringg, FarEye |
+| Retail | Store sales operations | POS | Process in-store sales, promotions, receipts, and cashier workflows | NCR Voyix, Toshiba Global Commerce Solutions, Oracle Retail, Diebold Nixdorf |
+| Retail | Merchandising and replenishment | Retail Merchandising Systems | Manage assortment, pricing, inventory, and replenishment | Oracle Retail, SAP, Blue Yonder, Manhattan Associates |
+| Retail | Ecommerce commerce platform | Ecommerce Platform | Manage online catalogue, basket, checkout, and fulfilment | Shopify, Adobe Commerce, Salesforce Commerce Cloud, SAP Commerce Cloud |
+| Hospitality | Hotel property operations | PMS | Manage reservations, front desk, room inventory, and guest services | Oracle OPERA, Infor HMS, Mews, Agilysys |
+| Hospitality | Central reservations | CRS | Manage room inventory distribution and hotel booking channels | Oracle Hospitality, SHR, Sabre Hospitality, Amadeus |
+| Restaurants / Food Service | Restaurant operations | Restaurant POS / Back Office | Manage table service, orders, tills, kitchen, stock, and labour | Toast, NCR Voyix, Oracle MICROS, Square |
+| Construction / Engineering | Built asset design coordination | BIM / CDE | Manage building models, drawings, and common data environments | Autodesk, Bentley, Trimble, Nemetschek |
+| Construction / Capital Projects | Project controls | CPM / Project Controls Systems | Manage schedules, cost, progress, risk, and earned value | Oracle Primavera, Hexagon EcoSys, Deltek |
+| Construction / Engineering | Field operations and site management | Construction Management Systems | Manage site activities, forms, quality, and punch lists | Procore, Autodesk Construction Cloud, Oracle Aconex, Trimble |
+| Real Estate | Property administration | Property Management System | Manage leases, tenants, rent, maintenance, and real estate operations | Yardi, MRI Software, RealPage |
+| Education | Student administration | SIS | Manage student records, admissions, enrolment, grades, and timetables | Ellucian, PowerSchool, Tribal, Unit4 |
+| Education | Learning delivery | LMS / VLE | Deliver courses, assignments, and online learning experiences | Moodle, Canvas, Blackboard, D2L |
+| Government / Public Safety | Emergency dispatch | CAD | Support call handling, dispatch, and incident coordination | Motorola Solutions, Hexagon, CentralSquare, Tyler Technologies |
+| Government / Public Safety | Law enforcement records | RMS | Manage incident reports, case records, and operational policing data | Motorola Solutions, Hexagon, CentralSquare, Mark43 |
+| Government / Tax | Revenue collection and compliance | Tax and Revenue Systems | Manage tax records, filings, assessments, and collections | FAST Enterprises, SAP, Oracle |
+| Justice / Courts | Court administration | Case Management Systems | Manage hearings, filings, case progression, and judicial workflow | Tyler Technologies, Thomson Reuters, Journal Technologies |
+| Media / Broadcast | Media content operations | MAM | Manage media assets, metadata, storage, and production workflows | Avid, Dalet, Vizrt, Evertz |
+| Media / Broadcast | News production | Newsroom Systems | Support story planning, rundowns, and newsroom collaboration | ENPS, Avid, Dalet, Octopus Newsroom |
+| Agriculture | Farm operations | Farm Management Systems | Manage crop planning, field operations, and input usage | John Deere, Trimble Agriculture, Climate FieldView, AGCO |
+| Agriculture | Precision agriculture | Precision Ag Platforms | Optimise seeding, spraying, yield, and machine telemetry | John Deere, Trimble, Raven, Climate FieldView |
+| Legal | Legal operations and matter handling | Practice Management / Matter Management | Manage cases, billing, time recording, and legal workflows | Clio, iManage, Thomson Reuters, Aderant |
+| Professional Services | Engagement and resource operations | PSA | Manage projects, utilisation, time, billing, and consulting delivery | Deltek, Kantata, Certinia, Mavenlink |
+| Energy Trading | Commodity and market operations | ETRM / CTRM | Manage energy trades, risk, scheduling, and settlements | ION, Allegro, Eka Software, FIS |
+| Automotive | Dealer and aftersales operations | Dealer Management System | Manage sales, service, parts, and dealership finance | CDK Global, Reynolds and Reynolds, Keyloop |
+| Automotive | Vehicle lifecycle and engineering | Automotive PLM / ALM | Support product engineering, compliance, and design lifecycle | Siemens, PTC, Dassault Systèmes, Autodesk |
+
+# Cross-Industry Observations
+
+Although these systems are industry-specific, they usually fall into a smaller number of architectural categories.
+
+## Operational Control Systems
+
+These directly control or monitor operations, often in real time.
+
+Examples include:
+
+-   SCADA
+-   DCS
+-   EMS
+-   ADMS
+-   OSS
+-   fleet dispatch systems
+
+## Core Transaction Systems
+
+These execute the primary business transactions of an industry.
+
+Examples include:
+
+-   core banking
+-   policy administration
+-   PSS
+-   PMS
+-   SIS
+-   POS
+
+## Record and Compliance Systems
+
+These provide legally or operationally important records.
+
+Examples include:
+
+-   EHR
+-   PACS
+-   LIS
+-   CTMS
+-   RMS
+-   case management systems
+
+## Planning and Execution Systems
+
+These support operational planning, workflow, and optimisation.
+
+Examples include:
+
+-   WMS
+-   TMS
+-   MES
+-   project controls systems
+-   mine planning systems
+-   farm management systems
+
+# Suggested Enterprise Architecture Extension
+
+You can extend the catalogue with a more complete inventory model such as the following.
+
+| Field                 | Description                                 |
+|-----------------------|---------------------------------------------|
+| Industry              | Industry domain or sector                   |
+| Specialist Capability | Business capability supported by the system |
+| System Type           | Recognised application category             |
+| Business Purpose      | Main operational or strategic purpose       |
+| Provider              | Vendor or service provider                  |
+| Product Name          | Specific implementation or product used     |
+| Deployment Model      | On-premise, cloud, SaaS, hybrid             |
+| Business Owner        | Accountable business function               |
+| Technical Owner       | IT or platform owner                        |
+| Criticality           | Mission critical, high, medium, low         |
+| Integration Points    | Upstream and downstream systems             |
+| Data Sensitivity      | Public, internal, confidential, regulated   |
+| Regulatory Relevance  | Applicable regulations or standards         |
+| Lifecycle Status      | Strategic, active, legacy, retiring         |
+| Notes                 | Additional remarks                          |
+
+# Example Application Inventory Entry
+
+Below is an example of how a specialist system can be represented in an enterprise architecture repository.
+
+| Field | Example Value |
+|------------------------------------|------------------------------------|
+| Industry | Industrial / Manufacturing |
+| Specialist Capability | Plant supervision and control |
+| System Type | SCADA |
+| Business Purpose | Monitor and control plant assets in real time |
+| Provider | Siemens |
+| Product Name | WinCC |
+| Deployment Model | Hybrid |
+| Business Owner | Head of Manufacturing Operations |
+| Technical Owner | Industrial Platforms Manager |
+| Criticality | Mission critical |
+| Integration Points | PLCs, historian, MES, EAM, reporting |
+| Data Sensitivity | Confidential |
+| Regulatory Relevance | Health and safety, cyber security, operational resilience |
+| Lifecycle Status | Strategic |
+| Notes | Requires strong network segmentation and OT security controls |
+
+# Architecture Notes
+
+## Specialist Systems Are Usually Not Standalone
+
+Most specialist systems are heavily integrated with broader enterprise platforms such as:
+
+-   ERP
+-   CRM
+-   identity and access management
+-   data warehouse / data lake
+-   integration middleware
+-   reporting and analytics platforms
+-   document management systems
+-   monitoring and cyber security tooling
+
+## Industry Systems Often Drive Core Value Creation
+
+In many industries, the specialist system is the operational core. For example:
+
+-   a bank depends on core banking
+-   an airline depends on its PSS
+-   a hospital depends on EHR and PACS
+-   a utility depends on ADMS/OMS/CIS
+-   a factory depends on SCADA, DCS, and MES
+
+## Governance Considerations
+
+When cataloguing specialist systems, it is useful to assess them through several lenses:
+
+-   business criticality
+-   resilience requirements
+-   information security
+-   compliance and regulation
+-   vendor lock-in risk
+-   integration complexity
+-   data ownership
+-   lifecycle and technical debt
+
+# Practical Use in IT Strategy
+
+This catalogue can support strategic analysis such as:
+
+## Application Portfolio Review
+
+Identify:
+
+-   duplicate systems
+-   unsupported legacy systems
+-   strategic systems
+-   systems needing modernisation
+-   cyber and resilience priorities
+
+## Capability Mapping
+
+Map applications to business capabilities and determine:
+
+-   which capabilities are well supported
+-   which depend on manual processes
+-   where transformation investment is needed
+
+## Target Architecture Design
+
+Use the catalogue to define:
+
+-   strategic platforms
+-   integration principles
+-   data ownership
+-   coexistence between legacy and modern platforms
+
+# Conclusion
+
+Specialist systems vary by industry, but the design logic is similar across sectors. Every industry tends to rely on a combination of:
+
+-   operational control systems
+-   core transaction systems
+-   record and compliance systems
+-   planning and execution systems
+
+A structured catalogue helps organisations understand where these systems sit in the enterprise landscape, how they support business capabilities, and where they create operational dependency, risk, and strategic value.
+
+# References
+
+Representative provider and product categories can be validated through official vendor sites and product documentation from vendors such as Siemens, Schneider Electric / AVEVA, Rockwell Automation, Epic, Oracle Health, Temenos, Guidewire, Amdocs, Amadeus, Manhattan Associates, Oracle Hospitality, Autodesk, and others.
+
+For formal publication, you may wish to replace the general reference note above with a full bibliography of official vendor product pages and analyst references.

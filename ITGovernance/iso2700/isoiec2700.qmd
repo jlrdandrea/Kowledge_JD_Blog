@@ -1,0 +1,645 @@
+---
+title: "ISO/IEC 27001"
+description: "Information Security Management System — Governance"
+author: "Joao Luiz D'Andrea"
+date: "2025-02-24"
+categories: [Governance, ISO, Framework]
+---
+
+# Executive Summary
+
+ISO/IEC 27001 provides the requirements for establishing, implementing, maintaining, and continually improving an information security management system (ISMS). It enables organisations to manage information security risks systematically and to demonstrate that information security is governed through a structured management system.
+
+This document provides a practical template for defining the organisation’s ISO/IEC 27001 governance model, ISMS scope, risk management approach, control structure, implementation roadmap, and assurance model. It can be used to document how the organisation aligns information security governance, risk treatment, controls, and continual improvement into a coherent operating model.
+
+# Overview
+
+## Purpose
+
+This document provides a practical template for defining, implementing, operating, and assuring an information security management system aligned to ISO/IEC 27001.
+
+## Objectives
+
+The main objectives of applying ISO/IEC 27001 are to:
+
+-   establish a formal and auditable information security management system
+-   protect confidentiality, integrity, and availability of information
+-   align information security with business objectives and enterprise risk
+-   apply systematic risk assessment and risk treatment
+-   define and maintain appropriate information security controls
+-   provide evidence of governance, monitoring, and continual improvement
+-   support internal assurance and external certification where required
+
+## Scope
+
+Describe the scope of ISO/IEC 27001 applicability in the organisation.
+
+### In scope
+
+-   the defined ISMS boundary
+-   business units, processes, and services within scope
+-   information assets and supporting technology
+-   applications, infrastructure, platforms, and cloud services
+-   people, facilities, and third parties relevant to the ISMS
+-   security governance, risk treatment, and control monitoring activities
+-   incident management, resilience, and continual improvement activities within the ISMS scope
+
+### Out of scope
+
+Document justified exclusions, if any.
+
+## Intended Audience
+
+-   Board and executive leadership
+-   Chief Information Security Officer
+-   Chief Information Officer
+-   Enterprise Risk Management teams
+-   Security governance, architecture, and operations teams
+-   IT operations and service management teams
+-   Business owners and control owners
+-   Compliance and legal teams
+-   Internal audit and assurance teams
+-   PMO / transformation teams
+
+# Standard Foundation
+
+## Background
+
+ISO/IEC 27001 is the world’s best-known standard for information security management systems and specifies the requirements for establishing, implementing, maintaining, and continually improving an ISMS. It is designed to support a risk-based approach that can be scaled to organisations of different sizes and sectors. :contentReference[oaicite:1]{index="1"}
+
+## ISMS Principles
+
+Document how the organisation applies the core principles of the ISMS:
+
+-   risk-based thinking
+-   leadership and accountability
+-   information protection based on business needs
+-   systematic control selection
+-   evidence-based management
+-   continual improvement
+-   integration with organisational processes and governance
+
+## Core Components
+
+Describe the core components of the ISO/IEC 27001 model:
+
+-   organisational context
+-   leadership and policy
+-   planning
+-   support
+-   operation
+-   performance evaluation
+-   improvement
+-   information security risk assessment
+-   information security risk treatment
+-   Statement of Applicability
+
+## Relationship to ISO/IEC 27002 and Annex A
+
+Describe how the organisation uses:
+
+-   ISO/IEC 27001 for management system requirements
+-   Annex A as the information security controls reference
+-   ISO/IEC 27002:2022 for guidance on information security controls
+
+ISO states that ISO/IEC 27001 contains the ISMS requirements, while ISO/IEC 27002 provides detailed control guidance. ISO material and SC 27 guidance also explain that Annex A is a normative reference set of controls that must be considered as part of risk treatment and comparison for completeness. :contentReference[oaicite:2]{index="2"}
+
+### Example standards table
+
+| Standard / Component | Purpose |
+|------------------------------------|------------------------------------|
+| ISO/IEC 27001 | Defines ISMS requirements |
+| Annex A | Reference set of information security controls |
+| ISO/IEC 27002 | Guidance on the implementation and management of controls |
+| Statement of Applicability | Documents selected, excluded, and justified controls |
+
+# Governance Model
+
+## Governance Objectives
+
+Define the governance objectives for ISO/IEC 27001 adoption:
+
+-   establish executive accountability for information security
+-   define the ISMS scope and governance boundary
+-   align security priorities with enterprise strategy and risk appetite
+-   assign ownership for risk treatment and control performance
+-   embed information security into operations, change, architecture, and supplier management
+-   maintain evidence of implementation and operating effectiveness
+-   support continual improvement through monitoring, review, corrective action, and audit
+
+## Governance Structure
+
+Describe the governance bodies and their responsibilities.
+
+### Example governance bodies
+
+-   Board / Risk Committee
+-   Executive Information Security Steering Committee
+-   Information Security Forum
+-   Enterprise Risk Committee
+-   Architecture Review Board
+-   Change Advisory Board
+-   Internal Audit
+
+## Three Lines Model
+
+Describe responsibilities across the three lines.
+
+### First line
+
+-   ownership of business processes, assets, and operational controls
+-   execution of security controls
+-   risk treatment implementation
+-   evidence production and remediation execution
+
+### Second line
+
+-   information security governance
+-   policy and standard setting
+-   risk oversight
+-   compliance monitoring
+-   challenge and advisory support
+
+### Third line
+
+-   internal audit
+-   independent assurance
+-   control effectiveness review
+
+# Roles and Responsibilities
+
+## Key Roles
+
+Document the main ISO/IEC 27001-related roles.
+
+-   Board
+-   CEO / Executive Management
+-   Chief Information Security Officer
+-   Chief Information Officer
+-   Chief Risk Officer
+-   Business Service Owner
+-   Information Asset Owner
+-   Security Governance Lead
+-   Security Architect
+-   Security Operations Lead
+-   IT Operations Lead
+-   Risk Manager
+-   Supplier / Third-Party Risk Manager
+-   Internal Audit
+
+## RACI Matrix
+
+Use the following model and adapt it.
+
+| Activity | Board | Exec | CISO | CIO | Risk | Business Owner | Security Ops | Architecture | Audit |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| Approve ISMS policy and scope | A | R | C | C | C | I | I | I | I |
+| Maintain risk assessment methodology | I | A | R | C | C | I | I | I | I |
+| Approve Statement of Applicability | I | A | R | C | C | C | C | C | I |
+| Implement security controls | I | I | A | C | I | C | R | C | I |
+| Conduct internal ISMS review | I | A | R | C | C | C | C | I | I |
+| Manage security incidents | I | A | R | C | C | C | R | I | I |
+| Track corrective actions | I | A | R | C | C | C | C | I | I |
+| Perform independent assurance | I | I | I | I | I | I | I | I | R/A |
+
+# Policy Framework
+
+## Core Policies
+
+List and describe the main ISMS-related policies.
+
+-   Information Security Policy
+-   Risk Assessment and Risk Treatment Methodology
+-   Access Control Policy
+-   Information Classification and Handling Policy
+-   Asset Management Standard
+-   Cryptography Policy
+-   Logging and Monitoring Standard
+-   Vulnerability Management Standard
+-   Incident Management Policy
+-   Business Continuity / Disaster Recovery Policy
+-   Supplier Security Policy
+-   Secure Development Policy
+-   Human Resources Security Policy
+
+## Standards and Procedures
+
+Document the standards, procedures, control baselines, and operational guidance supporting the ISMS.
+
+# Core Processes
+
+## Context and Scope Management
+
+Describe how the organisation determines and maintains:
+
+-   internal and external issues
+-   interested parties and their requirements
+-   the ISMS scope statement
+-   interfaces and dependencies
+-   applicability boundaries
+
+## Risk Assessment
+
+Describe the process for:
+
+-   defining risk criteria
+-   identifying information security risks
+-   assessing likelihood and impact
+-   evaluating risks against criteria
+-   prioritising treatment actions
+-   documenting results
+
+## Risk Treatment
+
+Describe the process for:
+
+-   selecting treatment options
+-   determining necessary controls
+-   comparing selected controls with Annex A
+-   documenting inclusions and exclusions
+-   assigning owners and due dates
+-   approving residual risk
+-   tracking treatment implementation
+
+## Statement of Applicability
+
+Document how the organisation maintains the Statement of Applicability, including:
+
+-   selected controls
+-   excluded controls
+-   reasons for inclusion or exclusion
+-   implementation status
+-   associated policies or procedures
+-   accountable owners
+
+## Operational Control Management
+
+Describe the processes for:
+
+-   access management
+-   change control
+-   vulnerability management
+-   logging and monitoring
+-   supplier oversight
+-   backup and recovery
+-   incident handling
+-   exception management
+
+## Incident Management
+
+Describe the lifecycle for:
+
+-   event detection
+-   triage
+-   escalation
+-   containment
+-   eradication
+-   recovery
+-   evidence handling
+-   lessons learned
+-   corrective action tracking
+
+## Performance Evaluation and Improvement
+
+Describe the process for:
+
+-   monitoring and measurement
+-   internal audit
+-   management review
+-   nonconformity handling
+-   corrective action
+-   continual improvement
+
+# Control Framework
+
+## Control Domains
+
+Organise the control environment using the Annex A themes.
+
+### Example control domains
+
+-   organisational controls
+-   people controls
+-   physical controls
+-   technological controls
+-   governance and oversight
+-   risk management
+-   operational security
+-   supplier security
+-   incident management
+-   resilience and recovery
+-   monitoring and assurance
+-   continual improvement
+
+## Sample Control Catalogue
+
+| Control ID | Control Name | Objective | Control Owner | Frequency | Evidence |
+|------------|------------|------------|------------|------------|------------|
+| ISO-01 | ISMS policy approved | Ensure formal leadership direction | CISO | Annual | Approved policy |
+| ISO-02 | Risk assessment performed | Identify and evaluate security risks | Risk Manager | Annual / change-driven | Risk assessment records |
+| ISO-03 | Statement of Applicability maintained | Document selected and excluded controls | Security Governance Lead | Annual / change-driven | SoA |
+| ISO-04 | Internal audit completed | Validate ISMS conformance and effectiveness | Audit Lead | Annual | Audit reports |
+| ISO-05 | Management review performed | Ensure leadership oversight and decisions | Executive Sponsor | Annual | Management review minutes |
+| ISO-06 | Corrective actions tracked | Improve nonconformity resolution | ISMS Manager | Ongoing | Action tracker |
+
+# Artefacts and Evidence
+
+## Required Artefacts
+
+Document the key ISO/IEC 27001 artefacts.
+
+-   ISMS scope statement
+-   information security policy
+-   risk assessment methodology
+-   risk treatment methodology
+-   risk register
+-   risk treatment plan
+-   Statement of Applicability
+-   asset inventory
+-   control standards and procedures
+-   supplier security assessments
+-   vulnerability and patch records
+-   access review records
+-   incident register
+-   internal audit plan
+-   internal audit reports
+-   management review outputs
+-   corrective action register
+-   competency and awareness records
+-   metrics and dashboard packs
+-   certification audit materials where applicable
+
+## Evidence Model
+
+For each artefact define:
+
+-   owner
+-   purpose
+-   location
+-   frequency of update
+-   retention period
+-   assurance mechanism
+
+# Architecture and Technology Implications
+
+## Security by Design
+
+Describe how ISMS requirements are embedded into:
+
+-   enterprise architecture
+-   solution design
+-   cloud architecture
+-   network and infrastructure design
+-   identity and access management
+-   data protection architecture
+-   software delivery pipelines
+-   supplier integration patterns
+-   operational monitoring design
+
+## Technology Landscape View
+
+Document the security-relevant technology landscape:
+
+-   business services and critical processes
+-   application and data estate
+-   infrastructure and cloud services
+-   identity and access ecosystem
+-   security tooling landscape
+-   logging and monitoring architecture
+-   backup and recovery architecture
+-   third-party technology dependencies
+
+## Asset and Dependency Mapping
+
+Include or reference:
+
+-   asset inventories
+-   application dependency diagrams
+-   network and trust zone diagrams
+-   data flow diagrams
+-   supplier dependency maps
+-   resilience and recovery dependency maps
+
+# Risk Management
+
+## Information Security Risk Model
+
+Describe how information security risks are identified, assessed, treated, accepted, escalated, and monitored within the ISMS.
+
+## Example Risk Categories
+
+-   unclear ISMS scope or governance
+-   incomplete asset visibility
+-   weak identity and access management
+-   poor control implementation
+-   insecure change and development practices
+-   inadequate monitoring and logging
+-   supplier security exposure
+-   insufficient incident response capability
+-   weak recovery arrangements
+-   poor evidence and assurance discipline
+
+## Risk Register Template
+
+| Risk ID | Risk Description | Cause | Impact | Likelihood | Inherent Risk | Control Strength | Residual Risk | Owner |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| IS-01 | Example | Example | Example | Medium | High | Medium | Medium | Example |
+
+# Metrics and Reporting
+
+## Key Metrics
+
+Examples of ISMS metrics:
+
+-   percentage of assets classified
+-   percentage of risks assessed on schedule
+-   percentage of treatment actions completed on time
+-   percentage of controls implemented as planned
+-   number of significant incidents
+-   vulnerability remediation performance
+-   access review completion rate
+-   supplier assessment coverage
+-   number of audit findings open vs closed
+-   percentage of corrective actions closed on time
+-   percentage of management review actions completed
+-   percentage of ISMS objectives achieved
+
+## Dashboard Structure
+
+Suggested dashboard views:
+
+-   executive information security dashboard
+-   ISMS performance dashboard
+-   risk and treatment dashboard
+-   incident and vulnerability dashboard
+-   supplier security dashboard
+-   audit and corrective action dashboard
+
+# Audit and Assurance
+
+## Assurance Model
+
+Document the assurance approach across:
+
+-   management self-assessment
+-   control owner attestations
+-   second-line compliance reviews
+-   internal audit
+-   certification audit support where applicable
+-   corrective action verification
+
+## Testing Themes
+
+-   scope and governance effectiveness
+-   risk assessment and treatment quality
+-   Statement of Applicability quality
+-   control implementation and operating effectiveness
+-   incident handling
+-   supplier control coverage
+-   management review effectiveness
+-   corrective action discipline
+-   evidence completeness and traceability
+
+# Implementation Roadmap
+
+## Maturity Phases
+
+### Phase 1: Foundation
+
+-   define organisational context and ISMS scope
+-   establish governance and executive sponsorship
+-   approve core policy framework
+-   define risk assessment and treatment methods
+-   build initial asset inventory and baseline controls
+
+### Phase 2: Control Design
+
+-   perform risk assessment
+-   create risk treatment plan
+-   develop Statement of Applicability
+-   implement priority control improvements
+-   establish incident, supplier, and monitoring processes
+
+### Phase 3: Integration
+
+-   embed ISMS into change, architecture, procurement, and operations
+-   improve evidence collection and monitoring
+-   establish internal audit and management review cycle
+-   align corrective action tracking with enterprise governance
+
+### Phase 4: Optimisation
+
+-   refine metrics and dashboards
+-   strengthen automation and control monitoring
+-   improve management review quality
+-   enhance assurance readiness and continual improvement
+-   support certification maintenance where applicable
+
+## Roadmap Table
+
+| Initiative | Description | Owner   | Priority | Timeline | Dependency | Status  |
+|------------|-------------|---------|----------|----------|------------|---------|
+| Example    | Example     | Example | High     | Q1-Q2    | Example    | Planned |
+
+# Cross-Framework Integration
+
+## Relationship to Other Frameworks
+
+Describe how ISO/IEC 27001 integrates with:
+
+-   NIST Cybersecurity Framework
+-   NIS2
+-   DORA
+-   GDPR
+-   AI Act
+-   COBIT
+-   ITIL
+-   TOGAF
+-   enterprise risk management
+-   business continuity and operational resilience frameworks
+
+## Example Mapping Themes
+
+| ISO/IEC 27001 Theme | Related Framework | Integration Point |
+|------------------------|------------------------|------------------------|
+| ISMS governance | COBIT | Governance objectives and accountability |
+| Risk treatment | NIST CSF | Cyber risk management and capability improvement |
+| Incident management | NIS2 / DORA | Cyber incident governance and reporting |
+| Security architecture | TOGAF | Architecture governance and security viewpoints |
+| Privacy-related controls | GDPR | Data protection and processing safeguards |
+
+# Maturity Model
+
+## Suggested Maturity Levels
+
+### Level 1: Initial
+
+Security activities are reactive, fragmented, and poorly governed.
+
+### Level 2: Repeatable
+
+Basic ISMS components exist but are inconsistently applied and weakly evidenced.
+
+### Level 3: Defined
+
+The ISMS scope, policies, risk treatment, and controls are documented and broadly implemented.
+
+### Level 4: Managed
+
+The ISMS is measured, reviewed, audited, and actively improved through leadership oversight.
+
+### Level 5: Optimised
+
+Information security is fully integrated into enterprise governance, architecture, operations, and supplier management with strong evidence and continual improvement.
+
+## Assessment Dimensions
+
+-   governance
+-   scope and context management
+-   risk assessment
+-   risk treatment
+-   control implementation
+-   incident management
+-   supplier security
+-   metrics and reporting
+-   audit and management review
+-   continual improvement
+
+# Practical Templates
+
+## Suggested Appendices
+
+-   Appendix A: ISMS scope statement template
+-   Appendix B: Risk assessment template
+-   Appendix C: Risk treatment plan template
+-   Appendix D: Statement of Applicability template
+-   Appendix E: Information security control catalogue
+-   Appendix F: Internal audit checklist
+-   Appendix G: Management review agenda template
+-   Appendix H: ISO/IEC 27001 RACI matrix
+
+# Customisation Notes
+
+This template should be tailored to reflect:
+
+-   organisational structure
+-   business and regulatory context
+-   ISMS scope boundary
+-   critical services and information assets
+-   sourcing and third-party model
+-   cloud and technology estate
+-   maturity level
+-   assurance and certification expectations
+-   operating model and budget constraints
+
+# References
+
+Add authoritative references here, for example:
+
+-   ISO/IEC 27001:2022
+-   ISO/IEC 27001:2022/Amd 1:2024
+-   ISO/IEC 27002:2022
+-   ISO/IEC 27000 family guidance
+-   internal information security policies and standards
+-   enterprise risk framework
+-   architecture and resilience standards

@@ -1,0 +1,357 @@
+---
+title: "Box Plots with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-14"
+categories: [R, ggplot2, Data Visualization, Tutorial]
+description: "A step-by-step guide to evolving a basic box plot into an advanced, publication-ready visualization"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+In this tutorial, we'll explore how to create increasingly sophisticated box plots using `ggplot2`. We'll start with a basic plot and progressively add elements to make it more informative and visually appealing.
+
+Box plots are excellent for comparing distributions across categories, showing median, quartiles, and outliers in a compact format.
+
+We'll use the built-in `mtcars` dataset from R, which contains specifications and performance data for 32 automobiles from 1973-74.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)  # Includes ggplot2, dplyr, and other essential packages
+library(scales)     # For formatting axes and labels
+
+# Prepare the data: convert cylinders to factor and add car names
+data_cars <- mtcars %>%
+  mutate(
+    cyl = factor(cyl, levels = c(4, 6, 8)),       # Convert to ordered factor
+    car_name = rownames(mtcars)                    # Add car names as column
+  )
+
+# Preview the data
+head(data_cars)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Box Plot
+
+Let's start with a simple box plot showing fuel efficiency (miles per gallon) by number of cylinders.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_cars, aes(x = cyl, y = mpg)) +  # Set up the plot with x and y variables
+  geom_boxplot()                             # Create box plot
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_cars, aes(x = cyl, y = mpg))` - Initializes the plot with our car data, mapping cylinder count to the x-axis and miles per gallon to the y-axis
+
+**Line 2:** `geom_boxplot()` - Adds box plots showing the five-number summary (minimum, Q1, median, Q3, maximum) and outliers for each cylinder group
+
+::: {.highlight-box .info}
+**What we have so far:** A functional but basic box plot. The statistical summaries are visible but the chart lacks context, visual appeal, and proper formatting.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll improve the chart by adding color, notches for confidence intervals, better labels, and applying a clean theme.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Color fill** to distinguish each cylinder group
+-   **Notched boxes** showing confidence intervals around medians
+-   **Improved axis labels** and title for clarity
+-   **Clean theme** to remove visual clutter
+-   **Professional color palette** from ColorBrewer
+-   **Individual data points** overlaid for transparency
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 8
+#| fig-height: 5
+
+ggplot(data_cars, aes(x = cyl, y = mpg, fill = cyl)) +      # Add fill aesthetic
+  geom_boxplot(notch = TRUE, alpha = 0.7) +                  # Notched boxes with transparency
+  geom_jitter(width = 0.2, alpha = 0.4, size = 2) +          # Add jittered points
+  scale_fill_brewer(palette = "Set2") +                      # Apply color palette
+  labs(
+    title = "Fuel Efficiency Decreases with More Cylinders",  # Main title
+    subtitle = "Miles per gallon distribution for 32 automobiles (1973-74)",  # Subtitle
+    x = "Number of Cylinders",                                # X-axis label
+    y = "Miles Per Gallon"                                    # Y-axis label
+  ) +
+  theme_minimal() +                                           # Clean, minimal theme
+  theme(
+    plot.title = element_text(face = "bold", size = 14),     # Bold title
+    legend.position = "none"                                  # Remove redundant legend
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(x = cyl, y = mpg, fill = cyl)` - Maps cylinder count to both x-axis position and fill color for visual distinction
+
+**Line 2:** `geom_boxplot(notch = TRUE, alpha = 0.7)` - Creates box plots with notches (showing 95% confidence intervals around medians) and 70% opacity
+
+**Line 3:** `geom_jitter(width = 0.2, alpha = 0.4, size = 2)` - Adds individual data points with controlled horizontal spread to show the actual sample distribution
+
+**Line 4:** `scale_fill_brewer(palette = "Set2")` - Applies a professional, colorblind-friendly palette from ColorBrewer
+
+**Lines 5-10:** `labs()` - Adds descriptive title, subtitle, and axis labels to provide context
+
+**Line 11:** `theme_minimal()` - Applies a clean theme with minimal visual elements
+
+**Lines 12-15:** `theme()` - Customizes title formatting and removes the legend since cylinder count is already shown on x-axis
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative chart with color differentiation, confidence intervals via notches, and transparency showing all data points. The clean theme and proper labeling make it presentation-ready.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's take it to the next level with custom styling, statistical annotations, summary statistics, and polished formatting suitable for publication.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Custom color palette** optimized for accessibility
+-   **Mean markers** shown as diamonds overlaid on boxes
+-   **Sample size annotations** showing number of cars in each category
+-   **Statistical comparison lines** indicating significant differences
+-   **Enhanced typography** with refined spacing
+-   **Outlier highlighting** with custom styling
+-   **Data source caption** for proper attribution
+-   **Refined spacing** and margins for professional appearance
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 10
+#| fig-height: 6
+
+# Calculate summary statistics for annotations
+cyl_summary <- data_cars %>%
+  group_by(cyl) %>%
+  summarise(
+    n = n(),                                       # Count per category
+    median_mpg = median(mpg),                      # Median mpg
+    mean_mpg = mean(mpg),                          # Mean mpg
+    .groups = 'drop'
+  )
+
+# Define custom color palette (colorblind-friendly)
+cyl_colors <- c(
+  "4" = "#52A675",                                 # Green for best efficiency
+  "6" = "#F4A261",                                 # Orange for medium
+  "8" = "#E76F51"                                  # Red for lowest efficiency
+)
+
+ggplot(data_cars, aes(x = cyl, y = mpg, fill = cyl)) +
+  # Box plot layer with custom styling
+  geom_boxplot(notch = TRUE, alpha = 0.6,
+               outlier.shape = 21,                 # Hollow circles for outliers
+               outlier.size = 3,
+               outlier.fill = "white",
+               outlier.color = "gray30",
+               color = "gray30",
+               linewidth = 0.6) +
+  # Add jittered data points
+  geom_jitter(width = 0.15, alpha = 0.3, 
+              size = 2, color = "gray20") +
+  # Add mean markers
+  stat_summary(fun = mean, geom = "point",
+               shape = 23, size = 4, 
+               fill = "white", color = "gray30",
+               stroke = 1.2) +
+  # Apply custom colors
+  scale_fill_manual(values = cyl_colors,
+                    name = "Cylinders") +
+  # Format y-axis
+  scale_y_continuous(breaks = seq(10, 35, by = 5),
+                     limits = c(10, 35)) +
+  # Add comprehensive labels
+  labs(
+    title = "Fuel Efficiency Decreases Dramatically with Engine Size",
+    subtitle = "4-cylinder cars average 26.7 MPG compared to 15.1 MPG for 8-cylinder vehicles",
+    x = "Number of Cylinders",
+    y = "Miles Per Gallon (Highway)",
+    caption = "Data source: 1974 Motor Trend US magazine | White diamonds indicate mean values | Visualization: Your Name"
+  ) +
+  # Add sample size annotations
+  geom_text(data = cyl_summary,
+            aes(x = cyl, y = 11, 
+                label = paste0("n = ", n)),
+            inherit.aes = FALSE,
+            size = 3.5, fontface = "italic", 
+            color = "gray30") +
+  # Add mean value annotations
+  geom_text(data = cyl_summary,
+            aes(x = cyl, y = 34,
+                label = paste0("μ = ", round(mean_mpg, 1))),
+            inherit.aes = FALSE,
+            size = 3.2, fontface = "bold",
+            color = "gray30") +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Title and text styling
+    plot.title = element_text(face = "bold", size = 16, 
+                              margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", 
+                                  margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#6C757D", 
+                                hjust = 0, margin = margin(t = 15)),
+    
+    # Axis styling
+    axis.title = element_text(size = 11, face = "bold", 
+                              margin = margin(t = 10)),
+    axis.text = element_text(size = 10, color = "#2C3E50"),
+    axis.text.x = element_text(face = "bold", size = 11),
+    
+    # Legend removal
+    legend.position = "none",
+    
+    # Grid and panel styling
+    panel.grid.major.x = element_blank(),          # Remove vertical grid
+    panel.grid.major.y = element_line(color = "#E9ECEF", linewidth = 0.5),
+    panel.grid.minor = element_blank(),            # Remove minor gridlines
+    
+    # Margins
+    plot.margin = margin(15, 15, 15, 15)          # Add space around plot
+  )
+```
+
+### Code Explanation
+
+**Lines 2-9:** Creates a summary dataframe with sample sizes, medians, and means for each cylinder group, used for annotations
+
+**Lines 12-17:** Defines a custom color palette that progresses from green (efficient) to red (inefficient), optimized for colorblind accessibility
+
+**Line 19:** `ggplot()` initializes the plot with cylinder count mapped to both x-position and fill color
+
+**Lines 21-28:** `geom_boxplot()` creates notched box plots with custom outlier styling (hollow circles with gray borders), thicker box borders, and transparency
+
+**Lines 30-31:** `geom_jitter()` adds individual data points with controlled horizontal spread and transparency to show the actual distribution
+
+**Lines 33-36:** `stat_summary()` adds mean markers as white-filled diamonds, distinguishing them from the median line in the box plot
+
+**Lines 38-39:** `scale_fill_manual()` applies our custom color palette
+
+**Lines 41-42:** `scale_y_continuous()` sets regular y-axis breaks and limits for consistent display
+
+**Lines 44-49:** `labs()` adds comprehensive labels including an informative title that tells the story, a subtitle with specific numbers, and detailed caption with attribution
+
+**Lines 51-57:** `geom_text()` adds sample size annotations at the bottom of the plot area
+
+**Lines 59-64:** `geom_text()` adds mean value annotations (using Greek letter μ) at the top of the plot area
+
+**Lines 65-93:** Comprehensive theme customization including: - Enhanced typography with specific sizes, weights, and colors for hierarchy - Legend removal (since cylinder count is mapped to x-axis) - Grid customization keeping only horizontal major gridlines - Proper margins for professional spacing
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready visualization that clearly communicates the relationship between engine size and fuel efficiency. The combination of box plots (showing distribution), jittered points (showing raw data), mean markers (showing averages), and annotations (providing context) creates a comprehensive and accessible chart suitable for academic papers, reports, or presentations.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's a side-by-side view of our progression:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Readability** | Poor (no color, no context) | Good (color-coded, points visible) | Excellent (all + means + annotations) |
+| **Context** | None | Title & labels added | Full context with subtitle, caption & statistics |
+| **Visual Appeal** | Plain gray boxes | Colored + professional theme | Multi-layered + custom palette |
+| **Data Layers** | Box plot only | Box + jittered points | Box + points + mean markers |
+| **Statistical Info** | Quartiles only | Added notches (CI) | Added means, sample sizes, and outlier styling |
+| **Professional Use** | Not recommended | Acceptable for internal use | Publication-ready |
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: callout-tip
+**Tips for Creating Better ggplot2 Box Plots:**
+
+1.  **Use notches for comparisons** - Notched box plots show confidence intervals around medians; non-overlapping notches suggest statistically significant differences
+
+2.  **Always show the data** - For small to medium datasets (\<100 points per group), overlay `geom_jitter()` or `geom_point()` to show individual observations
+
+3.  **Distinguish mean from median** - Use different markers for mean (`stat_summary()`) and median (box plot line) when both are informative
+
+4.  **Style outliers meaningfully** - Customize outlier appearance with `outlier.shape`, `outlier.color`, and `outlier.size` to make them visible but not distracting
+
+5.  **Color with purpose** - Use color gradients or categorical colors that match the ordering or meaning of your groups
+
+6.  **Annotate sample sizes** - Always show the number of observations per category so readers can assess reliability
+
+7.  **Consider orientation** - Use `coord_flip()` for horizontal box plots when category names are long
+
+8.  **Add reference lines** - Horizontal lines showing targets, thresholds, or overall means help viewers make comparisons
+
+9.  **Mind the width** - Adjust box width with the `width` parameter (default 0.75) to control visual density
+
+10. **Export at high resolution** - Use `ggsave("plot.png", width = 10, height = 6, dpi = 300)` for publication-quality images
+:::
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+Try applying these principles to other comparison visualizations:
+
+-   **Violin plots** for showing full distribution shapes
+-   **Beeswarm plots** for avoiding overlap in smaller datasets
+-   **Ridgeline plots** for comparing many groups
+-   **Grouped box plots** using `facet_wrap()` for additional categorical variables
+
+::: {.highlight-box .info}
+**Want to create grouped box plots?**
+
+You can add a second grouping variable using position adjustments:
+
+``` r
+ggplot(data_cars, aes(x = cyl, y = mpg, fill = factor(am))) +
+  geom_boxplot(position = position_dodge(width = 0.9)) +
+  scale_fill_manual(values = c("#E76F51", "#52A675"),
+                    name = "Transmission",
+                    labels = c("Automatic", "Manual")) +
+  theme_minimal()
+```
+
+This creates side-by-side box plots for each combination of cylinders and transmission type.
+:::
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [R Graphics Cookbook](https://r-graphics.org/)
+-   [Data Visualization with R](https://rkabacoff.github.io/datavis/)
+-   [ColorBrewer for Color Palettes](https://colorbrewer2.org/)
+-   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+Happy plotting! 📊

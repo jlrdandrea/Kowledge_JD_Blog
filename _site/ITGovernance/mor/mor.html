@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Identifying, assessing, responding to, monitoring, and communicating risk across an organisation">
+
+<title>MoR - Management of Risk</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">MoR - Management of Risk</h1>
+                  <div>
+        <div class="description">
+          Identifying, assessing, responding to, monitoring, and communicating risk across an organisation
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Management</div>
+                <div class="quarto-category">Framework</div>
+                <div class="quarto-category">Risk</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#what-is-mor" id="toc-what-is-mor" class="nav-link" data-scroll-target="#what-is-mor">What is MoR</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it">When to Use It</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
+  <li><a href="#mor-governance-overview" id="toc-mor-governance-overview" class="nav-link" data-scroll-target="#mor-governance-overview">MoR Governance Overview</a></li>
+  </ul></li>
+  <li><a href="#history-and-evolution" id="toc-history-and-evolution" class="nav-link" data-scroll-target="#history-and-evolution">History and Evolution</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles">Core Principles</a>
+  <ul class="collapse">
+  <li><a href="#align-with-objectives" id="toc-align-with-objectives" class="nav-link" data-scroll-target="#align-with-objectives">Align with Objectives</a></li>
+  <li><a href="#fit-the-context" id="toc-fit-the-context" class="nav-link" data-scroll-target="#fit-the-context">Fit the Context</a></li>
+  <li><a href="#engage-stakeholders" id="toc-engage-stakeholders" class="nav-link" data-scroll-target="#engage-stakeholders">Engage Stakeholders</a></li>
+  <li><a href="#provide-clear-governance" id="toc-provide-clear-governance" class="nav-link" data-scroll-target="#provide-clear-governance">Provide Clear Governance</a></li>
+  <li><a href="#inform-decision-making" id="toc-inform-decision-making" class="nav-link" data-scroll-target="#inform-decision-making">Inform Decision-Making</a></li>
+  <li><a href="#create-a-supportive-culture" id="toc-create-a-supportive-culture" class="nav-link" data-scroll-target="#create-a-supportive-culture">Create a Supportive Culture</a></li>
+  <li><a href="#enable-continual-improvement" id="toc-enable-continual-improvement" class="nav-link" data-scroll-target="#enable-continual-improvement">Enable Continual Improvement</a></li>
+  </ul></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#what-mor-governs" id="toc-what-mor-governs" class="nav-link" data-scroll-target="#what-mor-governs">What MoR Governs</a></li>
+  <li><a href="#organisational-perspectives" id="toc-organisational-perspectives" class="nav-link" data-scroll-target="#organisational-perspectives">Organisational Perspectives</a></li>
+  <li><a href="#typical-governance-roles" id="toc-typical-governance-roles" class="nav-link" data-scroll-target="#typical-governance-roles">Typical Governance Roles</a></li>
+  <li><a href="#decision-forums-and-control-points" id="toc-decision-forums-and-control-points" class="nav-link" data-scroll-target="#decision-forums-and-control-points">Decision Forums and Control Points</a></li>
+  </ul></li>
+  <li><a href="#processes" id="toc-processes" class="nav-link" data-scroll-target="#processes">Processes</a>
+  <ul class="collapse">
+  <li><a href="#identify" id="toc-identify" class="nav-link" data-scroll-target="#identify">Identify</a></li>
+  <li><a href="#assess" id="toc-assess" class="nav-link" data-scroll-target="#assess">Assess</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
+  <li><a href="#implement" id="toc-implement" class="nav-link" data-scroll-target="#implement">Implement</a></li>
+  <li><a href="#communicate" id="toc-communicate" class="nav-link" data-scroll-target="#communicate">Communicate</a></li>
+  <li><a href="#review-and-learn" id="toc-review-and-learn" class="nav-link" data-scroll-target="#review-and-learn">Review and Learn</a></li>
+  <li><a href="#how-to-read-the-mor-process-model" id="toc-how-to-read-the-mor-process-model" class="nav-link" data-scroll-target="#how-to-read-the-mor-process-model">How to Read the MoR Process Model</a></li>
+  </ul></li>
+  <li><a href="#documentation-and-artefacts" id="toc-documentation-and-artefacts" class="nav-link" data-scroll-target="#documentation-and-artefacts">Documentation and Artefacts</a>
+  <ul class="collapse">
+  <li><a href="#typical-mor-artefact-families" id="toc-typical-mor-artefact-families" class="nav-link" data-scroll-target="#typical-mor-artefact-families">Typical MoR Artefact Families</a></li>
+  <li><a href="#mor-documentation-raci-matrix" id="toc-mor-documentation-raci-matrix" class="nav-link" data-scroll-target="#mor-documentation-raci-matrix">MoR Documentation RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks" class="nav-link" data-scroll-target="#integration-with-other-frameworks">Integration with Other Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#mor-and-cobit" id="toc-mor-and-cobit" class="nav-link" data-scroll-target="#mor-and-cobit">MoR and COBIT</a></li>
+  <li><a href="#mor-and-togaf" id="toc-mor-and-togaf" class="nav-link" data-scroll-target="#mor-and-togaf">MoR and TOGAF</a></li>
+  <li><a href="#mor-and-itil-4" id="toc-mor-and-itil-4" class="nav-link" data-scroll-target="#mor-and-itil-4">MoR and ITIL 4</a></li>
+  <li><a href="#mor-and-prince2" id="toc-mor-and-prince2" class="nav-link" data-scroll-target="#mor-and-prince2">MoR and PRINCE2</a></li>
+  <li><a href="#mor-and-msp-mop-p3o" id="toc-mor-and-msp-mop-p3o" class="nav-link" data-scroll-target="#mor-and-msp-mop-p3o">MoR and MSP / MoP / P3O</a></li>
+  <li><a href="#mor-and-iso-regulatory-frameworks" id="toc-mor-and-iso-regulatory-frameworks" class="nav-link" data-scroll-target="#mor-and-iso-regulatory-frameworks">MoR and ISO / Regulatory Frameworks</a></li>
+  </ul></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">Implementation Approach</a>
+  <ul class="collapse">
+  <li><a href="#critical-success-factors" id="toc-critical-success-factors" class="nav-link" data-scroll-target="#critical-success-factors">Critical Success Factors</a></li>
+  </ul></li>
+  <li><a href="#kpis-and-metrics" id="toc-kpis-and-metrics" class="nav-link" data-scroll-target="#kpis-and-metrics">KPIs and Metrics</a></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits">Benefits</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#example-use-case" id="toc-example-use-case" class="nav-link" data-scroll-target="#example-use-case">Example Use Case</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="what-is-mor" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-mor">What is MoR</h2>
+<p><strong>Management of Risk (M_o_R / MoR)</strong> is a structured framework for identifying, assessing, responding to, monitoring, and communicating risk across an organisation. Originally developed by the UK Cabinet Office and now stewarded through PeopleCert, it provides a consistent way to manage uncertainty at <strong>strategic, portfolio, programme, project, and operational</strong> levels.</p>
+<p>MoR is not limited to a single project risk register. It is designed to help organisations build a <strong>risk-aware culture</strong>, define clear governance for risk decisions, and integrate risk management into planning, investment, delivery, operations, and assurance.</p>
+</section>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>The purpose of MoR is to help organisations:</p>
+<ul>
+<li>create and protect value by managing uncertainty in a structured way;</li>
+<li>improve decision-making through clearer visibility of threats and opportunities;</li>
+<li>define consistent risk governance, roles, tolerances, and escalation routes;</li>
+<li>embed risk thinking into strategy, change, service delivery, and operations;</li>
+<li>strengthen resilience, compliance, and assurance; and</li>
+<li>promote a culture where risk is discussed openly and managed proportionately.</li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-it">When to Use It</h2>
+<p>MoR is most useful when an organisation:</p>
+<ul>
+<li>wants an enterprise-wide risk management approach;</li>
+<li>needs a common language for risk across business and technology functions;</li>
+<li>runs multiple projects, programmes, and portfolios that require coordinated risk oversight;</li>
+<li>faces regulatory, operational, cyber, financial, or transformation risk exposure;</li>
+<li>wants to improve governance, escalation, and risk reporting; or</li>
+<li>needs stronger linkage between risk appetite, decision-making, and assurance.</li>
+</ul>
+</section>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
+<p>MoR is particularly relevant for:</p>
+<ul>
+<li>board members and executive committees;</li>
+<li>risk committees and enterprise risk functions;</li>
+<li>CIOs, CISOs, CFOs, and operations leaders;</li>
+<li>portfolio, programme, and project managers;</li>
+<li>PMOs, portfolio offices, and governance teams;</li>
+<li>audit, compliance, and assurance functions; and</li>
+<li>managers responsible for delivery, service continuity, security, or regulatory obligations.</li>
+</ul>
+</section>
+<section id="mor-governance-overview" class="level2">
+<h2 class="anchored" data-anchor-id="mor-governance-overview">MoR Governance Overview</h2>
+<p>MoR provides a governance model for managing risk consistently across the organisation. It usually works through an integrated set of principles, process steps, documents, roles, and embedded practices.</p>
+<p>A practical MoR implementation helps leadership answer key questions such as:</p>
+<ol type="1">
+<li>What uncertainty could affect our objectives?</li>
+<li>What level of risk are we willing to accept?</li>
+<li>Who owns each major risk and response decision?</li>
+<li>Are our controls and mitigations effective?</li>
+<li>How are risks changing over time across the enterprise?</li>
+<li>When should risks be escalated, accepted, transferred, reduced, exploited, or closed?</li>
+</ol>
+</section>
+</section>
+<section id="history-and-evolution" class="level1">
+<h1>History and Evolution</h1>
+<p>MoR emerged from UK government best-practice guidance and became widely used across public and private sectors as a practical framework for enterprise and delivery risk management. It was designed to complement adjacent methods such as PRINCE2, MSP, MoP, and P3O by providing a common approach to risk across organisational levels.</p>
+<p>In current market positioning, PeopleCert continues to offer <strong>M_o_R Foundation (3rd edition)</strong> and <strong>M_o_R 4 Practitioner</strong>, while also signalling a broader branding evolution toward <strong>PRINCE2 Risk Management</strong>. This means organisations may encounter both the traditional <strong>M_o_R</strong> name and the newer branded wording in current certification and training materials.</p>
+<p>MoR has remained relevant because it bridges enterprise risk management and delivery risk management. It can be used for strategic risk, investment risk, programme and project risk, operational risk, resilience risk, cyber and information risk, supplier risk, and change-related uncertainty.</p>
+</section>
+<section id="core-principles" class="level1">
+<h1>Core Principles</h1>
+<p>MoR is commonly explained through a set of core principles that make risk management effective and sustainable.</p>
+<section id="align-with-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="align-with-objectives">Align with Objectives</h2>
+<p>Risk management must always relate to objectives. Risk only has meaning in relation to what the organisation is trying to achieve, protect, change, or deliver.</p>
+</section>
+<section id="fit-the-context" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-context">Fit the Context</h2>
+<p>Risk management should be tailored to the organisation’s size, complexity, sector, culture, regulatory environment, and governance model. A proportional approach is more sustainable than a purely theoretical one.</p>
+</section>
+<section id="engage-stakeholders" class="level2">
+<h2 class="anchored" data-anchor-id="engage-stakeholders">Engage Stakeholders</h2>
+<p>Risk information is stronger when it includes the perspectives of sponsors, delivery teams, operational teams, finance, security, audit, suppliers, and affected business users.</p>
+</section>
+<section id="provide-clear-governance" class="level2">
+<h2 class="anchored" data-anchor-id="provide-clear-governance">Provide Clear Governance</h2>
+<p>Roles, responsibilities, risk appetite, escalation thresholds, and decision rights must be explicit. Without governance clarity, risk management becomes inconsistent and politically weakened.</p>
+</section>
+<section id="inform-decision-making" class="level2">
+<h2 class="anchored" data-anchor-id="inform-decision-making">Inform Decision-Making</h2>
+<p>Risk management should support real decisions about strategy, investment, sequencing, controls, contingency, and response options. It should not be treated as a documentation exercise.</p>
+</section>
+<section id="create-a-supportive-culture" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-supportive-culture">Create a Supportive Culture</h2>
+<p>An effective framework depends on a culture where risks can be raised honestly, debated constructively, and managed without blame.</p>
+</section>
+<section id="enable-continual-improvement" class="level2">
+<h2 class="anchored" data-anchor-id="enable-continual-improvement">Enable Continual Improvement</h2>
+<p>Risk processes, reporting, and controls should be reviewed and improved over time as the organisation learns from incidents, near misses, audits, delivery outcomes, and environmental change.</p>
+</section>
+</section>
+<section id="governance-structure" class="level1">
+<h1>Governance Structure</h1>
+<section id="what-mor-governs" class="level2">
+<h2 class="anchored" data-anchor-id="what-mor-governs">What MoR Governs</h2>
+<p>MoR governs the way risk is identified, assessed, escalated, owned, treated, and reviewed across the enterprise. It does not replace specialist risk disciplines, but it provides a common management structure that can be applied across them.</p>
+</section>
+<section id="organisational-perspectives" class="level2">
+<h2 class="anchored" data-anchor-id="organisational-perspectives">Organisational Perspectives</h2>
+<p>MoR is frequently applied across four organisational perspectives:</p>
+<ul>
+<li><strong>Strategic</strong> — risks affecting enterprise direction, policy, reputation, major investment, or long-term objectives;</li>
+<li><strong>Portfolio / Programme / Project</strong> — risks affecting change investments, transformation, delivery, benefits, and dependencies;</li>
+<li><strong>Operational</strong> — risks affecting business operations, service continuity, compliance, resilience, and control effectiveness; and</li>
+<li><strong>Functional / Specialist</strong> — risks managed in specialist domains such as cyber security, finance, legal, procurement, data, or health and safety.</li>
+</ul>
+</section>
+<section id="typical-governance-roles" class="level2">
+<h2 class="anchored" data-anchor-id="typical-governance-roles">Typical Governance Roles</h2>
+<p>Common roles in a MoR environment include:</p>
+<ul>
+<li><strong>Board / Executive Committee</strong> — sets overall risk appetite and oversight expectations;</li>
+<li><strong>Risk Committee</strong> — reviews major exposures, themes, trends, and control effectiveness;</li>
+<li><strong>Chief Risk Officer / Risk Lead</strong> — defines policy, methods, and enterprise-level coordination;</li>
+<li><strong>Risk Owners</strong> — are accountable for specific risks and response decisions;</li>
+<li><strong>Risk Action Owners</strong> — are responsible for implementing agreed responses or controls;</li>
+<li><strong>Portfolio / Programme / Project Managers</strong> — manage delivery-related risks and escalations;</li>
+<li><strong>PMO / Portfolio Office / Governance Office</strong> — supports reporting, standards, data quality, and review cycles; and</li>
+<li><strong>Audit / Compliance / Assurance Functions</strong> — provide challenge, review, and confidence assessment.</li>
+</ul>
+</section>
+<section id="decision-forums-and-control-points" class="level2">
+<h2 class="anchored" data-anchor-id="decision-forums-and-control-points">Decision Forums and Control Points</h2>
+<p>Typical MoR governance involves recurring forums and control points such as:</p>
+<ul>
+<li>board and risk committee reviews;</li>
+<li>portfolio and investment reviews;</li>
+<li>programme and project board meetings;</li>
+<li>operational risk and resilience reviews;</li>
+<li>control self-assessment and compliance reviews;</li>
+<li>incident and issue review meetings; and</li>
+<li>audit and assurance checkpoints.</li>
+</ul>
+</section>
+</section>
+<section id="processes" class="level1">
+<h1>Processes</h1>
+<section id="identify" class="level2">
+<h2 class="anchored" data-anchor-id="identify">Identify</h2>
+<p>Risks are identified by understanding objectives, context, assumptions, threats, opportunities, triggers, interdependencies, and stakeholder concerns.</p>
+</section>
+<section id="assess" class="level2">
+<h2 class="anchored" data-anchor-id="assess">Assess</h2>
+<p>Assessment considers probability, impact, proximity, velocity, persistence, interconnectedness, and overall significance. It also includes evaluating existing controls and the confidence level around available information.</p>
+</section>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan">Plan</h2>
+<p>Response planning defines what should be done about each significant risk. Common responses include avoiding, reducing, transferring, sharing, accepting, exploiting, enhancing, or preparing contingency actions.</p>
+</section>
+<section id="implement" class="level2">
+<h2 class="anchored" data-anchor-id="implement">Implement</h2>
+<p>Agreed responses are assigned to owners, funded where necessary, integrated into plans, and monitored for completion and effectiveness.</p>
+</section>
+<section id="communicate" class="level2">
+<h2 class="anchored" data-anchor-id="communicate">Communicate</h2>
+<p>Risk information is reported, escalated, discussed, and reviewed through governance forums, dashboards, registers, assurance packs, and decision papers.</p>
+</section>
+<section id="review-and-learn" class="level2">
+<h2 class="anchored" data-anchor-id="review-and-learn">Review and Learn</h2>
+<p>Risks, assumptions, control effectiveness, indicators, and lessons learned are reviewed regularly so that the framework improves over time.</p>
+</section>
+<section id="how-to-read-the-mor-process-model" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-read-the-mor-process-model">How to Read the MoR Process Model</h2>
+<p>MoR is not a one-time sequence. It is a continuous management cycle that operates at all levels of the organisation. The same logic can be applied to enterprise strategy, change portfolios, programmes, projects, operations, and specialist risk domains.</p>
+</section>
+</section>
+<section id="documentation-and-artefacts" class="level1">
+<h1>Documentation and Artefacts</h1>
+<section id="typical-mor-artefact-families" class="level2">
+<h2 class="anchored" data-anchor-id="typical-mor-artefact-families">Typical MoR Artefact Families</h2>
+<p>A mature MoR implementation normally produces artefacts across several categories:</p>
+<ul>
+<li>policy and governance documents;</li>
+<li>risk identification and assessment artefacts;</li>
+<li>response and control artefacts;</li>
+<li>reporting and escalation artefacts; and</li>
+<li>assurance and improvement artefacts.</li>
+</ul>
+<p>Typical examples include:</p>
+<ul>
+<li>risk management policy;</li>
+<li>risk management process guide;</li>
+<li>risk appetite statement;</li>
+<li>risk tolerance thresholds;</li>
+<li>enterprise risk taxonomy;</li>
+<li>strategic risk register;</li>
+<li>portfolio, programme, project, or operational risk registers;</li>
+<li>risk assessment matrix;</li>
+<li>control library or control catalogue;</li>
+<li>key risk indicator dashboard;</li>
+<li>escalation log;</li>
+<li>issue and incident linkage records;</li>
+<li>assurance review pack; and</li>
+<li>lessons learned and improvement log.</li>
+</ul>
+</section>
+<section id="mor-documentation-raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="mor-documentation-raci-matrix">MoR Documentation RACI Matrix</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Document / Artefact</th>
+<th>Board / Executive</th>
+<th>Risk Committee / CRO</th>
+<th>Risk Manager / PMO</th>
+<th>Delivery / Operational Manager</th>
+<th>Assurance / Audit</th>
+<th>Sponsor / Business Lead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Risk management policy</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Risk appetite statement</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Enterprise risk taxonomy</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Strategic risk register</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Programme / project risk register</td>
+<td>I</td>
+<td>C</td>
+<td>C</td>
+<td>A / R</td>
+<td>C</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td>Operational risk register</td>
+<td>I</td>
+<td>C</td>
+<td>C</td>
+<td>A / R</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Risk dashboard / KRI report</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Escalation and exception log</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>Assurance review pack</td>
+<td>I</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>A / R</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Lessons learned / improvement log</td>
+<td>I</td>
+<td>C</td>
+<td>A / R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="integration-with-other-frameworks" class="level1">
+<h1>Integration with Other Frameworks</h1>
+<section id="mor-and-cobit" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-cobit">MoR and COBIT</h2>
+<p>COBIT provides governance objectives, control orientation, and assurance structure for enterprise governance of information and technology. MoR complements COBIT by giving a practical risk management method that can be used to support governance decisions, control prioritisation, and risk reporting.</p>
+</section>
+<section id="mor-and-togaf" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-togaf">MoR and TOGAF</h2>
+<p>TOGAF supports architecture governance, target-state design, and transition planning. MoR helps identify architecture, transformation, dependency, technology obsolescence, and migration risks that affect architecture roadmaps.</p>
+</section>
+<section id="mor-and-itil-4" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-itil-4">MoR and ITIL 4</h2>
+<p>ITIL 4 includes risk considerations within service management, continuity, change enablement, supplier management, and continual improvement. MoR provides a broader enterprise risk structure that can strengthen service, operational, and resilience decision-making.</p>
+</section>
+<section id="mor-and-prince2" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-prince2">MoR and PRINCE2</h2>
+<p>PRINCE2 includes project-level risk management as part of controlled delivery. MoR provides the wider organisational approach and can be used as the parent risk method for all PRINCE2 projects.</p>
+</section>
+<section id="mor-and-msp-mop-p3o" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-msp-mop-p3o">MoR and MSP / MoP / P3O</h2>
+<p>MoR strengthens portfolio, programme, and office governance by standardising risk language, escalation routes, tolerances, and reporting across the full change landscape.</p>
+</section>
+<section id="mor-and-iso-regulatory-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="mor-and-iso-regulatory-frameworks">MoR and ISO / Regulatory Frameworks</h2>
+<p>MoR can be aligned with ISO 31000, ISO 27001, ISO 22301, DORA, NIS2, internal control models, and sector regulations. It is particularly useful where organisations need a practical management method that sits between high-level policy and day-to-day risk decisions.</p>
+</section>
+</section>
+<section id="implementation-approach" class="level1">
+<h1>Implementation Approach</h1>
+<p>A practical MoR implementation often follows these steps:</p>
+<ol type="1">
+<li>define the enterprise risk policy, scope, governance model, and target organisational perspectives;</li>
+<li>agree risk appetite, tolerances, and escalation thresholds;</li>
+<li>define the common process, taxonomy, scoring model, and reporting standards;</li>
+<li>establish roles, committee structure, and ownership rules;</li>
+<li>deploy standard registers, dashboards, and decision artefacts;</li>
+<li>integrate risk management into portfolios, programmes, projects, services, and operations;</li>
+<li>train stakeholders and build a constructive risk culture; and</li>
+<li>review, assure, and improve the framework over time.</li>
+</ol>
+<section id="critical-success-factors" class="level2">
+<h2 class="anchored" data-anchor-id="critical-success-factors">Critical Success Factors</h2>
+<p>Successful MoR adoption usually depends on:</p>
+<ul>
+<li>visible executive sponsorship;</li>
+<li>simple and proportionate methods;</li>
+<li>alignment with strategy, finance, audit, and assurance;</li>
+<li>strong quality of risk data and reporting;</li>
+<li>active ownership rather than passive register maintenance; and</li>
+<li>consistent follow-through on risk responses and escalations.</li>
+</ul>
+</section>
+</section>
+<section id="kpis-and-metrics" class="level1">
+<h1>KPIs and Metrics</h1>
+<p>Organisations using MoR often monitor metrics such as:</p>
+<ul>
+<li>percentage of critical objectives with documented key risks;</li>
+<li>proportion of high risks with named owners and funded response actions;</li>
+<li>number of overdue mitigation actions;</li>
+<li>trend in top enterprise risks over time;</li>
+<li>percentage of major initiatives with current risk reviews;</li>
+<li>number of risks escalated within tolerance rules;</li>
+<li>control effectiveness scores for critical risk areas;</li>
+<li>incident or loss events linked to previously identified risks;</li>
+<li>percentage of audit findings related to weak risk controls; and</li>
+<li>stakeholder confidence in risk reporting and decision support.</li>
+</ul>
+</section>
+<section id="benefits" class="level1">
+<h1>Benefits</h1>
+<p>Well-implemented MoR can provide significant benefits, including:</p>
+<ul>
+<li>better strategic and operational decision-making;</li>
+<li>clearer visibility of threats and opportunities;</li>
+<li>stronger resilience and preparedness;</li>
+<li>improved governance, escalation, and assurance;</li>
+<li>more consistent risk language across the enterprise;</li>
+<li>better integration between delivery and enterprise risk views; and</li>
+<li>greater confidence for boards, regulators, sponsors, and auditors.</li>
+</ul>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<p>MoR is powerful, but it also has limitations:</p>
+<ul>
+<li>it can become overly bureaucratic if over-engineered;</li>
+<li>poor culture can stop real risks being raised honestly;</li>
+<li>scoring models can create false precision if not used carefully;</li>
+<li>registers alone do not improve outcomes without action and ownership;</li>
+<li>it requires tailoring for different sectors and organisational maturity levels; and</li>
+<li>specialist risk domains may still need deeper methods, standards, and technical controls.</li>
+</ul>
+</section>
+<section id="example-use-case" class="level1">
+<h1>Example Use Case</h1>
+<p>A large financial services organisation is running a transformation portfolio that includes cloud migration, cyber resilience improvements, customer-platform modernisation, and regulatory remediation. Different teams currently manage risk in different ways, making executive oversight inconsistent.</p>
+<p>The organisation adopts MoR as its common risk framework. It defines a group-wide risk policy, a shared taxonomy, portfolio and project escalation thresholds, and standard dashboards. Strategic risks are reviewed by the executive risk committee, delivery risks by the portfolio board, and operational risks by service and control forums. Cyber, resilience, supplier, and regulatory risks are linked into the same governance language.</p>
+<p>As a result, the board gains a clearer view of the organisation’s top exposures, project and programme teams escalate more consistently, mitigation ownership improves, and assurance reporting becomes more coherent across strategic, change, and operational domains.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>AXELOS. <em>M_o_R: Management of Risk – Guidance for Practitioners</em>. AXELOS / TSO.</li>
+<li>AXELOS. <em>M_o_R Certification | Risk Management</em>. AXELOS.</li>
+<li>PeopleCert. <em>Certifications in PRINCE2 Risk Management</em>. PeopleCert.</li>
+<li>PeopleCert. <em>M_o_R Foundation (3rd edition)</em>. PeopleCert.</li>
+<li>PeopleCert. <em>M_o_R 4 Practitioner in Risk Management</em>. PeopleCert.</li>
+<li>PeopleCert. <em>M_o_R Corporate Framework</em>. PeopleCert.</li>
+<li>PeopleCert. <em>New PRINCE2 certification names</em>. PeopleCert.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

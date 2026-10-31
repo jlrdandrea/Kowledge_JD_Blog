@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Governance and Management of Enterprise IT">
+
+<title>COBIT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">IT Governance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="83218ac34c1834c26781fe4bde918ee4" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>Welcome</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">COBIT</h1>
+                  <div>
+        <div class="description">
+          Governance and Management of Enterprise IT
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">COBIT</div>
+                <div class="quarto-category">Governance</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#what-is-cobit" id="toc-what-is-cobit" class="nav-link" data-scroll-target="#what-is-cobit">What is COBIT</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it">When to Use It</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
+  <li><a href="#cobit-governance-system" id="toc-cobit-governance-system" class="nav-link" data-scroll-target="#cobit-governance-system">COBIT Governance System</a></li>
+  </ul></li>
+  <li><a href="#history-and-evolution" id="toc-history-and-evolution" class="nav-link" data-scroll-target="#history-and-evolution">History and Evolution</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles">Core Principles</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#governance-vs-management" id="toc-governance-vs-management" class="nav-link" data-scroll-target="#governance-vs-management">Governance vs Management</a></li>
+  <li><a href="#governance-domain" id="toc-governance-domain" class="nav-link" data-scroll-target="#governance-domain">Governance Domain</a></li>
+  <li><a href="#management-domains" id="toc-management-domains" class="nav-link" data-scroll-target="#management-domains">Management Domains</a></li>
+  <li><a href="#governance-components" id="toc-governance-components" class="nav-link" data-scroll-target="#governance-components">Governance Components</a></li>
+  <li><a href="#design-factors" id="toc-design-factors" class="nav-link" data-scroll-target="#design-factors">Design Factors</a></li>
+  </ul></li>
+  <li><a href="#processes" id="toc-processes" class="nav-link" data-scroll-target="#processes">Processes</a>
+  <ul class="collapse">
+  <li><a href="#edm-evaluate-direct-and-monitor" id="toc-edm-evaluate-direct-and-monitor" class="nav-link" data-scroll-target="#edm-evaluate-direct-and-monitor">EDM — Evaluate, Direct and Monitor</a></li>
+  <li><a href="#apo-align-plan-and-organise" id="toc-apo-align-plan-and-organise" class="nav-link" data-scroll-target="#apo-align-plan-and-organise">APO — Align, Plan and Organise</a></li>
+  <li><a href="#bai-build-acquire-and-implement" id="toc-bai-build-acquire-and-implement" class="nav-link" data-scroll-target="#bai-build-acquire-and-implement">BAI — Build, Acquire and Implement</a></li>
+  <li><a href="#dss-deliver-service-and-support" id="toc-dss-deliver-service-and-support" class="nav-link" data-scroll-target="#dss-deliver-service-and-support">DSS — Deliver, Service and Support</a></li>
+  <li><a href="#mea-monitor-evaluate-and-assess" id="toc-mea-monitor-evaluate-and-assess" class="nav-link" data-scroll-target="#mea-monitor-evaluate-and-assess">MEA — Monitor, Evaluate and Assess</a></li>
+  <li><a href="#how-to-read-the-process-model" id="toc-how-to-read-the-process-model" class="nav-link" data-scroll-target="#how-to-read-the-process-model">How to Read the Process Model</a></li>
+  </ul></li>
+  <li><a href="#documentation-and-artefacts" id="toc-documentation-and-artefacts" class="nav-link" data-scroll-target="#documentation-and-artefacts">Documentation and Artefacts</a>
+  <ul class="collapse">
+  <li><a href="#typical-cobit-artefact-families" id="toc-typical-cobit-artefact-families" class="nav-link" data-scroll-target="#typical-cobit-artefact-families">Typical COBIT Artefact Families</a></li>
+  <li><a href="#cobit-documentation-raci-matrix" id="toc-cobit-documentation-raci-matrix" class="nav-link" data-scroll-target="#cobit-documentation-raci-matrix">COBIT Documentation RACI Matrix</a></li>
+  <li><a href="#artefacts-by-cobit-domain" id="toc-artefacts-by-cobit-domain" class="nav-link" data-scroll-target="#artefacts-by-cobit-domain">Artefacts by COBIT Domain</a></li>
+  </ul></li>
+  <li><a href="#integration-with-other-frameworks" id="toc-integration-with-other-frameworks" class="nav-link" data-scroll-target="#integration-with-other-frameworks">Integration with Other Frameworks</a></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">Implementation Approach</a>
+  <ul class="collapse">
+  <li><a href="#common-implementation-tips" id="toc-common-implementation-tips" class="nav-link" data-scroll-target="#common-implementation-tips">Common Implementation Tips</a></li>
+  </ul></li>
+  <li><a href="#kpis-and-metrics" id="toc-kpis-and-metrics" class="nav-link" data-scroll-target="#kpis-and-metrics">KPIs and Metrics</a>
+  <ul class="collapse">
+  <li><a href="#metric-design-guidance" id="toc-metric-design-guidance" class="nav-link" data-scroll-target="#metric-design-guidance">Metric Design Guidance</a></li>
+  </ul></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits">Benefits</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#example-use-case" id="toc-example-use-case" class="nav-link" data-scroll-target="#example-use-case">Example Use Case</a>
+  <ul class="collapse">
+  <li><a href="#scenario-mid-sized-financial-services-organisation" id="toc-scenario-mid-sized-financial-services-organisation" class="nav-link" data-scroll-target="#scenario-mid-sized-financial-services-organisation">Scenario: Mid-Sized Financial Services Organisation</a>
+  <ul class="collapse">
+  <li><a href="#how-cobit-helps" id="toc-how-cobit-helps" class="nav-link" data-scroll-target="#how-cobit-helps">How COBIT Helps</a></li>
+  <li><a href="#key-artefacts-produced" id="toc-key-artefacts-produced" class="nav-link" data-scroll-target="#key-artefacts-produced">Key Artefacts Produced</a></li>
+  <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">Expected Outcomes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="what-is-cobit" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-cobit">What is COBIT</h2>
+<p>COBIT is a framework from ISACA for the governance and management of enterprise information and technology. It helps organisations ensure that information and technology support business goals, deliver value, optimise risk, and use resources responsibly.</p>
+<p>COBIT is not just an IT operations model. It is an enterprise governance framework that connects board priorities, executive decision-making, control requirements, architecture, service delivery, security, assurance, and performance measurement into one coherent system.</p>
+</section>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>The purpose of COBIT is to help enterprises:</p>
+<ul>
+<li>create value from information and technology;</li>
+<li>balance benefits realisation, risk optimisation, and resource optimisation;</li>
+<li>align technology decisions with stakeholder needs and enterprise strategy;</li>
+<li>establish clear governance accountabilities;</li>
+<li>define management objectives, controls, and performance measures; and</li>
+<li>provide a common language between the board, executives, auditors, risk, architecture, security, and operational teams.</li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-it">When to Use It</h2>
+<p>COBIT is especially useful when an organisation needs a structured governance model across multiple technology and business functions. Typical situations include:</p>
+<ul>
+<li>enterprise-wide IT governance transformation;</li>
+<li>strengthening board oversight of digital and technology investment;</li>
+<li>integrating risk, compliance, security, architecture, and service management;</li>
+<li>improving auditability and control maturity;</li>
+<li>rationalising overlapping frameworks and standards;</li>
+<li>creating a governance layer above delivery frameworks such as PRINCE2, MSP, Agile, DevOps, or ITIL; and</li>
+<li>supporting regulated or high-dependability environments.</li>
+</ul>
+</section>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
+<ul>
+<li>Board and governing body</li>
+<li>CIO</li>
+<li>CISO</li>
+<li>Chief Digital / Transformation leaders</li>
+<li>IT Governance Board</li>
+<li>Enterprise Architects</li>
+<li>PMO / Transformation Office</li>
+<li>Risk, compliance, and internal audit teams</li>
+<li>Service management and operations leaders</li>
+</ul>
+</section>
+<section id="cobit-governance-system" class="level2">
+<h2 class="anchored" data-anchor-id="cobit-governance-system">COBIT Governance System</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+EDM["EDM&lt;br/&gt;Evaluate Direct Monitor"]
+APO["APO&lt;br/&gt;Align Plan Organise"]
+BAI["BAI&lt;br/&gt;Build Acquire Implement"]
+DSS["DSS&lt;br/&gt;Deliver Service Support"]
+MEA["MEA&lt;br/&gt;Monitor Evaluate Assess"]
+
+EDM --&gt; APO
+APO --&gt; BAI
+BAI --&gt; DSS
+DSS --&gt; MEA
+MEA --&gt; EDM
+
+EDM_DOC["Governance Charter&lt;br/&gt;Decision Rights&lt;br/&gt;Performance Oversight"]
+APO_DOC["I&amp;T Strategy&lt;br/&gt;Operating Model&lt;br/&gt;Policies and Architecture"]
+BAI_DOC["Portfolio Roadmap&lt;br/&gt;Business Cases&lt;br/&gt;Programmes and Change"]
+DSS_DOC["Service Catalogue&lt;br/&gt;Operations Procedures&lt;br/&gt;Security and Continuity"]
+MEA_DOC["Control Testing&lt;br/&gt;Compliance Reports&lt;br/&gt;KPI and Assurance Dashboards"]
+
+EDM --&gt; EDM_DOC
+APO --&gt; APO_DOC
+BAI --&gt; BAI_DOC
+DSS --&gt; DSS_DOC
+MEA --&gt; MEA_DOC
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>COBIT separates <strong>governance</strong> from <strong>management</strong>. Governance is exercised by those who evaluate stakeholder needs, direct priorities, and monitor outcomes. Management plans, builds, runs, and monitors activities in line with that policy and direction.</p>
+<hr>
+</section>
+</section>
+<section id="history-and-evolution" class="level1">
+<h1>History and Evolution</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th>Year</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>COBIT 1</td>
+<td>1996</td>
+<td>Initial control objective framework focused on audit and control of IT</td>
+</tr>
+<tr class="even">
+<td>COBIT 2</td>
+<td>1998</td>
+<td>Expanded control guidance and broader management use</td>
+</tr>
+<tr class="odd">
+<td>COBIT 3</td>
+<td>2000</td>
+<td>Greater management orientation and maturity thinking</td>
+</tr>
+<tr class="even">
+<td>COBIT 4.0</td>
+<td>2005</td>
+<td>Stronger governance emphasis and process structure</td>
+</tr>
+<tr class="odd">
+<td>COBIT 4.1</td>
+<td>2007</td>
+<td>Refined process model, controls, goals, and maturity guidance</td>
+</tr>
+<tr class="even">
+<td>COBIT 5</td>
+<td>2012</td>
+<td>Integrated governance and management of enterprise IT; five principles and seven enablers</td>
+</tr>
+<tr class="odd">
+<td>COBIT 2019</td>
+<td>2018/2019</td>
+<td>Updated core model, design factors, focus areas, performance management, and tailoring guidance</td>
+</tr>
+</tbody>
+</table>
+<p>COBIT has evolved from an audit and control reference into a broader governance system for enterprise information and technology. The most significant step was COBIT 5, which repositioned the framework around value creation and the governance of enterprise IT. COBIT 2019 then improved tailoring and practical implementation through design factors and focus areas.</p>
+<hr>
+</section>
+<section id="core-principles" class="level1">
+<h1>Core Principles</h1>
+<p>COBIT 2019 is commonly explained through governance system principles such as:</p>
+<ol type="1">
+<li><p><strong>Provide stakeholder value</strong><br>
+Governance exists to create value by balancing benefits, risk, and resource use.</p></li>
+<li><p><strong>Holistic approach</strong><br>
+Effective governance depends on multiple components working together, including processes, structures, policies, culture, information, skills, and services.</p></li>
+<li><p><strong>Dynamic governance system</strong><br>
+Governance is not static. It must respond to strategy, risk, regulation, technology change, sourcing models, and enterprise context.</p></li>
+<li><p><strong>Governance distinct from management</strong><br>
+Governance decides, directs, and monitors. Management plans, builds, runs, and monitors operations and change.</p></li>
+<li><p><strong>Tailored to enterprise needs</strong><br>
+COBIT is designed to be adapted using design factors such as enterprise strategy, risk profile, compliance requirements, threat landscape, implementation methods, and enterprise size.</p></li>
+<li><p><strong>End-to-end governance system</strong><br>
+COBIT covers the whole enterprise, not only the IT department. It includes all information and technology processing needed to support business goals.</p></li>
+</ol>
+<p>These principles are important because they prevent COBIT from being treated as only a control checklist. In practice, COBIT works best when it is used as a design framework for how the organisation governs digital, information, services, security, architecture, investment, and change.</p>
+<hr>
+</section>
+<section id="governance-structure" class="level1">
+<h1>Governance Structure</h1>
+<section id="governance-vs-management" class="level2">
+<h2 class="anchored" data-anchor-id="governance-vs-management">Governance vs Management</h2>
+<p>COBIT makes a deliberate distinction between governance and management:</p>
+<ul>
+<li><strong>Governance</strong> ensures stakeholder needs, conditions, and options are evaluated to determine balanced, agreed enterprise objectives; direction is set through prioritisation and decision-making; and performance and compliance are monitored.</li>
+<li><strong>Management</strong> plans, builds, runs, and monitors activities to achieve the direction set by the governing body.</li>
+</ul>
+<p>This distinction is valuable because many organisations mix strategic oversight with operational delivery. COBIT helps clarify which decisions belong to the board or executive governing body and which belong to management functions.</p>
+</section>
+<section id="governance-domain" class="level2">
+<h2 class="anchored" data-anchor-id="governance-domain">Governance Domain</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EDM</td>
+<td>Evaluate, Direct and Monitor. Focuses on governance system design, benefits delivery, risk optimisation, resource optimisation, and stakeholder transparency.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-domains" class="level2">
+<h2 class="anchored" data-anchor-id="management-domains">Management Domains</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>APO</td>
+<td>Align, Plan and Organise. Covers strategy, architecture, innovation, budgeting, HR, relationships, suppliers, quality, risk, security, and data.</td>
+</tr>
+<tr class="even">
+<td>BAI</td>
+<td>Build, Acquire and Implement. Covers programmes, requirements, solutions, change enablement, release, availability, knowledge, assets, and projects.</td>
+</tr>
+<tr class="odd">
+<td>DSS</td>
+<td>Deliver, Service and Support. Covers operations, service requests, incidents, problems, continuity, security services, and business process controls.</td>
+</tr>
+<tr class="even">
+<td>MEA</td>
+<td>Monitor, Evaluate and Assess. Covers performance monitoring, internal control, compliance, and assurance.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="governance-components" class="level2">
+<h2 class="anchored" data-anchor-id="governance-components">Governance Components</h2>
+<p>A COBIT governance system is not made only of processes. It includes several interdependent components:</p>
+<ul>
+<li>processes;</li>
+<li>organisational structures;</li>
+<li>principles, policies, and procedures;</li>
+<li>information flows and items;</li>
+<li>culture, ethics, and behaviour;</li>
+<li>people, skills, and competencies; and</li>
+<li>services, infrastructure, and applications.</li>
+</ul>
+<p>This is one of COBIT’s strengths: it connects formal process design with the human, structural, and informational conditions needed for governance to work.</p>
+</section>
+<section id="design-factors" class="level2">
+<h2 class="anchored" data-anchor-id="design-factors">Design Factors</h2>
+<p>COBIT 2019 introduces design factors to tailor the governance system. Typical examples include:</p>
+<ul>
+<li>enterprise strategy;</li>
+<li>enterprise goals;</li>
+<li>risk profile;</li>
+<li>I&amp;T-related issues;</li>
+<li>threat landscape;</li>
+<li>compliance requirements;</li>
+<li>role of IT within the enterprise;</li>
+<li>sourcing model;</li>
+<li>implementation methods;</li>
+<li>technology adoption strategy; and</li>
+<li>enterprise size.</li>
+</ul>
+<p>These design factors help avoid implementing every objective with equal depth. Instead, the organisation can decide where to focus more governance effort.</p>
+<hr>
+</section>
+</section>
+<section id="processes" class="level1">
+<h1>Processes</h1>
+<p>COBIT 2019 defines 40 governance and management objectives grouped into five domains.</p>
+<section id="edm-evaluate-direct-and-monitor" class="level2">
+<h2 class="anchored" data-anchor-id="edm-evaluate-direct-and-monitor">EDM — Evaluate, Direct and Monitor</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EDM01</td>
+<td>Ensured Governance Framework Setting and Maintenance</td>
+</tr>
+<tr class="even">
+<td>EDM02</td>
+<td>Ensured Benefits Delivery</td>
+</tr>
+<tr class="odd">
+<td>EDM03</td>
+<td>Ensured Risk Optimisation</td>
+</tr>
+<tr class="even">
+<td>EDM04</td>
+<td>Ensured Resource Optimisation</td>
+</tr>
+<tr class="odd">
+<td>EDM05</td>
+<td>Ensured Stakeholder Engagement</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apo-align-plan-and-organise" class="level2">
+<h2 class="anchored" data-anchor-id="apo-align-plan-and-organise">APO — Align, Plan and Organise</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>APO01</td>
+<td>Managed I&amp;T Management Framework</td>
+</tr>
+<tr class="even">
+<td>APO02</td>
+<td>Managed Strategy</td>
+</tr>
+<tr class="odd">
+<td>APO03</td>
+<td>Managed Enterprise Architecture</td>
+</tr>
+<tr class="even">
+<td>APO04</td>
+<td>Managed Innovation</td>
+</tr>
+<tr class="odd">
+<td>APO05</td>
+<td>Managed Portfolio</td>
+</tr>
+<tr class="even">
+<td>APO06</td>
+<td>Managed Budget and Costs</td>
+</tr>
+<tr class="odd">
+<td>APO07</td>
+<td>Managed Human Resources</td>
+</tr>
+<tr class="even">
+<td>APO08</td>
+<td>Managed Relationships</td>
+</tr>
+<tr class="odd">
+<td>APO09</td>
+<td>Managed Service Agreements</td>
+</tr>
+<tr class="even">
+<td>APO10</td>
+<td>Managed Vendors</td>
+</tr>
+<tr class="odd">
+<td>APO11</td>
+<td>Managed Quality</td>
+</tr>
+<tr class="even">
+<td>APO12</td>
+<td>Managed Risk</td>
+</tr>
+<tr class="odd">
+<td>APO13</td>
+<td>Managed Security</td>
+</tr>
+<tr class="even">
+<td>APO14</td>
+<td>Managed Data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bai-build-acquire-and-implement" class="level2">
+<h2 class="anchored" data-anchor-id="bai-build-acquire-and-implement">BAI — Build, Acquire and Implement</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BAI01</td>
+<td>Managed Programs</td>
+</tr>
+<tr class="even">
+<td>BAI02</td>
+<td>Managed Requirements Definition</td>
+</tr>
+<tr class="odd">
+<td>BAI03</td>
+<td>Managed Solutions Identification and Build</td>
+</tr>
+<tr class="even">
+<td>BAI04</td>
+<td>Managed Availability and Capacity</td>
+</tr>
+<tr class="odd">
+<td>BAI05</td>
+<td>Managed Organisational Change</td>
+</tr>
+<tr class="even">
+<td>BAI06</td>
+<td>Managed IT Changes</td>
+</tr>
+<tr class="odd">
+<td>BAI07</td>
+<td>Managed IT Change Acceptance and Transitioning</td>
+</tr>
+<tr class="even">
+<td>BAI08</td>
+<td>Managed Knowledge</td>
+</tr>
+<tr class="odd">
+<td>BAI09</td>
+<td>Managed Assets</td>
+</tr>
+<tr class="even">
+<td>BAI10</td>
+<td>Managed Configuration</td>
+</tr>
+<tr class="odd">
+<td>BAI11</td>
+<td>Managed Projects</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dss-deliver-service-and-support" class="level2">
+<h2 class="anchored" data-anchor-id="dss-deliver-service-and-support">DSS — Deliver, Service and Support</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DSS01</td>
+<td>Managed Operations</td>
+</tr>
+<tr class="even">
+<td>DSS02</td>
+<td>Managed Service Requests and Incidents</td>
+</tr>
+<tr class="odd">
+<td>DSS03</td>
+<td>Managed Problems</td>
+</tr>
+<tr class="even">
+<td>DSS04</td>
+<td>Managed Continuity</td>
+</tr>
+<tr class="odd">
+<td>DSS05</td>
+<td>Managed Security Services</td>
+</tr>
+<tr class="even">
+<td>DSS06</td>
+<td>Managed Business Process Controls</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mea-monitor-evaluate-and-assess" class="level2">
+<h2 class="anchored" data-anchor-id="mea-monitor-evaluate-and-assess">MEA — Monitor, Evaluate and Assess</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Process</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MEA01</td>
+<td>Managed Performance and Conformance Monitoring</td>
+</tr>
+<tr class="even">
+<td>MEA02</td>
+<td>Managed System of Internal Control</td>
+</tr>
+<tr class="odd">
+<td>MEA03</td>
+<td>Managed Compliance With External Requirements</td>
+</tr>
+<tr class="even">
+<td>MEA04</td>
+<td>Managed Assurance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-to-read-the-process-model" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-read-the-process-model">How to Read the Process Model</h2>
+<p>The COBIT process model should be used as a governance map rather than a rigid sequence. The objectives describe what must be governed or managed; they do not force a single operating design. For example:</p>
+<ul>
+<li>APO02 and APO05 connect strategy with portfolio choices;</li>
+<li>APO03 connects architecture to standards and future-state design;</li>
+<li>BAI01 and BAI11 help structure delivery change through programmes and projects;</li>
+<li>DSS02, DSS03, and DSS04 support reliable service operations and resilience;</li>
+<li>MEA02, MEA03, and MEA04 provide the assurance layer needed for control, compliance, and audit.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="documentation-and-artefacts" class="level1">
+<h1>Documentation and Artefacts</h1>
+<p>This section defines the key documents produced within the framework and the roles responsible for creating, approving, and maintaining them.</p>
+<section id="typical-cobit-artefact-families" class="level2">
+<h2 class="anchored" data-anchor-id="typical-cobit-artefact-families">Typical COBIT Artefact Families</h2>
+<p>COBIT does not prescribe one mandatory document pack for every organisation. Instead, artefacts are produced as evidence that governance decisions, management practices, controls, and oversight activities are functioning. A practical COBIT implementation usually generates artefacts across the following families:</p>
+<ul>
+<li>governance and decision-rights documents;</li>
+<li>strategy, architecture, and operating model artefacts;</li>
+<li>portfolio, programme, project, and change artefacts;</li>
+<li>risk, control, security, and compliance artefacts;</li>
+<li>service management and operational artefacts; and</li>
+<li>performance, assurance, and audit artefacts.</li>
+</ul>
+</section>
+<section id="cobit-documentation-raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="cobit-documentation-raci-matrix">COBIT Documentation RACI Matrix</h2>
+<p><strong>Legend:</strong> R = Responsible, A = Accountable, C = Consulted, I = Informed</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Document / Artefact</th>
+<th>Board / Governing Body</th>
+<th style="text-align: right;">CIO / Head of IT</th>
+<th style="text-align: right;">Enterprise Architect</th>
+<th style="text-align: right;">PMO / Transformation Office</th>
+<th style="text-align: right;">Risk &amp; Compliance</th>
+<th style="text-align: right;">Service Owner / Ops Manager</th>
+<th style="text-align: right;">Internal Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Governance System Charter</td>
+<td>A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Decision Rights Matrix</td>
+<td>A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>I&amp;T Strategy</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Enterprise Architecture Principles</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Governance Policy Set</td>
+<td>A</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>IT Operating Model</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Portfolio Prioritisation Criteria</td>
+<td>C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Portfolio Roadmap</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Business Case Standard</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Benefits Realisation Plan</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Risk Management Framework</td>
+<td>C</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>IT Risk Register</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Control Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Information Security Policy</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Data Governance / Classification Standard</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Change Management Policy</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Change Record / Change Log</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Service Catalogue</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Service Level Agreement / OLA</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Incident Management Procedure</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Problem Record / Known Error Record</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Availability / Capacity Plan</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Supplier Management Policy</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Supplier Performance Report</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Project Governance Framework</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Project / Programme Status Dashboard</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="odd">
+<td>Release / Deployment Plan</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Business Continuity / DR Plan</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Performance and KPI Dashboard</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+</tr>
+<tr class="even">
+<td>Compliance Assessment Report</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="odd">
+<td>Control Testing / Assurance Report</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+</tr>
+<tr class="even">
+<td>Audit Report</td>
+<td>I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">A/R</td>
+</tr>
+<tr class="odd">
+<td>Management Action Plan</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+</tr>
+<tr class="even">
+<td>Lessons Learned Repository</td>
+<td>I</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">I</td>
+<td style="text-align: right;">R</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">I</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="artefacts-by-cobit-domain" class="level2">
+<h2 class="anchored" data-anchor-id="artefacts-by-cobit-domain">Artefacts by COBIT Domain</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Typical Artefacts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EDM</td>
+<td>Governance charter, board dashboards, benefits oversight reports, risk appetite statements, decision rights matrix</td>
+</tr>
+<tr class="even">
+<td>APO</td>
+<td>strategy, target operating model, architecture principles, portfolio criteria, policy set, budgets, vendor governance, risk and security frameworks</td>
+</tr>
+<tr class="odd">
+<td>BAI</td>
+<td>programme and project plans, business cases, requirements packs, change records, release plans, capacity plans, configuration baselines</td>
+</tr>
+<tr class="even">
+<td>DSS</td>
+<td>service catalogue, SLAs/OLAs, run books, incident/problem records, continuity plans, security operations procedures</td>
+</tr>
+<tr class="odd">
+<td>MEA</td>
+<td>KPI dashboards, compliance reports, control testing packs, audit reports, management action trackers</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="integration-with-other-frameworks" class="level1">
+<h1>Integration with Other Frameworks</h1>
+<p>COBIT often acts as the governance umbrella over more specialised delivery and operating frameworks.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Relationship with COBIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ITIL</td>
+<td>ITIL provides detailed service management practices. COBIT provides governance objectives, decision rights, control focus, and performance oversight for service management.</td>
+</tr>
+<tr class="even">
+<td>TOGAF</td>
+<td>TOGAF provides architecture development methods and artefacts. COBIT provides governance for architecture, priorities, compliance, and enterprise alignment.</td>
+</tr>
+<tr class="odd">
+<td>PRINCE2</td>
+<td>PRINCE2 structures project management. COBIT provides enterprise governance, portfolio alignment, benefits oversight, controls, and assurance expectations.</td>
+</tr>
+<tr class="even">
+<td>MSP</td>
+<td>MSP supports programme governance and change orchestration. COBIT helps ensure programme decisions align with enterprise objectives and risk appetite.</td>
+</tr>
+<tr class="odd">
+<td>PMBOK / PMI practices</td>
+<td>PMBOK gives delivery guidance and management practices. COBIT strengthens governance, controls, assurance, and alignment to enterprise value.</td>
+</tr>
+<tr class="even">
+<td>ISO/IEC 38500</td>
+<td>ISO/IEC 38500 provides high-level corporate governance principles for IT. COBIT translates governance intent into an implementable model.</td>
+</tr>
+<tr class="odd">
+<td>ISO 27001 / NIST CSF</td>
+<td>These provide security and control guidance. COBIT helps integrate them into enterprise governance, accountability, monitoring, and assurance.</td>
+</tr>
+<tr class="even">
+<td>GDPR / DORA / NIS2</td>
+<td>COBIT can support compliance by linking regulatory obligations to policies, controls, roles, metrics, and assurance mechanisms.</td>
+</tr>
+</tbody>
+</table>
+<p>A practical rule is this: <strong>COBIT governs, while other frameworks often specialise</strong>. This makes COBIT useful as the integrating layer in complex organisations with many standards already in place.</p>
+<hr>
+</section>
+<section id="implementation-approach" class="level1">
+<h1>Implementation Approach</h1>
+<p>A pragmatic COBIT implementation should be iterative and tailored. A typical approach is:</p>
+<ol type="1">
+<li><p><strong>Understand drivers and pain points</strong><br>
+Identify why governance improvement is needed: regulatory pressure, weak prioritisation, poor benefits realisation, fragmented controls, audit findings, weak architecture discipline, or service instability.</p></li>
+<li><p><strong>Assess the current state</strong><br>
+Review current governance structures, decision forums, processes, artefacts, roles, metrics, and maturity. Map existing practices to COBIT objectives.</p></li>
+<li><p><strong>Define governance scope and priorities</strong><br>
+Use design factors to determine which objectives matter most. Not every domain requires the same implementation depth.</p></li>
+<li><p><strong>Design the target governance system</strong><br>
+Define structures, policies, decision rights, information flows, metrics, escalation paths, and assurance mechanisms.</p></li>
+<li><p><strong>Select priority objectives and artefacts</strong><br>
+Focus first on the objectives that solve the most critical enterprise issues, such as strategy, portfolio, risk, security, service reliability, or compliance.</p></li>
+<li><p><strong>Implement roles, controls, and reporting</strong><br>
+Create or update charters, policy sets, management forums, dashboards, architecture controls, and RACI structures.</p></li>
+<li><p><strong>Embed into delivery and operations</strong><br>
+Ensure COBIT is reflected in project governance, service management, vendor governance, data governance, and assurance activities.</p></li>
+<li><p><strong>Measure, assure, and improve</strong><br>
+Use KPIs, capability assessments, audits, and management reviews to refine the governance system over time.</p></li>
+</ol>
+<section id="common-implementation-tips" class="level2">
+<h2 class="anchored" data-anchor-id="common-implementation-tips">Common Implementation Tips</h2>
+<ul>
+<li>Start with the pain points, not the framework vocabulary.</li>
+<li>Use COBIT to unify what already exists instead of replacing every method.</li>
+<li>Keep governance forums clear and decision-oriented.</li>
+<li>Design concise artefacts that support decisions and evidence controls.</li>
+<li>Integrate governance metrics with portfolio, operational, security, and audit dashboards.</li>
+<li>Build strong ownership for APO02, APO05, APO12, APO13, DSS02, DSS04, and MEA02/03 in most enterprises.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="kpis-and-metrics" class="level1">
+<h1>KPIs and Metrics</h1>
+<p>COBIT encourages measurement across governance, management, performance, conformance, risk, and value. Example KPIs include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Benefits Realisation Rate</td>
+<td>% of planned benefits achieved after implementation</td>
+</tr>
+<tr class="even">
+<td>Strategic Alignment Score</td>
+<td>% of active initiatives explicitly linked to strategic objectives</td>
+</tr>
+<tr class="odd">
+<td>Portfolio Delivery Confidence</td>
+<td>% of portfolio rated green or amber-green for scope, cost, time, and benefits</td>
+</tr>
+<tr class="even">
+<td>Policy Compliance Rate</td>
+<td>% of assessed units complying with mandatory governance policies</td>
+</tr>
+<tr class="odd">
+<td>Audit Finding Closure Time</td>
+<td>Average days to close agreed audit actions</td>
+</tr>
+<tr class="even">
+<td>Control Effectiveness</td>
+<td>% of key controls operating effectively during testing</td>
+</tr>
+<tr class="odd">
+<td>Service Availability</td>
+<td>% uptime for critical services</td>
+</tr>
+<tr class="even">
+<td>Major Incident Frequency</td>
+<td>Number of priority incidents per month or quarter</td>
+</tr>
+<tr class="odd">
+<td>Mean Time to Resolve</td>
+<td>Average resolution time for incidents by priority</td>
+</tr>
+<tr class="even">
+<td>Change Success Rate</td>
+<td>% of changes implemented without rollback or major incident</td>
+</tr>
+<tr class="odd">
+<td>Risk Exposure Trend</td>
+<td>Change in aggregate inherent or residual risk over time</td>
+</tr>
+<tr class="even">
+<td>Vendor Performance Score</td>
+<td>% of strategic suppliers meeting contractual and service targets</td>
+</tr>
+<tr class="odd">
+<td>Architecture Compliance Rate</td>
+<td>% of solutions reviewed that comply with target architecture standards</td>
+</tr>
+<tr class="even">
+<td>Data Quality Index</td>
+<td>Composite score for completeness, accuracy, timeliness, and consistency</td>
+</tr>
+<tr class="odd">
+<td>Training / Competency Coverage</td>
+<td>% of critical governance roles with required skills and training</td>
+</tr>
+</tbody>
+</table>
+<section id="metric-design-guidance" class="level2">
+<h2 class="anchored" data-anchor-id="metric-design-guidance">Metric Design Guidance</h2>
+<p>Good COBIT metrics should balance:</p>
+<ul>
+<li><strong>value</strong>: are we delivering the intended outcomes?</li>
+<li><strong>risk</strong>: are exposures within appetite?</li>
+<li><strong>resources</strong>: are people, money, data, and services used effectively?</li>
+<li><strong>conformance</strong>: are controls and obligations being met?</li>
+<li><strong>improvement</strong>: are capability and governance maturity advancing?</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="benefits" class="level1">
+<h1>Benefits</h1>
+<p>A well-implemented COBIT-based governance system can provide:</p>
+<ul>
+<li>clearer decision rights between board, executives, and management;</li>
+<li>stronger alignment between enterprise strategy and technology investment;</li>
+<li>improved benefits realisation from digital and change initiatives;</li>
+<li>better integration of risk, compliance, security, architecture, and service management;</li>
+<li>more consistent policy and control structures;</li>
+<li>better audit readiness and assurance evidence;</li>
+<li>stronger prioritisation of scarce resources; and</li>
+<li>a common governance language across business and technology stakeholders.</li>
+</ul>
+<hr>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<p>COBIT is powerful, but it also has practical limitations:</p>
+<ul>
+<li>it can feel abstract if implemented without reference to real pain points;</li>
+<li>it requires interpretation and tailoring rather than mechanical adoption;</li>
+<li>it is not a detailed operating manual for every specialist practice;</li>
+<li>it can create documentation overhead if governance is over-engineered; and</li>
+<li>success depends heavily on leadership sponsorship and decision discipline.</li>
+</ul>
+<p>In short, COBIT works best when used as a design and governance framework, not as a bureaucratic checklist.</p>
+<hr>
+</section>
+<section id="example-use-case" class="level1">
+<h1>Example Use Case</h1>
+<section id="scenario-mid-sized-financial-services-organisation" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-mid-sized-financial-services-organisation">Scenario: Mid-Sized Financial Services Organisation</h2>
+<p>A regulated financial services organisation has grown through acquisitions. It has duplicated systems, inconsistent architecture decisions, unclear ownership of technology investment, increasing audit findings, weak visibility of risk, and recurring service incidents.</p>
+<section id="how-cobit-helps" class="level3">
+<h3 class="anchored" data-anchor-id="how-cobit-helps">How COBIT Helps</h3>
+<ul>
+<li><strong>EDM</strong> establishes board-level oversight of benefits, risk, resources, and stakeholder transparency.</li>
+<li><strong>APO02</strong> creates a single I&amp;T strategy aligned to enterprise priorities.</li>
+<li><strong>APO03</strong> defines architecture principles and review controls.</li>
+<li><strong>APO05</strong> improves portfolio governance and prioritisation.</li>
+<li><strong>APO12</strong> and <strong>APO13</strong> strengthen risk and security governance.</li>
+<li><strong>BAI01</strong> and <strong>BAI11</strong> structure change through programme and project governance.</li>
+<li><strong>DSS02</strong>, <strong>DSS03</strong>, and <strong>DSS04</strong> improve operational reliability, problem management, and continuity.</li>
+<li><strong>MEA02</strong> and <strong>MEA03</strong> support control monitoring and regulatory compliance.</li>
+</ul>
+</section>
+<section id="key-artefacts-produced" class="level3">
+<h3 class="anchored" data-anchor-id="key-artefacts-produced">Key Artefacts Produced</h3>
+<ul>
+<li>governance charter and decision rights matrix;</li>
+<li>integrated I&amp;T strategy and target operating model;</li>
+<li>enterprise architecture principles and review board terms of reference;</li>
+<li>portfolio prioritisation model and benefits reporting pack;</li>
+<li>risk and control catalogue linked to regulatory requirements;</li>
+<li>service dashboards for incidents, changes, availability, and continuity;</li>
+<li>assurance plan and audit action tracker.</li>
+</ul>
+</section>
+<section id="expected-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcomes">Expected Outcomes</h3>
+<p>Within 12 to 18 months, the organisation should expect better governance visibility, fewer duplicate initiatives, clearer accountability, improved audit closure rates, stronger change control, and more reliable critical services.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>ISACA. <em>COBIT 2019 Framework: Introduction and Methodology</em>.</li>
+<li>ISACA. <em>COBIT 2019 Framework: Governance and Management Objectives</em>.</li>
+<li>ISACA. <em>COBIT Design Guide: Designing an Information and Technology Governance Solution</em>.</li>
+<li>ISACA. <em>COBIT Implementation Guide: Implementing and Optimizing an Information and Technology Governance Solution</em>.</li>
+<li>ISO/IEC 38500. <em>Governance of IT for the organization</em>.</li>
+<li>Related integration references: ITIL, TOGAF, PRINCE2, MSP, ISO 27001, NIST CSF, and applicable regulatory frameworks.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

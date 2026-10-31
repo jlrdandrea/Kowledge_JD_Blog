@@ -1,0 +1,459 @@
+---
+title: "Treemaps with ggplot2"
+author: "Joao Luiz D'Andrea"
+date: "2025-10-12"
+categories: [R, ggplot2, Data Visualization, Treemap, Tutorial]
+description: "A step-by-step guide to building treemaps from basic to advanced, perfect for visualizing hierarchical data"
+image: "treemap-preview.png"
+format:
+  html:
+    code-fold: false
+    code-tools: false
+execute: 
+  warning: false
+---
+
+## Introduction
+
+Treemaps are excellent for visualizing hierarchical data and proportions. They display data as nested rectangles, where the size of each rectangle represents a quantitative value. In this tutorial, we'll create increasingly sophisticated treemaps using `ggplot2` and the `treemapify` package.
+
+We'll analyze the distribution of car manufacturers and their fuel efficiency using the built-in `mpg` dataset.
+
+## Setup
+
+First, let's load the required packages and prepare our data:
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Load required libraries
+library(tidyverse)      # Includes ggplot2, dplyr, and other essential packages
+library(treemapify)     # For creating treemaps with ggplot2
+library(scales)         # For formatting labels
+
+# Prepare the data: summarize by manufacturer
+data_summary <- mpg %>%
+  group_by(manufacturer) %>%                        # Group by car manufacturer
+  summarise(
+    count = n(),                                    # Count number of models
+    avg_hwy = mean(hwy),                           # Average highway mpg
+    avg_cty = mean(cty)                            # Average city mpg
+  ) %>%
+  arrange(desc(count))                              # Sort by count (highest to lowest)
+
+# Preview the data
+head(data_summary, 10)
+```
+
+------------------------------------------------------------------------
+
+## Chart 1: Basic Treemap
+
+Let's start with a simple treemap showing the number of car models per manufacturer.
+
+```{r}
+#| label: chart-basic
+#| fig-width: 10
+#| fig-height: 7
+
+ggplot(data_summary, aes(area = count, fill = manufacturer)) +  # Set area size and fill color
+  geom_treemap()                                                  # Create treemap
+```
+
+### Code Explanation
+
+**Line 1:** `ggplot(data_summary, aes(area = count, fill = manufacturer))` - Initializes the treemap with `area` representing the number of models (rectangle size) and `fill` assigning different colors to each manufacturer
+
+**Line 2:** `geom_treemap()` - Creates the treemap layout, automatically calculating rectangle positions and sizes based on the area values
+
+::: {.highlight-box .info}
+**What we have so far:** A functional treemap showing proportions, but it's hard to identify which rectangle represents which manufacturer. The colors are randomly assigned and there's no context.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 2: Intermediate Enhancement
+
+Now we'll add labels, improve the color scheme, and provide context through titles and better formatting.
+
+::: {.highlight-box .warning}
+**What we're adding in this evolution:**
+
+-   **Manufacturer labels** inside each rectangle for identification
+-   **Model count labels** to show exact values
+-   **Custom color palette** for better visual appeal
+-   **Title and subtitle** to provide context
+-   **Cleaner theme** with better spacing
+-   **Label sizing** based on rectangle area for readability
+:::
+
+```{r}
+#| label: chart-intermediate
+#| fig-width: 10
+#| fig-height: 7
+
+ggplot(data_summary, aes(area = count, fill = manufacturer, label = manufacturer)) +
+  geom_treemap() +                                                # Create treemap rectangles
+  geom_treemap_text(
+    colour = "white",                                             # White text for contrast
+    place = "centre",                                             # Center the text
+    size = 12,                                                    # Base text size
+    grow = TRUE                                                   # Auto-size text to fit rectangles
+  ) +
+  geom_treemap_text(
+    aes(label = paste0("n=", count)),                            # Add count labels
+    colour = "white",                                             # White text
+    place = "bottom",                                             # Position at bottom of rectangle
+    size = 10,                                                    # Slightly smaller text
+    alpha = 0.8                                                   # Slight transparency
+  ) +
+  scale_fill_viridis_d(option = "plasma") +                      # Use viridis color palette
+  labs(
+    title = "Distribution of Car Models by Manufacturer",         # Main title
+    subtitle = "Based on EPA fuel economy dataset (1999-2008)",   # Context subtitle
+    caption = "Rectangle size represents number of car models"    # Explain the visual encoding
+  ) +
+  theme_minimal() +                                               # Clean theme
+  theme(
+    plot.title = element_text(face = "bold", size = 16, margin = margin(b = 8)),
+    plot.subtitle = element_text(size = 11, color = "#5A6C7D", margin = margin(b = 15)),
+    legend.position = "none",                                     # Remove legend (redundant with labels)
+    plot.margin = margin(15, 15, 15, 15)                         # Add margins around plot
+  )
+```
+
+### Code Explanation
+
+**Line 1:** `aes(area = count, fill = manufacturer, label = manufacturer)` - Added `label` aesthetic to prepare for text labels
+
+**Line 2:** `geom_treemap()` - Creates the base treemap rectangles
+
+**Lines 3-8:** First `geom_treemap_text()` layer - Adds manufacturer names in white, centered, with `grow = TRUE` which automatically scales text to fit within each rectangle
+
+**Lines 9-15:** Second `geom_treemap_text()` layer - Adds model counts at the bottom of each rectangle with "n=" prefix for clarity
+
+**Line 16:** `scale_fill_viridis_d()` - Applies a colorblind-friendly viridis palette (discrete version) for better accessibility and visual appeal
+
+**Lines 17-21:** `labs()` - Adds descriptive title, subtitle providing context, and caption explaining what rectangle size represents
+
+**Lines 22-28:** Theme customization - Removes the legend (since labels identify each manufacturer), styles the title and subtitle, and adds proper margins
+
+::: {.highlight-box .success}
+**What we have now:** A much more informative treemap with clear labels identifying each manufacturer and showing exact counts. The color palette is visually appealing and accessible, and the context is provided through proper labeling.
+:::
+
+------------------------------------------------------------------------
+
+## Chart 3: Advanced Visualization
+
+Let's create a sophisticated treemap that shows both quantity and quality (fuel efficiency) through size and color, with enhanced styling.
+
+::: {.highlight-box .warning}
+**What we're adding in this final evolution:**
+
+-   **Color mapping to fuel efficiency** - Rectangle color now represents average highway MPG (dual encoding)
+-   **Custom gradient color scale** - Low efficiency (red) to high efficiency (green)
+-   **Borders around rectangles** - Better visual separation
+-   **Enhanced label formatting** - Shows both manufacturer and efficiency
+-   **Legend with custom formatting** - Clear explanation of color meaning
+-   **Professional styling** - Publication-ready appearance
+-   **Data insight annotation** - Highlights key findings in subtitle
+:::
+
+```{r}
+#| label: chart-advanced
+#| fig-width: 12
+#| fig-height: 8
+
+# Add efficiency categories for better interpretation
+data_summary <- data_summary %>%
+  mutate(
+    efficiency_category = case_when(                   # Create categorical labels
+      avg_hwy >= 25 ~ "High Efficiency",              # High performers
+      avg_hwy >= 20 ~ "Medium Efficiency",            # Average performers
+      TRUE ~ "Lower Efficiency"                       # Below average
+    )
+  )
+
+ggplot(data_summary, aes(
+  area = count, 
+  fill = avg_hwy,                                     # Color by fuel efficiency
+  label = manufacturer, 
+  subgroup = efficiency_category                      # Group by efficiency level
+)) +
+  geom_treemap(
+    colour = "white",                                 # White borders between rectangles
+    size = 2                                          # Border thickness
+  ) +
+  geom_treemap_text(
+    colour = "white",                                 # White text for visibility
+    place = "centre",                                 # Center manufacturer name
+    size = 14,                                        # Larger base size
+    grow = TRUE,                                      # Auto-scale to fit
+    fontface = "bold",                                # Bold text for emphasis
+    alpha = 0.9                                       # Slight transparency
+  ) +
+  geom_treemap_text(
+    aes(label = paste0(count, " models\n", 
+                       round(avg_hwy, 1), " mpg")),   # Multi-line label with count and efficiency
+    colour = "white",                                 # White text
+    place = "bottom",                                 # Position at bottom
+    size = 10,                                        # Smaller for secondary info
+    alpha = 0.7,                                      # More transparent
+    lineheight = 0.9                                  # Tighter line spacing
+  ) +
+  scale_fill_gradient2(
+    low = "#E76F51",                                  # Red for low efficiency
+    mid = "#F4A261",                                  # Orange for medium
+    high = "#52A675",                                 # Green for high efficiency
+    midpoint = 22,                                    # Set midpoint of scale
+    name = "Average Highway\nFuel Efficiency",        # Legend title
+    breaks = seq(15, 30, by = 5),                     # Legend breaks
+    labels = function(x) paste0(x, " mpg"),           # Add units to legend
+    guide = guide_colorbar(
+      barwidth = 15,                                  # Wider color bar
+      barheight = 0.8,                                # Thinner bar
+      title.position = "top",                         # Title above bar
+      title.hjust = 0.5                               # Center the title
+    )
+  ) +
+  labs(
+    title = "Car Manufacturers: Market Presence vs. Fuel Efficiency",
+    subtitle = "Dodge leads in model count (37 models) but lags in fuel efficiency (17.9 mpg)\nVolkswagen and Honda balance quantity with quality (29.2 and 28.8 mpg respectively)",
+    caption = "Data source: EPA fuel economy data (1999-2008) | Rectangle size = number of models | Color = average highway MPG"
+  ) +
+  theme_minimal(base_size = 13) +                     # Clean base theme with larger font
+  theme(
+    # Title styling
+    plot.title = element_text(
+      face = "bold", 
+      size = 18, 
+      hjust = 0.5,                                    # Center the title
+      margin = margin(b = 10)
+    ),
+    plot.subtitle = element_text(
+      size = 11, 
+      color = "#5A6C7D", 
+      hjust = 0.5,                                    # Center subtitle
+      margin = margin(b = 20),
+      lineheight = 1.2                                # Better line spacing for multi-line
+    ),
+    plot.caption = element_text(
+      size = 9, 
+      color = "#6C757D", 
+      hjust = 0.5,                                    # Center caption
+      margin = margin(t = 20)
+    ),
+    
+    # Legend styling
+    legend.position = "bottom",                       # Place legend at bottom
+    legend.title = element_text(
+      face = "bold", 
+      size = 11
+    ),
+    legend.text = element_text(size = 10),
+    legend.margin = margin(t = 15),                   # Space between plot and legend
+    
+    # Overall plot styling
+    plot.background = element_rect(
+      fill = "white", 
+      colour = NA
+    ),
+    plot.margin = margin(20, 20, 20, 20),            # Generous margins
+    
+    # Remove grid (not needed for treemap)
+    panel.grid = element_blank()
+  )
+```
+
+### Code Explanation
+
+**Lines 2-10:** Creates an `efficiency_category` variable to group manufacturers into high/medium/lower efficiency brackets for potential subgrouping
+
+**Lines 12-17:** Enhanced `aes()` mapping: - `area = count` - Rectangle size by model count - `fill = avg_hwy` - Color by fuel efficiency (continuous scale) - `label = manufacturer` - Manufacturer names - `subgroup = efficiency_category` - Groups for potential hierarchical organization
+
+**Lines 18-21:** `geom_treemap()` with white borders (2px width) to clearly separate rectangles and improve readability
+
+**Lines 22-29:** First text layer with bold, white manufacturer names that automatically scale to fit rectangles
+
+**Lines 30-38:** Second text layer showing both model count and fuel efficiency in a compact two-line format at the bottom of each rectangle
+
+**Lines 39-52:** `scale_fill_gradient2()` - Creates a diverging color scale: - Red for poor efficiency, green for good efficiency - Midpoint set at 22 mpg (approximate average) - Custom legend with formatted labels including "mpg" units - Horizontal color bar for better space usage
+
+**Lines 53-57:** Comprehensive labels with: - Clear title explaining both dimensions (size and color) - Data-driven subtitle highlighting key insights - Detailed caption explaining all encodings
+
+**Lines 58-95:** Extensive theme customization: - Centered titles and captions for balanced layout - Larger base font size for better readability - Professional spacing and margins - Customized legend placement and styling - Removed grid (unnecessary for treemaps)
+
+::: {.highlight-box .success}
+**Final result:** A publication-ready treemap that tells a complete story. Viewers can instantly see both market presence (size) and fuel efficiency performance (color), with clear labels and professional styling. The dual encoding reveals patterns like Dodge's high model count but poor efficiency, while Honda balances both aspects well.
+:::
+
+------------------------------------------------------------------------
+
+## Comparison: All Three Charts
+
+Here's how our treemaps evolved:
+
+| Aspect | Basic | Intermediate | Advanced |
+|------------------|------------------|------------------|------------------|
+| **Identifiability** | Poor (no labels) | Good (clear labels) | Excellent (labels + data values) |
+| **Information Density** | Low (only size) | Medium (size + names) | High (size + efficiency + context) |
+| **Color Purpose** | Random distinction | Aesthetic only | Meaningful (efficiency encoding) |
+| **Context** | None | Basic title | Full story with insights |
+| **Visual Quality** | Basic | Improved | Publication-ready |
+| **Data Dimensions** | 1 (count only) | 1 (count only) | 2 (count + efficiency) |
+
+------------------------------------------------------------------------
+
+## When to Use Treemaps
+
+::: {.highlight-box .info}
+**Treemaps work best for:**
+
+✅ **Showing proportions** - Quickly compare relative sizes of categories
+
+✅ **Hierarchical data** - Display parent-child relationships (we can add subgroups)
+
+✅ **Part-to-whole relationships** - See how individual parts make up a total
+
+✅ **Limited categories** - Work best with 10-20 categories (more becomes cluttered)
+
+✅ **Dual encoding** - Show two variables simultaneously (size + color)
+
+**Avoid treemaps when:**
+
+❌ Precise value comparison is critical (use bar charts)
+
+❌ Data changes over time (use line charts)
+
+❌ Too many small categories (creates tiny, unreadable rectangles)
+
+❌ Negative values are present (treemaps require positive values)
+:::
+
+------------------------------------------------------------------------
+
+## Key Takeaways
+
+::: {.callout .tip}
+**Tips for Creating Better Treemaps:**
+
+1.  **Always add labels** - Use `geom_treemap_text()` to identify rectangles. Unlabeled treemaps are nearly useless
+
+2.  **Use color meaningfully** - Don't just use color for distinction; map it to a second variable (like efficiency, growth rate, or category)
+
+3.  **Consider borders** - White borders between rectangles improve clarity and prevent colors from bleeding together
+
+4.  **Limit your categories** - If you have too many categories, group smaller ones into "Other" to maintain readability
+
+5.  **Use `grow = TRUE`** - This makes text automatically resize to fit rectangles, ensuring readability for all sizes
+
+6.  **Choose appropriate color scales**:
+
+    -   Sequential (light to dark) for continuous positive values
+    -   Diverging (red-white-green) when there's a meaningful midpoint
+    -   Categorical for distinct groups
+
+7.  **Add multiple text layers** - Use separate layers for main labels and supporting information (like our count + efficiency example)
+
+8.  **Test text contrast** - Ensure text is readable against all background colors. White text with slight transparency often works well
+
+9.  **Include a legend** - When color encodes data, always include a properly labeled legend explaining what it represents
+
+10. **Provide context in subtitles** - Don't just show the data; highlight key insights or patterns in your subtitle
+
+11. **Sort your data** - Arrange categories by size (descending) before creating the treemap for better visual organization
+
+12. **Consider hierarchical treemaps** - Use the `subgroup` parameter to create nested treemaps for multi-level hierarchies
+:::
+
+------------------------------------------------------------------------
+
+## Advanced: Hierarchical Treemap Example
+
+Want to show multiple levels of hierarchy? Here's a bonus example with manufacturers grouped by country:
+
+```{r}
+#| label: hierarchical-example
+#| fig-width: 12
+#| fig-height: 8
+#| eval: true
+
+# Add country information (simplified example)
+data_hierarchical <- mpg %>%
+  mutate(
+    country = case_when(
+      manufacturer %in% c("audi", "volkswagen") ~ "Germany",
+      manufacturer %in% c("toyota", "honda", "nissan", "subaru") ~ "Japan",
+      manufacturer %in% c("hyundai") ~ "South Korea",
+      TRUE ~ "USA"
+    )
+  ) %>%
+  group_by(country, manufacturer) %>%
+  summarise(count = n(), avg_hwy = mean(hwy), .groups = "drop")
+
+ggplot(data_hierarchical, aes(
+  area = count,
+  fill = avg_hwy,
+  label = manufacturer,
+  subgroup = country                      # Group by country first
+)) +
+  geom_treemap() +
+  geom_treemap_subgroup_border(          # Add borders around country groups
+    colour = "white",
+    size = 4
+  ) +
+  geom_treemap_subgroup_text(            # Add country labels
+    place = "centre",
+    colour = "white",
+    alpha = 0.7,
+    fontface = "bold",
+    size = 16
+  ) +
+  geom_treemap_text(                     # Add manufacturer labels
+    colour = "white",
+    place = "centre",
+    size = 10,
+    grow = TRUE
+  ) +
+  scale_fill_gradient2(
+    low = "#E76F51",
+    mid = "#F4A261",
+    high = "#52A675",
+    midpoint = 22,
+    name = "Avg Highway MPG"
+  ) +
+  labs(
+    title = "Car Models by Country and Manufacturer",
+    subtitle = "Hierarchical view showing country-level groupings"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 11, hjust = 0.5)
+  )
+```
+
+------------------------------------------------------------------------
+
+## Alternative Packages
+
+While we used `treemapify` in this tutorial, here are other options:
+
+-   **`treemap`** - More traditional treemap package with different layout algorithms
+-   **`d3treeR`** - Interactive treemaps using D3.js (great for Shiny apps!)
+-   **`plotly`** - Can create interactive treemaps with hover information
+
+------------------------------------------------------------------------
+
+## Resources
+
+-   [treemapify Package Documentation](https://wilkox.org/treemapify/)
+-   [When to Use Treemaps](https://www.perceptualedge.com/articles/b-eye/treemaps.pdf)
+-   [ggplot2 Documentation](https://ggplot2.tidyverse.org/)
+-   [ColorBrewer for Color Scales](https://colorbrewer2.org/)
+
+Happy treemapping! 🎨📦

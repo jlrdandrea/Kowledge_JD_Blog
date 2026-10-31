@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joao Luiz D’Andrea">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="Digital Operational Resilience Act">
+
+<title>DORA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">JD`s Knowledge</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="" title="github" class="quarto-navigation-tool px-1" aria-label="github"><i class="bi bi-"></i></a>
+    <a href="../../github.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+    <a href="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="../../linkedin.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="da6362611c16e47b58fbeac8e20eb3fb" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">DORA</h1>
+                  <div>
+        <div class="description">
+          Digital Operational Resilience Act
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Operation</div>
+                <div class="quarto-category">Regulation</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joao Luiz D’Andrea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a>
+  <ul class="collapse">
+  <li><a href="#in-scope" id="toc-in-scope" class="nav-link" data-scroll-target="#in-scope">In scope</a></li>
+  <li><a href="#out-of-scope" id="toc-out-of-scope" class="nav-link" data-scroll-target="#out-of-scope">Out of scope</a></li>
+  </ul></li>
+  <li><a href="#intended-audience" id="toc-intended-audience" class="nav-link" data-scroll-target="#intended-audience">Intended Audience</a></li>
+  </ul></li>
+  <li><a href="#regulatory-foundation" id="toc-regulatory-foundation" class="nav-link" data-scroll-target="#regulatory-foundation">Regulatory Foundation</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#regulatory-objectives" id="toc-regulatory-objectives" class="nav-link" data-scroll-target="#regulatory-objectives">Regulatory Objectives</a></li>
+  <li><a href="#core-dora-pillars" id="toc-core-dora-pillars" class="nav-link" data-scroll-target="#core-dora-pillars">Core DORA Pillars</a></li>
+  <li><a href="#applicability-and-entity-context" id="toc-applicability-and-entity-context" class="nav-link" data-scroll-target="#applicability-and-entity-context">Applicability and Entity Context</a></li>
+  </ul></li>
+  <li><a href="#governance-model" id="toc-governance-model" class="nav-link" data-scroll-target="#governance-model">Governance Model</a>
+  <ul class="collapse">
+  <li><a href="#governance-objectives" id="toc-governance-objectives" class="nav-link" data-scroll-target="#governance-objectives">Governance Objectives</a></li>
+  <li><a href="#governance-structure" id="toc-governance-structure" class="nav-link" data-scroll-target="#governance-structure">Governance Structure</a>
+  <ul class="collapse">
+  <li><a href="#example-governance-bodies" id="toc-example-governance-bodies" class="nav-link" data-scroll-target="#example-governance-bodies">Example governance bodies</a></li>
+  </ul></li>
+  <li><a href="#three-lines-model" id="toc-three-lines-model" class="nav-link" data-scroll-target="#three-lines-model">Three Lines Model</a>
+  <ul class="collapse">
+  <li><a href="#first-line" id="toc-first-line" class="nav-link" data-scroll-target="#first-line">First line</a></li>
+  <li><a href="#second-line" id="toc-second-line" class="nav-link" data-scroll-target="#second-line">Second line</a></li>
+  <li><a href="#third-line" id="toc-third-line" class="nav-link" data-scroll-target="#third-line">Third line</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities">Roles and Responsibilities</a>
+  <ul class="collapse">
+  <li><a href="#key-roles" id="toc-key-roles" class="nav-link" data-scroll-target="#key-roles">Key Roles</a></li>
+  <li><a href="#raci-matrix" id="toc-raci-matrix" class="nav-link" data-scroll-target="#raci-matrix">RACI Matrix</a></li>
+  </ul></li>
+  <li><a href="#policy-framework" id="toc-policy-framework" class="nav-link" data-scroll-target="#policy-framework">Policy Framework</a>
+  <ul class="collapse">
+  <li><a href="#core-policies" id="toc-core-policies" class="nav-link" data-scroll-target="#core-policies">Core Policies</a></li>
+  <li><a href="#standards-and-procedures" id="toc-standards-and-procedures" class="nav-link" data-scroll-target="#standards-and-procedures">Standards and Procedures</a></li>
+  </ul></li>
+  <li><a href="#core-processes" id="toc-core-processes" class="nav-link" data-scroll-target="#core-processes">Core Processes</a>
+  <ul class="collapse">
+  <li><a href="#ict-risk-management" id="toc-ict-risk-management" class="nav-link" data-scroll-target="#ict-risk-management">ICT Risk Management</a></li>
+  <li><a href="#ict-related-incident-management" id="toc-ict-related-incident-management" class="nav-link" data-scroll-target="#ict-related-incident-management">ICT-Related Incident Management</a></li>
+  <li><a href="#incident-classification-and-reporting" id="toc-incident-classification-and-reporting" class="nav-link" data-scroll-target="#incident-classification-and-reporting">Incident Classification and Reporting</a></li>
+  <li><a href="#digital-operational-resilience-testing" id="toc-digital-operational-resilience-testing" class="nav-link" data-scroll-target="#digital-operational-resilience-testing">Digital Operational Resilience Testing</a></li>
+  <li><a href="#ict-third-party-risk-management" id="toc-ict-third-party-risk-management" class="nav-link" data-scroll-target="#ict-third-party-risk-management">ICT Third-Party Risk Management</a></li>
+  <li><a href="#register-of-information" id="toc-register-of-information" class="nav-link" data-scroll-target="#register-of-information">Register of Information</a>
+  <ul class="collapse">
+  <li><a href="#minimum-content" id="toc-minimum-content" class="nav-link" data-scroll-target="#minimum-content">Minimum content</a></li>
+  </ul></li>
+  <li><a href="#information-sharing-arrangements" id="toc-information-sharing-arrangements" class="nav-link" data-scroll-target="#information-sharing-arrangements">Information Sharing Arrangements</a></li>
+  </ul></li>
+  <li><a href="#control-framework" id="toc-control-framework" class="nav-link" data-scroll-target="#control-framework">Control Framework</a>
+  <ul class="collapse">
+  <li><a href="#control-domains" id="toc-control-domains" class="nav-link" data-scroll-target="#control-domains">Control Domains</a>
+  <ul class="collapse">
+  <li><a href="#example-control-domains" id="toc-example-control-domains" class="nav-link" data-scroll-target="#example-control-domains">Example control domains</a></li>
+  </ul></li>
+  <li><a href="#sample-control-catalogue" id="toc-sample-control-catalogue" class="nav-link" data-scroll-target="#sample-control-catalogue">Sample Control Catalogue</a></li>
+  </ul></li>
+  <li><a href="#artefacts-and-evidence" id="toc-artefacts-and-evidence" class="nav-link" data-scroll-target="#artefacts-and-evidence">Artefacts and Evidence</a>
+  <ul class="collapse">
+  <li><a href="#required-artefacts" id="toc-required-artefacts" class="nav-link" data-scroll-target="#required-artefacts">Required Artefacts</a></li>
+  <li><a href="#evidence-model" id="toc-evidence-model" class="nav-link" data-scroll-target="#evidence-model">Evidence Model</a></li>
+  </ul></li>
+  <li><a href="#architecture-and-technology-implications" id="toc-architecture-and-technology-implications" class="nav-link" data-scroll-target="#architecture-and-technology-implications">Architecture and Technology Implications</a>
+  <ul class="collapse">
+  <li><a href="#resilience-by-design" id="toc-resilience-by-design" class="nav-link" data-scroll-target="#resilience-by-design">Resilience by Design</a></li>
+  <li><a href="#technology-landscape-view" id="toc-technology-landscape-view" class="nav-link" data-scroll-target="#technology-landscape-view">Technology Landscape View</a></li>
+  <li><a href="#dependency-mapping" id="toc-dependency-mapping" class="nav-link" data-scroll-target="#dependency-mapping">Dependency Mapping</a></li>
+  </ul></li>
+  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">Risk Management</a>
+  <ul class="collapse">
+  <li><a href="#dora-risk-model" id="toc-dora-risk-model" class="nav-link" data-scroll-target="#dora-risk-model">DORA Risk Model</a></li>
+  <li><a href="#example-risk-categories" id="toc-example-risk-categories" class="nav-link" data-scroll-target="#example-risk-categories">Example Risk Categories</a></li>
+  <li><a href="#risk-register-template" id="toc-risk-register-template" class="nav-link" data-scroll-target="#risk-register-template">Risk Register Template</a></li>
+  </ul></li>
+  <li><a href="#metrics-and-reporting" id="toc-metrics-and-reporting" class="nav-link" data-scroll-target="#metrics-and-reporting">Metrics and Reporting</a>
+  <ul class="collapse">
+  <li><a href="#key-metrics" id="toc-key-metrics" class="nav-link" data-scroll-target="#key-metrics">Key Metrics</a></li>
+  <li><a href="#dashboard-structure" id="toc-dashboard-structure" class="nav-link" data-scroll-target="#dashboard-structure">Dashboard Structure</a></li>
+  </ul></li>
+  <li><a href="#audit-and-assurance" id="toc-audit-and-assurance" class="nav-link" data-scroll-target="#audit-and-assurance">Audit and Assurance</a>
+  <ul class="collapse">
+  <li><a href="#assurance-model" id="toc-assurance-model" class="nav-link" data-scroll-target="#assurance-model">Assurance Model</a></li>
+  <li><a href="#testing-themes" id="toc-testing-themes" class="nav-link" data-scroll-target="#testing-themes">Testing Themes</a></li>
+  </ul></li>
+  <li><a href="#implementation-roadmap" id="toc-implementation-roadmap" class="nav-link" data-scroll-target="#implementation-roadmap">Implementation Roadmap</a>
+  <ul class="collapse">
+  <li><a href="#maturity-phases" id="toc-maturity-phases" class="nav-link" data-scroll-target="#maturity-phases">Maturity Phases</a>
+  <ul class="collapse">
+  <li><a href="#phase-1-foundation" id="toc-phase-1-foundation" class="nav-link" data-scroll-target="#phase-1-foundation">Phase 1: Foundation</a></li>
+  <li><a href="#phase-2-control-design" id="toc-phase-2-control-design" class="nav-link" data-scroll-target="#phase-2-control-design">Phase 2: Control Design</a></li>
+  <li><a href="#phase-3-integration" id="toc-phase-3-integration" class="nav-link" data-scroll-target="#phase-3-integration">Phase 3: Integration</a></li>
+  <li><a href="#phase-4-optimisation" id="toc-phase-4-optimisation" class="nav-link" data-scroll-target="#phase-4-optimisation">Phase 4: Optimisation</a></li>
+  </ul></li>
+  <li><a href="#roadmap-table" id="toc-roadmap-table" class="nav-link" data-scroll-target="#roadmap-table">Roadmap Table</a></li>
+  </ul></li>
+  <li><a href="#cross-framework-integration" id="toc-cross-framework-integration" class="nav-link" data-scroll-target="#cross-framework-integration">Cross-Framework Integration</a>
+  <ul class="collapse">
+  <li><a href="#relationship-to-other-frameworks" id="toc-relationship-to-other-frameworks" class="nav-link" data-scroll-target="#relationship-to-other-frameworks">Relationship to Other Frameworks</a></li>
+  <li><a href="#example-mapping-themes" id="toc-example-mapping-themes" class="nav-link" data-scroll-target="#example-mapping-themes">Example Mapping Themes</a></li>
+  </ul></li>
+  <li><a href="#maturity-model" id="toc-maturity-model" class="nav-link" data-scroll-target="#maturity-model">Maturity Model</a>
+  <ul class="collapse">
+  <li><a href="#suggested-maturity-levels" id="toc-suggested-maturity-levels" class="nav-link" data-scroll-target="#suggested-maturity-levels">Suggested Maturity Levels</a>
+  <ul class="collapse">
+  <li><a href="#level-1-initial" id="toc-level-1-initial" class="nav-link" data-scroll-target="#level-1-initial">Level 1: Initial</a></li>
+  <li><a href="#level-2-repeatable" id="toc-level-2-repeatable" class="nav-link" data-scroll-target="#level-2-repeatable">Level 2: Repeatable</a></li>
+  <li><a href="#level-3-defined" id="toc-level-3-defined" class="nav-link" data-scroll-target="#level-3-defined">Level 3: Defined</a></li>
+  <li><a href="#level-4-managed" id="toc-level-4-managed" class="nav-link" data-scroll-target="#level-4-managed">Level 4: Managed</a></li>
+  <li><a href="#level-5-optimised" id="toc-level-5-optimised" class="nav-link" data-scroll-target="#level-5-optimised">Level 5: Optimised</a></li>
+  </ul></li>
+  <li><a href="#assessment-dimensions" id="toc-assessment-dimensions" class="nav-link" data-scroll-target="#assessment-dimensions">Assessment Dimensions</a></li>
+  </ul></li>
+  <li><a href="#practical-templates" id="toc-practical-templates" class="nav-link" data-scroll-target="#practical-templates">Practical Templates</a>
+  <ul class="collapse">
+  <li><a href="#suggested-appendices" id="toc-suggested-appendices" class="nav-link" data-scroll-target="#suggested-appendices">Suggested Appendices</a></li>
+  </ul></li>
+  <li><a href="#customisation-notes" id="toc-customisation-notes" class="nav-link" data-scroll-target="#customisation-notes">Customisation Notes</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>The Digital Operational Resilience Act (DORA) establishes a harmonised European Union framework for managing digital operational resilience across the financial sector. It strengthens the ability of financial entities to withstand, respond to, and recover from ICT-related disruptions, cyber incidents, and third-party service failures.</p>
+<p>This document provides a practical template for defining the organisation’s DORA governance model, ICT risk management approach, control structure, implementation roadmap, and assurance model. It can be used to document how the organisation aligns resilience, cybersecurity, third-party risk, and regulatory compliance into a coherent operating model.</p>
+</section>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>This document provides a practical template for defining, implementing, operating, and assuring compliance with DORA across the enterprise.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>The main objectives of applying DORA are to:</p>
+<ul>
+<li>strengthen digital operational resilience across regulated financial services</li>
+<li>establish clear accountability for ICT risk and resilience</li>
+<li>improve prevention, detection, response, and recovery capabilities</li>
+<li>ensure consistent handling and reporting of ICT-related incidents</li>
+<li>strengthen oversight of ICT third-party dependencies and concentration risk</li>
+<li>support resilience testing and continuous improvement</li>
+<li>integrate operational resilience with enterprise governance, risk, compliance, and assurance</li>
+</ul>
+</section>
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
+<p>Describe the scope of DORA applicability in the organisation.</p>
+<section id="in-scope" class="level3">
+<h3 class="anchored" data-anchor-id="in-scope">In scope</h3>
+<ul>
+<li>regulated financial entities and relevant business functions</li>
+<li>ICT services supporting critical or important functions</li>
+<li>applications, infrastructure, cloud services, and networks</li>
+<li>cyber resilience, ICT operations, and service continuity arrangements</li>
+<li>ICT third-party service providers and contractual arrangements</li>
+<li>digital operational resilience testing activities</li>
+<li>incident management and regulatory reporting processes</li>
+</ul>
+</section>
+<section id="out-of-scope" class="level3">
+<h3 class="anchored" data-anchor-id="out-of-scope">Out of scope</h3>
+<p>Document justified exclusions, if any.</p>
+</section>
+</section>
+<section id="intended-audience" class="level2">
+<h2 class="anchored" data-anchor-id="intended-audience">Intended Audience</h2>
+<ul>
+<li>Board and executive leadership</li>
+<li>Chief Information Officer</li>
+<li>Chief Information Security Officer</li>
+<li>Chief Risk Officer</li>
+<li>Operational resilience teams</li>
+<li>Technology and operations teams</li>
+<li>Procurement and vendor management teams</li>
+<li>Legal and compliance teams</li>
+<li>Internal audit and assurance teams</li>
+<li>PMO / transformation teams</li>
+</ul>
+</section>
+</section>
+<section id="regulatory-foundation" class="level1">
+<h1>Regulatory Foundation</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>DORA provides a unified regulatory framework for digital operational resilience in the financial sector. It addresses the management of ICT risk, resilience testing, ICT incident handling and reporting, ICT third-party risk, and supervisory oversight of critical ICT third-party providers.</p>
+</section>
+<section id="regulatory-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="regulatory-objectives">Regulatory Objectives</h2>
+<p>Document how the organisation interprets the regulatory objectives of DORA:</p>
+<ul>
+<li>maintain resilience of ICT systems supporting business processes</li>
+<li>reduce the impact of ICT-related disruptions and cyber threats</li>
+<li>strengthen governance and accountability for ICT risk</li>
+<li>improve visibility and management of third-party dependencies</li>
+<li>increase consistency in resilience testing and incident reporting</li>
+<li>enhance financial sector-wide resilience</li>
+</ul>
+</section>
+<section id="core-dora-pillars" class="level2">
+<h2 class="anchored" data-anchor-id="core-dora-pillars">Core DORA Pillars</h2>
+<p>Describe how the organisation addresses the main DORA domains:</p>
+<ul>
+<li>ICT risk management</li>
+<li>ICT-related incident management, classification, and reporting</li>
+<li>digital operational resilience testing</li>
+<li>ICT third-party risk management</li>
+<li>information-sharing arrangements</li>
+</ul>
+</section>
+<section id="applicability-and-entity-context" class="level2">
+<h2 class="anchored" data-anchor-id="applicability-and-entity-context">Applicability and Entity Context</h2>
+<p>Document the specific applicability of DORA to the organisation, including:</p>
+<ul>
+<li>legal entity structure</li>
+<li>regulatory status</li>
+<li>business model</li>
+<li>group / subsidiary context</li>
+<li>jurisdictional footprint</li>
+<li>critical and important functions</li>
+<li>supervisory relationships</li>
+</ul>
+</section>
+</section>
+<section id="governance-model" class="level1">
+<h1>Governance Model</h1>
+<section id="governance-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="governance-objectives">Governance Objectives</h2>
+<p>Define the governance objectives for DORA compliance:</p>
+<ul>
+<li>establish board-level oversight of digital operational resilience</li>
+<li>define accountability for ICT risk and resilience decisions</li>
+<li>align resilience priorities with enterprise risk appetite and business continuity objectives</li>
+<li>embed DORA requirements into operations, architecture, procurement, and change</li>
+<li>maintain evidence of compliance and control effectiveness</li>
+<li>support continuous improvement through testing, monitoring, assurance, and remediation</li>
+</ul>
+</section>
+<section id="governance-structure" class="level2">
+<h2 class="anchored" data-anchor-id="governance-structure">Governance Structure</h2>
+<p>Describe the governance bodies and their responsibilities.</p>
+<section id="example-governance-bodies" class="level3">
+<h3 class="anchored" data-anchor-id="example-governance-bodies">Example governance bodies</h3>
+<ul>
+<li>Board / Risk Committee</li>
+<li>Executive Operational Resilience Committee</li>
+<li>Technology and Security Steering Committee</li>
+<li>ICT Risk Committee</li>
+<li>Third-Party Risk Committee</li>
+<li>Architecture Review Board</li>
+<li>Incident Review Board</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+</section>
+<section id="three-lines-model" class="level2">
+<h2 class="anchored" data-anchor-id="three-lines-model">Three Lines Model</h2>
+<p>Describe responsibilities across the three lines.</p>
+<section id="first-line" class="level3">
+<h3 class="anchored" data-anchor-id="first-line">First line</h3>
+<ul>
+<li>ownership of business services, ICT operations, and controls</li>
+<li>implementation of resilience, security, and continuity controls</li>
+<li>incident handling and service restoration</li>
+<li>evidence production and remediation execution</li>
+</ul>
+</section>
+<section id="second-line" class="level3">
+<h3 class="anchored" data-anchor-id="second-line">Second line</h3>
+<ul>
+<li>ICT risk oversight</li>
+<li>resilience policy and standards</li>
+<li>compliance monitoring</li>
+<li>independent challenge</li>
+<li>regulatory coordination</li>
+</ul>
+</section>
+<section id="third-line" class="level3">
+<h3 class="anchored" data-anchor-id="third-line">Third line</h3>
+<ul>
+<li>internal audit</li>
+<li>independent assurance</li>
+<li>control effectiveness review</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="roles-and-responsibilities" class="level1">
+<h1>Roles and Responsibilities</h1>
+<section id="key-roles" class="level2">
+<h2 class="anchored" data-anchor-id="key-roles">Key Roles</h2>
+<p>Document the main DORA-related roles.</p>
+<ul>
+<li>Board</li>
+<li>CEO / Executive Management</li>
+<li>Chief Information Officer</li>
+<li>Chief Information Security Officer</li>
+<li>Chief Risk Officer</li>
+<li>Chief Operating Officer</li>
+<li>Operational Resilience Lead</li>
+<li>ICT Risk Manager</li>
+<li>Incident Response Lead</li>
+<li>Service Owner</li>
+<li>Infrastructure / Platform Owner</li>
+<li>Third-Party Risk Manager</li>
+<li>Procurement Lead</li>
+<li>Legal and Compliance Lead</li>
+<li>Internal Audit</li>
+</ul>
+</section>
+<section id="raci-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="raci-matrix">RACI Matrix</h2>
+<p>Use the following model and adapt it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Board</th>
+<th>Exec</th>
+<th>CIO</th>
+<th>CISO</th>
+<th>CRO</th>
+<th>Ops Resilience</th>
+<th>Service Owner</th>
+<th>Third-Party Risk</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approve digital operational resilience strategy</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Maintain ICT risk framework</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Classify and report major ICT incidents</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Maintain testing programme</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Manage ICT third-party risk</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Maintain register of information</td>
+<td>I</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>R</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Oversee remediation actions</td>
+<td>I</td>
+<td>A</td>
+<td>R</td>
+<td>R</td>
+<td>C</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Perform independent assurance</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>R/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="policy-framework" class="level1">
+<h1>Policy Framework</h1>
+<section id="core-policies" class="level2">
+<h2 class="anchored" data-anchor-id="core-policies">Core Policies</h2>
+<p>List and describe the main DORA-related policies.</p>
+<ul>
+<li>Digital Operational Resilience Policy</li>
+<li>ICT Risk Management Policy</li>
+<li>Information Security Policy</li>
+<li>ICT Incident Management Policy</li>
+<li>Business Continuity and Disaster Recovery Policy</li>
+<li>Operational Resilience Testing Policy</li>
+<li>Third-Party Risk Management Policy</li>
+<li>Outsourcing / ICT Provider Management Policy</li>
+<li>Change and Release Management Policy</li>
+<li>Asset and Configuration Management Policy</li>
+<li>Logging and Monitoring Standard</li>
+<li>Crisis Management and Communications Policy</li>
+</ul>
+</section>
+<section id="standards-and-procedures" class="level2">
+<h2 class="anchored" data-anchor-id="standards-and-procedures">Standards and Procedures</h2>
+<p>Document the standards, procedures, playbooks, and operational guidance supporting compliance.</p>
+</section>
+</section>
+<section id="core-processes" class="level1">
+<h1>Core Processes</h1>
+<section id="ict-risk-management" class="level2">
+<h2 class="anchored" data-anchor-id="ict-risk-management">ICT Risk Management</h2>
+<p>Describe the process for managing ICT risk across the lifecycle:</p>
+<ul>
+<li>governance and accountability</li>
+<li>ICT asset identification</li>
+<li>risk assessment</li>
+<li>protection and prevention</li>
+<li>detection</li>
+<li>response</li>
+<li>recovery</li>
+<li>lessons learned</li>
+<li>continuous improvement</li>
+</ul>
+</section>
+<section id="ict-related-incident-management" class="level2">
+<h2 class="anchored" data-anchor-id="ict-related-incident-management">ICT-Related Incident Management</h2>
+<p>Describe the incident lifecycle:</p>
+<ul>
+<li>event detection</li>
+<li>triage</li>
+<li>classification</li>
+<li>escalation</li>
+<li>containment</li>
+<li>eradication</li>
+<li>recovery</li>
+<li>root cause analysis</li>
+<li>lessons learned</li>
+</ul>
+</section>
+<section id="incident-classification-and-reporting" class="level2">
+<h2 class="anchored" data-anchor-id="incident-classification-and-reporting">Incident Classification and Reporting</h2>
+<p>Document how the organisation handles:</p>
+<ul>
+<li>incident classification criteria</li>
+<li>major incident thresholds</li>
+<li>internal escalation</li>
+<li>competent authority notifications</li>
+<li>intermediate reporting</li>
+<li>final reporting</li>
+<li>post-incident review</li>
+<li>evidence retention</li>
+</ul>
+</section>
+<section id="digital-operational-resilience-testing" class="level2">
+<h2 class="anchored" data-anchor-id="digital-operational-resilience-testing">Digital Operational Resilience Testing</h2>
+<p>Describe the testing model for:</p>
+<ul>
+<li>annual testing planning</li>
+<li>scenario-based testing</li>
+<li>vulnerability assessments</li>
+<li>penetration testing</li>
+<li>business continuity testing</li>
+<li>disaster recovery exercises</li>
+<li>crisis management exercises</li>
+<li>threat-led penetration testing where applicable</li>
+<li>remediation tracking</li>
+</ul>
+</section>
+<section id="ict-third-party-risk-management" class="level2">
+<h2 class="anchored" data-anchor-id="ict-third-party-risk-management">ICT Third-Party Risk Management</h2>
+<p>Describe controls for:</p>
+<ul>
+<li>due diligence</li>
+<li>onboarding assessments</li>
+<li>contractual requirements</li>
+<li>criticality assessment</li>
+<li>concentration risk assessment</li>
+<li>ongoing monitoring</li>
+<li>exit planning</li>
+<li>substitution strategy</li>
+<li>assurance reviews</li>
+</ul>
+</section>
+<section id="register-of-information" class="level2">
+<h2 class="anchored" data-anchor-id="register-of-information">Register of Information</h2>
+<p>Document how the organisation maintains a complete and accurate register of information for contractual arrangements with ICT third-party service providers.</p>
+<section id="minimum-content" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-content">Minimum content</h3>
+<ul>
+<li>supplier identity</li>
+<li>service description</li>
+<li>supported business entity</li>
+<li>supported function</li>
+<li>critical or important function flag</li>
+<li>location and jurisdiction</li>
+<li>subcontracting arrangements</li>
+<li>contract dates</li>
+<li>renewal terms</li>
+<li>exit clauses</li>
+<li>resilience and security obligations</li>
+</ul>
+</section>
+</section>
+<section id="information-sharing-arrangements" class="level2">
+<h2 class="anchored" data-anchor-id="information-sharing-arrangements">Information Sharing Arrangements</h2>
+<p>Describe how the organisation governs participation in cyber threat intelligence or sectoral information-sharing arrangements, including:</p>
+<ul>
+<li>legal and compliance approval</li>
+<li>confidentiality controls</li>
+<li>participation criteria</li>
+<li>information handling requirements</li>
+<li>oversight and review</li>
+</ul>
+</section>
+</section>
+<section id="control-framework" class="level1">
+<h1>Control Framework</h1>
+<section id="control-domains" class="level2">
+<h2 class="anchored" data-anchor-id="control-domains">Control Domains</h2>
+<p>Organise the DORA control environment into domains.</p>
+<section id="example-control-domains" class="level3">
+<h3 class="anchored" data-anchor-id="example-control-domains">Example control domains</h3>
+<ul>
+<li>governance and oversight</li>
+<li>ICT risk management</li>
+<li>asset and dependency management</li>
+<li>protection and prevention</li>
+<li>monitoring and detection</li>
+<li>ICT incident response</li>
+<li>resilience and recovery</li>
+<li>testing and validation</li>
+<li>ICT third-party risk</li>
+<li>concentration risk management</li>
+<li>regulatory reporting</li>
+<li>evidence and assurance</li>
+</ul>
+</section>
+</section>
+<section id="sample-control-catalogue" class="level2">
+<h2 class="anchored" data-anchor-id="sample-control-catalogue">Sample Control Catalogue</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Control ID</th>
+<th>Control Name</th>
+<th>Objective</th>
+<th>Control Owner</th>
+<th>Frequency</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DORA-01</td>
+<td>ICT risk framework approved</td>
+<td>Ensure governance and accountability</td>
+<td>CIO / CRO</td>
+<td>Annual</td>
+<td>Approved framework</td>
+</tr>
+<tr class="even">
+<td>DORA-02</td>
+<td>Major incident process maintained</td>
+<td>Ensure timely incident handling and escalation</td>
+<td>CISO</td>
+<td>Annual review</td>
+<td>Incident procedure</td>
+</tr>
+<tr class="odd">
+<td>DORA-03</td>
+<td>Testing programme executed</td>
+<td>Validate resilience capabilities</td>
+<td>Resilience Lead</td>
+<td>Annual / quarterly</td>
+<td>Test reports</td>
+</tr>
+<tr class="even">
+<td>DORA-04</td>
+<td>ICT third-party due diligence performed</td>
+<td>Reduce supplier risk exposure</td>
+<td>Third-Party Risk Manager</td>
+<td>Onboarding / annual</td>
+<td>Due diligence records</td>
+</tr>
+<tr class="odd">
+<td>DORA-05</td>
+<td>Register of information maintained</td>
+<td>Ensure complete supplier transparency</td>
+<td>Vendor Management Lead</td>
+<td>Ongoing</td>
+<td>Register of information</td>
+</tr>
+<tr class="even">
+<td>DORA-06</td>
+<td>Recovery exercises completed</td>
+<td>Validate restoration capability</td>
+<td>Operations / Resilience Lead</td>
+<td>Annual</td>
+<td>Exercise evidence</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="artefacts-and-evidence" class="level1">
+<h1>Artefacts and Evidence</h1>
+<section id="required-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="required-artefacts">Required Artefacts</h2>
+<p>Document the key DORA artefacts.</p>
+<ul>
+<li>digital operational resilience strategy</li>
+<li>ICT risk management framework</li>
+<li>ICT asset inventory</li>
+<li>service dependency maps</li>
+<li>critical and important functions register</li>
+<li>ICT risk register</li>
+<li>incident management procedure</li>
+<li>major incident reporting procedure</li>
+<li>incident register</li>
+<li>testing policy and testing plan</li>
+<li>test scripts and exercise reports</li>
+<li>remediation tracker</li>
+<li>ICT third-party register</li>
+<li>register of information</li>
+<li>due diligence assessments</li>
+<li>contractual clause library</li>
+<li>exit plans</li>
+<li>business continuity plans</li>
+<li>disaster recovery plans</li>
+<li>crisis communication plans</li>
+<li>management information and dashboard packs</li>
+<li>audit reports</li>
+</ul>
+</section>
+<section id="evidence-model" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-model">Evidence Model</h2>
+<p>For each artefact define:</p>
+<ul>
+<li>owner</li>
+<li>purpose</li>
+<li>location</li>
+<li>frequency of update</li>
+<li>retention period</li>
+<li>assurance mechanism</li>
+</ul>
+</section>
+</section>
+<section id="architecture-and-technology-implications" class="level1">
+<h1>Architecture and Technology Implications</h1>
+<section id="resilience-by-design" class="level2">
+<h2 class="anchored" data-anchor-id="resilience-by-design">Resilience by Design</h2>
+<p>Describe how DORA requirements are embedded into:</p>
+<ul>
+<li>enterprise architecture</li>
+<li>solution design</li>
+<li>cloud adoption</li>
+<li>infrastructure engineering</li>
+<li>network design</li>
+<li>identity and access management</li>
+<li>observability and monitoring</li>
+<li>backup and recovery architecture</li>
+<li>high availability and failover design</li>
+<li>supplier integration patterns</li>
+</ul>
+</section>
+<section id="technology-landscape-view" class="level2">
+<h2 class="anchored" data-anchor-id="technology-landscape-view">Technology Landscape View</h2>
+<p>Document the resilience-relevant technology landscape:</p>
+<ul>
+<li>critical business services</li>
+<li>applications and platforms</li>
+<li>infrastructure and cloud services</li>
+<li>networks and communications</li>
+<li>data stores and backup services</li>
+<li>cyber tooling</li>
+<li>service desk and operations tooling</li>
+<li>third-party technology dependencies</li>
+</ul>
+</section>
+<section id="dependency-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="dependency-mapping">Dependency Mapping</h2>
+<p>Include or reference:</p>
+<ul>
+<li>business service maps</li>
+<li>application dependency diagrams</li>
+<li>infrastructure dependency diagrams</li>
+<li>data flow diagrams</li>
+<li>third-party dependency maps</li>
+<li>concentration risk views</li>
+<li>recovery dependency maps</li>
+</ul>
+</section>
+</section>
+<section id="risk-management" class="level1">
+<h1>Risk Management</h1>
+<section id="dora-risk-model" class="level2">
+<h2 class="anchored" data-anchor-id="dora-risk-model">DORA Risk Model</h2>
+<p>Describe how ICT and resilience risks are identified, assessed, treated, monitored, and escalated.</p>
+</section>
+<section id="example-risk-categories" class="level2">
+<h2 class="anchored" data-anchor-id="example-risk-categories">Example Risk Categories</h2>
+<ul>
+<li>weak board oversight of ICT risk</li>
+<li>incomplete ICT asset visibility</li>
+<li>inadequate resilience controls</li>
+<li>insufficient monitoring and detection</li>
+<li>delayed incident escalation</li>
+<li>poor recovery capability</li>
+<li>excessive third-party concentration</li>
+<li>weak contractual control over suppliers</li>
+<li>inaccurate register of information</li>
+<li>lack of evidence of testing and remediation</li>
+</ul>
+</section>
+<section id="risk-register-template" class="level2">
+<h2 class="anchored" data-anchor-id="risk-register-template">Risk Register Template</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk ID</th>
+<th>Risk Description</th>
+<th>Cause</th>
+<th>Impact</th>
+<th>Likelihood</th>
+<th>Inherent Risk</th>
+<th>Control Strength</th>
+<th>Residual Risk</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DR-01</td>
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>Medium</td>
+<td>High</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Example</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metrics-and-reporting" class="level1">
+<h1>Metrics and Reporting</h1>
+<section id="key-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="key-metrics">Key Metrics</h2>
+<p>Examples of DORA metrics:</p>
+<ul>
+<li>percentage of critical services with documented dependencies</li>
+<li>percentage of ICT assets covered by resilience controls</li>
+<li>number of major ICT incidents</li>
+<li>mean time to detect</li>
+<li>mean time to contain</li>
+<li>mean time to recover</li>
+<li>percentage of planned resilience tests completed</li>
+<li>percentage of severe findings remediated on time</li>
+<li>percentage of critical suppliers assessed</li>
+<li>concentration risk exposure by provider</li>
+<li>percentage completeness of register of information</li>
+<li>number of open audit or regulatory findings</li>
+</ul>
+</section>
+<section id="dashboard-structure" class="level2">
+<h2 class="anchored" data-anchor-id="dashboard-structure">Dashboard Structure</h2>
+<p>Suggested dashboard views:</p>
+<ul>
+<li>executive resilience dashboard</li>
+<li>ICT risk dashboard</li>
+<li>incident and recovery dashboard</li>
+<li>testing and remediation dashboard</li>
+<li>third-party and concentration risk dashboard</li>
+<li>audit and compliance dashboard</li>
+</ul>
+</section>
+</section>
+<section id="audit-and-assurance" class="level1">
+<h1>Audit and Assurance</h1>
+<section id="assurance-model" class="level2">
+<h2 class="anchored" data-anchor-id="assurance-model">Assurance Model</h2>
+<p>Document the assurance approach across:</p>
+<ul>
+<li>management self-assessment</li>
+<li>second-line compliance reviews</li>
+<li>control testing</li>
+<li>scenario and exercise validation</li>
+<li>internal audit</li>
+<li>supervisory review support</li>
+</ul>
+</section>
+<section id="testing-themes" class="level2">
+<h2 class="anchored" data-anchor-id="testing-themes">Testing Themes</h2>
+<ul>
+<li>governance and accountability</li>
+<li>ICT risk framework effectiveness</li>
+<li>incident classification and escalation</li>
+<li>reporting timeliness and quality</li>
+<li>resilience testing coverage</li>
+<li>remediation effectiveness</li>
+<li>third-party governance</li>
+<li>register of information quality</li>
+<li>recovery readiness</li>
+<li>evidence completeness</li>
+</ul>
+</section>
+</section>
+<section id="implementation-roadmap" class="level1">
+<h1>Implementation Roadmap</h1>
+<section id="maturity-phases" class="level2">
+<h2 class="anchored" data-anchor-id="maturity-phases">Maturity Phases</h2>
+<section id="phase-1-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-1-foundation">Phase 1: Foundation</h3>
+<ul>
+<li>establish governance and accountability</li>
+<li>define DORA policy framework</li>
+<li>identify critical and important functions</li>
+<li>establish asset and dependency baseline</li>
+<li>define incident classification and reporting model</li>
+</ul>
+</section>
+<section id="phase-2-control-design" class="level3">
+<h3 class="anchored" data-anchor-id="phase-2-control-design">Phase 2: Control Design</h3>
+<ul>
+<li>strengthen ICT risk management controls</li>
+<li>implement resilience testing framework</li>
+<li>formalise third-party governance and register of information</li>
+<li>improve monitoring, response, and recovery controls</li>
+</ul>
+</section>
+<section id="phase-3-integration" class="level3">
+<h3 class="anchored" data-anchor-id="phase-3-integration">Phase 3: Integration</h3>
+<ul>
+<li>integrate DORA with enterprise risk, architecture, and procurement</li>
+<li>improve dependency mapping and concentration risk management</li>
+<li>align service continuity, cyber resilience, and crisis management</li>
+<li>automate evidence collection and reporting workflows</li>
+</ul>
+</section>
+<section id="phase-4-optimisation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-4-optimisation">Phase 4: Optimisation</h3>
+<ul>
+<li>mature dashboards and management information</li>
+<li>strengthen scenario-based and threat-led exercises</li>
+<li>improve remediation governance</li>
+<li>enhance continuous monitoring and assurance</li>
+</ul>
+</section>
+</section>
+<section id="roadmap-table" class="level2">
+<h2 class="anchored" data-anchor-id="roadmap-table">Roadmap Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Initiative</th>
+<th>Description</th>
+<th>Owner</th>
+<th>Priority</th>
+<th>Timeline</th>
+<th>Dependency</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Example</td>
+<td>Example</td>
+<td>Example</td>
+<td>High</td>
+<td>Q1-Q2</td>
+<td>Example</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cross-framework-integration" class="level1">
+<h1>Cross-Framework Integration</h1>
+<section id="relationship-to-other-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-other-frameworks">Relationship to Other Frameworks</h2>
+<p>Describe how DORA integrates with:</p>
+<ul>
+<li>NIS2</li>
+<li>ISO/IEC 27001</li>
+<li>GDPR</li>
+<li>AI Act</li>
+<li>NIST Cybersecurity Framework</li>
+<li>COBIT</li>
+<li>ITIL</li>
+<li>TOGAF</li>
+<li>enterprise risk management</li>
+<li>business continuity and operational resilience frameworks</li>
+</ul>
+</section>
+<section id="example-mapping-themes" class="level2">
+<h2 class="anchored" data-anchor-id="example-mapping-themes">Example Mapping Themes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>DORA Theme</th>
+<th>Related Framework</th>
+<th>Integration Point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ICT risk management</td>
+<td>ISO 27001 / NIST CSF</td>
+<td>Cybersecurity and control framework</td>
+</tr>
+<tr class="even">
+<td>Incident reporting</td>
+<td>NIS2 / GDPR</td>
+<td>Regulatory notification and incident governance</td>
+</tr>
+<tr class="odd">
+<td>Third-party risk</td>
+<td>COBIT / ISO 27001</td>
+<td>Supplier and outsourcing governance</td>
+</tr>
+<tr class="even">
+<td>Resilience testing</td>
+<td>NIST CSF / BCM</td>
+<td>Validation of resilience capabilities</td>
+</tr>
+<tr class="odd">
+<td>Architecture resilience</td>
+<td>TOGAF</td>
+<td>Design authority and resilience by design</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="maturity-model" class="level1">
+<h1>Maturity Model</h1>
+<section id="suggested-maturity-levels" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-maturity-levels">Suggested Maturity Levels</h2>
+<section id="level-1-initial" class="level3">
+<h3 class="anchored" data-anchor-id="level-1-initial">Level 1: Initial</h3>
+<p>Resilience practices are reactive, fragmented, and poorly evidenced.</p>
+</section>
+<section id="level-2-repeatable" class="level3">
+<h3 class="anchored" data-anchor-id="level-2-repeatable">Level 2: Repeatable</h3>
+<p>Basic ICT risk, continuity, and incident processes exist but are inconsistently applied.</p>
+</section>
+<section id="level-3-defined" class="level3">
+<h3 class="anchored" data-anchor-id="level-3-defined">Level 3: Defined</h3>
+<p>Policies, roles, testing, and third-party controls are documented and implemented across key areas.</p>
+</section>
+<section id="level-4-managed" class="level3">
+<h3 class="anchored" data-anchor-id="level-4-managed">Level 4: Managed</h3>
+<p>Resilience capabilities are measured, risk-based, tested, and governed through regular reporting.</p>
+</section>
+<section id="level-5-optimised" class="level3">
+<h3 class="anchored" data-anchor-id="level-5-optimised">Level 5: Optimised</h3>
+<p>Digital operational resilience is embedded across governance, architecture, operations, and supply chain management with strong assurance and continuous improvement.</p>
+</section>
+</section>
+<section id="assessment-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="assessment-dimensions">Assessment Dimensions</h2>
+<ul>
+<li>governance</li>
+<li>ICT risk management</li>
+<li>incident handling and reporting</li>
+<li>resilience testing</li>
+<li>recovery capability</li>
+<li>third-party risk management</li>
+<li>concentration risk management</li>
+<li>evidence and reporting</li>
+<li>assurance</li>
+<li>improvement discipline</li>
+</ul>
+</section>
+</section>
+<section id="practical-templates" class="level1">
+<h1>Practical Templates</h1>
+<section id="suggested-appendices" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-appendices">Suggested Appendices</h2>
+<ul>
+<li>Appendix A: ICT risk assessment template</li>
+<li>Appendix B: Major ICT incident classification template</li>
+<li>Appendix C: Incident reporting workflow</li>
+<li>Appendix D: Digital operational resilience testing plan</li>
+<li>Appendix E: Register of information template</li>
+<li>Appendix F: ICT third-party due diligence checklist</li>
+<li>Appendix G: DORA control catalogue</li>
+<li>Appendix H: DORA RACI matrix</li>
+</ul>
+</section>
+</section>
+<section id="customisation-notes" class="level1">
+<h1>Customisation Notes</h1>
+<p>This template should be tailored to reflect:</p>
+<ul>
+<li>legal entity structure</li>
+<li>supervisory context</li>
+<li>financial sector segment</li>
+<li>business service model</li>
+<li>technology estate</li>
+<li>cloud and outsourcing profile</li>
+<li>critical and important functions</li>
+<li>operational resilience maturity</li>
+<li>assurance expectations</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Add authoritative references here, for example:</p>
+<ul>
+<li>Regulation (EU) 2022/2554</li>
+<li>DORA implementing and delegated acts</li>
+<li>ESA technical standards and guidance</li>
+<li>competent authority guidance</li>
+<li>internal ICT risk and resilience policies</li>
+<li>outsourcing and third-party risk standards</li>
+<li>enterprise risk framework</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
